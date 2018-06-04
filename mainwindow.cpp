@@ -148,6 +148,8 @@ void MainWindow::on_buttonApply_clicked()
         system("rm -r /home/*/.local/share/Trash/* 2>/dev/null");
     }
     setCursor(QCursor(Qt::ArrowCursor));
+    QMessageBox::information(this, tr("Done"),
+                             tr("Cleanup command has been completed."));
     refresh();
 }
 
