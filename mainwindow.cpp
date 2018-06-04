@@ -25,10 +25,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <QFileDialog>
-#include <QScrollBar>
-#include <QTextStream>
-
 #include <QDebug>
 
 
@@ -38,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setup();
+    refresh();
 }
 
 MainWindow::~MainWindow()
@@ -50,9 +47,41 @@ void MainWindow::setup()
 {
     cmd = new Cmd(this);
     connect(qApp, &QApplication::aboutToQuit, this, &MainWindow::cleanup);
-    this->setWindowTitle("MX Cleanup");
+    this->setWindowTitle(tr("MX Cleanup"));
     this->adjustSize();
     ui->buttonCancel->setEnabled(true);
+}
+
+void MainWindow::refresh()
+{
+    ui->tmpCheckBox->setChecked(true);
+    ui->cacheCheckBox->setChecked(true);
+    ui->thumbCheckBox->setChecked(true);
+    ui->autocleanRB->setChecked(true);
+    ui->oldLogsRB->setChecked(true);
+    ui->selectedUserCB->setChecked(true);
+    char line[130];
+    char line2[130];
+    char *tok;
+    FILE *fp;
+    int i;
+    ui->userCleanCB->clear();
+    ui->userCleanCB->addItem(tr("none"));
+    fp = popen("ls -1 /home", "r");
+    if (fp != NULL) {
+        while (fgets(line, sizeof line, fp) != NULL) {
+            i = strlen(line);
+            line[--i] = '\0';
+            tok = strtok(line, " ");
+            if (tok != NULL && strlen(tok) > 1 && strncmp(tok, "ftp", 3) != 0) {
+                sprintf(line2, "grep '^%s' /etc/passwd >/dev/null", tok);
+                if (system(line2) == 0) {
+                    ui->userCleanCB->addItem(tok);
+                }
+            }
+        }
+        pclose(fp);
+    }
 }
 
 // cleanup environment when window is closed
@@ -89,23 +118,41 @@ void MainWindow::setConnections()
 }
 
 
-void MainWindow::progress(int counter, int duration) // processes tick emited by Cmd to be used by a progress bar
-{
-
-}
-
 void MainWindow::on_buttonApply_clicked()
 {
-
-
+    setCursor(QCursor(Qt::BusyCursor));
+    if (ui->tmpCheckBox->isChecked()) {
+        system("rm -r /tmp/* 2>/dev/null");
+    }
+    if (ui->cacheCheckBox->isChecked()) {
+        system("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* 2>/dev/null");
+    }
+    if (ui->thumbCheckBox->isChecked()) {
+        system("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* 2>/dev/null");
+    }
+    if (ui->autocleanRB->isChecked()) {
+        system("apt-get autoclean");
+    } else {
+        system("apt-get clean");
+    }
+    if (ui->oldLogsRB->isChecked()) {
+        system("find /var/log -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" -type f -delete 2>/dev/null");
+    } else {
+        system("find /var/log -type f -exec sh -c \"echo > '{}'\" \\;");  // empty the logs
+    }
+    if (ui->selectedUserCB->isChecked()) {
+        system("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* 2>/dev/null");
+    } else {
+        system("rm -r /home/*/.local/share/Trash/* 2>/dev/null");
+    }
+    refresh();
 }
-
 
 // About button clicked
 void MainWindow::on_buttonAbout_clicked()
 {
     QMessageBox msgBox(QMessageBox::NoIcon,
-                       tr("About") + " MX Cleanup", "<p align=\"center\"><b><h2>MX Cleanup</h2></b></p><p align=\"center\">" +
+                       tr("About") + tr("MX Cleanup"), "<p align=\"center\"><b><h2>MX Cleanup</h2></b></p><p align=\"center\">" +
                        tr("Version: ") + getVersion("mx-cleanup") + "</p><p align=\"center\"><h3>" +
                        tr("Description goes here") +
                        "</h3></p><p align=\"center\"><a href=\"http://mxlinux.org\">http://mxlinux.org</a><br /></p><p align=\"center\">" +
@@ -139,3 +186,11 @@ void MainWindow::on_buttonHelp_clicked()
     system(cmd.toUtf8());
 }
 
+// refresh UI when selecting "none"
+void MainWindow::on_userCleanCB_activated(const QString &arg1)
+{
+    ui->buttonApply->setEnabled(true);
+    if (arg1 == tr("none")) {
+        refresh();
+    }
+}

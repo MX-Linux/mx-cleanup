@@ -13,8 +13,8 @@
   <property name="windowTitle">
    <string>Program_Name</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
     <widget class="QGroupBox" name="groupBox_4">
      <property name="title">
       <string>Free Disk Space for User</string>
@@ -68,7 +68,7 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item>
     <widget class="QGroupBox" name="groupBox_8">
      <property name="title">
       <string>Folders to Clean</string>
@@ -107,7 +107,7 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item>
     <widget class="QGroupBox" name="groupBox_5">
      <property name="title">
       <string>Clear APT Cache</string>
@@ -133,7 +133,7 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item>
     <widget class="QGroupBox" name="groupBox_6">
      <property name="title">
       <string>Delete Logs</string>
@@ -168,7 +168,36 @@
      </layout>
     </widget>
    </item>
-   <item row="4" column="0">
+   <item>
+    <widget class="QGroupBox" name="groupBox_7">
+     <property name="title">
+      <string>Empty Trash</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QRadioButton" name="selectedUserCB">
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>selected user Trash</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="allUsersCB">
+        <property name="text">
+         <string>empty Trash for all users</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
       <string>Graphical Tool for Analysing Disk Usage</string>
@@ -197,7 +226,7 @@
      </layout>
     </widget>
    </item>
-   <item row="5" column="0">
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -210,7 +239,7 @@
      </property>
     </spacer>
    </item>
-   <item row="6" column="0">
+   <item>
     <layout class="QGridLayout" name="buttonBar" columnstretch="0,0,0,0,0,0,0,0,0,0">
      <property name="sizeConstraint">
       <enum>QLayout::SetDefaultConstraint</enum>

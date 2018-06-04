@@ -26,13 +26,8 @@
 #define MAINWINDOW_H
 
 #include <QMessageBox>
-#include <QProcess>
-#include <QTimer>
-#include <QSettings>
-#include <QFile>
 
-#include <cmd.h>
-
+#include "cmd.h"
 
 namespace Ui {
 class MainWindow;
@@ -47,8 +42,8 @@ public:
     ~MainWindow();
 
     QString getVersion(QString name);
-
     void setup();
+    void refresh();
 
 public slots:
 
@@ -57,15 +52,16 @@ private slots:
     void cmdStart();
     void cmdDone();
     void setConnections();
-    void progress(int elapsed, int duration); // updates progressBar when tick signal is emited
     void on_buttonApply_clicked();
     void on_buttonAbout_clicked();
     void on_buttonHelp_clicked();
 
+    void on_userCleanCB_activated(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     Cmd *cmd;
-    QTimer *timer;
+
 };
 
 
