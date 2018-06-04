@@ -50,6 +50,7 @@ void MainWindow::setup()
     this->setWindowTitle(tr("MX Cleanup"));
     this->adjustSize();
     ui->buttonCancel->setEnabled(true);
+    ui->buttonApply->setDisabled(true);
 }
 
 void MainWindow::refresh()
@@ -66,7 +67,6 @@ void MainWindow::refresh()
     FILE *fp;
     int i;
     ui->userCleanCB->clear();
-    ui->userCleanCB->addItem(tr("none"));
     fp = popen("ls -1 /home", "r");
     if (fp != NULL) {
         while (fgets(line, sizeof line, fp) != NULL) {
@@ -82,6 +82,8 @@ void MainWindow::refresh()
         }
         pclose(fp);
     }
+    ui->userCleanCB->setCurrentIndex(ui->userCleanCB->findText(cmd->getOutput("logname")));
+    ui->buttonApply->setEnabled(ui->userCleanCB->currentText() != tr("none"));
 }
 
 // cleanup environment when window is closed
@@ -145,6 +147,7 @@ void MainWindow::on_buttonApply_clicked()
     } else {
         system("rm -r /home/*/.local/share/Trash/* 2>/dev/null");
     }
+    setCursor(QCursor(Qt::ArrowCursor));
     refresh();
 }
 
@@ -186,11 +189,7 @@ void MainWindow::on_buttonHelp_clicked()
     system(cmd.toUtf8());
 }
 
-// refresh UI when selecting "none"
-void MainWindow::on_userCleanCB_activated(const QString &arg1)
+void MainWindow::on_baobabPushButton_clicked()
 {
-    ui->buttonApply->setEnabled(true);
-    if (arg1 == tr("none")) {
-        refresh();
-    }
+    system("baobab&");
 }
