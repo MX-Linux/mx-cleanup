@@ -162,6 +162,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="49"/>
         <location filename="../mainwindow.cpp" line="150"/>
+        <location filename="../mainwindow.cpp" line="174"/>
         <source>MX Cleanup</source>
         <translation type="unfinished"></translation>
     </message>
@@ -182,7 +183,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="152"/>
-        <source>Description goes here</source>
+        <source>Quick safe removal of old files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

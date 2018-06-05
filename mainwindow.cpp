@@ -149,7 +149,7 @@ void MainWindow::on_buttonAbout_clicked()
     QMessageBox msgBox(QMessageBox::NoIcon,
                        tr("About") + tr("MX Cleanup"), "<p align=\"center\"><b><h2>MX Cleanup</h2></b></p><p align=\"center\">" +
                        tr("Version: ") + getVersion("mx-cleanup") + "</p><p align=\"center\"><h3>" +
-                       tr("Description goes here") +
+                       tr("Quick safe removal of old files") +
                        "</h3></p><p align=\"center\"><a href=\"http://mxlinux.org\">http://mxlinux.org</a><br /></p><p align=\"center\">" +
                        tr("Copyright (c) MX Linux") + "<br /><br /></p>");
     msgBox.addButton(tr("License"), QMessageBox::AcceptRole);
@@ -167,11 +167,11 @@ void MainWindow::on_buttonAbout_clicked()
 // Help button clicked
 void MainWindow::on_buttonHelp_clicked()
 {
-    QString url = "google.com";
+    QString url = "https://mxlinux.org/wiki/help-files/help-mx-cleanup";
     QString exec = "xdg-open";
     if (system("command -v mx-viewer") == 0) { // use mx-viewer if available
         exec = "mx-viewer";
-        url += " MX Cleanup";
+        url += " " + tr("MX Cleanup");
     }
     QString cmd = QString("su " + user + " -c \"" + exec + " " + url + "\"&");
     system(cmd.toUtf8());
