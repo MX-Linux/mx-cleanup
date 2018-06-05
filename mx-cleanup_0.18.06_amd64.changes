@@ -18,29 +18,29 @@ Changes:
  .
    * initial release
 Checksums-Sha1:
- ba049afea1ec196da5bb185455e132a71dd8dafa 1129 mx-cleanup_0.18.06.dsc
- 66a461066cd0e8af83697a9796b23f51cd026c09 22752 mx-cleanup_0.18.06.tar.xz
- 19d1c40d69023aec45ef824a64f71197b7b94e7e 11207 mx-cleanup_0.18.06_amd64.buildinfo
- 4fb8c9dbebf5e15b2272e24a7f2556cfc9c41bfb 29472 mx-cleanup_0.18.06_amd64.deb
+ 3d6747031d5d0301d7cebd44f9fbe498f3659039 1129 mx-cleanup_0.18.06.dsc
+ 7f19bcfec39fc0e3e6cef7a94549eef1206109fd 22688 mx-cleanup_0.18.06.tar.xz
+ dc728badf0ca4083a55d000fef4699bf4356c2af 11207 mx-cleanup_0.18.06_amd64.buildinfo
+ 819bd81823ea9b1336e9ab13506070a8b1e66ab9 29482 mx-cleanup_0.18.06_amd64.deb
 Checksums-Sha256:
- 7f8955c28aa9cdea56a835d293aff94875610175f3c61988f90779edaef7390b 1129 mx-cleanup_0.18.06.dsc
- 3c3e4814b20b3637a9d3b3f74dbf8fb5b76d72639bb36afc320fb7b0e4a45324 22752 mx-cleanup_0.18.06.tar.xz
- 6355c65ae660f00ac04a917f082160b9b3e3f514605b569264a91346c25e0796 11207 mx-cleanup_0.18.06_amd64.buildinfo
- 8592f6fdcb17646e472bfac9c0c1b84a61dc3a2e4cff8c3e0743063b9be38a56 29472 mx-cleanup_0.18.06_amd64.deb
+ fd8083bb9b56d315fc67816a1da8635b131280b7fa282a822b32649f3ecfffb3 1129 mx-cleanup_0.18.06.dsc
+ b3931c5a589f85164a5a05198682de6fa874064bd8362f58ae7ef9adb2172a97 22688 mx-cleanup_0.18.06.tar.xz
+ 081bb8fc1c1da21fd70d61979b728a4c8b0da5f3fe3d833eecc48fbc858e7d70 11207 mx-cleanup_0.18.06_amd64.buildinfo
+ fa4e891d9f33570596518a85aa1f3c8e7f8261096248fc8c6ecb3e55b16338b5 29482 mx-cleanup_0.18.06_amd64.deb
 Files:
- c577a74166b5ce6320543dc1b9f0e2d0 1129 admin optional mx-cleanup_0.18.06.dsc
- 8014e41ec1efdc24909687da721c10be 22752 admin optional mx-cleanup_0.18.06.tar.xz
- 2ec36094c555208648a7d0f9a2a172ee 11207 admin optional mx-cleanup_0.18.06_amd64.buildinfo
- 021c2852bf539864c778b3222274e0b5 29472 admin optional mx-cleanup_0.18.06_amd64.deb
+ 8b3bc3ef602825e2cda34ec0cdce4ab7 1129 admin optional mx-cleanup_0.18.06.dsc
+ b254a9be6d0fd734ff28886d504b4bf2 22688 admin optional mx-cleanup_0.18.06.tar.xz
+ 8e40b5e2826f9bb84dbfe882a81625c6 11207 admin optional mx-cleanup_0.18.06_amd64.buildinfo
+ c96edbe342869b7db39c2b85dd4f3f1c 29482 admin optional mx-cleanup_0.18.06_amd64.deb
 
 -----BEGIN PGP SIGNATURE-----
 
-iQFHBAEBCAAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAlsWmioTHGFkcmlhbkBt
-eGxpbnV4Lm9yZwAKCRBwk4x4BnnumOURB/4kYqL9M4uh0vtGh+yIHUhfT376W8mZ
-ILif2Pl7vcPC9fTaE8VSWocVOW336u3n9cl5vx/3nqQJlgIsaa+RcoRNBXLB3vRk
-xKGbdZfG1Vx4bjHq4bwBkbr0CyFFUm35Iw/7bLr2zKehtBXIm+RMn48QS1y76KFB
-B/NOX4oRfBQLQfSczvPTc2jjWEhC3vhhkemjQqUZfB4A41tMx1JFfLApfiMWobqI
-FSzlzKihHwuxenzn2Cn6zcmDpczDgfewGWyZwEtA8Z3TKZ1QSgCsTBXDwJD2XWM4
-QFaZ6hysvmHeJs3vVsHu4vLEvgItftkOQJQMP0Qbrp1lt+4uRXBrwvi5
-=7OdX
+iQFHBAEBCAAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAlsWoKITHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumHx8B/0bi8+hCka3zLF0xdvWa8uFT7yumBZn
+iqafFHw6gNqZ6s4n5RBtFAWsZoW2bYMwxZs9yoUjkVkPtb/zm2GXRxIHH9aOoeHD
+X1nH0OV8MQhd3QuqtQ0zjLhhOyo82z+Z/zPKJfRAgYA/JAbwYXMhuOLpqhBbyr0w
+zFeo0btYuvrN2x/Vsjw4ij1Xw/1xZ1Bx2uCL6i7rDOI1yaTZT2KK6HRRgoje6Hmd
+6cX4R7WUn9Jh5uT9Q0uIsRdkYlR+uYgKTXU161/+9aivC9lk3Q3SsI3nS/tdA2ry
+3TDREC6olM2KK1H1RR+i2G/FIvunVCqbtyzebBljziT1UjvgMQtjBTvu
+=EEaS
 -----END PGP SIGNATURE-----
