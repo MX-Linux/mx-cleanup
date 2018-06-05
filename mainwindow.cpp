@@ -157,7 +157,7 @@ void MainWindow::on_buttonAbout_clicked()
     if (msgBox.exec() == QMessageBox::AcceptRole) {
         QString url = "file:///usr/share/doc/mx-cleanup/license.html";
         if (system("command -v mx-viewer") == 0) { // use mx-viewer if available
-            system("su " + user.toUtf8() + " -c \"mx-viewer '" + url.toUtf8() + " " + tr("License").toUtf8() + "'\"&");
+            system("su " + user.toUtf8() + " -c \"mx-viewer " + url.toUtf8() + " " + tr("License").toUtf8() + "\"&");
         } else {
             system("su " + user.toUtf8() + " -c \"xdg-open " + url.toUtf8() + "\"&");
         }
