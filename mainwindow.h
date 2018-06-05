@@ -43,15 +43,11 @@ public:
 
     QString getVersion(QString name);
     void setup();
-    void refresh();
 
 public slots:
 
 private slots:
     void cleanup();
-    void cmdStart();
-    void cmdDone();
-    void setConnections();
     void on_buttonApply_clicked();
     void on_buttonAbout_clicked();
     void on_buttonHelp_clicked();
@@ -60,6 +56,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Cmd *cmd;
+    QString user;
 
 };
 

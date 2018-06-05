@@ -1,2 +1,1 @@
-# mx-template
-Template for creating Qt apps
+Program used for freeing space and clearing logs.

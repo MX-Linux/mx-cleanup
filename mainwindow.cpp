@@ -34,7 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setup();
-    refresh();
 }
 
 MainWindow::~MainWindow()
@@ -49,12 +48,8 @@ void MainWindow::setup()
     connect(qApp, &QApplication::aboutToQuit, this, &MainWindow::cleanup);
     this->setWindowTitle(tr("MX Cleanup"));
     this->adjustSize();
-    ui->buttonCancel->setEnabled(true);
+    user = cmd->getOutput("logname", QStringList("quiet"));
     ui->buttonApply->setDisabled(true);
-}
-
-void MainWindow::refresh()
-{
     ui->tmpCheckBox->setChecked(true);
     ui->cacheCheckBox->setChecked(true);
     ui->thumbCheckBox->setChecked(true);
@@ -82,8 +77,8 @@ void MainWindow::refresh()
         }
         pclose(fp);
     }
-    ui->userCleanCB->setCurrentIndex(ui->userCleanCB->findText(cmd->getOutput("logname")));
-    ui->buttonApply->setEnabled(ui->userCleanCB->currentText() != tr("none"));
+    ui->userCleanCB->setCurrentIndex(ui->userCleanCB->findText(user));
+    ui->buttonApply->setEnabled(ui->userCleanCB->currentText() != "");
 }
 
 // cleanup environment when window is closed
@@ -100,57 +95,52 @@ QString MainWindow::getVersion(QString name)
     return cmd.getOutput("dpkg -l "+ name + "| awk 'NR==6 {print $3}'");
 }
 
-void MainWindow::cmdStart()
-{
-    setCursor(QCursor(Qt::BusyCursor));
-}
-
-
-void MainWindow::cmdDone()
-{
-    setCursor(QCursor(Qt::ArrowCursor));
-}
-
-// set proc and timer connections
-void MainWindow::setConnections()
-{
-    cmd->disconnect();
-    connect(cmd, &Cmd::started, this, &MainWindow::cmdStart);
-    connect(cmd, &Cmd::finished, this, &MainWindow::cmdDone);
-}
-
 
 void MainWindow::on_buttonApply_clicked()
 {
+    int total = 0;
     setCursor(QCursor(Qt::BusyCursor));
     if (ui->tmpCheckBox->isChecked()) {
+        total +=  cmd->getOutput("du -c /tmp/* | tail -1 | cut -f1").toInt();
         system("rm -r /tmp/* 2>/dev/null");
     }
     if (ui->cacheCheckBox->isChecked()) {
+        total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* | tail -1 | cut -f1").toInt();
         system("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* 2>/dev/null");
     }
     if (ui->thumbCheckBox->isChecked()) {
+        total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* | tail -1 | cut -f1").toInt();
         system("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* 2>/dev/null");
     }
     if (ui->autocleanRB->isChecked()) {
+        total += cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
         system("apt-get autoclean");
+        total -= cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
     } else {
+        total += cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
         system("apt-get clean");
+        total -= cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
     }
     if (ui->oldLogsRB->isChecked()) {
-        system("find /var/log -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" -type f -delete 2>/dev/null");
+        total += cmd->getOutput("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -exec du -sc {} + | tail -1 | cut -f1").toInt();
+        system("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -delete 2>/dev/null");
     } else {
+        total += cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
         system("find /var/log -type f -exec sh -c \"echo > '{}'\" \\;");  // empty the logs
+        total -= cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
     }
     if (ui->selectedUserCB->isChecked()) {
+        total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* | tail -1 | cut -f1").toInt();
         system("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* 2>/dev/null");
     } else {
+        total += cmd->getOutput("find /home/*/.local/share/Trash/* -exec du -sc {} + | tail -1 | cut -f1").toInt();
         system("rm -r /home/*/.local/share/Trash/* 2>/dev/null");
     }
+
     setCursor(QCursor(Qt::ArrowCursor));
     QMessageBox::information(this, tr("Done"),
-                             tr("Cleanup command has been completed."));
-    refresh();
+                             tr("Cleanup command done") + "\n" +
+                             tr("%1 MiB were freed").arg((total/1000)));
 }
 
 // About button clicked
@@ -166,8 +156,6 @@ void MainWindow::on_buttonAbout_clicked()
     msgBox.addButton(tr("Cancel"), QMessageBox::NoRole);
     if (msgBox.exec() == QMessageBox::AcceptRole) {
         QString url = "file:///usr/share/doc/mx-cleanup/license.html";
-        Cmd c;
-        QString user = c.getOutput("logname");
         if (system("command -v mx-viewer") == 0) { // use mx-viewer if available
             system("su " + user.toUtf8() + " -c \"mx-viewer '" + url.toUtf8() + " " + tr("License").toUtf8() + "'\"&");
         } else {
@@ -185,8 +173,6 @@ void MainWindow::on_buttonHelp_clicked()
         exec = "mx-viewer";
         url += " MX Cleanup";
     }
-    Cmd c;
-    QString user = c.getOutput("logname");
     QString cmd = QString("su " + user + " -c \"" + exec + " " + url + "\"&");
     system(cmd.toUtf8());
 }
