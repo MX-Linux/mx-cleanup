@@ -23,6 +23,6 @@ Comment[sv]=
 Exec=su-to-root -X -c mx-cleanup
 Terminal=false
 Type=Application
-Icon=gcleaner
+Icon=mx-cleanup.svg
 Categories=System;MX-Maintenance
 NoDisplay=false
