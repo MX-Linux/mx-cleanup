@@ -11,11 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Program_Name</string>
-  </property>
-  <property name="windowIcon">
-   <iconset theme="gcleaner">
-    <normaloff>.</normaloff>.</iconset>
+   <string>MX Cleanup</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="2" column="0">
@@ -39,7 +35,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>/tmp</string>
+         <string notr="true">/tmp</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -55,7 +51,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>~/.thumbnails</string>
+         <string notr="true">~/.thumbnails</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -71,7 +67,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>~/.cache</string>
+         <string notr="true">~/.cache</string>
         </property>
         <property name="checked">
          <bool>true</bool>
