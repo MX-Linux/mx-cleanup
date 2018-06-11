@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>MainWindow</name>
     <message>
@@ -7,37 +7,37 @@
         <location filename="../mainwindow.cpp" line="150"/>
         <location filename="../mainwindow.cpp" line="174"/>
         <source>MX Cleanup</source>
-        <translation>MX Nettoyage</translation>
+        <translation>MX Temizleyici</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="26"/>
         <source>Folders to Clean</source>
-        <translation>Dossiers à nettoyer</translation>
+        <translation>Temizlenecek Klasörler</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="89"/>
         <source>Delete Logs</source>
-        <translation>Supprimer les fichiers journaux</translation>
+        <translation>Günlükleri Sil</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="101"/>
         <source>Old logs</source>
-        <translation>Anciens journaux</translation>
+        <translation>Eski günlükler</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="120"/>
         <source>All logs</source>
-        <translation>Tous les journaux</translation>
+        <translation>Tüm günlükler</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="175"/>
         <source>Display help </source>
-        <translation>Afficher l&apos;aide</translation>
+        <translation>Yardımı görüntüle</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="178"/>
         <source>Help</source>
-        <translation>Aide</translation>
+        <translation>Yardım</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
@@ -47,12 +47,12 @@
     <message>
         <location filename="../mainwindow.ui" line="214"/>
         <source>About this application</source>
-        <translation>À propos de cette application</translation>
+        <translation>Uygulama hakkında</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="217"/>
         <source>About...</source>
-        <translation>À propos...</translation>
+        <translation>Hakkında...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="224"/>
@@ -62,12 +62,12 @@
     <message>
         <location filename="../mainwindow.ui" line="256"/>
         <source>Quit application</source>
-        <translation>Quitter l&apos;application</translation>
+        <translation>Uygulamadan çık</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="259"/>
         <source>Close</source>
-        <translation>Quitter</translation>
+        <translation>Kapat</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="266"/>
@@ -77,93 +77,93 @@
     <message>
         <location filename="../mainwindow.ui" line="304"/>
         <source>Apply</source>
-        <translation>Appliquer</translation>
+        <translation>Uygula</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="332"/>
         <source>Empty Trash</source>
-        <translation>Vider la corbeille</translation>
+        <translation>Çöpü Boşalt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="347"/>
         <source>Selected user</source>
-        <translation>Utilisateur sélectionné</translation>
+        <translation>Seçilen kullanıcı</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="363"/>
         <source>All users</source>
-        <translation>Tous les utilisateurs</translation>
+        <translation>Tüm kullanıcılar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="379"/>
         <source>Clear APT Cache</source>
-        <translation>Vider le cache APT</translation>
+        <translation>APT önbelleğini temizle</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="391"/>
         <source>Old files</source>
-        <translation>Anciens fichiers</translation>
+        <translation>Eski dosyalar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="407"/>
         <source>All files</source>
-        <translation>Tous les fichiers</translation>
+        <translation>Tüm dosyalar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="436"/>
         <source>Free Disk Space for User</source>
-        <translation>Espace disque libre de l&apos;utilisateur</translation>
+        <translation>Kullanıcı için boş disk alanı</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="448"/>
         <location filename="../mainwindow.ui" line="461"/>
         <source>Select user to repair</source>
-        <translation>Sélectionner l&apos;utilisateur devant être modifié</translation>
+        <translation>Onarılacak kullanıcıyı seçin</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="464"/>
         <source>Select user:</source>
-        <translation>Choix de l&apos;utilisateur:</translation>
+        <translation>Kullanıcı seç:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="480"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation>Outil graphique d&apos;analyse de l&apos;usage du disque</translation>
+        <translation>Disk Kullanım İncelemesi için Grafiksel Araç</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="486"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation>Lancer l&apos;analyse de l&apos;usage du disque</translation>
+        <translation>Disk Kullanım Çözümleyicisini Çalıştır</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="141"/>
         <source>Done</source>
-        <translation>Terminé</translation>
+        <translation>Biti</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="142"/>
         <source>Cleanup command done</source>
-        <translation>Commande de nettoyage executée</translation>
+        <translation>Temizleme komutu tamamlandı</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="143"/>
         <source>%1 MiB were freed</source>
-        <translation>%1 Mio sont de nouveau disponibles</translation>
+        <translation>%1 MB serbest bırakıldı</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="150"/>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation>Hakkında</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="151"/>
         <source>Version: </source>
-        <translation>Version: </translation>
+        <translation>Sürüm</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="152"/>
         <source>Quick and safe removal of old files</source>
-        <translation>Suppression des fichiers anciens sûre et rapide</translation>
+        <translation>Eski dosyaların hızlı ve güvenli şekilde kaldırılması</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="154"/>
@@ -174,12 +174,12 @@
         <location filename="../mainwindow.cpp" line="155"/>
         <location filename="../mainwindow.cpp" line="160"/>
         <source>License</source>
-        <translation>Licence</translation>
+        <translation>Ruhsat</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="156"/>
         <source>Cancel</source>
-        <translation>Annuler</translation>
+        <translation>İptal</translation>
     </message>
 </context>
 <context>
@@ -187,7 +187,7 @@
     <message>
         <location filename="../main.cpp" line="52"/>
         <source>You must run this program as root.</source>
-        <translation>Vous devez lancer cette application avec les droits administrateur.</translation>
+        <translation>Bu programı root olarak çalıştırmalısınız.</translation>
     </message>
 </context>
 </TS>

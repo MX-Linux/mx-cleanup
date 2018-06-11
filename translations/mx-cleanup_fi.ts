@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.1">
 <context>
     <name>MainWindow</name>
     <message>
@@ -7,37 +7,37 @@
         <location filename="../mainwindow.cpp" line="150"/>
         <location filename="../mainwindow.cpp" line="174"/>
         <source>MX Cleanup</source>
-        <translation>MX Nettoyage</translation>
+        <translation>MX Puhdistus</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="26"/>
         <source>Folders to Clean</source>
-        <translation>Dossiers à nettoyer</translation>
+        <translation>Puhdistettavat kansiot</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="89"/>
         <source>Delete Logs</source>
-        <translation>Supprimer les fichiers journaux</translation>
+        <translation>Poista lokit</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="101"/>
         <source>Old logs</source>
-        <translation>Anciens journaux</translation>
+        <translation>Vanhat lokit</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="120"/>
         <source>All logs</source>
-        <translation>Tous les journaux</translation>
+        <translation>Kaikki lokit</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="175"/>
         <source>Display help </source>
-        <translation>Afficher l&apos;aide</translation>
+        <translation>Näytä ohje</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="178"/>
         <source>Help</source>
-        <translation>Aide</translation>
+        <translation>Ohje</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
@@ -47,12 +47,12 @@
     <message>
         <location filename="../mainwindow.ui" line="214"/>
         <source>About this application</source>
-        <translation>À propos de cette application</translation>
+        <translation>Tietoja tästä sovelluksesta</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="217"/>
         <source>About...</source>
-        <translation>À propos...</translation>
+        <translation>Tietoja...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="224"/>
@@ -62,12 +62,12 @@
     <message>
         <location filename="../mainwindow.ui" line="256"/>
         <source>Quit application</source>
-        <translation>Quitter l&apos;application</translation>
+        <translation>Lopeta sovellus</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="259"/>
         <source>Close</source>
-        <translation>Quitter</translation>
+        <translation>Sulje</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="266"/>
@@ -77,93 +77,93 @@
     <message>
         <location filename="../mainwindow.ui" line="304"/>
         <source>Apply</source>
-        <translation>Appliquer</translation>
+        <translation>Hyväksy</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="332"/>
         <source>Empty Trash</source>
-        <translation>Vider la corbeille</translation>
+        <translation>Tyhjennä roskakori</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="347"/>
         <source>Selected user</source>
-        <translation>Utilisateur sélectionné</translation>
+        <translation>Valittu käyttäjä</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="363"/>
         <source>All users</source>
-        <translation>Tous les utilisateurs</translation>
+        <translation>Kaikki käyttäjät</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="379"/>
         <source>Clear APT Cache</source>
-        <translation>Vider le cache APT</translation>
+        <translation>Tyhjennä APT välimuisti</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="391"/>
         <source>Old files</source>
-        <translation>Anciens fichiers</translation>
+        <translation>Vanhat tiedostot</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="407"/>
         <source>All files</source>
-        <translation>Tous les fichiers</translation>
+        <translation>Kaikki tiedostot</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="436"/>
         <source>Free Disk Space for User</source>
-        <translation>Espace disque libre de l&apos;utilisateur</translation>
+        <translation>Vapauta levytilaa käyttäjälle</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="448"/>
         <location filename="../mainwindow.ui" line="461"/>
         <source>Select user to repair</source>
-        <translation>Sélectionner l&apos;utilisateur devant être modifié</translation>
+        <translation>Valitse korjattava käyttäjä</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="464"/>
         <source>Select user:</source>
-        <translation>Choix de l&apos;utilisateur:</translation>
+        <translation>Valitse käyttäjä:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="480"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation>Outil graphique d&apos;analyse de l&apos;usage du disque</translation>
+        <translation>Graafinen työkalu levynkäytön analysointiin</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="486"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation>Lancer l&apos;analyse de l&apos;usage du disque</translation>
+        <translation>Suorita levynkäytön analysointi</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="141"/>
         <source>Done</source>
-        <translation>Terminé</translation>
+        <translation>Valmis</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="142"/>
         <source>Cleanup command done</source>
-        <translation>Commande de nettoyage executée</translation>
+        <translation>Puhdistus suoritettu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="143"/>
         <source>%1 MiB were freed</source>
-        <translation>%1 Mio sont de nouveau disponibles</translation>
+        <translation>%1 Mt vapautui</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="150"/>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation>Tietoja</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="151"/>
         <source>Version: </source>
-        <translation>Version: </translation>
+        <translation>Versio: </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="152"/>
         <source>Quick and safe removal of old files</source>
-        <translation>Suppression des fichiers anciens sûre et rapide</translation>
+        <translation>Vanhojen tiedostojen nopea ja turvallinen poistaminen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="154"/>
@@ -174,12 +174,12 @@
         <location filename="../mainwindow.cpp" line="155"/>
         <location filename="../mainwindow.cpp" line="160"/>
         <source>License</source>
-        <translation>Licence</translation>
+        <translation>Lisenssi</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="156"/>
         <source>Cancel</source>
-        <translation>Annuler</translation>
+        <translation>Peru</translation>
     </message>
 </context>
 <context>
@@ -187,7 +187,7 @@
     <message>
         <location filename="../main.cpp" line="52"/>
         <source>You must run this program as root.</source>
-        <translation>Vous devez lancer cette application avec les droits administrateur.</translation>
+        <translation>Sinun täytyy suorittaa tämä ohjelma pääkäyttäjänä.</translation>
     </message>
 </context>
 </TS>
