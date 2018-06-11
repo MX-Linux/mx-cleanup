@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.1">
 <context>
     <name>MainWindow</name>
     <message>
@@ -7,37 +7,37 @@
         <location filename="../mainwindow.cpp" line="150"/>
         <location filename="../mainwindow.cpp" line="174"/>
         <source>MX Cleanup</source>
-        <translation>MX Nettoyage</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="26"/>
         <source>Folders to Clean</source>
-        <translation>Dossiers à nettoyer</translation>
+        <translation>Папки для очистки</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="89"/>
         <source>Delete Logs</source>
-        <translation>Supprimer les fichiers journaux</translation>
+        <translation>Удаление журналов</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="101"/>
         <source>Old logs</source>
-        <translation>Anciens journaux</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="120"/>
         <source>All logs</source>
-        <translation>Tous les journaux</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="175"/>
         <source>Display help </source>
-        <translation>Afficher l&apos;aide</translation>
+        <translation>Показать справку</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="178"/>
         <source>Help</source>
-        <translation>Aide</translation>
+        <translation>Справка</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
@@ -47,12 +47,12 @@
     <message>
         <location filename="../mainwindow.ui" line="214"/>
         <source>About this application</source>
-        <translation>À propos de cette application</translation>
+        <translation>Об этом приложении</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="217"/>
         <source>About...</source>
-        <translation>À propos...</translation>
+        <translation>O...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="224"/>
@@ -62,12 +62,12 @@
     <message>
         <location filename="../mainwindow.ui" line="256"/>
         <source>Quit application</source>
-        <translation>Quitter l&apos;application</translation>
+        <translation>Выход</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="259"/>
         <source>Close</source>
-        <translation>Quitter</translation>
+        <translation>Закрыть</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="266"/>
@@ -77,93 +77,93 @@
     <message>
         <location filename="../mainwindow.ui" line="304"/>
         <source>Apply</source>
-        <translation>Appliquer</translation>
+        <translation>Применить</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="332"/>
         <source>Empty Trash</source>
-        <translation>Vider la corbeille</translation>
+        <translation>Очистить корзину</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="347"/>
         <source>Selected user</source>
-        <translation>Utilisateur sélectionné</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="363"/>
         <source>All users</source>
-        <translation>Tous les utilisateurs</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="379"/>
         <source>Clear APT Cache</source>
-        <translation>Vider le cache APT</translation>
+        <translation>Очистить кэш APT</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="391"/>
         <source>Old files</source>
-        <translation>Anciens fichiers</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="407"/>
         <source>All files</source>
-        <translation>Tous les fichiers</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="436"/>
         <source>Free Disk Space for User</source>
-        <translation>Espace disque libre de l&apos;utilisateur</translation>
+        <translation>Свободное дисковое пространство для пользователя</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="448"/>
         <location filename="../mainwindow.ui" line="461"/>
         <source>Select user to repair</source>
-        <translation>Sélectionner l&apos;utilisateur devant être modifié</translation>
+        <translation>Выберите пользователя для восстановления</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="464"/>
         <source>Select user:</source>
-        <translation>Choix de l&apos;utilisateur:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="480"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation>Outil graphique d&apos;analyse de l&apos;usage du disque</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="486"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation>Lancer l&apos;analyse de l&apos;usage du disque</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="141"/>
         <source>Done</source>
-        <translation>Terminé</translation>
+        <translation>Готово</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="142"/>
         <source>Cleanup command done</source>
-        <translation>Commande de nettoyage executée</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="143"/>
         <source>%1 MiB were freed</source>
-        <translation>%1 Mio sont de nouveau disponibles</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="150"/>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation>О приложении</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="151"/>
         <source>Version: </source>
-        <translation>Version: </translation>
+        <translation>Версия: </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="152"/>
         <source>Quick and safe removal of old files</source>
-        <translation>Suppression des fichiers anciens sûre et rapide</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="154"/>
@@ -174,12 +174,12 @@
         <location filename="../mainwindow.cpp" line="155"/>
         <location filename="../mainwindow.cpp" line="160"/>
         <source>License</source>
-        <translation>Licence</translation>
+        <translation>Лицензия</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="156"/>
         <source>Cancel</source>
-        <translation>Annuler</translation>
+        <translation>Отменить</translation>
     </message>
 </context>
 <context>
@@ -187,7 +187,7 @@
     <message>
         <location filename="../main.cpp" line="52"/>
         <source>You must run this program as root.</source>
-        <translation>Vous devez lancer cette application avec les droits administrateur.</translation>
+        <translation>Вы должны запустить программу от имени суперпользователя.</translation>
     </message>
 </context>
 </TS>

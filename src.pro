@@ -35,16 +35,32 @@ HEADERS  += \
 FORMS    += \
     mainwindow.ui
 
-TRANSLATIONS += translations/mx-cleanup_ca.ts \
+TRANSLATIONS += translations/mx-cleanup_am.ts \
+                translations/mx-cleanup_ca.ts \
+                translations/mx-cleanup_cs.ts \
                 translations/mx-cleanup_de.ts \
                 translations/mx-cleanup_el.ts \
                 translations/mx-cleanup_es.ts \
+                translations/mx-cleanup_fi.ts \
                 translations/mx-cleanup_fr.ts \
+                translations/mx-cleanup_hi.ts \
+                translations/mx-cleanup_hr.ts \
+                translations/mx-cleanup_hu.ts \
                 translations/mx-cleanup_it.ts \
                 translations/mx-cleanup_ja.ts \
+                translations/mx-cleanup_kk.ts \
+                translations/mx-cleanup_lt.ts \
                 translations/mx-cleanup_nl.ts \
+                translations/mx-cleanup_pl.ts \
+                translations/mx-cleanup_pt.ts \
+                translations/mx-cleanup_pt_BR.ts \
                 translations/mx-cleanup_ro.ts \
-                translations/mx-cleanup_sv.ts
+                translations/mx-cleanup_ru.ts \
+                translations/mx-cleanup_sk.ts \
+                translations/mx-cleanup_sv.ts \
+                translations/mx-cleanup_tr.ts \
+                translations/mx-cleanup_uk.ts \
+                translations/mx-cleanup_zh_TW.ts
 
 RESOURCES += \
     images.qrc
