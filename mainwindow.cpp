@@ -50,7 +50,6 @@ void MainWindow::setup()
     this->adjustSize();
     user = cmd->getOutput("logname", QStringList("quiet"));
     ui->buttonApply->setDisabled(true);
-    ui->tmpCheckBox->setChecked(true);
     ui->cacheCheckBox->setChecked(true);
     ui->thumbCheckBox->setChecked(true);
     ui->autocleanRB->setChecked(true);
@@ -100,10 +99,10 @@ void MainWindow::on_buttonApply_clicked()
 {
     int total = 0;
     setCursor(QCursor(Qt::BusyCursor));
-    if (ui->tmpCheckBox->isChecked()) {
-        total +=  cmd->getOutput("du -c /tmp/* | tail -1 | cut -f1").toInt();
-        system("rm -r /tmp/* 2>/dev/null");
-    }
+//    if (ui->tmpCheckBox->isChecked()) {
+//        total +=  cmd->getOutput("du -c /tmp/* | tail -1 | cut -f1").toInt();
+//        system("rm -r /tmp/* 2>/dev/null");
+//    }
     if (ui->cacheCheckBox->isChecked()) {
         total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* | tail -1 | cut -f1").toInt();
         system("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* 2>/dev/null");
