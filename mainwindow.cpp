@@ -173,7 +173,8 @@ void MainWindow::on_buttonAbout_clicked()
 
         QTextEdit *text = new QTextEdit;
         text->setReadOnly(true);
-        text->setText(cmd->getOutput("zless /usr/share/doc/" + QFileInfo(QCoreApplication::applicationFilePath()).fileName()  + "/changelog.gz"));
+        Cmd cmd;
+        text->setText(cmd.getOutput("zless /usr/share/doc/" + QFileInfo(QCoreApplication::applicationFilePath()).fileName()  + "/changelog.gz"));
 
         QPushButton *btnClose = new QPushButton(tr("&Close"));
         btnClose->setIcon(QIcon::fromTheme("window-close"));
