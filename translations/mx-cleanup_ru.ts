@@ -7,7 +7,7 @@
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.cpp" line="51"/>
         <location filename="../mainwindow.cpp" line="151"/>
-        <location filename="../mainwindow.cpp" line="197"/>
+        <location filename="../mainwindow.cpp" line="198"/>
         <source>MX Cleanup</source>
         <translation type="unfinished"></translation>
     </message>
@@ -189,7 +189,7 @@
         <translation>Отменить</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="178"/>
+        <location filename="../mainwindow.cpp" line="179"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
