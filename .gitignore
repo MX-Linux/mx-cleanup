@@ -36,5 +36,6 @@ Makefile*
 *.qmlproject.user.*
 
 
-# Exclude debian folder
+# Exclude debian folder and binary
 debian/
+mx-cleanup
