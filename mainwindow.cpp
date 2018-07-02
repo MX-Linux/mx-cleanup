@@ -103,39 +103,39 @@ void MainWindow::on_buttonApply_clicked()
     setCursor(QCursor(Qt::BusyCursor));
 //    if (ui->tmpCheckBox->isChecked()) {
 //        total +=  cmd->getOutput("du -c /tmp/* | tail -1 | cut -f1").toInt();
-//        system("rm -r /tmp/* 2>/dev/null");
+//        cmd->run("rm -r /tmp/* 2>/dev/null");
 //    }
     if (ui->cacheCheckBox->isChecked()) {
         total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* | tail -1 | cut -f1").toInt();
-        system("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* 2>/dev/null");
+        cmd->run("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* 2>/dev/null");
     }
     if (ui->thumbCheckBox->isChecked()) {
         total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* | tail -1 | cut -f1").toInt();
-        system("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* 2>/dev/null");
+        cmd->run("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* 2>/dev/null");
     }
     if (ui->autocleanRB->isChecked()) {
         total += cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
-        system("apt-get autoclean");
+        cmd->run("apt-get autoclean");
         total -= cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
     } else {
         total += cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
-        system("apt-get clean");
+        cmd->run("apt-get clean");
         total -= cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
     }
     if (ui->oldLogsRB->isChecked()) {
         total += cmd->getOutput("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -exec du -sc {} + | tail -1 | cut -f1").toInt();
-        system("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -delete 2>/dev/null");
+        cmd->run("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -delete 2>/dev/null");
     } else {
         total += cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
-        system("find /var/log -type f -exec sh -c \"echo > '{}'\" \\;");  // empty the logs
+        cmd->run("find /var/log -type f -exec sh -c \"echo > '{}'\" \\;");  // empty the logs
         total -= cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
     }
     if (ui->selectedUserCB->isChecked()) {
         total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* | tail -1 | cut -f1").toInt();
-        system("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* 2>/dev/null");
+        cmd->run("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* 2>/dev/null");
     } else {
         total += cmd->getOutput("find /home/*/.local/share/Trash/* -exec du -sc {} + | tail -1 | cut -f1").toInt();
-        system("rm -r /home/*/.local/share/Trash/* 2>/dev/null");
+        cmd->run("rm -r /home/*/.local/share/Trash/* 2>/dev/null");
     }
 
     setCursor(QCursor(Qt::ArrowCursor));
