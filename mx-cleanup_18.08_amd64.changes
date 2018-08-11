@@ -18,26 +18,26 @@ Changes:
  .
    * fix icon other themes
 Checksums-Sha1:
- 54b4d5a0f4e235d90f6c4a6d50d81b9012ead646 1121 mx-cleanup_18.08.dsc
- 1c92fc327993cc05b619224609d5edfda913a936 32452 mx-cleanup_18.08.tar.xz
- a06600f5c402d526f1585b6c47c9151503744dc5 42384 mx-cleanup_18.08_amd64.deb
+ 3e242e68b84a0d123033d5ce075edc104d5040dc 1121 mx-cleanup_18.08.dsc
+ d296c360d41259f2f1b8aeaff9dce8219c059f39 32448 mx-cleanup_18.08.tar.xz
+ 82642c8d5335136fe4217270199c28e0c203bcbd 42440 mx-cleanup_18.08_amd64.deb
 Checksums-Sha256:
- 046cc06f6ccdf785694271210db696d7640b49f9cebcf88000dfb0c339e5b81b 1121 mx-cleanup_18.08.dsc
- 5ded9b9cdf535979715a19cd45f2754718f93ab46ea2bd15c674af247872255c 32452 mx-cleanup_18.08.tar.xz
- c2243350deb936dea4fe88c6d05c927e6e6d761489e5dc69f0d866e32c5ea07e 42384 mx-cleanup_18.08_amd64.deb
+ c6d827733783bb5cf5ddcc6ad7bfd5eb41e3b13102e796f38a5ef7c395da0f94 1121 mx-cleanup_18.08.dsc
+ 19862629b639e27df407096898d6575cf55fbd41b348f90f7de1916186e85813 32448 mx-cleanup_18.08.tar.xz
+ b1dd0d3967c98385f6df82c5c6b68f91e57981b1e5920a6bc6b7378488dd3ba4 42440 mx-cleanup_18.08_amd64.deb
 Files:
- 63e88ed3e686177c3e5cb3ded94bb95f 1121 admin optional mx-cleanup_18.08.dsc
- fb2c8b86e91ba145453a9833c29c1d32 32452 admin optional mx-cleanup_18.08.tar.xz
- 04ba5657dbd3be723fa21aca77ae2af0 42384 admin optional mx-cleanup_18.08_amd64.deb
+ 21f9dc3d7f84a3eaec915dc0ddeed7c9 1121 admin optional mx-cleanup_18.08.dsc
+ 4d15671e31f2fd45819925886e5994b6 32448 admin optional mx-cleanup_18.08.tar.xz
+ 646582dbb32969470dd5dacfff0a5f6f 42440 admin optional mx-cleanup_18.08_amd64.deb
 
 -----BEGIN PGP SIGNATURE-----
 
-iQFHBAEBCAAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAltvQvITHGFkcmlhbkBt
-eGxpbnV4Lm9yZwAKCRBwk4x4BnnumA9OCADELAPqiJO3txrYCCmV5nZuF3XZ4u/b
-znfdlkgZTL+MLa4Ww/NZGZJma04AT4KOs7FYAzxhBUdEyh92tdsnMeGB6W8VTUor
-yC6RVATrLJwW89F1E2uAzD3eiqRQYtmZJRqacM2BBCDnK1LXavq9Pb3GimUgczOm
-osyFwt5lo8sD7RmGLqYJ3ddhlGLchqhuDSMoaMBKK8j+b54wo7rAxeoyD1jlvoOd
-2yfaviHEz+dl5cqplmYwqz0ZIfG0GDSkWmzl8WmnoBBq6sN/t88m4BohCASWJwvx
-V08pwZSkA44cf8OyYe9fKYDo+Ubqrd5PWi3kV/P01IJMcJ2lYPtMIxV5
-=3BGy
+iQFHBAEBCAAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAltvR3wTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumKt/B/9APPr+no5vStmYOJeXww9yEbPXkTjt
+q5278qGz74s2CY+qKTgimIPnZt+wJFysbu8l79vLo44y+Q4lxkWMyZwy3waJRqV0
+ToA/TnaLXNMImvLrKQXIl0nZ0Xks9/fx7kLYm0TbG06njACahwhjypLiD24z3Xtd
+k3x7ow8zbLblUExXiIn2bF8CUYaJoEI9fawdZVeeh/FduPcyRRxrctI3aRsqA4mv
+0fSUNZZNom6IxX8vwVW/FQxN0sOGGa8NqAoaxAZgPgoAw0T+V/kCRiQA0PaCiNd6
+YWTPWyxIVy11ueN9YRpj0OTeqelzHA673U0RaH7IEVe7ISjijtdGBs+v
+=xALh
 -----END PGP SIGNATURE-----
