@@ -452,7 +452,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="baobabPushButton">
+       <widget class="QPushButton" name="buttonUsageAnalyzer">
         <property name="text">
          <string>Run Disk Usage Analyzer</string>
         </property>

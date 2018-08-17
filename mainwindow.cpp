@@ -201,7 +201,21 @@ void MainWindow::on_buttonHelp_clicked()
     system(cmd.toUtf8());
 }
 
-void MainWindow::on_baobabPushButton_clicked()
+void MainWindow::on_buttonUsageAnalyzer_clicked()
 {
-    system("baobab&");
+    QString desktop = qgetenv("XDG_CURRENT_DESKTOP");
+
+    if (desktop == "KDE" || desktop == "LXQt") { // try qdirstat for Qt based DEs, otherwise baobab
+        if (system("command -v qdirstat") == 0) {
+            system("qdirstat&");
+        } else {                     // failsafe
+            system("baobab&");
+        }
+    } else {
+        if (system("command -v baobab") == 0) {
+            system("baobab&");
+        } else {
+            system("qdirstat&");
+        }
+    }
 }
