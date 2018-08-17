@@ -51,7 +51,7 @@ private slots:
     void on_buttonApply_clicked();
     void on_buttonAbout_clicked();
     void on_buttonHelp_clicked();
-    void on_baobabPushButton_clicked();
+    void on_buttonUsageAnalyzer_clicked();
 
 private:
     Ui::MainWindow *ui;
