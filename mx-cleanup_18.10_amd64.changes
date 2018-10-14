@@ -1,3 +1,6 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
 Format: 1.8
 Date: Sun, 14 Oct 2018 16:08:28 -0400
 Source: mx-cleanup
@@ -15,14 +18,26 @@ Changes:
  .
    * schedule cleanup
 Checksums-Sha1:
- 760c936fdeb50488aa252e0967a02633079ecc67 559 mx-cleanup_18.10.dsc
- 2f5556acfea526ab02d3d8351150ed89cabfd05b 33352 mx-cleanup_18.10.tar.xz
- 62342488e3b05589ade1cd1628a6fddd76b05751 46414 mx-cleanup_18.10_amd64.deb
+ 8fcda80644ba0c0017effb2ebf06cfd9aafb145b 1121 mx-cleanup_18.10.dsc
+ ffef832e322df4c8c4fb7c6cee6685657e44cacb 34756 mx-cleanup_18.10.tar.xz
+ 44cb502d2125a579b251bc898b9ae63060c63a81 47972 mx-cleanup_18.10_amd64.deb
 Checksums-Sha256:
- 4fe732d4e5ab873bf3c648f5f72fc6bd00dff16f246baca4758c1c9bb3c47867 559 mx-cleanup_18.10.dsc
- 96a692eee9cda6c2b12630abefc2480ffe83fdda1e66f1f95ce92694802c6d2d 33352 mx-cleanup_18.10.tar.xz
- 03473b12aa11acb207320d0836389272d76d06ab0d15ccdcd44b1db435cfa085 46414 mx-cleanup_18.10_amd64.deb
+ 17dd76c3f14269a83dbaed4ff2602689ec8235f1db0a5e05379d08f95c5b6f8a 1121 mx-cleanup_18.10.dsc
+ 9d02ac4c18566a2fd3bdd13827152df4ab779d344e13dec2281e4483ba30486c 34756 mx-cleanup_18.10.tar.xz
+ 820cbfa2ac2eb2f72dbaa7512e4e4bd18e07bd742fefd4b84a59bfc9155eb16b 47972 mx-cleanup_18.10_amd64.deb
 Files:
- 3c49304cd00752c5b435220ead2072de 559 admin optional mx-cleanup_18.10.dsc
- a5db3ba35bab54d8aceea0f3f985d928 33352 admin optional mx-cleanup_18.10.tar.xz
- 25a36332403ad458be8024e8db67ada7 46414 admin optional mx-cleanup_18.10_amd64.deb
+ 62dbd9f28fcbaa224158d24438b5e719 1121 admin optional mx-cleanup_18.10.dsc
+ c45ca73dc68285f5c308adbbe1dfe830 34756 admin optional mx-cleanup_18.10.tar.xz
+ 2f9588a33ce7a7c011ceba11077d5f50 47972 admin optional mx-cleanup_18.10_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCAAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAlvDqBYTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumImHB/0SZSsSra+MHXt3H9phOiuywiKeQO17
+zEFHRjjdd8A8h4TFdLEEk3MxISSFYfbs7wdSxmc7Mq7GJ4AnEl+9wKd+e/KoJs9O
+8IJZA7dP4qbyQeJYxr8kV5Cpy7YQ4xXxHfqFRIhIsss6qVDexki548g48UaRJm8U
++ph84F1YMy+WkZ+xnSS3UGKh9BhP6/gn8hgiknOuRbQ4Jq428ikjeowHfCx2WYZw
+zgyq2+UZbyga4xPx7j8CCDs6IHQK6XJKT9ewij7MLB0y4XW5d7rzRCe2FH2OEWQq
+QOuZmlpV/AH3NtLY8x+qXgMzP88ND9ePfL1wNxgVZAxgk3ucw4ygyRPf
+=x/Dk
+-----END PGP SIGNATURE-----
