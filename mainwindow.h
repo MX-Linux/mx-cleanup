@@ -42,6 +42,8 @@ public:
     ~MainWindow();
 
     QString getVersion(QString name);
+    void checkSchedule();
+    void saveSchedule(QString cmd_str, QString period);
     void setup();
 
 public slots:
