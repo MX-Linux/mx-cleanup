@@ -1,0 +1,28 @@
+Format: 1.8
+Date: Sun, 14 Oct 2018 16:08:28 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 18.10
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (18.10) mx; urgency=medium
+ .
+   * schedule cleanup
+Checksums-Sha1:
+ 760c936fdeb50488aa252e0967a02633079ecc67 559 mx-cleanup_18.10.dsc
+ 2f5556acfea526ab02d3d8351150ed89cabfd05b 33352 mx-cleanup_18.10.tar.xz
+ 62342488e3b05589ade1cd1628a6fddd76b05751 46414 mx-cleanup_18.10_amd64.deb
+Checksums-Sha256:
+ 4fe732d4e5ab873bf3c648f5f72fc6bd00dff16f246baca4758c1c9bb3c47867 559 mx-cleanup_18.10.dsc
+ 96a692eee9cda6c2b12630abefc2480ffe83fdda1e66f1f95ce92694802c6d2d 33352 mx-cleanup_18.10.tar.xz
+ 03473b12aa11acb207320d0836389272d76d06ab0d15ccdcd44b1db435cfa085 46414 mx-cleanup_18.10_amd64.deb
+Files:
+ 3c49304cd00752c5b435220ead2072de 559 admin optional mx-cleanup_18.10.dsc
+ a5db3ba35bab54d8aceea0f3f985d928 33352 admin optional mx-cleanup_18.10.tar.xz
+ 25a36332403ad458be8024e8db67ada7 46414 admin optional mx-cleanup_18.10_amd64.deb

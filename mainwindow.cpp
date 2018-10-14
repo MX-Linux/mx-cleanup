@@ -43,7 +43,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-// setup versious items first time program runs
+// Setup versious items first time program runs
 void MainWindow::setup()
 {
     cmd = new Cmd(this);
@@ -80,9 +80,10 @@ void MainWindow::setup()
     }
     ui->userCleanCB->setCurrentIndex(ui->userCleanCB->findText(user));
     ui->buttonApply->setEnabled(ui->userCleanCB->currentText() != "");
+    checkSchedule();
 }
 
-// cleanup environment when window is closed
+// Cleanup environment when window is closed
 void MainWindow::cleanup()
 {
 
@@ -96,46 +97,110 @@ QString MainWindow::getVersion(QString name)
     return cmd.getOutput("dpkg-query -f '${Version}' -W " + name);
 }
 
+// check if /etc/cron.daily|weekly|monthly/mx-cleanup script exists
+void MainWindow::checkSchedule()
+{
+    if (QFile::exists("/etc/cron.daily/mx-cleanup")) {
+        ui->rbDaily->setChecked(true);
+    } else if (QFile::exists("/etc/cron.weekly/mx-cleanup")) {
+        ui->rbWeekly->setChecked(true);
+    } else if (QFile::exists("/etc/cron.monthly/mx-cleanup")) {
+        ui->rbMonthly->setChecked(true);
+    } else {
+        ui->rbNone->setChecked(true);
+    }
+}
+
+
+// Save cleanup commands to a /etc/cron.daily|weekly|monthly/mx-cleanup script
+void MainWindow::saveSchedule(QString cmd_str, QString period)
+{
+    QFile file("/etc/cron." + period + "/mx-cleanup");
+    if (!file.open(QFile::WriteOnly)) {
+        qDebug() << "Could not open file:" << file.fileName();
+    }
+    QTextStream out(&file);
+    out << "#!/bin/sh\n";
+    out << "#\n";
+    out << "# This file was created by MX Cleanup\n";
+    out << "#\n\n";
+    out << cmd_str;
+    file.close();
+    cmd->run("chmod +x " + file.fileName());
+}
+
 
 void MainWindow::on_buttonApply_clicked()
 {
     int total = 0;
     setCursor(QCursor(Qt::BusyCursor));
+
+    QString cmd_str;
+    QString cache, thumbnails, logs, apt, trash;
+
+//  Too aggressive
 //    if (ui->tmpCheckBox->isChecked()) {
 //        total +=  cmd->getOutput("du -c /tmp/* | tail -1 | cut -f1").toInt();
 //        cmd->run("rm -r /tmp/* 2>/dev/null");
 //    }
+
     if (ui->cacheCheckBox->isChecked()) {
         total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* | tail -1 | cut -f1").toInt();
-        cmd->run("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* 2>/dev/null");
+        cache = "rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* 2>/dev/null";
+        cmd->run(cache);
     }
+
     if (ui->thumbCheckBox->isChecked()) {
         total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* | tail -1 | cut -f1").toInt();
-        cmd->run("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* 2>/dev/null");
+        thumbnails = "rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* 2>/dev/null";
+        cmd->run(thumbnails);
     }
+
     if (ui->autocleanRB->isChecked()) {
-        total += cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
-        cmd->run("apt-get autoclean");
-        total -= cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
+        apt  = "apt-get autoclean";
     } else {
-        total += cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
-        cmd->run("apt-get clean");
-        total -= cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
+        apt = "apt-get clean";
+
     }
+    total += cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
+    cmd->run(apt);
+    total -= cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
+
     if (ui->oldLogsRB->isChecked()) {
         total += cmd->getOutput("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -exec du -sc {} + | tail -1 | cut -f1").toInt();
-        cmd->run("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -delete 2>/dev/null");
+        logs = "find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -delete 2>/dev/null";
     } else {
         total += cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
-        cmd->run("find /var/log -type f -exec sh -c \"echo > '{}'\" \\;");  // empty the logs
-        total -= cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
+        logs = "find /var/log -type f -exec sh -c \"echo > '{}'\" \\;";  // empty the logs
     }
+    cmd->run(logs);
+    total -= cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
+
     if (ui->selectedUserCB->isChecked()) {
         total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* | tail -1 | cut -f1").toInt();
-        cmd->run("rm -r /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* 2>/dev/null");
+        trash = "rm -r /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* 2>/dev/null";
     } else {
         total += cmd->getOutput("find /home/*/.local/share/Trash/* -exec du -sc {} + | tail -1 | cut -f1").toInt();
-        cmd->run("rm -r /home/*/.local/share/Trash/* 2>/dev/null");
+        trash = "rm -r /home/*/.local/share/Trash/* 2>/dev/null";
+    }
+    cmd->run(trash);
+
+    // cleaup schedule
+    QFile::remove("/etc/cron.daily/mx-cleanup");
+    QFile::remove("/etc/cron.weekly/mx-cleanup");
+    QFile::remove("/etc/cron.monthly/mx-cleanup");
+    // add schedule file
+    if (!ui->rbNone->isChecked()) {
+        QString period;
+        cmd_str = cache + "\n" + thumbnails + "\n" + logs + "\n" + apt + "\n" + trash;
+        if (ui->rbDaily->isChecked()) {
+            period = "daily";
+        } else if (ui->rbWeekly->isChecked()) {
+            period = "weekly";
+        } else {
+            period = "monthly";
+        }
+        saveSchedule(cmd_str, period);
     }
 
     setCursor(QCursor(Qt::ArrowCursor));
