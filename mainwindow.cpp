@@ -157,10 +157,9 @@ void MainWindow::on_buttonApply_clicked()
     }
 
     if (ui->autocleanRB->isChecked()) {
-        apt  = "apt-get autoclean";
+        apt = "apt-get autoclean";
     } else {
         apt = "apt-get clean";
-
     }
     total += cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
     cmd->run(apt);
@@ -169,12 +168,13 @@ void MainWindow::on_buttonApply_clicked()
     if (ui->oldLogsRB->isChecked()) {
         total += cmd->getOutput("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -exec du -sc {} + | tail -1 | cut -f1").toInt();
         logs = "find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -delete 2>/dev/null";
+        cmd->run(logs);
     } else {
         total += cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
         logs = "find /var/log -type f -exec sh -c \"echo > '{}'\" \\;";  // empty the logs
+        cmd->run(logs);
+        total -= cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
     }
-    cmd->run(logs);
-    total -= cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
 
     if (ui->selectedUserCB->isChecked()) {
         total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* | tail -1 | cut -f1").toInt();
