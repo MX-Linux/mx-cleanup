@@ -1,0 +1,43 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Format: 1.8
+Date: Wed, 31 Oct 2018 12:10:10 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 18.10.1
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (18.10.1) mx; urgency=medium
+ .
+   * updated translations
+Checksums-Sha1:
+ 342186310a635fefa0f32635dce322c966213ab9 1129 mx-cleanup_18.10.1.dsc
+ 3cca98972eb2b7faa7852dfe48e0cfe2f43ea6fd 35128 mx-cleanup_18.10.1.tar.xz
+ 145aa6bab521471b0d014c77bf835b5cdd8f33b5 48560 mx-cleanup_18.10.1_amd64.deb
+Checksums-Sha256:
+ e2f0fd42ade03f877dc633828783b7d8d7082da04a88fef7fa84ffc8fba3eb38 1129 mx-cleanup_18.10.1.dsc
+ e851586953bf666d7fac76885adcd6ad4b5bc7ed00215d0ac1995d015785c751 35128 mx-cleanup_18.10.1.tar.xz
+ 7f87e6c614d6c3df24096f53935963a9e85e1675aebc561bc40987164f1244e1 48560 mx-cleanup_18.10.1_amd64.deb
+Files:
+ f29b5cb2d2eae24dc06feb5c2b5d4b7c 1129 admin optional mx-cleanup_18.10.1.dsc
+ 2e69545db775553d68db48f36bd232d2 35128 admin optional mx-cleanup_18.10.1.tar.xz
+ 600832b6aa374ceb69711c584fb02cce 48560 admin optional mx-cleanup_18.10.1_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCAAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAlvZ1VYTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumO6BCACQ8YPT6sagmG/N3im0hEk2zE9EiNxQ
+sgCWwFMCyXAZmMKwSxYl4NkO1AclgHnq5pWnjNL+5956SeDOCj1lMQTHwevWJvoG
+vX67kw3GFEZTYcZpbjD7ksETLzFHzr1YtTyTupGe7ZBeHB9M5gRAZArRssoUGgPk
+DrLyG3Apq8Xo9K9ooiJDOqC0HOfY7f1ROMSDdCPtRgm07AAWhvmu+aq9acp2q9BT
+T+DUqhDxMlgA8Gy03gry2f/T6aBQLzK+ETmSwaCkyIgvPh1ypm3H4d3VwRXFjyln
+QvuvrmKry+1g8uLn5teiZCrPLeWE6E1Aa4gXtnP27q8TsZIhjffwEoF5
+=rsJK
+-----END PGP SIGNATURE-----
