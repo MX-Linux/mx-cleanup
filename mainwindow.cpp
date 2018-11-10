@@ -158,7 +158,7 @@ void MainWindow::on_buttonApply_clicked()
 
     if (ui->autocleanRB->isChecked()) {
         apt = "apt-get autoclean";
-    } else {
+    } else if (ui->cleanRB->isChecked()) {
         apt = "apt-get clean";
     }
     total += cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
@@ -169,7 +169,7 @@ void MainWindow::on_buttonApply_clicked()
         total += cmd->getOutput("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -exec du -sc {} + | tail -1 | cut -f1").toInt();
         logs = "find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -delete 2>/dev/null";
         cmd->run(logs);
-    } else {
+    } else if (ui->allLogsRB->isChecked()){
         total += cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
         logs = "find /var/log -type f -exec sh -c \"echo > '{}'\" \\;";  // empty the logs
         cmd->run(logs);
@@ -179,7 +179,7 @@ void MainWindow::on_buttonApply_clicked()
     if (ui->selectedUserCB->isChecked()) {
         total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* | tail -1 | cut -f1").toInt();
         trash = "rm -r /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* 2>/dev/null";
-    } else {
+    } else if (ui->allUsersCB->isChecked()){
         total += cmd->getOutput("find /home/*/.local/share/Trash/* -exec du -sc {} + | tail -1 | cut -f1").toInt();
         trash = "rm -r /home/*/.local/share/Trash/* 2>/dev/null";
     }
@@ -193,6 +193,7 @@ void MainWindow::on_buttonApply_clicked()
     if (!ui->rbNone->isChecked()) {
         QString period;
         cmd_str = cache + "\n" + thumbnails + "\n" + logs + "\n" + apt + "\n" + trash;
+        qDebug() << "CMD STR" << cmd_str;
         if (ui->rbDaily->isChecked()) {
             period = "daily";
         } else if (ui->rbWeekly->isChecked()) {
