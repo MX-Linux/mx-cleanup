@@ -102,12 +102,57 @@ void MainWindow::checkSchedule()
 {
     if (QFile::exists("/etc/cron.daily/mx-cleanup")) {
         ui->rbDaily->setChecked(true);
+        checkOptions();
     } else if (QFile::exists("/etc/cron.weekly/mx-cleanup")) {
         ui->rbWeekly->setChecked(true);
+        checkOptions();
     } else if (QFile::exists("/etc/cron.monthly/mx-cleanup")) {
         ui->rbMonthly->setChecked(true);
     } else {
         ui->rbNone->setChecked(true);
+        checkOptions();
+    }
+}
+
+// Load saved options to GUI
+void MainWindow::checkOptions()
+{
+    QString period;
+    if (ui->rbDaily->isChecked()) {
+        period = "daily";
+    } else if (ui->rbWeekly->isChecked()) {
+        period = "weekly";
+    } else if (ui->rbMonthly->isChecked()) {
+        period = "monthly";
+    }
+    QString file_name = "/etc/cron." + period + "/mx-cleanup";
+
+    // Folders
+    ui->thumbCheckBox->setChecked(cmd->run("grep -q '.thumbnails' " + file_name) == 0);
+    ui->cacheCheckBox->setChecked(cmd->run("grep -q '.cache' " + file_name) == 0);
+    // APT
+    if (cmd->run("grep -q 'apt-get autoclean' " + file_name) == 0) { // detect autoclean
+        ui->autocleanRB->setChecked(true);
+    } else if (cmd->run("grep -q 'apt-get clean' " + file_name) == 0) { // detect clean
+        ui->cleanRB->setChecked(true);
+    } else {
+        ui->noCleanAptRB->setChecked(true);
+    }
+    // Logs
+    if (cmd->run("grep -q '\\-exec sh \\-c \"echo' " + file_name) == 0) { // all logs
+        ui->allLogsRB->setChecked(true);
+    } else if (cmd->run("grep -q '\\-type f \\-delete' " + file_name) == 0) { // old logs
+        ui->oldLogsRB->setChecked(true);
+    } else {
+        ui->noCleanLogsRB->setChecked(true);
+    }
+    // Trash
+    if (cmd->run("grep -q '/home/\\*/.local/share/Trash/' " + file_name) == 0) { // all user trash
+        ui->allUsersCB->setChecked(true);
+    } else if (cmd->run("grep -q '/.local/share/Trash/' " + file_name) == 0) { // selected user trash
+        ui->selectedUserCB->setChecked(true);
+    } else {
+        ui->noCleanTrashRB->setChecked(true);
     }
 }
 

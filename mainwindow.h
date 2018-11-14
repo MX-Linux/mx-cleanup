@@ -43,6 +43,7 @@ public:
 
     QString getVersion(QString name);
     void checkSchedule();
+    void checkOptions();
     void saveSchedule(QString cmd_str, QString period);
     void setup();
 
