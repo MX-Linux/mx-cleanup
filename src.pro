@@ -38,6 +38,7 @@ FORMS    += \
 TRANSLATIONS += translations/mx-cleanup_am.ts \
                 translations/mx-cleanup_ca.ts \
                 translations/mx-cleanup_cs.ts \
+                translations/mx-cleanup_da.ts \
                 translations/mx-cleanup_de.ts \
                 translations/mx-cleanup_el.ts \
                 translations/mx-cleanup_es.ts \
@@ -46,6 +47,7 @@ TRANSLATIONS += translations/mx-cleanup_am.ts \
                 translations/mx-cleanup_hi.ts \
                 translations/mx-cleanup_hr.ts \
                 translations/mx-cleanup_hu.ts \
+                translations/mx-cleanup_is.ts \
                 translations/mx-cleanup_it.ts \
                 translations/mx-cleanup_ja.ts \
                 translations/mx-cleanup_kk.ts \
@@ -57,6 +59,7 @@ TRANSLATIONS += translations/mx-cleanup_am.ts \
                 translations/mx-cleanup_ro.ts \
                 translations/mx-cleanup_ru.ts \
                 translations/mx-cleanup_sk.ts \
+                translations/mx-cleanup_sq.ts \
                 translations/mx-cleanup_sv.ts \
                 translations/mx-cleanup_tr.ts \
                 translations/mx-cleanup_uk.ts \

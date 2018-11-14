@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ro" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="is" version="2.1">
 <context>
     <name>MainWindow</name>
     <message>
@@ -39,12 +39,12 @@
     <message>
         <location filename="mainwindow.ui" line="192"/>
         <source>Display help </source>
-        <translation>Afișează ajutor</translation>
+        <translation>Birta hjálp</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="195"/>
         <source>Help</source>
-        <translation>Ajutor</translation>
+        <translation>Hjálp</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="202"/>
@@ -54,12 +54,12 @@
     <message>
         <location filename="mainwindow.ui" line="231"/>
         <source>About this application</source>
-        <translation>Informații despre program</translation>
+        <translation>Um þetta forrit</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="234"/>
         <source>About...</source>
-        <translation>Despre...</translation>
+        <translation>Um hugbúnaðinn...</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="241"/>
@@ -69,12 +69,12 @@
     <message>
         <location filename="mainwindow.ui" line="273"/>
         <source>Quit application</source>
-        <translation>Închide programul </translation>
+        <translation>Hætta í forriti</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="276"/>
         <source>Close</source>
-        <translation>Închidere</translation>
+        <translation>Hætta</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="283"/>
@@ -84,7 +84,7 @@
     <message>
         <location filename="mainwindow.ui" line="321"/>
         <source>Apply</source>
-        <translation>Aplică</translation>
+        <translation>Virkja</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="349"/>
@@ -125,7 +125,7 @@
         <location filename="mainwindow.ui" line="492"/>
         <location filename="mainwindow.ui" line="505"/>
         <source>Select user to repair</source>
-        <translation>Selectați cont utilizator de reparat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="508"/>
@@ -170,7 +170,7 @@
     <message>
         <location filename="mainwindow.cpp" line="208"/>
         <source>Done</source>
-        <translation>Terminat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="209"/>
@@ -185,12 +185,12 @@
     <message>
         <location filename="mainwindow.cpp" line="217"/>
         <source>About</source>
-        <translation>Despre</translation>
+        <translation>Um hugbúnaðinn</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="218"/>
         <source>Version: </source>
-        <translation>Versiune:</translation>
+        <translation>Útgáfa:</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="219"/>
@@ -200,28 +200,28 @@
     <message>
         <location filename="mainwindow.cpp" line="221"/>
         <source>Copyright (c) MX Linux</source>
-        <translation>Copyright (c) MX Linux</translation>
+        <translation>Höfundarréttur (c) MX Linux</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="222"/>
         <location filename="mainwindow.cpp" line="232"/>
         <source>License</source>
-        <translation>Licență</translation>
+        <translation>Notkunarleyfi</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="223"/>
         <source>Changelog</source>
-        <translation>Changelog</translation>
+        <translation>Breytingaskrá</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="224"/>
         <source>Cancel</source>
-        <translation>Anulează</translation>
+        <translation>Hætta við</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="245"/>
         <source>&amp;Close</source>
-        <translation>&amp;Închide</translation>
+        <translation>&amp;Loka</translation>
     </message>
 </context>
 <context>
@@ -229,7 +229,7 @@
     <message>
         <location filename="main.cpp" line="52"/>
         <source>You must run this program as root.</source>
-        <translation>Trebuie să rulați programul ca administrator.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
