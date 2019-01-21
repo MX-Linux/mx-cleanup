@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.1">
 <context>
     <name>MainWindow</name>
     <message>
@@ -7,221 +7,221 @@
         <location filename="mainwindow.cpp" line="217"/>
         <location filename="mainwindow.cpp" line="264"/>
         <source>MX Cleanup</source>
-        <translation>MX очистка</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="26"/>
         <source>Clean Folders</source>
-        <translation>Папки для очистки</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="86"/>
         <source>Delete Logs</source>
-        <translation>Удаление журналов</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="98"/>
         <source>Old logs</source>
-        <translation>Старые журналы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="117"/>
         <source>All logs</source>
-        <translation>Все журналы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="130"/>
         <location filename="mainwindow.ui" line="387"/>
         <location filename="mainwindow.ui" line="451"/>
         <source>Don&apos;t empty</source>
-        <translation>Не очищать</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="192"/>
         <source>Display help </source>
-        <translation>Показать справку</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="195"/>
         <source>Help</source>
-        <translation>Справка</translation>
+        <translation>帮助(_H)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="202"/>
         <source>Alt+H</source>
-        <translation>Alt+H</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="231"/>
         <source>About this application</source>
-        <translation>Об этом приложении</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="234"/>
         <source>About...</source>
-        <translation>O...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="241"/>
         <source>Alt+B</source>
-        <translation>Alt+B</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="273"/>
         <source>Quit application</source>
-        <translation>Выход</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="276"/>
         <source>Close</source>
-        <translation>Закрыть</translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="283"/>
         <source>Alt+N</source>
-        <translation>Alt+N</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="321"/>
         <source>Apply</source>
-        <translation>Применить</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="349"/>
         <source>Empty Trash</source>
-        <translation>Очистить корзину</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="364"/>
         <source>Selected user</source>
-        <translation>Выбранный пользователь</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="380"/>
         <source>All users</source>
-        <translation>Все пользователи</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="416"/>
         <source>Clear APT Cache</source>
-        <translation>Очистить кэш APT</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="428"/>
         <source>Old files</source>
-        <translation>Старые файлы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="444"/>
         <source>All files</source>
-        <translation>Все файлы</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="480"/>
         <source>Free Disk Space for User</source>
-        <translation>Свободное дисковое пространство для пользователя</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="492"/>
         <location filename="mainwindow.ui" line="505"/>
         <source>Select user to repair</source>
-        <translation>Выберите пользователя для восстановления</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="508"/>
         <source>Select user:</source>
-        <translation>Выбор пользователя:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="524"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation>Графическая утилита для анализа использования дисков</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="530"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation>Запустить анализатор использования дисков</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="544"/>
         <source>Schedule</source>
-        <translation>Расписание</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="556"/>
         <source>No automatic clean</source>
-        <translation>Без автоматической очистки</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="563"/>
         <source>Daily</source>
-        <translation>Ежедневно</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="570"/>
         <source>Weekly</source>
-        <translation>Каждую неделю</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="577"/>
         <source>Monthly</source>
-        <translation>Ежемесячно</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="208"/>
         <source>Done</source>
-        <translation>Готово</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="209"/>
         <source>Cleanup command done</source>
-        <translation>Команда очистки завершена</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="210"/>
         <source>%1 MiB were freed</source>
-        <translation>%1 МБ было освобождено</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="217"/>
         <source>About</source>
-        <translation>О приложении</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="218"/>
         <source>Version: </source>
-        <translation>Версия: </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="219"/>
         <source>Quick and safe removal of old files</source>
-        <translation>Быстрое и безопасное удаление старых файлов</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="221"/>
         <source>Copyright (c) MX Linux</source>
-        <translation>Copyright (c) MX Linux</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="222"/>
         <location filename="mainwindow.cpp" line="232"/>
         <source>License</source>
-        <translation>Лицензия</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="223"/>
         <source>Changelog</source>
-        <translation>Список изменений</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="224"/>
         <source>Cancel</source>
-        <translation>Отменить</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="245"/>
         <source>&amp;Close</source>
-        <translation>&amp;Закрыть</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -229,7 +229,7 @@
     <message>
         <location filename="main.cpp" line="52"/>
         <source>You must run this program as root.</source>
-        <translation>Вы должны запустить программу от имени суперпользователя.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
