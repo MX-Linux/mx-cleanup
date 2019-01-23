@@ -1,0 +1,49 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Format: 1.8
+Date: Wed, 23 Jan 2019 09:43:38 -0500
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 19.1
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (19.1) mx; urgency=medium
+ .
+   * updated translations
+Checksums-Sha1:
+ fc05ccdb87e43026f4a5f66f37264b9c402bdc82 1117 mx-cleanup_19.1.dsc
+ 3a5775efb4b02c1bb7ccda1943abd369fd3da25f 38076 mx-cleanup_19.1.tar.xz
+ c02d5754d325673f32810d40cbc425b38e7ae43f 393906 mx-cleanup-dbgsym_19.1_amd64.deb
+ 06f4c1e0ed22848d140c5f41e78149d17f039467 11595 mx-cleanup_19.1_amd64.buildinfo
+ 2b9990b5263c7103c9bc66a8c5c9374fd0cbde0f 54362 mx-cleanup_19.1_amd64.deb
+Checksums-Sha256:
+ ae8ced9a21aecb96e5c5229b884fd639ae6524ea148988ed89b20d602127f30d 1117 mx-cleanup_19.1.dsc
+ 601c311779f91c975cc75d9c985dac5251234f0809f1615935aa771119f6efd2 38076 mx-cleanup_19.1.tar.xz
+ b7b4ad04fa514b42327b2c5ab7e0c0bd7fcd90f6681dd929f8c427ed02a1e8b8 393906 mx-cleanup-dbgsym_19.1_amd64.deb
+ 12e6855c70f73be3a8aa18d07095cb9731b27a298b70f1755d86603c62218457 11595 mx-cleanup_19.1_amd64.buildinfo
+ a9bb44781cef262fd1e66594e389a6bd81dd85eb9bd1781f394cc44f74588863 54362 mx-cleanup_19.1_amd64.deb
+Files:
+ 3426f98547550c1958987418e159f0f0 1117 admin optional mx-cleanup_19.1.dsc
+ 78ebc3c8d20ddc288d68b8edb42d65db 38076 admin optional mx-cleanup_19.1.tar.xz
+ 96f70b44eea5a3cf640c729709ef8a5c 393906 debug optional mx-cleanup-dbgsym_19.1_amd64.deb
+ 895d6e2ed8d0c005a2d0c7a397efbfc8 11595 admin optional mx-cleanup_19.1_amd64.buildinfo
+ bb59a47b38bf535bf799f87101d6ed04 54362 admin optional mx-cleanup_19.1_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCAAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAlxIfhYTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumPHEB/4oI4Y5gltIdRMdgKUD90ly45xInhVx
+6gPHlR1ZhQhYEaBl27QbjnWodRNwIBAMYkUdQGa2SasvR86mECLVo3QW1XNAZne8
+eWpS/zT/gW2JWpTDWbw6LZysGzOu9aGhRqJSBKceVHi3UEStr/nyI5vsKaHzYli0
+1Ybi+KGL+Rdh65RosIilkI9nYwmO3aiCC1uYa3BTKPnLwLXD/hGkBaL5+Snhn5ID
+HrDg9Qg0Z0mVRT13Tm/Gzzu73YMwovWIyKl3a96mHO9dgTar/acDbewH52QWh5cf
+bL6czH3oMhM8IUmrpjuyB+K8eWj95y+T+/ve83eHR0qjmnbgzXs7DWOV
+=qE9c
+-----END PGP SIGNATURE-----
