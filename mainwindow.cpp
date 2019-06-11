@@ -24,6 +24,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "version.h"
 
 #include <QTextEdit>
 #include <QFileInfo>
@@ -34,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MainWindow)
 {
+    qDebug() << "Program Version:" << VERSION;
     ui->setupUi(this);
     setup();
 }
@@ -89,13 +91,6 @@ void MainWindow::cleanup()
 
 }
 
-
-// Get version of the program
-QString MainWindow::getVersion(QString name)
-{
-    Cmd cmd;
-    return cmd.getOutput("dpkg-query -f '${Version}' -W " + name);
-}
 
 // check if /etc/cron.daily|weekly|monthly/mx-cleanup script exists
 void MainWindow::checkSchedule()
@@ -260,7 +255,7 @@ void MainWindow::on_buttonAbout_clicked()
 {
     QMessageBox msgBox(QMessageBox::NoIcon,
                        tr("About") + tr("MX Cleanup"), "<p align=\"center\"><b><h2>MX Cleanup</h2></b></p><p align=\"center\">" +
-                       tr("Version: ") + getVersion("mx-cleanup") + "</p><p align=\"center\"><h3>" +
+                       tr("Version: ") + VERSION + "</p><p align=\"center\"><h3>" +
                        tr("Quick and safe removal of old files") +
                        "</h3></p><p align=\"center\"><a href=\"http://mxlinux.org\">http://mxlinux.org</a><br /></p><p align=\"center\">" +
                        tr("Copyright (c) MX Linux") + "<br /><br /></p>");

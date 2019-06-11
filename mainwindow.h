@@ -41,7 +41,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    QString getVersion(QString name);
     void checkSchedule();
     void checkOptions();
     void saveSchedule(QString cmd_str, QString period);
