@@ -64,12 +64,12 @@ void MainWindow::setup()
     int i;
     ui->userCleanCB->clear();
     fp = popen("ls -1 /home", "r");
-    if (fp != NULL) {
-        while (fgets(line, sizeof line, fp) != NULL) {
+    if (fp != nullptr) {
+        while (fgets(line, sizeof line, fp) != nullptr) {
             i = strlen(line);
             line[--i] = '\0';
             tok = strtok(line, " ");
-            if (tok != NULL && strlen(tok) > 1 && strncmp(tok, "ftp", 3) != 0) {
+            if (tok != nullptr && strlen(tok) > 1 && strncmp(tok, "ftp", 3) != 0) {
                 sprintf(line2, "grep '^%s' /etc/passwd >/dev/null", tok);
                 if (system(line2) == 0) {
                     ui->userCleanCB->addItem(tok);
