@@ -1,0 +1,43 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Format: 1.8
+Date: Sun, 07 Jul 2019 13:25:46 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 19.7
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (19.7) mx; urgency=medium
+ .
+   * fix window buttons for Buster
+Checksums-Sha1:
+ 9b050e936e22ec318017b64b41e15f72f25ba3f6 1117 mx-cleanup_19.7.dsc
+ 4484ce3c561c1cee83be22220efa1f5d3f0bbb3b 38912 mx-cleanup_19.7.tar.xz
+ 750e77b9d5184d7a369139e2b2dfece09364fc8e 52084 mx-cleanup_19.7_amd64.deb
+Checksums-Sha256:
+ 6226133796aedcafc55e814873f750131f90fb20778b3bd24dae958ca7045979 1117 mx-cleanup_19.7.dsc
+ b109bf436b0a17f9dd4ba64d7fbda6dc26d6c9507567e289b10c79d77f293084 38912 mx-cleanup_19.7.tar.xz
+ aee7e412fe266739bc7c7aa3d4c2bdea76e099bab7d60b7985c797a5d2e4aa95 52084 mx-cleanup_19.7_amd64.deb
+Files:
+ f461c0acd24f0f78ad6213df369feb62 1117 admin optional mx-cleanup_19.7.dsc
+ 9d30c9d3c54d3dd2e9a00aee568b708f 38912 admin optional mx-cleanup_19.7.tar.xz
+ b46304cf529c8996ff983f3fae56e6f5 52084 admin optional mx-cleanup_19.7_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCAAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAl0iLMYTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumH4vB/9nzToaN03/PBFFSrCIGqwI+YxtlgW1
+pQxI9GaVJnHHbfFyUcp79i2adQ0j/HGhU0XRky5Iy0Fz9iC56VSI6qEhgy0dVCP6
+r3i3sXuhwnQkw7cSpwof4jT45V6IzWzmiYZm14Xo+t4M4GOv88j258TEwosAlQXU
+ZzJ94vw4Hr4Q8kbuxjkNU/5xulpUz1Q4m/jcui+JIUZnp4EBi/fgX4fbKqGobQCW
+fciTTbdTicGHhkWz4UesybClPuTfTSgUiKm5LFuDevc2yFLOrRBcupKYWNF+ekz7
+aBqu+vLbBdfLEWVDEh4fWAHOtajPw5hgZKtqg37YkBdVjRkN/NGUUHSB
+=dupH
+-----END PGP SIGNATURE-----
