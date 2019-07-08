@@ -91,6 +91,6 @@ Comment[zh_TW]=Quick and safe removal of old files
 Exec=su-to-root -X -c mx-cleanup
 Terminal=false
 Type=Application
-Icon=mx-cleanup.svg
+Icon=mx-cleanup
 Categories=System;MX-Maintenance
 NoDisplay=false

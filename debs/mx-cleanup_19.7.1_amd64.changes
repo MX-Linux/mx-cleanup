@@ -1,0 +1,46 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Format: 1.8
+Date: Mon, 08 Jul 2019 11:37:32 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 19.7.1
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (19.7.1) mx; urgency=medium
+ .
+   * update icon
+Checksums-Sha1:
+ ce0f176e0e9dee398d7392c708e97481d3e62239 1125 mx-cleanup_19.7.1.dsc
+ d0829892b0e910fe65c8df633a8bedfdc3669b2e 50024 mx-cleanup_19.7.1.tar.xz
+ 58aee3081bf9ba562c05a183c0c8ba3f111742b3 11359 mx-cleanup_19.7.1_amd64.buildinfo
+ 56e4cf577a39e4a64ad59f79f1f4ffa4a46797cf 63366 mx-cleanup_19.7.1_amd64.deb
+Checksums-Sha256:
+ b848342a57af4c8f8a3df67b456b0b130cf89e2c7038e540129643ad73bf503c 1125 mx-cleanup_19.7.1.dsc
+ e70988a9417d9657f5de50e2ed4d5b6efdeea2ad0f9daacc1ca259e4379c7b1d 50024 mx-cleanup_19.7.1.tar.xz
+ 3c6e798103ec85b9b70d0260940f99901dcb050f0295f94881c956d2b44be5ea 11359 mx-cleanup_19.7.1_amd64.buildinfo
+ d8ff6aec1c5cf072011e3408f9b3cdf22bd8a0828dc88301a99cd5a3065e268e 63366 mx-cleanup_19.7.1_amd64.deb
+Files:
+ 64b1762e02b0b2b6ddda636e4880f8f5 1125 admin optional mx-cleanup_19.7.1.dsc
+ ef37ec1c7a3331bb1e5b7f7875139a1c 50024 admin optional mx-cleanup_19.7.1.tar.xz
+ 82edccebc7f1723bed50cdeebf07f6d4 11359 admin optional mx-cleanup_19.7.1_amd64.buildinfo
+ dd07dd4112a1ad19aa42159266ff8fb9 63366 admin optional mx-cleanup_19.7.1_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCAAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAl0jZA0THGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumI8bCACWGp8pKM36jWXynB2gFyDqYY741T6Z
+J04uaQKsOiCgSQ9RNHuFTaNzesKYP7S4PpFR55tRIHArQCEMZd6NzFDzQavQN6lb
+ofk9Y+NwiXgSnSlJ03z+IAnIlS8dIgAzDSGFDJQ15przWjKGZtZlCs3pXUckZKEy
+sPj7EMvcIhE0d9ewH60sLGqP0QvoPtQBCsNuI1epauLD7bfVNd8ebtTUlFViqVGi
+tiWvMmhGplAgQBXoGtYPchn/TeUvLZ8GzOwmC4asz/Fv7ucEFnmrNWB0JIf9ewlt
+Td0VPhxOWhJn2QZ8ilfmaFTXj12Zm3odjO6N5L7d+sg0nKB5Rksc0HSC
+=iYf1
+-----END PGP SIGNATURE-----
