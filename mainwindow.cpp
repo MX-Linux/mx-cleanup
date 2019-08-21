@@ -298,7 +298,7 @@ void MainWindow::on_buttonAbout_clicked()
 // Help button clicked
 void MainWindow::on_buttonHelp_clicked()
 {
-    QString url = "https://mxlinux.org/wiki/help-files/help-mx-cleanup";
+    QString url = "/usr/share/doc/mx-cleanup/help/mx-cleanup.html";
     QString exec = "xdg-open";
     if (system("command -v mx-viewer") == 0) { // use mx-viewer if available
         exec = "mx-viewer";
