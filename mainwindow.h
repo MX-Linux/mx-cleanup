@@ -27,8 +27,6 @@
 
 #include <QMessageBox>
 
-#include "cmd.h"
-
 namespace Ui {
 class MainWindow;
 }
@@ -57,8 +55,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Cmd *cmd;
     QString user;
+    QString getCmdOut(const QString &cmd);
 
 };
 

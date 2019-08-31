@@ -84,4 +84,3 @@ TRANSLATIONS += translations/mx-cleanup_am.ts \
 RESOURCES += \
     images.qrc
 
-unix:!macx: LIBS += -lcmd
