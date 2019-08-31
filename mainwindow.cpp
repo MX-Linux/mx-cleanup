@@ -26,10 +26,10 @@
 #include "ui_mainwindow.h"
 #include "version.h"
 
-#include <QTextEdit>
-#include <QFileInfo>
 #include <QDebug>
-
+#include <QFileInfo>
+#include <QProcess>
+#include <QTextEdit>
 
 MainWindow::MainWindow(QWidget *parent) :
     QDialog(parent),
@@ -49,38 +49,24 @@ MainWindow::~MainWindow()
 // Setup versious items first time program runs
 void MainWindow::setup()
 {
-    cmd = new Cmd(this);
     connect(qApp, &QApplication::aboutToQuit, this, &MainWindow::cleanup);
     this->setWindowTitle(tr("MX Cleanup"));
     this->adjustSize();
-    user = cmd->getOutput("logname", QStringList("quiet"));
+
+    user = getCmdOut("logname");
+
     ui->buttonApply->setDisabled(true);
     ui->cacheCheckBox->setChecked(true);
     ui->thumbCheckBox->setChecked(true);
     ui->autocleanRB->setChecked(true);
     ui->oldLogsRB->setChecked(true);
     ui->selectedUserCB->setChecked(true);
-    char line[130];
-    char line2[130];
-    char *tok;
-    FILE *fp;
-    int i;
-    ui->userCleanCB->clear();
-    fp = popen("ls -1 /home", "r");
-    if (fp != nullptr) {
-        while (fgets(line, sizeof line, fp) != nullptr) {
-            i = strlen(line);
-            line[--i] = '\0';
-            tok = strtok(line, " ");
-            if (tok != nullptr && strlen(tok) > 1 && strncmp(tok, "ftp", 3) != 0) {
-                sprintf(line2, "grep '^%s' /etc/passwd >/dev/null", tok);
-                if (system(line2) == 0) {
-                    ui->userCleanCB->addItem(tok);
-                }
-            }
-        }
-        pclose(fp);
-    }
+
+    QString users = getCmdOut("lslogins --noheadings -u -o user | grep -vw root");
+
+    qDebug() << users;
+    ui->userCleanCB->addItems(users.split("\n"));
+
     ui->userCleanCB->setCurrentIndex(ui->userCleanCB->findText(user));
     ui->buttonApply->setEnabled(ui->userCleanCB->currentText() != "");
     checkSchedule();
@@ -124,28 +110,28 @@ void MainWindow::checkOptions()
     QString file_name = "/etc/cron." + period + "/mx-cleanup";
 
     // Folders
-    ui->thumbCheckBox->setChecked(cmd->run("grep -q '.thumbnails' " + file_name) == 0);
-    ui->cacheCheckBox->setChecked(cmd->run("grep -q '.cache' " + file_name) == 0);
+    ui->thumbCheckBox->setChecked(system("grep -q '.thumbnails' " + file_name.toUtf8()) == 0);
+    ui->cacheCheckBox->setChecked(system("grep -q '.cache' " + file_name.toUtf8()) == 0);
     // APT
-    if (cmd->run("grep -q 'apt-get autoclean' " + file_name) == 0) { // detect autoclean
+    if (system("grep -q 'apt-get autoclean' " + file_name.toUtf8()) == 0) { // detect autoclean
         ui->autocleanRB->setChecked(true);
-    } else if (cmd->run("grep -q 'apt-get clean' " + file_name) == 0) { // detect clean
+    } else if (system("grep -q 'apt-get clean' " + file_name.toUtf8()) == 0) { // detect clean
         ui->cleanRB->setChecked(true);
     } else {
         ui->noCleanAptRB->setChecked(true);
     }
     // Logs
-    if (cmd->run("grep -q '\\-exec sh \\-c \"echo' " + file_name) == 0) { // all logs
+    if (system("grep -q '\\-exec sh \\-c \"echo' " + file_name.toUtf8()) == 0) { // all logs
         ui->allLogsRB->setChecked(true);
-    } else if (cmd->run("grep -q '\\-type f \\-delete' " + file_name) == 0) { // old logs
+    } else if (system("grep -q '\\-type f \\-delete' " + file_name.toUtf8()) == 0) { // old logs
         ui->oldLogsRB->setChecked(true);
     } else {
         ui->noCleanLogsRB->setChecked(true);
     }
     // Trash
-    if (cmd->run("grep -q '/home/\\*/.local/share/Trash/' " + file_name) == 0) { // all user trash
+    if (system("grep -q '/home/\\*/.local/share/Trash/' " + file_name.toUtf8()) == 0) { // all user trash
         ui->allUsersCB->setChecked(true);
-    } else if (cmd->run("grep -q '/.local/share/Trash/' " + file_name) == 0) { // selected user trash
+    } else if (system("grep -q '/.local/share/Trash/' " + file_name.toUtf8()) == 0) { // selected user trash
         ui->selectedUserCB->setChecked(true);
     } else {
         ui->noCleanTrashRB->setChecked(true);
@@ -167,7 +153,7 @@ void MainWindow::saveSchedule(QString cmd_str, QString period)
     out << "#\n\n";
     out << cmd_str;
     file.close();
-    cmd->run("chmod +x " + file.fileName());
+    system("chmod +x " + file.fileName().toUtf8());
 }
 
 
@@ -181,20 +167,20 @@ void MainWindow::on_buttonApply_clicked()
 
 //  Too aggressive
 //    if (ui->tmpCheckBox->isChecked()) {
-//        total +=  cmd->getOutput("du -c /tmp/* | tail -1 | cut -f1").toInt();
-//        cmd->run("rm -r /tmp/* 2>/dev/null");
+//        total +=  getCmdOut("du -c /tmp/* | tail -1 | cut -f1").toInt();
+//        system("rm -r /tmp/* 2>/dev/null");
 //    }
 
     if (ui->cacheCheckBox->isChecked()) {
-        total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* | tail -1 | cut -f1").toInt();
+        total += getCmdOut("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* | tail -1 | cut -f1").toInt();
         cache = "rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* 2>/dev/null";
-        cmd->run(cache);
+        system(cache.toUtf8());
     }
 
     if (ui->thumbCheckBox->isChecked()) {
-        total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* | tail -1 | cut -f1").toInt();
+        total += getCmdOut("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* | tail -1 | cut -f1").toInt();
         thumbnails = "rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* 2>/dev/null";
-        cmd->run(thumbnails);
+        system(thumbnails.toUtf8());
     }
 
     if (ui->autocleanRB->isChecked()) {
@@ -202,29 +188,29 @@ void MainWindow::on_buttonApply_clicked()
     } else if (ui->cleanRB->isChecked()) {
         apt = "apt-get clean";
     }
-    total += cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
-    cmd->run(apt);
-    total -= cmd->getOutput("du -s /var/cache/apt/archives/ | cut -f1").toInt();
+    total += getCmdOut("du -s /var/cache/apt/archives/ | cut -f1").toInt();
+    system(apt.toUtf8());
+    total -= getCmdOut("du -s /var/cache/apt/archives/ | cut -f1").toInt();
 
     if (ui->oldLogsRB->isChecked()) {
-        total += cmd->getOutput("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -exec du -sc {} + | tail -1 | cut -f1").toInt();
+        total += getCmdOut("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -exec du -sc {} + | tail -1 | cut -f1").toInt();
         logs = "find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -delete 2>/dev/null";
-        cmd->run(logs);
+        system(logs.toUtf8());
     } else if (ui->allLogsRB->isChecked()){
-        total += cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
+        total += getCmdOut("du -s /var/log/ | cut -f1").toInt();
         logs = "find /var/log -type f -exec sh -c \"echo > '{}'\" \\;";  // empty the logs
-        cmd->run(logs);
-        total -= cmd->getOutput("du -s /var/log/ | cut -f1").toInt();
+        system(logs.toUtf8());
+        total -= getCmdOut("du -s /var/log/ | cut -f1").toInt();
     }
 
     if (ui->selectedUserCB->isChecked()) {
-        total += cmd->getOutput("du -c /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* | tail -1 | cut -f1").toInt();
+        total += getCmdOut("du -c /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* | tail -1 | cut -f1").toInt();
         trash = "rm -r /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* 2>/dev/null";
     } else if (ui->allUsersCB->isChecked()){
-        total += cmd->getOutput("find /home/*/.local/share/Trash/* -exec du -sc {} + | tail -1 | cut -f1").toInt();
+        total += getCmdOut("find /home/*/.local/share/Trash/* -exec du -sc {} + | tail -1 | cut -f1").toInt();
         trash = "rm -r /home/*/.local/share/Trash/* 2>/dev/null";
     }
-    cmd->run(trash);
+    system(trash.toUtf8());
 
     // cleaup schedule
     QFile::remove("/etc/cron.daily/mx-cleanup");
@@ -280,8 +266,7 @@ void MainWindow::on_buttonAbout_clicked()
 
         QTextEdit *text = new QTextEdit;
         text->setReadOnly(true);
-        Cmd cmd;
-        text->setText(cmd.getOutput("zless /usr/share/doc/" + QFileInfo(QCoreApplication::applicationFilePath()).fileName()  + "/changelog.gz"));
+        text->setText(getCmdOut("zless /usr/share/doc/" + QFileInfo(QCoreApplication::applicationFilePath()).fileName()  + "/changelog.gz"));
 
         QPushButton *btnClose = new QPushButton(tr("&Close"));
         btnClose->setIcon(QIcon::fromTheme("window-close"));
@@ -299,12 +284,12 @@ void MainWindow::on_buttonAbout_clicked()
 void MainWindow::on_buttonHelp_clicked()
 {
     QString url = "/usr/share/doc/mx-cleanup/help/mx-cleanup.html";
-    QString exec = "xdg-open";
+    QString exec = "su " + user + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user + ") xdg-open";
     if (system("command -v mx-viewer") == 0) { // use mx-viewer if available
         exec = "mx-viewer";
         url += " " + tr("MX Cleanup");
     }
-    QString cmd = QString("su " + user + " -c \"" + exec + " " + url + "\"&");
+    QString cmd = QString(exec + " " + url + "\"&");
     system(cmd.toUtf8());
 }
 
@@ -325,4 +310,18 @@ void MainWindow::on_buttonUsageAnalyzer_clicked()
             system("qdirstat&");
         }
     }
+}
+
+// util function for getting bash command output and error code
+QString MainWindow::getCmdOut(const QString &cmd)
+{
+    qDebug() << cmd;
+    QProcess *proc = new QProcess();
+    QEventLoop loop;
+    proc->setReadChannelMode(QProcess::MergedChannels);
+    proc->start("/bin/bash", QStringList() << "-c" << cmd);
+    proc->waitForFinished();
+    QString out = proc->readAll().trimmed();
+    delete proc;
+    return out;
 }
