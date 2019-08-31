@@ -255,10 +255,10 @@ void MainWindow::on_buttonAbout_clicked()
 
     if (msgBox.clickedButton() == btnLicense) {
         QString url = "file:///usr/share/doc/mx-cleanup/license.html";
-        if (system("command -v mx-viewer") == 0) { // use mx-viewer if available
-            system("su " + user.toUtf8() + " -c \"mx-viewer " + url.toUtf8() + " " + tr("License").toUtf8() + "\"&");
+        if (system("command -v mx-viewer >/dev/null") == 0) { // use mx-viewer if available
+            system("mx-viewer " + url.toUtf8() + " " + tr("License").toUtf8() + "&");
         } else {
-            system("su " + user.toUtf8() + " -c \"xdg-open " + url.toUtf8() + "\"&");
+            system("su " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
         }
     } else if (msgBox.clickedButton() == btnChangelog) {
         QDialog *changelog = new QDialog(this);
@@ -284,13 +284,12 @@ void MainWindow::on_buttonAbout_clicked()
 void MainWindow::on_buttonHelp_clicked()
 {
     QString url = "/usr/share/doc/mx-cleanup/help/mx-cleanup.html";
-    QString exec = "su " + user + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user + ") xdg-open";
-    if (system("command -v mx-viewer") == 0) { // use mx-viewer if available
-        exec = "mx-viewer";
-        url += " " + tr("MX Cleanup");
+
+    if (system("command -v mx-viewer >/dev/null") == 0) { // use mx-viewer if available
+        system("mx-viewer " + url.toUtf8() + " " + tr("MX Cleanup").toUtf8() + "&");
+    } else {
+        system("su " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
     }
-    QString cmd = QString(exec + " " + url + "\"&");
-    system(cmd.toUtf8());
 }
 
 void MainWindow::on_buttonUsageAnalyzer_clicked()
@@ -315,7 +314,7 @@ void MainWindow::on_buttonUsageAnalyzer_clicked()
 // util function for getting bash command output and error code
 QString MainWindow::getCmdOut(const QString &cmd)
 {
-    qDebug() << cmd;
+    qDebug().noquote() << cmd;
     QProcess *proc = new QProcess();
     QEventLoop loop;
     proc->setReadChannelMode(QProcess::MergedChannels);

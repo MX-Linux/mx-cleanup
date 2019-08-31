@@ -7,7 +7,7 @@
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.cpp" line="53"/>
         <location filename="../mainwindow.cpp" line="244"/>
-        <location filename="../mainwindow.cpp" line="290"/>
+        <location filename="../mainwindow.cpp" line="289"/>
         <source>MX Cleanup</source>
         <translation>MX Puhdistus</translation>
     </message>
