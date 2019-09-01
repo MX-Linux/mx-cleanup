@@ -35,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MainWindow)
 {
-    qDebug() << "Program Version:" << VERSION;
+    qDebug().noquote() << QCoreApplication::applicationName() << "version:" << VERSION;
     ui->setupUi(this);
     setWindowFlags(Qt::Window); // for the close, min and max buttons
     setup();
@@ -256,12 +256,13 @@ void MainWindow::on_buttonAbout_clicked()
     if (msgBox.clickedButton() == btnLicense) {
         QString url = "file:///usr/share/doc/mx-cleanup/license.html";
         if (system("command -v mx-viewer >/dev/null") == 0) { // use mx-viewer if available
-            system("mx-viewer " + url.toUtf8() + " " + tr("License").toUtf8() + "&");
+            system("mx-viewer " + url.toUtf8() + " \"" + tr("License").toUtf8() + "\"&");
         } else {
             system("su " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
         }
     } else if (msgBox.clickedButton() == btnChangelog) {
         QDialog *changelog = new QDialog(this);
+        changelog->setWindowTitle(tr("Changelog"));
         changelog->resize(600, 500);
 
         QTextEdit *text = new QTextEdit;
