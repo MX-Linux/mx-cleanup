@@ -286,7 +286,7 @@ void MainWindow::on_buttonHelp_clicked()
     QString url = "/usr/share/doc/mx-cleanup/help/mx-cleanup.html";
 
     if (system("command -v mx-viewer >/dev/null") == 0) { // use mx-viewer if available
-        system("mx-viewer " + url.toUtf8() + " " + tr("MX Cleanup").toUtf8() + "&");
+        system("mx-viewer " + url.toUtf8() + " \"" + tr("MX Cleanup").toUtf8() + "\"&");
     } else {
         system("su " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
     }
@@ -311,7 +311,7 @@ void MainWindow::on_buttonUsageAnalyzer_clicked()
     }
 }
 
-// util function for getting bash command output and error code
+// util function for getting bash command output
 QString MainWindow::getCmdOut(const QString &cmd)
 {
     qDebug().noquote() << cmd;
