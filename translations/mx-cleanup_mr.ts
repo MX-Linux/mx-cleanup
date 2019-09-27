@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="he_IL" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="mr" version="2.1">
 <context>
     <name>MainWindow</name>
     <message>
@@ -39,52 +39,52 @@
     <message>
         <location filename="mainwindow.ui" line="192"/>
         <source>Display help </source>
-        <translation type="unfinished"/>
+        <translation>मदत दाखवा</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="195"/>
         <source>Help</source>
-        <translation>עזרה</translation>
+        <translation>मदत</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="202"/>
         <source>Alt+H</source>
-        <translation type="unfinished"/>
+        <translation>Alt+H</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="231"/>
         <source>About this application</source>
-        <translation>מידע לגבי התוכנה הזו</translation>
+        <translation>या अनुप्रयोगाबद्दल</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="234"/>
         <source>About...</source>
-        <translation>אודות...</translation>
+        <translation>विषयी</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="241"/>
         <source>Alt+B</source>
-        <translation type="unfinished"/>
+        <translation>Alt+B</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="273"/>
         <source>Quit application</source>
-        <translation>יציאה מהתוכנה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="276"/>
         <source>Close</source>
-        <translation>סגור</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="283"/>
         <source>Alt+N</source>
-        <translation type="unfinished"/>
+        <translation>Alt+N</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="321"/>
         <source>Apply</source>
-        <translation>אשר</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mainwindow.ui" line="349"/>
@@ -190,7 +190,7 @@
     <message>
         <location filename="mainwindow.cpp" line="259"/>
         <source>Version: </source>
-        <translation>גרסה:</translation>
+        <translation>आवृत्ती</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="260"/>
@@ -200,28 +200,28 @@
     <message>
         <location filename="mainwindow.cpp" line="262"/>
         <source>Copyright (c) MX Linux</source>
-        <translation>זכויות שמורות MX Linux</translation>
+        <translation>कॉपीराइट (c) एमएक्स लिनक्स</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="263"/>
         <location filename="mainwindow.cpp" line="273"/>
         <source>License</source>
-        <translation>רשיון</translation>
+        <translation>परवाना</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="264"/>
         <source>Changelog</source>
-        <translation type="unfinished"/>
+        <translation>बदल सूची</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="265"/>
         <source>Cancel</source>
-        <translation>ביטול</translation>
+        <translation>रद्द करा</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="286"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"/>
+        <translation>बंद</translation>
     </message>
 </context>
 <context>
@@ -229,7 +229,7 @@
     <message>
         <location filename="main.cpp" line="52"/>
         <source>You must run this program as root.</source>
-        <translation>אתה חייב להריץ את התוכנה הזו עם הרשאות root.</translation>
+        <translation>आपण हा प्रोग्राम रूट म्हणूनच चालवावा.</translation>
     </message>
 </context>
 </TS>
