@@ -90,9 +90,9 @@ void MainWindow::checkSchedule()
         checkOptions();
     } else if (QFile::exists("/etc/cron.monthly/mx-cleanup")) {
         ui->rbMonthly->setChecked(true);
+        checkOptions();
     } else {
         ui->rbNone->setChecked(true);
-        checkOptions();
     }
 }
 
@@ -107,6 +107,8 @@ void MainWindow::checkOptions()
     } else if (ui->rbMonthly->isChecked()) {
         period = "monthly";
     }
+    else return;
+
     QString file_name = "/etc/cron." + period + "/mx-cleanup";
 
     // Folders
@@ -299,15 +301,15 @@ void MainWindow::on_buttonUsageAnalyzer_clicked()
 
     if (desktop == "KDE" || desktop == "LXQt") { // try qdirstat for Qt based DEs, otherwise baobab
         if (system("command -v qdirstat") == 0) {
-            system("qdirstat&");
+            system("su " + user.toUtf8() + " -c qdirstat&");
         } else {                     // failsafe
-            system("baobab&");
+            system("su " + user.toUtf8() + " -c baobab&");
         }
     } else {
         if (system("command -v baobab") == 0) {
-            system("baobab&");
+            system("su " + user.toUtf8() + " -c baobab&");
         } else {
-            system("qdirstat&");
+            system("su " + user.toUtf8() + " -c qdirstat&");
         }
     }
 }
