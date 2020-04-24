@@ -59,7 +59,6 @@ TRANSLATIONS += translations/mx-cleanup_am.ts \
                 translations/mx-cleanup_is.ts \
                 translations/mx-cleanup_it.ts \
                 translations/mx-cleanup_ja.ts \
-                translations/mx-cleanup_ja_JP.ts \
                 translations/mx-cleanup_kk.ts \
                 translations/mx-cleanup_ko.ts \
                 translations/mx-cleanup_lt.ts \
