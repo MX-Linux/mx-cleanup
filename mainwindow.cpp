@@ -260,7 +260,7 @@ void MainWindow::on_buttonAbout_clicked()
         if (system("command -v mx-viewer >/dev/null") == 0) { // use mx-viewer if available
             system("mx-viewer " + url.toUtf8() + " \"" + tr("License").toUtf8() + "\"&");
         } else {
-            system("su " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
+            system("runuser -l " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
         }
     } else if (msgBox.clickedButton() == btnChangelog) {
         QDialog *changelog = new QDialog(this);
@@ -291,7 +291,7 @@ void MainWindow::on_buttonHelp_clicked()
     if (system("command -v mx-viewer >/dev/null") == 0) {
         system("mx-viewer " + url.toUtf8() + " \"" + tr("MX Cleanup").toUtf8() + "\"&");
     } else {
-        system("su " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
+        system("runuser -l " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
     }
 }
 
@@ -301,15 +301,15 @@ void MainWindow::on_buttonUsageAnalyzer_clicked()
 
     if (desktop == "KDE" || desktop == "LXQt") { // try qdirstat for Qt based DEs, otherwise baobab
         if (system("command -v qdirstat") == 0) {
-            system("su " + user.toUtf8() + " -c qdirstat&");
+            system("runuser -l " + user.toUtf8() + " -c qdirstat&");
         } else {                     // failsafe
-            system("su " + user.toUtf8() + " -c baobab&");
+            system("runuser -l " + user.toUtf8() + " -c baobab&");
         }
     } else {
         if (system("command -v baobab") == 0) {
-            system("su " + user.toUtf8() + " -c baobab&");
+            system("runuser -l " + user.toUtf8() + " -c baobab&");
         } else {
-            system("su " + user.toUtf8() + " -c qdirstat&");
+            system("runuser -l " + user.toUtf8() + " -c qdirstat&");
         }
     }
 }
