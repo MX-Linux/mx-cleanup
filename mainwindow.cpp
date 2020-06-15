@@ -260,7 +260,7 @@ void MainWindow::on_buttonAbout_clicked()
         if (system("command -v mx-viewer >/dev/null") == 0) { // use mx-viewer if available
             system("mx-viewer " + url.toUtf8() + " \"" + tr("License").toUtf8() + "\"&");
         } else {
-            system("runuser -l " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
+            system("runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
         }
     } else if (msgBox.clickedButton() == btnChangelog) {
         QDialog *changelog = new QDialog(this);
@@ -291,25 +291,30 @@ void MainWindow::on_buttonHelp_clicked()
     if (system("command -v mx-viewer >/dev/null") == 0) {
         system("mx-viewer " + url.toUtf8() + " \"" + tr("MX Cleanup").toUtf8() + "\"&");
     } else {
-        system("runuser -l " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
+        system("runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
     }
 }
 
 void MainWindow::on_buttonUsageAnalyzer_clicked()
 {
     QString desktop = qgetenv("XDG_CURRENT_DESKTOP");
+    QString run_as_user = "runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ")";
 
-    if (desktop == "KDE" || desktop == "LXQt") { // try qdirstat for Qt based DEs, otherwise baobab
-        if (system("command -v qdirstat") == 0) {
-            system("runuser -l " + user.toUtf8() + " -c qdirstat&");
-        } else {                     // failsafe
-            system("runuser -l " + user.toUtf8() + " -c baobab&");
+    if (desktop == "KDE" || desktop == "LXQt") { // try filelight, qdirstat for Qt based DEs, otherwise baobab
+        if (system("command -v filelight") == 0) {
+            system(run_as_user.toUtf8() + " filelight\"&");
+        } else if (system("command -v qdirstat") == 0) {
+            system(run_as_user.toUtf8() + " qdirstat\"&");
+        } else {  // failsafe just in case the des
+            system(run_as_user.toUtf8() + " baobab\"&");
         }
     } else {
         if (system("command -v baobab") == 0) {
-            system("runuser -l " + user.toUtf8() + " -c baobab&");
+            system(run_as_user.toUtf8() + " baobab\"&");
+        } else if (system("command -v filelight") == 0) {
+            system(run_as_user.toUtf8() + " filelight\"&");
         } else {
-            system("runuser -l " + user.toUtf8() + " -c qdirstat&");
+            system(run_as_user.toUtf8() + " qdirstat\"&");
         }
     }
 }
