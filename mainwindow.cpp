@@ -131,9 +131,9 @@ void MainWindow::checkOptions()
         ui->noCleanLogsRB->setChecked(true);
     }
     // Trash
-    if (system("grep -q '/home/\\*/.local/share/Trash/' " + file_name.toUtf8()) == 0) { // all user trash
+    if (system("grep -q '/home/\\*/.local/share/Trash' " + file_name.toUtf8()) == 0) { // all user trash
         ui->allUsersCB->setChecked(true);
-    } else if (system("grep -q '/.local/share/Trash/' " + file_name.toUtf8()) == 0) { // selected user trash
+    } else if (system("grep -q '/.local/share/Trash' " + file_name.toUtf8()) == 0) { // selected user trash
         ui->selectedUserCB->setChecked(true);
     } else {
         ui->noCleanTrashRB->setChecked(true);
@@ -194,25 +194,24 @@ void MainWindow::on_buttonApply_clicked()
     system(apt.toUtf8());
     total -= getCmdOut("du -s /var/cache/apt/archives/ | cut -f1").toInt();
 
+    QString ctime = ui->spinBoxLogs->value() == 0 ? " " : " -ctime +" + QString::number(ui->spinBoxLogs->value()) + " ";
     if (ui->oldLogsRB->isChecked()) {
-        total += getCmdOut("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -exec du -sc {} + | tail -1 | cut -f1").toInt();
-        logs = "find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f -delete 2>/dev/null";
+        total += getCmdOut("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f" + ctime + "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
+        logs = "find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\)" + ctime + "-type f -delete 2>/dev/null";
         system(logs.toUtf8());
     } else if (ui->allLogsRB->isChecked()){
-        total += getCmdOut("du -s /var/log/ | cut -f1").toInt();
-        logs = "find /var/log -type f -exec sh -c \"echo > '{}'\" \\;";  // empty the logs
+        total += getCmdOut("find /var/log -type f" + ctime + "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
+        logs = "find /var/log -type f" + ctime + "-exec sh -c \"echo > '{}'\" \\;";  // empty the logs
         system(logs.toUtf8());
-        total -= getCmdOut("du -s /var/log/ | cut -f1").toInt();
     }
 
-    if (ui->selectedUserCB->isChecked()) {
-        total += getCmdOut("du -c /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* | tail -1 | cut -f1").toInt();
-        trash = "rm -r /home/" + ui->userCleanCB->currentText().toUtf8() +"/.local/share/Trash/* 2>/dev/null";
-    } else if (ui->allUsersCB->isChecked()){
-        total += getCmdOut("find /home/*/.local/share/Trash/* -exec du -sc {} + | tail -1 | cut -f1").toInt();
-        trash = "rm -r /home/*/.local/share/Trash/* 2>/dev/null";
+    if (ui->selectedUserCB->isChecked() || ui->allUsersCB->isChecked()) {
+        QString user = ui->allUsersCB->isChecked() ? "*" : ui->userCleanCB->currentText();
+        QString ctime = ui->spinBoxTrash->value() == 0 ? " " : " -ctime +" + QString::number(ui->spinBoxTrash->value()) + " ";
+        total += getCmdOut("find /home/" + user + "/.local/share/Trash -type f" + ctime + "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
+        trash = "find /home/" + user + "/.local/share/Trash -type f" + ctime + "-delete";
+        system(trash.toUtf8());
     }
-    system(trash.toUtf8());
 
     // cleaup schedule
     QFile::remove("/etc/cron.daily/mx-cleanup");
