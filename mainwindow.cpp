@@ -130,6 +130,15 @@ void MainWindow::checkOptions()
     } else {
         ui->noCleanLogsRB->setChecked(true);
     }
+
+    // Logs older than...
+    QString ctime = getCmdOut("grep 'find /var/log' " + file_name + "| grep -Eo '\\-ctime \\+[0-9]{1,3}' | cut -f2 -d' '");
+    if (!ctime.isEmpty()) {
+        if (ctime.toInt() > 0 && ctime.toInt() <= 365) {
+            ui->spinBoxLogs->setValue(ctime.toInt());
+        }
+    }
+
     // Trash
     if (system("grep -q '/home/\\*/.local/share/Trash' " + file_name.toUtf8()) == 0) { // all user trash
         ui->allUsersCB->setChecked(true);
@@ -138,6 +147,15 @@ void MainWindow::checkOptions()
     } else {
         ui->noCleanTrashRB->setChecked(true);
     }
+
+    // Trash older than...
+    ctime = getCmdOut("grep 'find /home/' " + file_name + "| grep -Eo '\\-ctime \\+[0-9]{1,3}' | cut -f2 -d' '");
+    if (!ctime.isEmpty()) {
+        if (ctime.toInt() > 0 && ctime.toInt() <= 365) {
+            ui->spinBoxTrash->setValue(ctime.toInt());
+        }
+    }
+
 }
 
 

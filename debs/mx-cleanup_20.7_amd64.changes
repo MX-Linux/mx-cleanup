@@ -18,32 +18,32 @@ Changes:
  .
    * added older than option for logs and trash
 Checksums-Sha1:
- 0524bf6a3afc623e423c6a33df7becc663bdda1a 1112 mx-cleanup_20.7.dsc
- 513cc9f5ac4028a5a36577295ae8d48495f41905 102068 mx-cleanup_20.7.tar.xz
- 1e2b94c85a03767c83b418f13e27f230dd4c5d55 468296 mx-cleanup-dbgsym_20.7_amd64.deb
- 11027e0d95d419a148f2d0104aae88de612280c2 10673 mx-cleanup_20.7_amd64.buildinfo
- 334e7e2a1a09b194580274e9a6ea32e8e1cb5d01 113122 mx-cleanup_20.7_amd64.deb
+ 087f7ff9ef0683b291a469cbcc12b3cff3d16aae 1112 mx-cleanup_20.7.dsc
+ e2952231a489de8af32301663c99225f51c45618 102168 mx-cleanup_20.7.tar.xz
+ 2a26520893b04c369d3292e5579df308d087a2a4 468246 mx-cleanup-dbgsym_20.7_amd64.deb
+ 1d3ecf76372bc0a21d178de6a8b319bfcfc3a442 10673 mx-cleanup_20.7_amd64.buildinfo
+ 58200714492c48bc4e4a433b30c73b0832c9f9b4 113504 mx-cleanup_20.7_amd64.deb
 Checksums-Sha256:
- 41868917f48290b6dfef9f32aa21cd479a875cc61b1777e413966eb73cec2246 1112 mx-cleanup_20.7.dsc
- 56236369d34b60b56646e1676f431518bba00c796c6382c100fe93f4bde860e9 102068 mx-cleanup_20.7.tar.xz
- 61f887f04c3b6e6dd88e43e49063be535788528274bb3d41854631a6040675a5 468296 mx-cleanup-dbgsym_20.7_amd64.deb
- eaecf1373789f777483e40c8481b41d9c92d77fe141e26eacfd6ecde46dc0b75 10673 mx-cleanup_20.7_amd64.buildinfo
- 029801f3425cb55557284171e61a7e9a2aaa64791df4f9f4ec34e36fc02fdf90 113122 mx-cleanup_20.7_amd64.deb
+ 36cdcf1cc6a1d7ce793679712a45e7232b03ac44ff5e17b9bd02d98d1a9ad9be 1112 mx-cleanup_20.7.dsc
+ 8d662dbde5a5dda1be4907416ea6090400e6138ff058e4ab3f17f23449e92985 102168 mx-cleanup_20.7.tar.xz
+ a2c8f48fb1b62dc838aea9cc7c1c260f2caa509ebeed8711627448260c8b6963 468246 mx-cleanup-dbgsym_20.7_amd64.deb
+ fafe9b9092af1ada7e545c68186d8f328b02a6cda670da399d3ed444e93698bd 10673 mx-cleanup_20.7_amd64.buildinfo
+ 32277fd7bdb04f7fa43635b7b46866faa3e005ea97cda35a4bab05afbf1191b8 113504 mx-cleanup_20.7_amd64.deb
 Files:
- d88a337a2da4b9c9601e4f3ca2e43a87 1112 admin optional mx-cleanup_20.7.dsc
- b277553b1ab19bd0aa90ddcfbdb6da36 102068 admin optional mx-cleanup_20.7.tar.xz
- 0aeabe620a2fe310faafc0468f71a216 468296 debug extra mx-cleanup-dbgsym_20.7_amd64.deb
- 8b5f9a1e0ee75226e6f58eb82627c4c7 10673 admin optional mx-cleanup_20.7_amd64.buildinfo
- 68adb60395b3ad9ce800fe963f7b7272 113122 admin optional mx-cleanup_20.7_amd64.deb
+ c4cc2c4b56fcbcfe58231f4590fd155d 1112 admin optional mx-cleanup_20.7.dsc
+ 59f48cd6ca7bb924dd53887d6ac1ca7f 102168 admin optional mx-cleanup_20.7.tar.xz
+ 857d9f0c15eea17f5b0a38cd30dfea0d 468246 debug extra mx-cleanup-dbgsym_20.7_amd64.deb
+ daf1685c6c5cef2a34a098e0c3004b75 10673 admin optional mx-cleanup_20.7_amd64.buildinfo
+ a9370209baf8c420f61c81a7f7063985 113504 admin optional mx-cleanup_20.7_amd64.deb
 
 -----BEGIN PGP SIGNATURE-----
 
-iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAl8GpXATHGFkcmlhbkBt
-eGxpbnV4Lm9yZwAKCRBwk4x4BnnumIZKB/wL5vqoTSTUa0ErNzEDFn27QmVWDoXH
-/HOqKatpQFY8pKwD6vP/aada2ezJetcVW4FFf3zdHDCuYtZB+yPNzu3SXyeh+anF
-/t9f9PnQ/MCMrIWa+sRUqQx+mwf1emoCajnko5VtDtrSvUbSvjMTx/YsqCmfJkDC
-XIX4jon1FMYrYBN8XqHYAarM6NZA9GsOkBqo0BdgTpa384j/Y1qh8NXOQA8RPao0
-g7LLa7vIQR99LmMo2nTjHnqUFONi5bk9Eh4HE+u/oeJdGPmDryKTWNsMnjuj/5ho
-LsJLjvVqza18G9CDXgLsBfjuZAeVgDJwOlMDBmm4MgNqyk21X+Spexdp
-=qqRg
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAl8HR+sTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumEB1B/9VVDsLuM+8sYgIKAn/g7+vxud0N/qw
+vL0viNNspjoIp6G9BpzNu0UCgarCoSvcGXf5D2kRI8dHsSsDj1TF3kqadhx2GlHg
+kpR90H6yFopp2xhrKerybfFLU24594FFnSVZpSDNJbJIdC5twGb/hfdI36vU30My
+PArFm05q3tpZzIfdW2F+M4x+LT6/0IClVoSFNUYJnP8WsFgmLU7DnieYShsKzcik
+7EMxM4WVY4CqeX0XBE0U9bO0OQZIN27NiXgQBygkQ5YX9DrxuvCRjO0rXLu0tDUd
+FdeXEePyPX2Z4KOonWHpAKbQ/K7BKwXhXAUTf+0LitUeIIvL7AIsiBGk
+=1Qyr
 -----END PGP SIGNATURE-----
