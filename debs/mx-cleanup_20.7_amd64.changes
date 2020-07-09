@@ -1,0 +1,49 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Thu, 09 Jul 2020 00:51:52 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 20.7
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (20.7) mx; urgency=medium
+ .
+   * added older than option for logs and trash
+Checksums-Sha1:
+ 356ef6362ddc25c005222404b4e5d717ba6af506 1112 mx-cleanup_20.7.dsc
+ f30ff36ae62a9651350243c4ab3f0652c07e7063 101908 mx-cleanup_20.7.tar.xz
+ 031a4d7a575e07fc88bbee5cab52475105b60e63 469172 mx-cleanup-dbgsym_20.7_amd64.deb
+ 164676b02244bad545ef249c2f1b541355c9c7bb 10673 mx-cleanup_20.7_amd64.buildinfo
+ ec43b45d93763e26579820566b194f7bd389b295 112878 mx-cleanup_20.7_amd64.deb
+Checksums-Sha256:
+ f8c4050b06b43cec57850b901e355ac3462cdac2d8fa50fd796f13b1fb614679 1112 mx-cleanup_20.7.dsc
+ d4708831ec254eaa6e40fa87c735667ab9d047c858e3e765213422034df469ba 101908 mx-cleanup_20.7.tar.xz
+ ff8e1c1dcebe2b0fd403e11c6cdecaf0e9093dbd46beeeed80742c95f804cac7 469172 mx-cleanup-dbgsym_20.7_amd64.deb
+ 6e06d4791411e019e7fed59f8b2b4f0b710aff2cd2a3e5e60f60d5a4a3e30aea 10673 mx-cleanup_20.7_amd64.buildinfo
+ f6dfaac1a4b254e386c72b3cb5ef92a599c44dd2e936cb22aae38947b70493ef 112878 mx-cleanup_20.7_amd64.deb
+Files:
+ 8847583c9fa99ebc008e3a8e0ba6589a 1112 admin optional mx-cleanup_20.7.dsc
+ 924fa3e553ff25fc444d48ae1225cf47 101908 admin optional mx-cleanup_20.7.tar.xz
+ 979ac88f3ad63ae7bbc3dde340d16db8 469172 debug extra mx-cleanup-dbgsym_20.7_amd64.deb
+ a3fd6b842012c51115054a119b9d2c82 10673 admin optional mx-cleanup_20.7_amd64.buildinfo
+ 8c7aeae474fb7d70c54a54950b895bd2 112878 admin optional mx-cleanup_20.7_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAl8GoykTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumFFUB/9vP/Kd9SQAJ65XxQwCYzdtK4ooXSpd
+WKsSKe0o75K6DO9euvlaPlYRxHxu1T1N8ilu8g0hYhKq8p0u/ROmr0w/m7BK9mV4
+G6wiQHhqwJS+HrVeLcdk0j6/JD461qOQNDU0OPR3wB5PP1jR5PivqF18/D9Mb4ev
+8pCry4p9lWHTYR4On3/DBcLjvV7LaIZ+6KFBySmtmGSncjbxgHQkmjm41DI4nNLq
+JbRC14uAhrWzbWaE+lBFf6MbWo1sPahZAb5Ocl6FESRWpTl8Y1hwo7sk5ypefF18
+gPvYFXK8tqFmwfxcXu+niVMYygMrQskZQSrBelIAc2yXkXYoIbvjoFmG
+=u2RV
+-----END PGP SIGNATURE-----
