@@ -665,23 +665,80 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>userCleanCB</tabstop>
+  <tabstop>thumbCheckBox</tabstop>
+  <tabstop>cacheCheckBox</tabstop>
+  <tabstop>autocleanRB</tabstop>
+  <tabstop>cleanRB</tabstop>
+  <tabstop>noCleanAptRB</tabstop>
+  <tabstop>oldLogsRB</tabstop>
+  <tabstop>allLogsRB</tabstop>
+  <tabstop>noCleanLogsRB</tabstop>
+  <tabstop>spinBoxLogs</tabstop>
+  <tabstop>selectedUserCB</tabstop>
+  <tabstop>allUsersCB</tabstop>
+  <tabstop>noCleanTrashRB</tabstop>
+  <tabstop>spinBoxTrash</tabstop>
+  <tabstop>rbNone</tabstop>
+  <tabstop>rbDaily</tabstop>
+  <tabstop>rbWeekly</tabstop>
+  <tabstop>rbMonthly</tabstop>
+  <tabstop>buttonUsageAnalyzer</tabstop>
+  <tabstop>buttonAbout</tabstop>
+  <tabstop>buttonHelp</tabstop>
+  <tabstop>buttonApply</tabstop>
+  <tabstop>buttonCancel</tabstop>
+ </tabstops>
  <resources>
   <include location="images.qrc"/>
  </resources>
  <connections>
   <connection>
+   <sender>noCleanLogsRB</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBoxLogs</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>81</x>
+     <y>324</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>187</x>
+     <y>357</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>noCleanTrashRB</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBoxTrash</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>400</x>
+     <y>324</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>448</x>
+     <y>357</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>buttonCancel</sender>
-   <signal>pressed()</signal>
+   <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>723</x>
-     <y>519</y>
+     <x>480</x>
+     <y>574</y>
     </hint>
     <hint type="destinationlabel">
-     <x>388</x>
-     <y>272</y>
+     <x>266</x>
+     <y>300</y>
     </hint>
    </hints>
   </connection>
