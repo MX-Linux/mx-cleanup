@@ -69,7 +69,7 @@ void MainWindow::setup()
 
     ui->userCleanCB->setCurrentIndex(ui->userCleanCB->findText(user));
     ui->buttonApply->setEnabled(ui->userCleanCB->currentText() != "");
-    checkSchedule();
+    loadSchedule();
 }
 
 // Cleanup environment when window is closed
@@ -80,24 +80,24 @@ void MainWindow::cleanup()
 
 
 // check if /etc/cron.daily|weekly|monthly/mx-cleanup script exists
-void MainWindow::checkSchedule()
+void MainWindow::loadSchedule()
 {
     if (QFile::exists("/etc/cron.daily/mx-cleanup")) {
         ui->rbDaily->setChecked(true);
-        checkOptions();
+        loadOptions();
     } else if (QFile::exists("/etc/cron.weekly/mx-cleanup")) {
         ui->rbWeekly->setChecked(true);
-        checkOptions();
+        loadOptions();
     } else if (QFile::exists("/etc/cron.monthly/mx-cleanup")) {
         ui->rbMonthly->setChecked(true);
-        checkOptions();
+        loadOptions();
     } else {
         ui->rbNone->setChecked(true);
     }
 }
 
 // Load saved options to GUI
-void MainWindow::checkOptions()
+void MainWindow::loadOptions()
 {
     QString period;
     if (ui->rbDaily->isChecked()) {
@@ -137,6 +137,8 @@ void MainWindow::checkOptions()
         if (ctime.toInt() > 0 && ctime.toInt() <= 365) {
             ui->spinBoxLogs->setValue(ctime.toInt());
         }
+    } else {
+        ui->spinBoxLogs->setValue(0);
     }
 
     // Trash
@@ -154,6 +156,8 @@ void MainWindow::checkOptions()
         if (ctime.toInt() > 0 && ctime.toInt() <= 365) {
             ui->spinBoxTrash->setValue(ctime.toInt());
         }
+    } else {
+        ui->spinBoxTrash->setValue(0);
     }
 
 }

@@ -39,8 +39,8 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void checkSchedule();
-    void checkOptions();
+    void loadSchedule();
+    void loadOptions();
     void saveSchedule(QString cmd_str, QString period);
     void setup();
 
