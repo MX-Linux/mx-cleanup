@@ -133,13 +133,7 @@ void MainWindow::loadOptions()
 
     // Logs older than...
     QString ctime = getCmdOut("grep 'find /var/log' " + file_name + "| grep -Eo '\\-ctime \\+[0-9]{1,3}' | cut -f2 -d' '");
-    if (!ctime.isEmpty()) {
-        if (ctime.toInt() > 0 && ctime.toInt() <= 365) {
-            ui->spinBoxLogs->setValue(ctime.toInt());
-        }
-    } else {
-        ui->spinBoxLogs->setValue(0);
-    }
+    ui->spinBoxLogs->setValue(ctime.toInt());
 
     // Trash
     if (system("grep -q '/home/\\*/.local/share/Trash' " + file_name.toUtf8()) == 0) { // all user trash
@@ -152,14 +146,7 @@ void MainWindow::loadOptions()
 
     // Trash older than...
     ctime = getCmdOut("grep 'find /home/' " + file_name + "| grep -Eo '\\-ctime \\+[0-9]{1,3}' | cut -f2 -d' '");
-    if (!ctime.isEmpty()) {
-        if (ctime.toInt() > 0 && ctime.toInt() <= 365) {
-            ui->spinBoxTrash->setValue(ctime.toInt());
-        }
-    } else {
-        ui->spinBoxTrash->setValue(0);
-    }
-
+    ui->spinBoxTrash->setValue(ctime.toInt());
 }
 
 
