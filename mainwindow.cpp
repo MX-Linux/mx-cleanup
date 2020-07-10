@@ -29,6 +29,7 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QProcess>
+#include <QSettings>
 #include <QTextEdit>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -84,16 +85,43 @@ void MainWindow::loadSchedule()
 {
     if (QFile::exists("/etc/cron.daily/mx-cleanup")) {
         ui->rbDaily->setChecked(true);
-        loadOptions();
     } else if (QFile::exists("/etc/cron.weekly/mx-cleanup")) {
         ui->rbWeekly->setChecked(true);
-        loadOptions();
     } else if (QFile::exists("/etc/cron.monthly/mx-cleanup")) {
         ui->rbMonthly->setChecked(true);
-        loadOptions();
     } else {
         ui->rbNone->setChecked(true);
     }
+    loadOptions();
+}
+
+void MainWindow::loadSettings()
+{
+    qDebug() << "Load settings";
+    QSettings settings("MX-Linux", "mx-cleanup");
+
+    int index = ui->userCleanCB->findText(settings.value("User").toString());
+    if (index == -1) index = 0;
+    ui->userCleanCB->setCurrentIndex(index);
+
+    settings.beginGroup("Folders");
+    ui->thumbCheckBox->setChecked(settings.value("Thumbnails", true).toBool());
+    ui->cacheCheckBox->setChecked(settings.value("Cache", true).toBool());
+    settings.endGroup();
+
+    settings.beginGroup("Apt");
+    selectRadioButton(ui->buttonGroupApt, settings.value("AptSelection", -1).toInt());
+    settings.endGroup();
+
+    settings.beginGroup("Logs");
+    ui->spinBoxLogs->setValue(settings.value("LogsOlderThan", 7).toInt());
+    selectRadioButton(ui->buttonGroupLogs, settings.value("LogsSelection", -1).toInt());
+    settings.endGroup();
+
+    settings.beginGroup("Trash");
+    ui->spinBoxTrash->setValue(settings.value("TrashOlderThan", 30).toInt());
+    selectRadioButton(ui->buttonGroupTrash, settings.value("TrashSelection", -1).toInt());
+    settings.endGroup();
 }
 
 // Load saved options to GUI
@@ -106,8 +134,10 @@ void MainWindow::loadOptions()
         period = "weekly";
     } else if (ui->rbMonthly->isChecked()) {
         period = "monthly";
+    } else {
+        loadSettings();
+        return;
     }
-    else return;
 
     QString file_name = "/etc/cron." + period + "/mx-cleanup";
 
@@ -165,6 +195,44 @@ void MainWindow::saveSchedule(QString cmd_str, QString period)
     out << cmd_str;
     file.close();
     system("chmod +x " + file.fileName().toUtf8());
+}
+
+void MainWindow::saveSettings()
+{
+    QSettings settings("MX-Linux", "mx-cleanup");
+
+    settings.setValue("User", ui->userCleanCB->currentText());
+
+    settings.beginGroup("Folders");
+    settings.setValue("Thumbnails", ui->thumbCheckBox->isChecked());
+    settings.setValue("Cache", ui->cacheCheckBox->isChecked());
+    settings.endGroup();
+
+    settings.beginGroup("Apt");
+    settings.setValue("AptSelection", ui->buttonGroupApt->checkedId());
+    settings.endGroup();
+
+    settings.beginGroup("Logs");
+    settings.setValue("LogsSelection", ui->buttonGroupLogs->checkedId());
+    settings.setValue("LogsOlderThan", ui->spinBoxLogs->value());
+    settings.endGroup();
+
+    settings.beginGroup("Trash");
+    settings.setValue("TrashSelection", ui->buttonGroupTrash->checkedId());
+    settings.setValue("TrashOlderThan", ui->spinBoxTrash->value());
+    settings.endGroup();
+}
+
+void MainWindow::selectRadioButton(const QButtonGroup *group, int id)
+{
+    if (id != -1) {
+        foreach (QAbstractButton *button, group->buttons()) {
+            if (group->id(button) == id) {
+                button->setChecked(true);
+                break;
+            }
+        }
+    }
 }
 
 
@@ -240,6 +308,8 @@ void MainWindow::on_buttonApply_clicked()
         }
         saveSchedule(cmd_str, period);
     }
+
+    saveSettings();
 
     setCursor(QCursor(Qt::ArrowCursor));
     QMessageBox::information(this, tr("Done"),

@@ -25,6 +25,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QButtonGroup>
 #include <QMessageBox>
 
 namespace Ui {
@@ -40,8 +41,11 @@ public:
     ~MainWindow();
 
     void loadSchedule();
+    void loadSettings();
     void loadOptions();
     void saveSchedule(QString cmd_str, QString period);
+    void saveSettings();
+    void selectRadioButton(const QButtonGroup *group, int id);
     void setup();
 
 public slots:
