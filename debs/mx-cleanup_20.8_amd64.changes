@@ -1,0 +1,49 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Sat, 01 Aug 2020 13:02:30 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 20.8
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (20.8) mx; urgency=medium
+ .
+   * new translations
+Checksums-Sha1:
+ ad3de67765354b86c8b4df26adc4b18e9b9975da 1112 mx-cleanup_20.8.dsc
+ afde163bdec84befb41c573b945850f63ef6ced2 105764 mx-cleanup_20.8.tar.xz
+ 43b752726cb583c737386e3a317cbdd69e729b6e 471370 mx-cleanup-dbgsym_20.8_amd64.deb
+ e982a71f57a43eef719ae34007e984e7ca66ade6 10673 mx-cleanup_20.8_amd64.buildinfo
+ be25edb263232f110d20d3bb24805d499c895248 117850 mx-cleanup_20.8_amd64.deb
+Checksums-Sha256:
+ 4e61a36e26e1284485d8f5a079793983cefb2fdaf7f7803385675bbb415d8882 1112 mx-cleanup_20.8.dsc
+ 8d1b8e4f887e2048a9468365796e9e8d525ee14b05d7a1e10865ac59c6ad0e1d 105764 mx-cleanup_20.8.tar.xz
+ 3dd802b943ad66eb33bb2a73cb71e1092dc5767aeb08e408dc2188adf4fdf0f4 471370 mx-cleanup-dbgsym_20.8_amd64.deb
+ 0843a93f071bf9014ef4bbe13629ee8ddcfb89a22b24e05129110139e08d7dc0 10673 mx-cleanup_20.8_amd64.buildinfo
+ 41479bd99877b854bb94d50bf0e4d59278a25d65cc08274f82849d22940d372b 117850 mx-cleanup_20.8_amd64.deb
+Files:
+ 0462b369b1ba26346ee373caa5d4f8b8 1112 admin optional mx-cleanup_20.8.dsc
+ 75915e3fe79be4815a169c3d94a4649c 105764 admin optional mx-cleanup_20.8.tar.xz
+ 4603a5d6c4b8e720a782690cd6f37ad2 471370 debug extra mx-cleanup-dbgsym_20.8_amd64.deb
+ 9229ca2a085acedb1545bc49e40a18b5 10673 admin optional mx-cleanup_20.8_amd64.buildinfo
+ 66751d1e35a369bb9589874b37c1a703 117850 admin optional mx-cleanup_20.8_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAl8loMoTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumAdpCACAlCQUc7XDi05O2lML+4/ZTqUqRY9J
+tDy9U+BfPbx6uDiQCLcNhbhaDjnTrgVhPB/UrD0atIznvXjc+kZmmR1XGvYoUcQl
+xXK5FvMLixrvb7De8jhUcT54cugXX9HTQg8J+tG6qgVB5jEfyohudivH4BGVb9GN
+k87tphNlgvY/tY3DAkSqLOL9FbpXPvQrOWGvMO+m4VzU+pxmnn0TE2wgFiyO1QwS
+pOMa8YHh+9oB3qKrGiC8OkG4fikRQdOWZhN7un5oNC3/XMNAlSye4n1Nam7DFXXp
+OYcFg+XxxsDyJiJOc4tf8UC5Aay/g1o8L7CDfyp0BVLmhPsVpuLQXSPg
+=6fiG
+-----END PGP SIGNATURE-----
