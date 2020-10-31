@@ -25,8 +25,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QButtonGroup>
 #include <QMessageBox>
+#include <QButtonGroup>
 
 namespace Ui {
 class MainWindow;
