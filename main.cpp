@@ -34,12 +34,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon::fromTheme("mx-cleanup"));
 
-    QTranslator qtTran;
-    qtTran.load(QString("qt_") + QLocale::system().name());
-    a.installTranslator(&qtTran);
-
     QTranslator appTran;
-    appTran.load(QString("mx-cleanup_") + QLocale::system().name(), "/usr/share/mx-cleanup/locale");
+    appTran.load(QCoreApplication::applicationName() + "_" + QLocale::system().name(),
+                 "/usr/share/" + QCoreApplication::applicationName() + "/locale");
     a.installTranslator(&appTran);
 
     if (getuid() == 0) {
