@@ -40,9 +40,9 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void loadOptions();
     void loadSchedule();
     void loadSettings();
-    void loadOptions();
     void saveSchedule(QString cmd_str, QString period);
     void saveSettings();
     void selectRadioButton(const QButtonGroup *group, int id);
@@ -52,8 +52,8 @@ public slots:
 
 private slots:
     void cleanup();
-    void on_buttonApply_clicked();
     void on_buttonAbout_clicked();
+    void on_buttonApply_clicked();
     void on_buttonHelp_clicked();
     void on_buttonUsageAnalyzer_clicked();
 

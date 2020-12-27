@@ -20,23 +20,20 @@
  * along with this package. If not, see <http://www.gnu.org/licenses/>.
  **********************************************************************/
 
-
-
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "version.h"
-
 #include <QDebug>
 #include <QFileInfo>
 #include <QProcess>
 #include <QSettings>
 #include <QTextEdit>
 
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MainWindow)
 {
-    qDebug().noquote() << QCoreApplication::applicationName() << "version:" << VERSION;
+    qDebug().noquote() << qApp->applicationName() << "version:" << qApp->applicationVersion();
     ui->setupUi(this);
     setWindowFlags(Qt::Window); // for the close, min and max buttons
     setup();
@@ -69,7 +66,7 @@ void MainWindow::setup()
     ui->userCleanCB->addItems(users.split("\n"));
 
     ui->userCleanCB->setCurrentIndex(ui->userCleanCB->findText(user));
-    ui->buttonApply->setEnabled(ui->userCleanCB->currentText() != "");
+    ui->buttonApply->setEnabled(!ui->userCleanCB->currentText().isEmpty());
     loadSchedule();
 }
 
@@ -226,7 +223,7 @@ void MainWindow::saveSettings()
 void MainWindow::selectRadioButton(const QButtonGroup *group, int id)
 {
     if (id != -1) {
-        foreach (QAbstractButton *button, group->buttons()) {
+        for (auto button : group->buttons()) {
             if (group->id(button) == id) {
                 button->setChecked(true);
                 break;
@@ -322,7 +319,7 @@ void MainWindow::on_buttonAbout_clicked()
 {
     QMessageBox msgBox(QMessageBox::NoIcon,
                        tr("About") + tr("MX Cleanup"), "<p align=\"center\"><b><h2>MX Cleanup</h2></b></p><p align=\"center\">" +
-                       tr("Version: ") + VERSION + "</p><p align=\"center\"><h3>" +
+                       tr("Version: ") + qApp->applicationVersion() + "</p><p align=\"center\"><h3>" +
                        tr("Quick and safe removal of old files") +
                        "</h3></p><p align=\"center\"><a href=\"http://mxlinux.org\">http://mxlinux.org</a><br /></p><p align=\"center\">" +
                        tr("Copyright (c) MX Linux") + "<br /><br /></p>");
@@ -401,11 +398,12 @@ void MainWindow::on_buttonUsageAnalyzer_clicked()
 QString MainWindow::getCmdOut(const QString &cmd)
 {
     qDebug().noquote() << cmd;
-    QProcess *proc = new QProcess();
+    QProcess *proc = new QProcess(this);
     QEventLoop loop;
+    connect(proc, QOverload<int>::of(&QProcess::finished), &loop, &QEventLoop::quit);
     proc->setReadChannelMode(QProcess::MergedChannels);
     proc->start("/bin/bash", QStringList() << "-c" << cmd);
-    proc->waitForFinished();
+    loop.exec();
     QString out = proc->readAll().trimmed();
     delete proc;
     return out;

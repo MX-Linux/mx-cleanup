@@ -20,34 +20,47 @@
  * along with this package. If not, see <http://www.gnu.org/licenses/>.
  **********************************************************************/
 
+#include <QApplication>
+#include <QCommandLineParser>
+#include <QIcon>
+#include <QLibraryInfo>
+#include <QLocale>
+#include <QTranslator>
 
 #include "mainwindow.h"
 #include <unistd.h>
-#include <QApplication>
-#include <QTranslator>
-#include <QLocale>
-#include <QIcon>
-
+#include <version.h>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    a.setWindowIcon(QIcon::fromTheme("mx-cleanup"));
+    QApplication app(argc, argv);
+    app.setApplicationVersion(VERSION);
+
+    QCommandLineParser parser;
+    parser.setApplicationDescription(QObject::tr("Quick safe removal of old files"));
+    parser.addHelpOption();
+    parser.addVersionOption();
+    parser.process(app);
+
+    app.setWindowIcon(QIcon::fromTheme(app.applicationName()));
+
+    QTranslator qtTran;
+    if (qtTran.load(QLocale::system(), "qt", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+        app.installTranslator(&qtTran);
+
+    QTranslator qtBaseTran;
+    if (qtBaseTran.load("qtbase_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+        app.installTranslator(&qtBaseTran);
 
     QTranslator appTran;
-    appTran.load(QCoreApplication::applicationName() + "_" + QLocale::system().name(),
-                 "/usr/share/" + QCoreApplication::applicationName() + "/locale");
-    a.installTranslator(&appTran);
+    if (appTran.load(app.applicationName() + "_" + QLocale::system().name(), "/usr/share/" + app.applicationName() + "/locale"))
+        app.installTranslator(&appTran);
 
     if (getuid() == 0) {
         MainWindow w;
         w.show();
-        return a.exec();
+        return app.exec();
     } else {
-        system("su-to-root -X -c " + QCoreApplication::applicationFilePath().toUtf8() + "&");
-//        QApplication::beep();
-//        QMessageBox::critical(0, QString::null,
-//                              QApplication::tr("You must run this program as root."));
-//        return 1;
+        system("su-to-root -X -c " + QApplication::applicationFilePath().toUtf8() + "&");
     }
 }
