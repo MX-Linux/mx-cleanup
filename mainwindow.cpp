@@ -80,15 +80,14 @@ void MainWindow::cleanup()
 // check if /etc/cron.daily|weekly|monthly/mx-cleanup script exists
 void MainWindow::loadSchedule()
 {
-    if (QFile::exists("/etc/cron.daily/mx-cleanup")) {
+    if (QFile::exists("/etc/cron.daily/mx-cleanup"))
         ui->rbDaily->setChecked(true);
-    } else if (QFile::exists("/etc/cron.weekly/mx-cleanup")) {
+    else if (QFile::exists("/etc/cron.weekly/mx-cleanup"))
         ui->rbWeekly->setChecked(true);
-    } else if (QFile::exists("/etc/cron.monthly/mx-cleanup")) {
+    else if (QFile::exists("/etc/cron.monthly/mx-cleanup"))
         ui->rbMonthly->setChecked(true);
-    } else {
+    else
         ui->rbNone->setChecked(true);
-    }
     loadOptions();
 }
 
@@ -142,34 +141,32 @@ void MainWindow::loadOptions()
     ui->thumbCheckBox->setChecked(system("grep -q '.thumbnails' " + file_name.toUtf8()) == 0);
     ui->cacheCheckBox->setChecked(system("grep -q '.cache' " + file_name.toUtf8()) == 0);
     // APT
-    if (system("grep -q 'apt-get autoclean' " + file_name.toUtf8()) == 0) { // detect autoclean
+    if (system("grep -q 'apt-get autoclean' " + file_name.toUtf8()) == 0)  // detect autoclean
         ui->autocleanRB->setChecked(true);
-    } else if (system("grep -q 'apt-get clean' " + file_name.toUtf8()) == 0) { // detect clean
+    else if (system("grep -q 'apt-get clean' " + file_name.toUtf8()) == 0)  // detect clean
         ui->cleanRB->setChecked(true);
-    } else {
+    else
         ui->noCleanAptRB->setChecked(true);
-    }
+
     // Logs
-    if (system("grep -q '\\-exec sh \\-c \"echo' " + file_name.toUtf8()) == 0) { // all logs
+    if (system("grep -q '\\-exec sh \\-c \"echo' " + file_name.toUtf8()) == 0) // all logs
         ui->allLogsRB->setChecked(true);
-    } else if (system("grep -q '\\-type f \\-delete' " + file_name.toUtf8()) == 0) { // old logs
+    else if (system("grep -q '\\-type f \\-delete' " + file_name.toUtf8()) == 0) // old logs
         ui->oldLogsRB->setChecked(true);
-    } else {
+    else
         ui->noCleanLogsRB->setChecked(true);
-    }
 
     // Logs older than...
     QString ctime = getCmdOut("grep 'find /var/log' " + file_name + "| grep -Eo '\\-ctime \\+[0-9]{1,3}' | cut -f2 -d' '");
     ui->spinBoxLogs->setValue(ctime.toInt());
 
     // Trash
-    if (system("grep -q '/home/\\*/.local/share/Trash' " + file_name.toUtf8()) == 0) { // all user trash
+    if (system("grep -q '/home/\\*/.local/share/Trash' " + file_name.toUtf8()) == 0)  // all user trash
         ui->allUsersCB->setChecked(true);
-    } else if (system("grep -q '/.local/share/Trash' " + file_name.toUtf8()) == 0) { // selected user trash
+    else if (system("grep -q '/.local/share/Trash' " + file_name.toUtf8()) == 0)  // selected user trash
         ui->selectedUserCB->setChecked(true);
-    } else {
+    else
         ui->noCleanTrashRB->setChecked(true);
-    }
 
     // Trash older than...
     ctime = getCmdOut("grep 'find /home/' " + file_name + "| grep -Eo '\\-ctime \\+[0-9]{1,3}' | cut -f2 -d' '");
@@ -181,9 +178,8 @@ void MainWindow::loadOptions()
 void MainWindow::saveSchedule(QString cmd_str, QString period)
 {
     QFile file("/etc/cron." + period + "/mx-cleanup");
-    if (!file.open(QFile::WriteOnly)) {
+    if (!file.open(QFile::WriteOnly))
         qDebug() << "Could not open file:" << file.fileName();
-    }
     QTextStream out(&file);
     out << "#!/bin/sh\n";
     out << "#\n";
@@ -259,11 +255,11 @@ void MainWindow::on_buttonApply_clicked()
         system(thumbnails.toUtf8());
     }
 
-    if (ui->autocleanRB->isChecked()) {
+    if (ui->autocleanRB->isChecked())
         apt = "apt-get autoclean";
-    } else if (ui->cleanRB->isChecked()) {
+    else if (ui->cleanRB->isChecked())
         apt = "apt-get clean";
-    }
+
     total += getCmdOut("du -s /var/cache/apt/archives/ | cut -f1").toInt();
     system(apt.toUtf8());
     total -= getCmdOut("du -s /var/cache/apt/archives/ | cut -f1").toInt();
@@ -296,13 +292,12 @@ void MainWindow::on_buttonApply_clicked()
         QString period;
         cmd_str = cache + "\n" + thumbnails + "\n" + logs + "\n" + apt + "\n" + trash;
         qDebug() << "CMD STR" << cmd_str;
-        if (ui->rbDaily->isChecked()) {
+        if (ui->rbDaily->isChecked())
             period = "daily";
-        } else if (ui->rbWeekly->isChecked()) {
+        else if (ui->rbWeekly->isChecked())
             period = "weekly";
-        } else {
+        else
             period = "monthly";
-        }
         saveSchedule(cmd_str, period);
     }
 
@@ -332,11 +327,10 @@ void MainWindow::on_buttonAbout_clicked()
 
     if (msgBox.clickedButton() == btnLicense) {
         QString url = "file:///usr/share/doc/mx-cleanup/license.html";
-        if (system("command -v mx-viewer >/dev/null") == 0) { // use mx-viewer if available
+        if (system("command -v mx-viewer >/dev/null") == 0)  // use mx-viewer if available
             system("mx-viewer " + url.toUtf8() + " \"" + tr("License").toUtf8() + "\"&");
-        } else {
+        else
             system("runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
-        }
     } else if (msgBox.clickedButton() == btnChangelog) {
         QDialog *changelog = new QDialog(this);
         changelog->setWindowTitle(tr("Changelog"));
@@ -363,11 +357,10 @@ void MainWindow::on_buttonHelp_clicked()
 {
     QString url = "/usr/share/doc/mx-cleanup/help/mx-cleanup.html";
 
-    if (system("command -v mx-viewer >/dev/null") == 0) {
+    if (system("command -v mx-viewer >/dev/null") == 0)
         system("mx-viewer " + url.toUtf8() + " \"" + tr("MX Cleanup").toUtf8() + "\"&");
-    } else {
+    else
         system("runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
-    }
 }
 
 void MainWindow::on_buttonUsageAnalyzer_clicked()
@@ -376,21 +369,19 @@ void MainWindow::on_buttonUsageAnalyzer_clicked()
     QString run_as_user = "runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ")";
 
     if (desktop == "KDE" || desktop == "LXQt") { // try filelight, qdirstat for Qt based DEs, otherwise baobab
-        if (system("command -v filelight") == 0) {
+        if (system("command -v filelight") == 0)
             system(run_as_user.toUtf8() + " filelight\"&");
-        } else if (system("command -v qdirstat") == 0) {
+        else if (system("command -v qdirstat") == 0)
             system(run_as_user.toUtf8() + " qdirstat\"&");
-        } else {  // failsafe just in case the des
+        else   // failsafe just in case the des
             system(run_as_user.toUtf8() + " baobab\"&");
-        }
     } else {
-        if (system("command -v baobab") == 0) {
+        if (system("command -v baobab") == 0)
             system(run_as_user.toUtf8() + " baobab\"&");
-        } else if (system("command -v filelight") == 0) {
+        else if (system("command -v filelight") == 0)
             system(run_as_user.toUtf8() + " filelight\"&");
-        } else {
+        else
             system(run_as_user.toUtf8() + " qdirstat\"&");
-        }
     }
 }
 
