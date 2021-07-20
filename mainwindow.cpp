@@ -94,7 +94,7 @@ void MainWindow::loadSchedule()
 void MainWindow::loadSettings()
 {
     qDebug() << "Load settings";
-    QSettings settings("MX-Linux", "mx-cleanup");
+    QSettings settings(qApp->organizationName(), qApp->applicationName());
 
     int index = ui->userCleanCB->findText(settings.value("User").toString());
     if (index == -1) index = 0;
@@ -192,7 +192,7 @@ void MainWindow::saveSchedule(QString cmd_str, QString period)
 
 void MainWindow::saveSettings()
 {
-    QSettings settings("MX-Linux", "mx-cleanup");
+    QSettings settings(qApp->organizationName(), qApp->applicationName());
 
     settings.setValue("User", ui->userCleanCB->currentText());
 

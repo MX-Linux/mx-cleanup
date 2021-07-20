@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     app.setApplicationVersion(VERSION);
+    app.setOrganizationName("MX-Linux");
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QObject::tr("Quick safe removal of old files"));
