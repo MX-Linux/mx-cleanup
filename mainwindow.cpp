@@ -23,7 +23,6 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QProcess>
-#include <QSettings>
 #include <QTextEdit>
 
 #include "mainwindow.h"
@@ -94,8 +93,6 @@ void MainWindow::loadSchedule()
 void MainWindow::loadSettings()
 {
     qDebug() << "Load settings";
-    QSettings settings(qApp->organizationName(), qApp->applicationName());
-
     int index = ui->userCleanCB->findText(settings.value("User").toString());
     if (index == -1) index = 0;
     ui->userCleanCB->setCurrentIndex(index);
@@ -192,8 +189,6 @@ void MainWindow::saveSchedule(QString cmd_str, QString period)
 
 void MainWindow::saveSettings()
 {
-    QSettings settings(qApp->organizationName(), qApp->applicationName());
-
     settings.setValue("User", ui->userCleanCB->currentText());
 
     settings.beginGroup("Folders");

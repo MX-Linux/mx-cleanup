@@ -25,8 +25,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMessageBox>
 #include <QButtonGroup>
+#include <QMessageBox>
+#include <QSettings>
 
 namespace Ui {
 class MainWindow;
@@ -59,6 +60,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QSettings settings;
     QString user;
     QString getCmdOut(const QString &cmd);
 
