@@ -386,8 +386,8 @@ QString MainWindow::getCmdOut(const QString &cmd)
     qDebug().noquote() << cmd;
     QProcess *proc = new QProcess(this);
     QEventLoop loop;
-    connect(proc, QOverload<int>::of(&QProcess::finished), &loop, &QEventLoop::quit);
-    proc->setReadChannelMode(QProcess::MergedChannels);
+    connect(proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), &loop, &QEventLoop::quit);
+    proc->setProcessChannelMode(QProcess::MergedChannels);
     proc->start("/bin/bash", QStringList() << "-c" << cmd);
     loop.exec();
     QString out = proc->readAll().trimmed();
