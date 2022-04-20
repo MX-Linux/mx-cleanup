@@ -147,7 +147,7 @@ void MainWindow::removePackages(QStringList list)
     setCursor(QCursor(Qt::BusyCursor));
     QStringList headers;
     for (const auto &item : list)
-        headers << "linux-headers-" + item.section(QRegularExpression("linux-image-"), 1);
+        headers << "linux-headers-" + item.section(QRegularExpression("linux-image-"), 1).remove(QRegularExpression("-unsigned$"));
     for (const auto &item : headers) {
         if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0)
             list << item;
