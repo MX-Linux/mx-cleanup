@@ -15,11 +15,11 @@ Changes:
  .
    * Add kernel cleanup function
 Checksums-Sha1:
- 4842427595f1d178a785f20c1f0ad58921103eec 9963 mx-cleanup_22.4_i386.buildinfo
- d486073824565b6fd8e9abfacf0291542d8b35fc 122336 mx-cleanup_22.4_i386.deb
+ 8def2d6093411427bedf88458c2d0e9cb138658a 9963 mx-cleanup_22.4_i386.buildinfo
+ 8eded953f456fba5d888ceff30bc3ce97ebdbc10 122344 mx-cleanup_22.4_i386.deb
 Checksums-Sha256:
- 7c49c8da9f707861aabbf35a5637784294f8497af671206ec04b521c4789f693 9963 mx-cleanup_22.4_i386.buildinfo
- 58916f795dc3db897331e4c1e88456d2b01ff53593b5c3393158506195783e1c 122336 mx-cleanup_22.4_i386.deb
+ 69513f1e27c05be668f0bc8fb45bc7609710d128fc3ee1505c7a942ace1d4087 9963 mx-cleanup_22.4_i386.buildinfo
+ 5731bb4853762ab5af2930089e72666977c1efdc3f58458c1d31559367c633c1 122344 mx-cleanup_22.4_i386.deb
 Files:
- 297f650c44fff77491295509d08787d2 9963 admin optional mx-cleanup_22.4_i386.buildinfo
- 60299914a07a951cee56f83333f2fee6 122336 admin optional mx-cleanup_22.4_i386.deb
+ 0ae34abb6436918b1a35c804c5b5fdf9 9963 admin optional mx-cleanup_22.4_i386.buildinfo
+ 3666dcdf0226e85cf799cf79d13d7808 122344 admin optional mx-cleanup_22.4_i386.deb
