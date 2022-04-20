@@ -18,29 +18,29 @@ Changes:
  .
    * Add kernel cleanup function
 Checksums-Sha1:
- 9c0b66f5346fbe7b7bf7addc5fdb1f5239caa0ab 1111 mx-cleanup_22.4.dsc
- b7628ee110e1beb90475456b5686821f49cafd69 105360 mx-cleanup_22.4.tar.xz
- c30c13d722fa938ab8fbea5aa047e62f5c16c09b 10802 mx-cleanup_22.4_amd64.buildinfo
- cb8867ef7444a3761cee387773b8070540c8e6b0 120808 mx-cleanup_22.4_amd64.deb
+ 4c1406fc92a9092d13c4bbb6c628928c609d63c1 1111 mx-cleanup_22.4.dsc
+ 011fef2dc5016423d7cb446ed6f2ee293a9ef51d 105376 mx-cleanup_22.4.tar.xz
+ 6b784e5315c484c7a3c03bb6ee2555fe7718dfb2 10802 mx-cleanup_22.4_amd64.buildinfo
+ 594bcc9b25843a5d069e1fdf2fb440669cadfb18 120824 mx-cleanup_22.4_amd64.deb
 Checksums-Sha256:
- ce4980b8d956d382ebd531bcb972b39f6927c48fc4e40a1c286d583817d5d1f3 1111 mx-cleanup_22.4.dsc
- 453b04ad2bfbff084613fab68b7d78af3f5fe4bea38d9e4558befe7333146ea8 105360 mx-cleanup_22.4.tar.xz
- 405f8de2beb2f25ca806d155b2c96c8565865a0a66f4bc0f46fe20deed5975f8 10802 mx-cleanup_22.4_amd64.buildinfo
- 9da88ea0bf18fa5ef41e9150d45df302987980e772d523739cbfc6666b70efa5 120808 mx-cleanup_22.4_amd64.deb
+ abd3cabb57a01c014cb3cd0e05ffb1b8f3151c2cf04021e8e67939654f5cbb0c 1111 mx-cleanup_22.4.dsc
+ 68501dc734da8f624e12d7839ed7f6d9e07f3848c11903f577bef5c09da825a5 105376 mx-cleanup_22.4.tar.xz
+ 9a7fa9e50b630dcb1889a0bd514dd452d0bb2f48712eea655c4ed1858583065d 10802 mx-cleanup_22.4_amd64.buildinfo
+ 307bb20c1c6d369cfe170e22a56d6fd8b979daad838115d6886a965cffe6e511 120824 mx-cleanup_22.4_amd64.deb
 Files:
- 668d8584d28c4fbc285198325d6c158a 1111 admin optional mx-cleanup_22.4.dsc
- 329648a2f0917ca5e28a19efe36ac6a1 105360 admin optional mx-cleanup_22.4.tar.xz
- 5fcd313ff3e74a740dbf8cd292cd7a19 10802 admin optional mx-cleanup_22.4_amd64.buildinfo
- fef0d6cfd06021c4b07ec19f3e0e9f88 120808 admin optional mx-cleanup_22.4_amd64.deb
+ 3a683cc7ac6788926c6908abb2e0eac3 1111 admin optional mx-cleanup_22.4.dsc
+ 7f9935582379fcfd8fde8dd2e269390f 105376 admin optional mx-cleanup_22.4.tar.xz
+ bccc0ad63deb3ee2068778ccc6ba71d1 10802 admin optional mx-cleanup_22.4_amd64.buildinfo
+ a0cffd75841a9780f2d19bd49e236716 120824 admin optional mx-cleanup_22.4_amd64.deb
 
 -----BEGIN PGP SIGNATURE-----
 
-iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmJgAt8THGFkcmlhbkBt
-eGxpbnV4Lm9yZwAKCRBwk4x4BnnumJkYCACi8WmsV6Cx6Fl5iO/cjVaox71ubSqH
-ZcWxYmd0+FIoUrIv3DKgZpqP4TxaJdP/+/tJQmQVuF8NT6vg0GBWBtb03L5nAAfK
-SdoRN59h1XZrd8JBehE91+zCRym/3LhVQmGGAIKAIUuC6XdwvDLBwKxWK+SiBQw6
-mzYTRHDZ84XdERU1kZHoq14AXW86DLHO1+61+2mAYr4+BHAqQpxK7Sl9pLwZTjdy
-P/tL1APEQan/QwRRcIM0+pj0xMscE/T3APj9bp2PxXfeKrRHa8ABPSehFaDs5Frl
-7SdZ5EOQ5kqvO7BfK+xumN5d9giCu3yLQsZ1RmuLmblEMJ4+X0Q1nt/4
-=LHTR
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmJgCnUTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumLdVCACgq+NkkBc3PXqGDbkL9rmDYTPxjstq
+Lo/1MjJo1Yp27Th2LbAEAvb7lCX1yxzuqvnqqu7ohdAytAYVaoZ1wOgD8wgmwjkH
+rp5wGO3WLu85u8CD7eW7YQfAyrTNrikyTXQ4po4Ufye378FwoeKeMcXQEjT9qzZd
+eH8P7MyTP3BHoeOHrPp8MeO/jBKrYIxvQ9tdu8y9l9+j7VksvvX7JSwYQaplMvBd
+t3hQml5qeg8UOxo4hiCesS85BaIIIWY5ZyYcNrQ65k8WzsSEzvQJqVT9BCttQKLb
+PosAfzQnuRrYPMyHCuwjdT4Z1fFzxWKAKE9W2JJXHmYpi75J1zZxIS5N
+=xYM0
 -----END PGP SIGNATURE-----

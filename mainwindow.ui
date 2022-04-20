@@ -702,7 +702,7 @@
       <item>
        <widget class="QPushButton" name="buttonKernel">
         <property name="text">
-         <string>List and select old kernels to remove</string>
+         <string>List and select kernels to remove</string>
         </property>
         <property name="icon">
          <iconset theme="view-list">
@@ -794,8 +794,8 @@
   </connection>
  </connections>
  <buttongroups>
+  <buttongroup name="buttonGroupLogs"/>
   <buttongroup name="buttonGroupApt"/>
   <buttongroup name="buttonGroupTrash"/>
-  <buttongroup name="buttonGroupLogs"/>
  </buttongroups>
 </ui>
