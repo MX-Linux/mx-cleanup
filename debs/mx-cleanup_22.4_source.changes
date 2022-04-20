@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Tue, 19 Apr 2022 22:16:02 -0400
+Source: mx-cleanup
+Architecture: source
+Version: 22.4
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Changes:
+ mx-cleanup (22.4) mx; urgency=medium
+ .
+   * Add kernel cleanup function
+Checksums-Sha1:
+ 03767bb83ae2d533c59607576004a97f039f4fc2 549 mx-cleanup_22.4.dsc
+ 59ff854c1c29f23cbf00ec18f2619be87effaa04 105332 mx-cleanup_22.4.tar.xz
+ 0e335cc827e842a167c3a0feb57b65d93f3621cf 10027 mx-cleanup_22.4_i386.buildinfo
+Checksums-Sha256:
+ 7f0c084fec3b15ead2e0176abf81ea6c4eb5ff129e4306b625adaa4079448312 549 mx-cleanup_22.4.dsc
+ 8e0e1ebf2be70c854bef49a9f07d7d861167633f2c63351427c757e53fca22f3 105332 mx-cleanup_22.4.tar.xz
+ e7c0619af12c4322f9583fe7fa96297215f17e18d1e0f6f26fb642ddeee846af 10027 mx-cleanup_22.4_i386.buildinfo
+Files:
+ ef72a26b0fa050453f412ac3fb86d549 549 admin optional mx-cleanup_22.4.dsc
+ 24fbbd0e8db48014559577f1fa358edb 105332 admin optional mx-cleanup_22.4.tar.xz
+ 5ebefc1c927747bb0b9db9c8c3adbec9 10027 admin optional mx-cleanup_22.4_i386.buildinfo
