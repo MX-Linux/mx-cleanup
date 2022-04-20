@@ -15,11 +15,11 @@ Changes:
  .
    * Add kernel cleanup function
 Checksums-Sha1:
- 0e335cc827e842a167c3a0feb57b65d93f3621cf 10027 mx-cleanup_22.4_i386.buildinfo
- f04669c8f0cf70da67905e938d32a35d4761fb76 122216 mx-cleanup_22.4_i386.deb
+ 7825eca3bcb5dcc6b06d0d14720dc033ed680ca2 10027 mx-cleanup_22.4_i386.buildinfo
+ c81c2f45075005c4a3dcd415b14a7c90b45027aa 122208 mx-cleanup_22.4_i386.deb
 Checksums-Sha256:
- e7c0619af12c4322f9583fe7fa96297215f17e18d1e0f6f26fb642ddeee846af 10027 mx-cleanup_22.4_i386.buildinfo
- a3567539a35133702eceb5abe7f5b08de296a3d15db5ec92ed32897cbac8163e 122216 mx-cleanup_22.4_i386.deb
+ 8024be7b8a86fbf1a67cd114b5d6840daa4c68e496dfdd4e58667bc97d75dcc3 10027 mx-cleanup_22.4_i386.buildinfo
+ 8f82ad3a13a211aff415f285cc31e85cf2226e555c8c3dd23c9f88a014d38395 122208 mx-cleanup_22.4_i386.deb
 Files:
- 5ebefc1c927747bb0b9db9c8c3adbec9 10027 admin optional mx-cleanup_22.4_i386.buildinfo
- 1b91fc801cef3898ad8f775e8ab35dce 122216 admin optional mx-cleanup_22.4_i386.deb
+ 6c6ad31e530dea3cadde230c06ce9137 10027 admin optional mx-cleanup_22.4_i386.buildinfo
+ 3167e9297015e3ae8a6655f9e3e1cbdc 122208 admin optional mx-cleanup_22.4_i386.deb
