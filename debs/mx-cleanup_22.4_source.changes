@@ -12,14 +12,14 @@ Changes:
  .
    * Add kernel cleanup function
 Checksums-Sha1:
- f09a3d9d7398e3cc92ea4a63275c8598854e572d 549 mx-cleanup_22.4.dsc
- 45f435421b8545496d32027292f2bdf39986fe63 105344 mx-cleanup_22.4.tar.xz
- 7825eca3bcb5dcc6b06d0d14720dc033ed680ca2 10027 mx-cleanup_22.4_i386.buildinfo
+ f6edf6501040451bf0b15efb88b3f31d2033a79b 549 mx-cleanup_22.4.dsc
+ 24882b6409da08d8fbd974d928c826e8ea0ac801 105340 mx-cleanup_22.4.tar.xz
+ 4842427595f1d178a785f20c1f0ad58921103eec 9963 mx-cleanup_22.4_i386.buildinfo
 Checksums-Sha256:
- 95ef2a815a8e1b027fd07e4982a61d369ad6c047408cc85650fb47ddbcf6568b 549 mx-cleanup_22.4.dsc
- d219390d6021ce4a3a9833494df7b8b1a218829191812cb3f2dbe4c4092ccbca 105344 mx-cleanup_22.4.tar.xz
- 8024be7b8a86fbf1a67cd114b5d6840daa4c68e496dfdd4e58667bc97d75dcc3 10027 mx-cleanup_22.4_i386.buildinfo
+ 04682605470a82797fa1e4bd1b2ff3fe86935c99b92833c53f346788f827b2bc 549 mx-cleanup_22.4.dsc
+ f58f79a19e5873eb5e1fb2ce22a428e4cee86a657a7cf85f5f85360b1f71a1fc 105340 mx-cleanup_22.4.tar.xz
+ 7c49c8da9f707861aabbf35a5637784294f8497af671206ec04b521c4789f693 9963 mx-cleanup_22.4_i386.buildinfo
 Files:
- 2cbe34dd5c3f7b1752cbecd5db466a2e 549 admin optional mx-cleanup_22.4.dsc
- 7539aec0878e74c91c3f9758b36a1546 105344 admin optional mx-cleanup_22.4.tar.xz
- 6c6ad31e530dea3cadde230c06ce9137 10027 admin optional mx-cleanup_22.4_i386.buildinfo
+ fc9da88c10f7db6f86024ee9bf3a192b 549 admin optional mx-cleanup_22.4.dsc
+ 797ddf46d79e525f03a2795f99aaba65 105340 admin optional mx-cleanup_22.4.tar.xz
+ 297f650c44fff77491295509d08787d2 9963 admin optional mx-cleanup_22.4_i386.buildinfo
