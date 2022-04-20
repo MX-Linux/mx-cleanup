@@ -440,6 +440,7 @@ void MainWindow::on_buttonKernel_clicked()
     auto similar_kernels = getCmdOut("dpkg -l linux-image\\* | grep ^ii | grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' | grep -v $(uname -r)");
     auto other_kernels = getCmdOut("dpkg -l linux-image\\* | grep ^ii | grep -v $(uname -r | cut -f1 -d'-') | grep -v meta-package | cut -f3 -d' '");
     auto dialog = new QDialog(this);
+    dialog->setWindowTitle(this->windowTitle());
     auto layout = new QVBoxLayout;
     dialog->setLayout(layout);
     layout->addWidget(new QLabel(tr("Kernel currently in use: <b>%1</b>").arg(current_kernel)));
