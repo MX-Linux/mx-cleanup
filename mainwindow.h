@@ -41,21 +41,22 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void addGroupCheckbox(QLayout *layout, const QString &package, const QString &name, QStringList &list);
     void loadOptions();
     void loadSchedule();
     void loadSettings();
-    void saveSchedule(QString cmd_str, QString period);
+    void removePackages(QStringList list);
+    void saveSchedule(const QString &cmd_str, const QString &period);
     void saveSettings();
     void selectRadioButton(const QButtonGroup *group, int id);
     void setup();
-
-public slots:
 
 private slots:
     void cleanup();
     void on_buttonAbout_clicked();
     void on_buttonApply_clicked();
     void on_buttonHelp_clicked();
+    void on_buttonKernel_clicked();
     void on_buttonUsageAnalyzer_clicked();
 
 private:

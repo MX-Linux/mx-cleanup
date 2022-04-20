@@ -21,6 +21,7 @@
  **********************************************************************/
 
 #include <QDebug>
+#include <QDialogButtonBox>
 #include <QFileInfo>
 #include <QProcess>
 #include <QTextEdit>
@@ -41,6 +42,28 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::addGroupCheckbox(QLayout *layout, const QString &package, const QString &name, QStringList &list)
+{
+    if (package.isEmpty())
+        return;
+    auto grpBox = new QGroupBox(name);
+    grpBox->setFlat(true);
+    auto vBox = new QVBoxLayout;
+    grpBox->setLayout(vBox);
+    layout->addWidget(grpBox);
+    for (const auto &item : package.split("\n")) {
+        auto btn = new QCheckBox(item);
+        vBox->addWidget(btn);
+        connect(btn, &QCheckBox::toggled, [btn, &list]() {
+            if (btn->isChecked())
+                list << btn->text();
+            else
+                list.removeAll(btn->text());
+        });
+    }
+    vBox->addStretch(1);
 }
 
 // Setup versious items first time program runs
@@ -117,6 +140,22 @@ void MainWindow::loadSettings()
     settings.endGroup();
 }
 
+void MainWindow::removePackages(QStringList list)
+{
+    if (list.isEmpty())
+        return;
+    setCursor(QCursor(Qt::BusyCursor));
+    QStringList headers;
+    for (const auto &item : list)
+        headers << "linux-headers-" + item.section(QRegularExpression("linux-image-"), 1);
+    for (const auto &item : headers) {
+        if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0)
+            list << item;
+    }
+    system("x-terminal-emulator -e 'apt autopurge " + list.join(" ").toUtf8() + "'");
+    setCursor(QCursor(Qt::ArrowCursor));
+}
+
 // Load saved options to GUI
 void MainWindow::loadOptions()
 {
@@ -172,7 +211,7 @@ void MainWindow::loadOptions()
 
 
 // Save cleanup commands to a /etc/cron.daily|weekly|monthly/mx-cleanup script
-void MainWindow::saveSchedule(QString cmd_str, QString period)
+void MainWindow::saveSchedule(const QString &cmd_str, const QString &period)
 {
     QFile file("/etc/cron." + period + "/mx-cleanup");
     if (!file.open(QFile::WriteOnly))
@@ -393,4 +432,35 @@ QString MainWindow::getCmdOut(const QString &cmd)
     QString out = proc->readAll().trimmed();
     delete proc;
     return out;
+}
+
+void MainWindow::on_buttonKernel_clicked()
+{
+    auto current_kernel = getCmdOut("uname -r");
+    auto similar_kernels = getCmdOut("dpkg -l linux-image\\* | grep ^ii | grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' | grep -v $(uname -r)");
+    auto other_kernels = getCmdOut("dpkg -l linux-image\\* | grep ^ii | grep -v $(uname -r | cut -f1 -d'-') | grep -v meta-package | cut -f3 -d' '");
+    auto dialog = new QDialog(this);
+    auto layout = new QVBoxLayout;
+    dialog->setLayout(layout);
+    layout->addWidget(new QLabel(tr("Kernel currently in use: <b>%1</b>").arg(current_kernel)));
+
+    auto btnBox = new QDialogButtonBox(dialog);
+    auto pushRemove = new QPushButton(tr("Remove selected"));
+    btnBox->addButton(pushRemove, QDialogButtonBox::AcceptRole);
+    btnBox->addButton(tr("Close"), QDialogButtonBox::RejectRole);
+
+    QStringList removal_list;
+    addGroupCheckbox(layout, similar_kernels, tr("Similar kernels that can be removed:"), removal_list);
+    addGroupCheckbox(layout, other_kernels, tr("Other kernels that can be removed:"), removal_list);
+    if (layout->count() == 1)
+        layout->addWidget(new QLabel(tr("<b>Nothing to remove.</b> Cannot remove kernel in use.").arg(current_kernel)));
+
+    layout->addStretch(1);
+    layout->addWidget(btnBox);
+
+    connect(btnBox, &QDialogButtonBox::rejected, dialog, &QDialog::close);
+    connect(btnBox, &QDialogButtonBox::accepted, [this, &removal_list] {removePackages(removal_list);});
+    connect(btnBox, &QDialogButtonBox::accepted, dialog, &QDialog::close);
+
+    dialog->exec();
 }
