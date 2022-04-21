@@ -1,0 +1,46 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Thu, 21 Apr 2022 08:34:16 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 22.4.01
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (22.4.01) mx; urgency=medium
+ .
+   * Hide remove selected button if nothing to select
+Checksums-Sha1:
+ f92070b8acff1540b726018809d54131f4c152fb 1123 mx-cleanup_22.4.01.dsc
+ 0c1c1e51bcba219cbe63f13fce9ff3a69dbd9dad 105400 mx-cleanup_22.4.01.tar.xz
+ 1b17a4720e729cc8cec07b313c61cbc6bd2fc78a 10746 mx-cleanup_22.4.01_amd64.buildinfo
+ 556596477d6af59fd5a3f8486dd04c8877309a7c 121000 mx-cleanup_22.4.01_amd64.deb
+Checksums-Sha256:
+ 72e19ac8c72d0bd422b13801daf65f65761c85abed7fd0d72153e7e6d8bd16fd 1123 mx-cleanup_22.4.01.dsc
+ 89b65333c6a26e467224e02c5946413d762565a93594a2534f2a483321127ed6 105400 mx-cleanup_22.4.01.tar.xz
+ 2c73c6b16152274b51ec34b828c75910dcef711709fab5edc2106e1577ca92bb 10746 mx-cleanup_22.4.01_amd64.buildinfo
+ 5c957b571c76cbcaf5694d0c4a21f6d2a4ab4dbe6bdb2b45b0adc3b66b4365be 121000 mx-cleanup_22.4.01_amd64.deb
+Files:
+ e249a0a459e0191609c7c0c8c8f34996 1123 admin optional mx-cleanup_22.4.01.dsc
+ 8898b785887c41f7ba10f6eb129f8cfa 105400 admin optional mx-cleanup_22.4.01.tar.xz
+ 784a76b19422c76f9e7d04d8534bf982 10746 admin optional mx-cleanup_22.4.01_amd64.buildinfo
+ d75d186cb3f4e17715aebdac40277e9d 121000 admin optional mx-cleanup_22.4.01_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmJhT5UTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumAmvB/wLSNiHyGdcn83ymMP/LDJsOzTCE2p0
+Wpu/9dN9P9/TG0jT4BfgYnvvpVu3nswvFftXax4XnfQ9CZ4TfsEw0L4HV5C46R8D
+OrFJDqprR3GhlnNQf4kFDJhTtOriFrhuhC3PZC1y3zcgwAuc4b+36AXMz9PfVNL2
+k+vxuxdK2IkOvGHWO8aeZQFHcS4DqsPXhl8H/1DOt67EXubArZ6csUeaTuTsjIiQ
+hVggDF1P9XVOCXT6BFlzGO4DkaeshKu+moF7Pb7XcjJQ2+0wHC3hTrFxQJuony/B
+804S3D33G3HDsR3QDcM6e+VhiLVLY16VxsovjvLrIkiIVkjUceyqNo44
+=ZEBN
+-----END PGP SIGNATURE-----
