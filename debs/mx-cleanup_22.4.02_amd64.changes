@@ -1,0 +1,46 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Thu, 21 Apr 2022 13:18:38 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 22.4.02
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (22.4.02) mx; urgency=medium
+ .
+   * Improve listing of packages to remove (avoid using autoremove)
+Checksums-Sha1:
+ 2e17f9081b6afb60e5e3551758529205dd2502cd 1123 mx-cleanup_22.4.02.dsc
+ f45e015887baf6fb2f18682cf60ffc6f16a5807c 105496 mx-cleanup_22.4.02.tar.xz
+ 765fef7e959c18049d23bf1fcbbebfd612ab6732 10826 mx-cleanup_22.4.02_amd64.buildinfo
+ 3aa7759fdc705c5a24e53067983a51df49d742a9 121188 mx-cleanup_22.4.02_amd64.deb
+Checksums-Sha256:
+ ac5eaaa4a12e2659a8e0a2f015532a66f4982b2942ff0088899ac9f27894105b 1123 mx-cleanup_22.4.02.dsc
+ bbf3ca7e067cd05105f96db301897c758531bee2b60a9f8037b85b1e753ce7c3 105496 mx-cleanup_22.4.02.tar.xz
+ 783bd5c775efaf4fedba2b6d48746e14b92c3dda9be953c77c7c9529a15887ad 10826 mx-cleanup_22.4.02_amd64.buildinfo
+ 7e021d80f91d0e5d9458d897c2b077ab4dc76038248377b88ccc6ab6a95edf7f 121188 mx-cleanup_22.4.02_amd64.deb
+Files:
+ 69dc116de2e447722e244ab96bb5717f 1123 admin optional mx-cleanup_22.4.02.dsc
+ 78c12f54f00d8279a9abfaf48881ae8a 105496 admin optional mx-cleanup_22.4.02.tar.xz
+ bbf9d13cfff7201d484d80a1f15af975 10826 admin optional mx-cleanup_22.4.02_amd64.buildinfo
+ 948e9cb7017fcc0f92e9af3e4790dd11 121188 admin optional mx-cleanup_22.4.02_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmJhko8THGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumKCGB/44bUQH2MIhFL/dvXREtipUoYef8u4b
+YhXX7TQrLmmNJjBKtWlQIyH/smhfLwqtSzGvD9PRsACO46VZzj96kqGJUoFGRbPU
+HNknmeZmQn36OefWmpLRinf9WKRKuqzOp4+4gwq7EXzYIfPt9PL3UMtCzim18S+u
+A0DGpXOfbALFYLCiaCmE9a1DnIZwbUADDBwy5R0tBk4zMYfal0TPd6ZbuwkUjOVD
+wuu0QiPNjYUs5LuFv0e/0J9hE2Gk62kMBlgy/RdCgpDkaIizM0ZZecOH1MorNXRH
+tFD+cx+tMLOg7F7D5aJ5Nvw97aM3YboX0u4do9BJ2C9SE2zGyl8dKUg3
+=8oRI
+-----END PGP SIGNATURE-----
