@@ -456,8 +456,12 @@ void MainWindow::on_buttonKernel_clicked()
     QStringList removal_list;
     addGroupCheckbox(layout, similar_kernels, tr("Similar kernels that can be removed:"), removal_list);
     addGroupCheckbox(layout, other_kernels, tr("Other kernels that can be removed:"), removal_list);
-    if (layout->count() == 1)
-        layout->addWidget(new QLabel(tr("<b>Nothing to remove.</b> Cannot remove kernel in use.").arg(current_kernel)));
+    if (layout->count() == 1) {
+        layout->addWidget(new QLabel(tr("<b>Nothing to remove.</b> Cannot remove kernel in use.")));
+        pushRemove->setHidden(true);
+    } else {
+        pushRemove->setHidden(false);
+    }
 
     layout->addStretch(1);
     layout->addWidget(btnBox);
