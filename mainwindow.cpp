@@ -152,7 +152,8 @@ void MainWindow::removePackages(QStringList list)
         if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0)
             list << item;
     }
-    system("x-terminal-emulator -e 'apt autopurge " + list.join(" ").toUtf8() + "'");
+    auto to_remove = getCmdOut("apt-get purge -s " + list.join(" ") + " | grep '^  \'| tr -d '*' | tr '\\n\' ' '");
+    system("x-terminal-emulator -e 'apt autopurge " + to_remove.toUtf8() + "'");
     setCursor(QCursor(Qt::ArrowCursor));
 }
 
