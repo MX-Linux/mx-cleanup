@@ -437,8 +437,11 @@ QString MainWindow::getCmdOut(const QString &cmd)
 void MainWindow::on_buttonKernel_clicked()
 {
     auto current_kernel = getCmdOut("uname -r");
-    auto similar_kernels = getCmdOut("dpkg -l linux-image\\* | grep ^ii | grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' | grep -v $(uname -r)");
-    auto other_kernels = getCmdOut("dpkg -l linux-image\\* | grep ^ii | grep -v $(uname -r | cut -f1 -d'-') | grep -v meta-package | cut -f3 -d' '");
+    QString similar_kernels, other_kernels;
+    if (system("dpkg -l linux-image\\* | grep ^ii") == 0) {
+        similar_kernels = getCmdOut("dpkg -l linux-image\\* | grep ^ii | grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' | grep -v $(uname -r)");
+        other_kernels = getCmdOut("dpkg -l linux-image\\* | grep ^ii | grep -v $(uname -r | cut -f1 -d'-') | grep -v meta-package | cut -f3 -d' '");
+    }
     auto dialog = new QDialog(this);
     dialog->setWindowTitle(this->windowTitle());
     auto layout = new QVBoxLayout;
