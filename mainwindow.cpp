@@ -152,8 +152,8 @@ void MainWindow::removePackages(QStringList list)
         if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0)
             list << item;
     }
-    auto to_remove = getCmdOut("apt-get remove -s " + list.join(" ") + " | grep '^  ' | grep -oE 'linux-(image|headers)-[1-9][^[:space:]]+' | tr '\\n' ' '");
-    system("x-terminal-emulator -e 'apt purge " + to_remove.toUtf8() + "'");
+    auto common = getCmdOut("apt-get remove -s " + list.join(" ") + " | grep '^  ' | grep -oE 'linux-headers-[1-9].+-common' | tr '\\n' ' '");
+    system("x-terminal-emulator -e 'apt purge " + list.join(" ").toUtf8() +  " " + common.toUtf8() + "'");
     setCursor(QCursor(Qt::ArrowCursor));
 }
 
