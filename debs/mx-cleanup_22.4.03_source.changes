@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Sat, 23 Apr 2022 14:56:43 -0400
+Source: mx-cleanup
+Architecture: source
+Version: 22.4.03
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Changes:
+ mx-cleanup (22.4.03) mx; urgency=medium
+ .
+   * Tighten list of package to remove; remove only linux-image/headers
+Checksums-Sha1:
+ 01fe93317e40180059e213b20075c8f4a1e32af3 561 mx-cleanup_22.4.03.dsc
+ 28bcd4679940bebbad95a048af2a6f8b411b1d4d 105560 mx-cleanup_22.4.03.tar.xz
+ fdb41815396d1ede2510b458aacd5bd1794a333e 10042 mx-cleanup_22.4.03_i386.buildinfo
+Checksums-Sha256:
+ dc0df551c2605ba13de65c0002dd96dd73bf7c5930055e5d9b6f955ef5952acd 561 mx-cleanup_22.4.03.dsc
+ 1757e8a4ab109808ca82ebb34bd52db745dd0b7133e345599120f5905e84bfd8 105560 mx-cleanup_22.4.03.tar.xz
+ 1508ea09225e71798bdbc34091a0e820297c51ccde7668fe817aff74e2fec57c 10042 mx-cleanup_22.4.03_i386.buildinfo
+Files:
+ 93a2e503386b33c3fb3e99318968b94c 561 admin optional mx-cleanup_22.4.03.dsc
+ 557b06120f5e9f2d8b2f41d24130163b 105560 admin optional mx-cleanup_22.4.03.tar.xz
+ da88736a0c8d7de8b019a6bf2fdc4c2b 10042 admin optional mx-cleanup_22.4.03_i386.buildinfo
