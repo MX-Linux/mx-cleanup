@@ -152,8 +152,8 @@ void MainWindow::removePackages(QStringList list)
         if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0)
             list << item;
     }
-    auto to_remove = getCmdOut("apt-get purge -s " + list.join(" ") + " | grep '^  \'| tr -d '*' | tr '\\n\' ' '");
-    system("x-terminal-emulator -e 'apt autopurge " + to_remove.toUtf8() + "'");
+    auto to_remove = getCmdOut("apt-get remove -s " + list.join(" ") + " | grep '^  ' | grep -oE 'linux-(image|headers)-[1-9][^[:space:]]+' | tr '\\n' ' '");
+    system("x-terminal-emulator -e 'apt purge " + to_remove.toUtf8() + "'");
     setCursor(QCursor(Qt::ArrowCursor));
 }
 
@@ -440,8 +440,8 @@ void MainWindow::on_buttonKernel_clicked()
     auto current_kernel = getCmdOut("uname -r");
     QString similar_kernels, other_kernels;
     if (system("dpkg -l linux-image\\* | grep ^ii") == 0) {
-        similar_kernels = getCmdOut("dpkg -l linux-image\\* | grep ^ii | grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' | grep -v $(uname -r)");
-        other_kernels = getCmdOut("dpkg -l linux-image\\* | grep ^ii | grep -v $(uname -r | cut -f1 -d'-') | grep -v meta-package | cut -f3 -d' '");
+        similar_kernels = getCmdOut("dpkg -l linux-image-[0-9]\\* | grep ^ii | grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' | grep -v $(uname -r)");
+        other_kernels = getCmdOut("dpkg -l linux-image-[0-9]\\* | grep ^ii | grep -v $(uname -r | cut -f1 -d'-') | cut -f3 -d' '");
     }
     auto dialog = new QDialog(this);
     dialog->setWindowTitle(this->windowTitle());
