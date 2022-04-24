@@ -146,13 +146,33 @@ void MainWindow::removePackages(QStringList list)
         return;
     setCursor(QCursor(Qt::BusyCursor));
     QStringList headers;
+    QStringList headers_installed;
     for (const auto &item : list)
         headers << "linux-headers-" + item.section(QRegularExpression("linux-image-"), 1).remove(QRegularExpression("-unsigned$"));
     for (const auto &item : headers) {
-        if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0)
+        if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0) {
             list << item;
+            headers_installed << item;
+        }
     }
-    auto common = getCmdOut("apt-get remove -s " + list.join(" ") + " | grep '^  ' | grep -oE 'linux-headers-[1-9].+-common' | tr '\\n' ' '");
+    QStringList headers_depends;
+    QString headers_common;
+
+    for (const auto &item : headers_installed) {
+        headers_common = getCmdOut("env LC_ALL=C.UTF-8 apt-cache depends " + item.toUtf8() + "| grep 'Depends:' | grep -oE 'linux-headers-[0-9][^[:space:]]+' | sort -u");
+        if (! headers_common.toUtf8().trimmed().isEmpty()) {
+            headers_depends << headers_common;
+        }
+    }
+    QString filter;
+    QString common;
+    if (!headers_depends.isEmpty()) {
+        filter = "| grep -oE '" + headers_depends.join("|") + "'";
+        common = getCmdOut("apt-get remove -s " + headers_installed.join(" ") + " | grep '^  ' " + filter + " | tr '\\n' ' '");
+    } else {
+        filter = "";
+        common = "";
+    }
     system("x-terminal-emulator -e 'apt purge " + list.join(" ").toUtf8() +  " " + common.toUtf8() + "'");
     setCursor(QCursor(Qt::ArrowCursor));
 }
