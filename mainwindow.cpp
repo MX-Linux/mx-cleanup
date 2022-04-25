@@ -150,22 +150,20 @@ void MainWindow::removePackages(QStringList list)
     for (const auto &item : list)
         headers << "linux-headers-" + item.section(QRegularExpression("linux-image-"), 1).remove(QRegularExpression("-unsigned$"));
     for (const auto &item : headers) {
-        if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0) {
+        if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0)
             headers_installed << item;
-        }
     }
     QStringList headers_depends;
     QString headers_common;
     QString image_pattern;
     for (const auto &item : headers_installed) {
         headers_common = getCmdOut("env LC_ALL=C.UTF-8 apt-cache depends " + item.toUtf8() + "| grep 'Depends:' | grep -oE 'linux-headers-[0-9][^[:space:]]+' | sort -u");
-        if (! headers_common.toUtf8().trimmed().isEmpty()) {
-			image_pattern = headers_common;
-			image_pattern.replace("-common", "");
-			image_pattern.replace("headers", "image");
- 			if ( ! system("dpkg -l 'linux-image-[0-9]*'  | grep ^ii | cut -d ' ' -f3  | grep -v -E '" + list.join("|").toUtf8() + "' | grep -q " +  image_pattern.toUtf8()) == 0) {
-			        headers_depends << headers_common;
-			}
+        if (!headers_common.toUtf8().trimmed().isEmpty()) {
+            image_pattern = headers_common;
+            image_pattern.replace("-common", "");
+            image_pattern.replace("headers", "image");
+            if (system("dpkg -l 'linux-image-[0-9]*'  | grep ^ii | cut -d ' ' -f3  | grep -v -E '" + list.join("|").toUtf8() + "' | grep -q " +  image_pattern.toUtf8()) != 0)
+                    headers_depends << headers_common;
         }
     }
     QString filter;
@@ -173,10 +171,6 @@ void MainWindow::removePackages(QStringList list)
     if (!headers_depends.isEmpty()) {
         filter = "| grep -oE '" + headers_depends.join("|") + "'";
         common = getCmdOut("apt-get remove -s " + headers_installed.join(" ") + " | grep '^  ' " + filter + " | tr '\\n' ' '");
-    } else {
-        filter = "";
-        common = "";
-        
     }
     system("x-terminal-emulator -e 'apt purge " + headers_installed.join(" ").toUtf8() +  " " + list.join(" ").toUtf8() +  " " + common.toUtf8() + "'");
     setCursor(QCursor(Qt::ArrowCursor));

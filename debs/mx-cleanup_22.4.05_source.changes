@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Sun, 24 Apr 2022 22:17:14 -0400
+Source: mx-cleanup
+Architecture: source
+Version: 22.4.05
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Changes:
+ mx-cleanup (22.4.05) mx; urgency=medium
+ .
+   * Adjust common kernel headers removal
+Checksums-Sha1:
+ ca64919b300f988e04ca856a654fb3ec37706bad 561 mx-cleanup_22.4.05.dsc
+ f7ae795ace32a0cf2b018e65a228be5704bad5d5 105832 mx-cleanup_22.4.05.tar.xz
+ 45f0fecb38b5ba74608884e0726ee8658a495a74 10042 mx-cleanup_22.4.05_i386.buildinfo
+Checksums-Sha256:
+ 9ffa4de920541b84544d5fbd01008bb4fa28a3fc365c2f79cebf33717da83048 561 mx-cleanup_22.4.05.dsc
+ c49e6b8129466118ea9b26132c5697be9c86e391ac624aca38a44782c4b2b18e 105832 mx-cleanup_22.4.05.tar.xz
+ bef661b803b562c64d27ed7d1e724d0f28353856ccdd56da90a761f8e449701d 10042 mx-cleanup_22.4.05_i386.buildinfo
+Files:
+ 8caacff19dc183bbe09bd9e0ee43bd6f 561 admin optional mx-cleanup_22.4.05.dsc
+ 978c59361ca6b0443d029f25f1c0a7a3 105832 admin optional mx-cleanup_22.4.05.tar.xz
+ 59ed77b35beabb1419efeb1c93fe0123 10042 admin optional mx-cleanup_22.4.05_i386.buildinfo
