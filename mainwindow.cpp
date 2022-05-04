@@ -140,15 +140,22 @@ void MainWindow::loadSettings()
     settings.endGroup();
 }
 
-void MainWindow::removePackages(QStringList list)
+void MainWindow::removeKernelPackages(QStringList list)
 {
     if (list.isEmpty())
         return;
     setCursor(QCursor(Qt::BusyCursor));
     QStringList headers;
     QStringList headers_installed;
-    for (const auto &item : list)
-        headers << "linux-headers-" + item.section(QRegularExpression("linux-image-"), 1).remove(QRegularExpression("-unsigned$"));
+    for (const auto &item : list) {
+        const QString version = item.section(QRegularExpression("linux-image-"), 1).remove(QRegularExpression("-unsigned$"));
+        headers << "linux-headers-" + version;
+        QFile::remove("/boot/vmlinuz-" + version);
+        QFile::remove("/boot/initrd.img-" + version);
+        QFile::remove("/boot/initrd.img-" + version + ".old-dkms");
+    }
+    if (system("apt-get install -s") != 0)
+        system("x-terminal-emulator -e 'apt-get install -f'");
     for (const auto &item : headers) {
         if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0)
             headers_installed << item;
@@ -487,7 +494,7 @@ void MainWindow::on_buttonKernel_clicked()
     layout->addWidget(btnBox);
 
     connect(btnBox, &QDialogButtonBox::rejected, dialog, &QDialog::close);
-    connect(btnBox, &QDialogButtonBox::accepted, [this, &removal_list] {removePackages(removal_list);});
+    connect(btnBox, &QDialogButtonBox::accepted, [this, &removal_list] {removeKernelPackages(removal_list);});
     connect(btnBox, &QDialogButtonBox::accepted, dialog, &QDialog::close);
 
     dialog->exec();
