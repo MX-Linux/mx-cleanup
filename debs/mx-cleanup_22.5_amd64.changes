@@ -1,0 +1,46 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Wed, 04 May 2022 15:55:59 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 22.5
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (22.5) mx; urgency=medium
+ .
+   * Remove kernel even if APT is borked because of lack of space on /boot
+Checksums-Sha1:
+ 9c219d04e06ceb95ef08cfe216b2ff94a43936f3 1111 mx-cleanup_22.5.dsc
+ e8ed774d13ff8e6c490281f85c29e7d98363d5c9 105972 mx-cleanup_22.5.tar.xz
+ 521a491be4434ce618d029b46f923cbcd49687bc 10802 mx-cleanup_22.5_amd64.buildinfo
+ ad394903201de0ce3e1e42e3db75a731f6a53604 122508 mx-cleanup_22.5_amd64.deb
+Checksums-Sha256:
+ fc29b25a13664b497f76a8e514f3eeed3b19812ea3ab814b2bb62f9332e76001 1111 mx-cleanup_22.5.dsc
+ c9aae9b31527cc654521bdd2bc5ca0c0ee9de40e5127a23d1506b13756cf5298 105972 mx-cleanup_22.5.tar.xz
+ 158a664427fe8c544a8fb04e1ccd1c94303887bbae709029d41f82897a264a9b 10802 mx-cleanup_22.5_amd64.buildinfo
+ 461c4d5fd6250efba86aea9e984d5d772ebe8130a91bb485353a3594e9e4011a 122508 mx-cleanup_22.5_amd64.deb
+Files:
+ 69f8a8ca38a8198f4cba34789542601a 1111 admin optional mx-cleanup_22.5.dsc
+ 7e0b8348e637c5d24d28b67873ae0e02 105972 admin optional mx-cleanup_22.5.tar.xz
+ e1df54e0a9a1f1097f15b9f35015f4de 10802 admin optional mx-cleanup_22.5_amd64.buildinfo
+ d0cb283decd1bc513835b15c5f22d246 122508 admin optional mx-cleanup_22.5_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmJy2qYTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumFdbCADI2Q9CHlC3Rn99p9REiifDqtbV98g2
+TDFm2k0SKdZ8slaw+QmpOQHmQ0cZhX4f8XUt6vUc9UbHQIpKmzMIhEq1WABVr4GG
+RkWMgFqNmjgeZE1DlE/Vl8Zu/ll2PqxYG7GZChv3M6wKfAv0yvz+53q/uk+d3yBM
+0TugVLDGAcjsHNd+xfJr2HbOcTAZOJW4Z91YLm5WYnwJUcazZ/7AeTBGHT9/TCCw
+WXeq2uBQ1CvkGDHlPPZhWNhkqNAbOXNI8najwnlTxQo78nqODdOoVVfCckXeZ0Oe
+O4x/NPQeEGv/o1+mQrlGilrJ0oFm7d3UjrZisEeyOBa488PWScm1GAZu
+=ljsH
+-----END PGP SIGNATURE-----
