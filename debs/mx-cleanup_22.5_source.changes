@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Wed, 04 May 2022 15:55:59 -0400
+Source: mx-cleanup
+Architecture: source
+Version: 22.5
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Changes:
+ mx-cleanup (22.5) mx; urgency=medium
+ .
+   * Remove kernel even if APT is borked because of lack of space on /boot
+Checksums-Sha1:
+ a5c5291a425e8bd2f4e5647fbcde04d4a660c7ae 549 mx-cleanup_22.5.dsc
+ 2cd1fb003e91b6420a0432eea44dd8dfd909e84b 106000 mx-cleanup_22.5.tar.xz
+ 5418ef29a97920d1dd81a1a4525ad8907a4b910f 9963 mx-cleanup_22.5_i386.buildinfo
+Checksums-Sha256:
+ d36624de994985f7aeb5a1296aae17022c49c38e1d036e5680845627f2406515 549 mx-cleanup_22.5.dsc
+ bc0e94809441333e7bfb9dad012558dbdbd883c15f2d050be3b6fec36c479cb4 106000 mx-cleanup_22.5.tar.xz
+ 6f44554ad87338ef6a4c4f1ac99a4a5e4a5d2d348e03eb8181de13c46e69f84c 9963 mx-cleanup_22.5_i386.buildinfo
+Files:
+ 5fbe280458c858733a3585b9693ec4b4 549 admin optional mx-cleanup_22.5.dsc
+ 3b7a51fafdf812cfdf336299b9aba067 106000 admin optional mx-cleanup_22.5.tar.xz
+ 9b0a2fe2dc16be691f3ae3ce39a71376 9963 admin optional mx-cleanup_22.5_i386.buildinfo
