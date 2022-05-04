@@ -45,7 +45,7 @@ public:
     void loadOptions();
     void loadSchedule();
     void loadSettings();
-    void removePackages(QStringList list);
+    void removeKernelPackages(QStringList list);
     void saveSchedule(const QString &cmd_str, const QString &period);
     void saveSettings();
     void selectRadioButton(const QButtonGroup *group, int id);
