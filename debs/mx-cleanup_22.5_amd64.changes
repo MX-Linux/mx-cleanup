@@ -16,31 +16,31 @@ Description:
 Changes:
  mx-cleanup (22.5) mx; urgency=medium
  .
-   * Remove kernel even if APT is borked because of lack of space on /boot
+   * Run 'apt-get install -f' after removing kernel(s) to fix the installation
 Checksums-Sha1:
- e3a4c4dd6093ff894451aa1d3c6b9f8d0e43addf 1111 mx-cleanup_22.5.dsc
- 2f9c58245093061c3b68cfca4b6d2775eb3a7ddb 105968 mx-cleanup_22.5.tar.xz
- 9fd5081b267384113cf93704eb4e95157f21af2e 10722 mx-cleanup_22.5_amd64.buildinfo
- 31752eb2cf13c2c9ba6a80fb8e4538271e9762b0 122408 mx-cleanup_22.5_amd64.deb
+ 4af1c1a63e34f3316a4b2deb5d4de51ae96461c8 1111 mx-cleanup_22.5.dsc
+ 0c62c3e7f896174d1b78cbb16c8147befbe8f5f1 105968 mx-cleanup_22.5.tar.xz
+ f9f08b092cb3929c26efb30e66cde89a8e81d202 10722 mx-cleanup_22.5_amd64.buildinfo
+ 67381033e891ad9f7aefd25d5d5deb686d066bb3 122432 mx-cleanup_22.5_amd64.deb
 Checksums-Sha256:
- 643bd7027996c3fd714251e1b1a35b05eb2d6e000f4125c0e32affeeb14bc716 1111 mx-cleanup_22.5.dsc
- de8f9a0199b78cd3528e800860f11240f715b1ce614d53f279ac96e8d43dd7ed 105968 mx-cleanup_22.5.tar.xz
- b6de57671dda49c474d0fd51c86bad1ea7876ad46eff91e18701250581c97b67 10722 mx-cleanup_22.5_amd64.buildinfo
- 7cfda6d9063128566ac76849ac0cb09b066017748ee0ec3ed7739cfbf9c480bd 122408 mx-cleanup_22.5_amd64.deb
+ d47e92222b1b850be400f143391ec5f9fa6b4fc66421ce7aeb503ee3db1d10b7 1111 mx-cleanup_22.5.dsc
+ 711b9800f36d5d258061aade22fdbfb398f347cc2cb91677a4a5527eda5656dc 105968 mx-cleanup_22.5.tar.xz
+ baf44f0a2ad6df03859d324992d35b32028f0b1b75c967d147ddc63da243db62 10722 mx-cleanup_22.5_amd64.buildinfo
+ e64af5a518ea4c2170797bdcc189792e54eb780c81483755f89fe70bc39aaac8 122432 mx-cleanup_22.5_amd64.deb
 Files:
- c8e31422022a95dfd792602adf0c61ff 1111 admin optional mx-cleanup_22.5.dsc
- af4f9e317495a33f1d2e80a6e04a0995 105968 admin optional mx-cleanup_22.5.tar.xz
- 5ede00c0b0fe77f65cce60733c509269 10722 admin optional mx-cleanup_22.5_amd64.buildinfo
- bdf4c200616acfceebd263f92d48e04d 122408 admin optional mx-cleanup_22.5_amd64.deb
+ 4a73a2d495502545d2b582253aed9c82 1111 admin optional mx-cleanup_22.5.dsc
+ 41cf72d25760df92a9a15db59ef5d510 105968 admin optional mx-cleanup_22.5.tar.xz
+ 15ea282b12740464661c02b806958189 10722 admin optional mx-cleanup_22.5_amd64.buildinfo
+ 3a643c9779675f66cef77da07d7e1475 122432 admin optional mx-cleanup_22.5_amd64.deb
 
 -----BEGIN PGP SIGNATURE-----
 
-iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmJzzQ8THGFkcmlhbkBt
-eGxpbnV4Lm9yZwAKCRBwk4x4BnnumNsWCACnElZ/pgknDxrC4zIsjchGCEP5Vz0Y
-meSGHf8xQGvnxIkhmR0oVEfVskiqJAgCcLTX+OoyhzR154c84ojosSjh/nurjPUe
-htcd6WKpBTZKDY5YGMURUJvOqogAR42n1Bgstgy3GM4k33KO5BP0M8dQiT3WZvYV
-5fy+iUHIVza+TsQd7T8e826EvIfsAPOVP2Icz9kalSVQw9+Rq1acxSbjK57icNPz
-58jvrDdAxmrVnNKz/PKNsfaAN3tnShqCZSn/axtdKosoSsvVtJqgY8iq5WnPee4b
-maCSSiQQJFmPIUcfbtcD1L4Ta3FvwjsolmLyukfaRVi18xF0cAKi0PqT
-=a/6p
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmJz3jITHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumD95CADTRq2CTfrvJaIFvYg5JyZeeyeme8XI
+8gwl+8rYObOA9/z0nf9GpQ/3bOVWtAtce1lPnNcF4mr+zQYPRYJrYWIenMX7ttCV
+XhNSPMiAmIhGEhv7NG2Z/bBjdnJO1uKlyJ96EOKkfrsOGzJ211uB97BYZXaV4Co9
+PmXMWACV/qSYpguGR+Otn689UIvBiNT6x6RRU9HInltv0e2wrp2BG3glwAIfP3mV
+0H3Va55JEJfIoM+2Sx2IsVyj0NSxOvgmOhEHvtvut8TAdzwYycD/tM6ui2Bom9PN
+5JES9/pjACubvY3FSnzTfHeTSxOKO7WwzqdaJTXlqUXd8q4xJDUOHYq6
+=Tjhl
 -----END PGP SIGNATURE-----

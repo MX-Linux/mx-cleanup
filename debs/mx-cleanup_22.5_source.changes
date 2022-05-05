@@ -10,16 +10,16 @@ Changed-By: Adrian <adrian@mxlinux.org>
 Changes:
  mx-cleanup (22.5) mx; urgency=medium
  .
-   * Remove kernel even if APT is borked because of lack of space on /boot
+   * Run 'apt-get install -f' after removing kernel(s) to fix the installation
 Checksums-Sha1:
- e5fed29e518181720ef498717b666fa7439016b1 549 mx-cleanup_22.5.dsc
- 1de7cbcf76b9a8938801f80fdcbcd24eda0be752 105980 mx-cleanup_22.5.tar.xz
- d46220c3e242d305e18b249dfeee049040781977 10027 mx-cleanup_22.5_i386.buildinfo
+ f1ee9115431b4d1e94d2ba56fef77744e7697fac 549 mx-cleanup_22.5.dsc
+ 59d7a5c0cde1ff967870c60ad8710909ab7704a4 105996 mx-cleanup_22.5.tar.xz
+ e029ff4a2fe1ad85ab64fb4100a4e588aee61340 10027 mx-cleanup_22.5_i386.buildinfo
 Checksums-Sha256:
- b232236c069f34d5e91c3aed5ab0d005e155d3d9548247464c2e29d7f04e336b 549 mx-cleanup_22.5.dsc
- f8ec33003145bc46821e66932b785d80f70b05604ea05961295aa87199b6653e 105980 mx-cleanup_22.5.tar.xz
- 5c4823e3ed7e4cfbc979312606e3cba6d3c689f6c312afc76ae56cb16eca8e00 10027 mx-cleanup_22.5_i386.buildinfo
+ 41761fcbf0de3d14f28c450dc448bd625e24c010efeb9b9567445c0249ad4d0c 549 mx-cleanup_22.5.dsc
+ 2cc6c0e746b813c909becd374af610180415abb4c8e4e98d11ed59777142ca33 105996 mx-cleanup_22.5.tar.xz
+ 0cb94853b50745fb0e79d00e5afedd7be6f2cfaedb2426a05d5df74eeaa0b15a 10027 mx-cleanup_22.5_i386.buildinfo
 Files:
- d6b426343b3751d494000cfb9c512deb 549 admin optional mx-cleanup_22.5.dsc
- 2c3733525a5c43912f5434ad8bed3972 105980 admin optional mx-cleanup_22.5.tar.xz
- af2e974ca28813cf369d38cb83c7eb48 10027 admin optional mx-cleanup_22.5_i386.buildinfo
+ ebc69777f27332604260e553c9415933 549 admin optional mx-cleanup_22.5.dsc
+ 77180aed94fabd3418b52687771f91c3 105996 admin optional mx-cleanup_22.5.tar.xz
+ bd508a0b1956df72552c09581b375246 10027 admin optional mx-cleanup_22.5_i386.buildinfo
