@@ -154,7 +154,7 @@ void MainWindow::removeKernelPackages(QStringList list)
         QFile::remove("/boot/initrd.img-" + version);
         QFile::remove("/boot/initrd.img-" + version + ".old-dkms");
     }
-    if (system("apt-get install -s") != 0)
+    if (system("env LC_ALL=C.UTF-8 apt-get install -s | tail -1 | grep -q '0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.'") != 0)
         system("x-terminal-emulator -e 'apt-get install -f'");
     for (const auto &item : headers) {
         if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0)
