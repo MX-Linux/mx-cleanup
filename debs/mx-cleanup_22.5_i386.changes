@@ -15,11 +15,11 @@ Changes:
  .
    * Remove kernel even if APT is borked because of lack of space on /boot
 Checksums-Sha1:
- 51c600d12104546736ce9c31507e3053dbf427d2 10027 mx-cleanup_22.5_i386.buildinfo
- 98f5a17d52e748aad4e53a5f061213854f0c010f 124204 mx-cleanup_22.5_i386.deb
+ d46220c3e242d305e18b249dfeee049040781977 10027 mx-cleanup_22.5_i386.buildinfo
+ 24d6f115cab6b6aed9fc249a1fd9129c67870612 124020 mx-cleanup_22.5_i386.deb
 Checksums-Sha256:
- 6010502b917a08943e311dd3b061165ea062d48c6ddbd4f002c85d86ae37eb47 10027 mx-cleanup_22.5_i386.buildinfo
- c66b134ddc0c2fbf768a138ee7e337f3020ba49be0a38e4c75258851ca0071e2 124204 mx-cleanup_22.5_i386.deb
+ 5c4823e3ed7e4cfbc979312606e3cba6d3c689f6c312afc76ae56cb16eca8e00 10027 mx-cleanup_22.5_i386.buildinfo
+ b00ee8c1f26c1c916d59487b03ceb9d7105a22846a5a75e11c58859d3a02460f 124020 mx-cleanup_22.5_i386.deb
 Files:
- d075903eed9531d4ad47e5b3edb8d48e 10027 admin optional mx-cleanup_22.5_i386.buildinfo
- 9024e22474e18428b21329f4eea755ed 124204 admin optional mx-cleanup_22.5_i386.deb
+ af2e974ca28813cf369d38cb83c7eb48 10027 admin optional mx-cleanup_22.5_i386.buildinfo
+ e099d3ff25bd96089481450ce2dae30c 124020 admin optional mx-cleanup_22.5_i386.deb
