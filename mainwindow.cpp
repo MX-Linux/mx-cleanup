@@ -150,8 +150,6 @@ void MainWindow::removeKernelPackages(QStringList list)
     for (const auto &item : list) {
         const QString version = item.section(QRegularExpression("linux-image-"), 1).remove(QRegularExpression("-unsigned$"));
         headers << "linux-headers-" + version;
-        QFile::remove("/boot/vmlinuz-" + version);
-        QFile::remove("/boot/initrd.img-" + version);
         QFile::remove("/boot/initrd.img-" + version + ".old-dkms");
     }
     for (const auto &item : headers) {
@@ -162,13 +160,14 @@ void MainWindow::removeKernelPackages(QStringList list)
     QString headers_common;
     QString image_pattern;
     for (const auto &item : headers_installed) {
-        headers_common = getCmdOut("env LC_ALL=C.UTF-8 apt-cache depends " + item.toUtf8() + "| grep 'Depends:' | grep -oE 'linux-headers-[0-9][^[:space:]]+' | sort -u");
+        headers_common = getCmdOut("env LC_ALL=C.UTF-8 apt-cache depends " + item.toUtf8() +
+                                   "| grep 'Depends:' | grep -oE 'linux-headers-[0-9][^[:space:]]+' | sort -u");
         if (!headers_common.toUtf8().trimmed().isEmpty()) {
             image_pattern = headers_common;
             image_pattern.replace("-common", "");
             image_pattern.replace("headers", "image");
             if (system("dpkg -l 'linux-image-[0-9]*'  | grep ^ii | cut -d ' ' -f3  | grep -v -E '" + list.join("|").toUtf8() + "' | grep -q " +  image_pattern.toUtf8()) != 0)
-                    headers_depends << headers_common;
+                headers_depends << headers_common;
         }
     }
     QString filter;
@@ -177,7 +176,8 @@ void MainWindow::removeKernelPackages(QStringList list)
         filter = "| grep -oE '" + headers_depends.join("|") + "'";
         common = getCmdOut("apt-get remove -s " + headers_installed.join(" ") + " | grep '^  ' " + filter + " | tr '\\n' ' '");
     }
-    system("x-terminal-emulator -e 'apt purge " + headers_installed.join(" ").toUtf8() +  " " + list.join(" ").toUtf8() +  " " + common.toUtf8() + "; apt-get install -f'");
+    system("x-terminal-emulator -e bash -c 'apt purge " + headers_installed.join(" ").toUtf8() + " " +
+           list.join(" ").toUtf8() +  " " + common.toUtf8() + "; apt-get install -f'");
     setCursor(QCursor(Qt::ArrowCursor));
 }
 
@@ -325,7 +325,8 @@ void MainWindow::on_buttonApply_clicked()
 
     QString ctime = ui->spinBoxLogs->value() == 0 ? " " : " -ctime +" + QString::number(ui->spinBoxLogs->value()) + " ";
     if (ui->oldLogsRB->isChecked()) {
-        total += getCmdOut("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f" + ctime + "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
+        total += getCmdOut("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f" + ctime +
+                           "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
         logs = "find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\)" + ctime + "-type f -delete 2>/dev/null";
         system(logs.toUtf8());
     } else if (ui->allLogsRB->isChecked()){
