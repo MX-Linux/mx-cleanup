@@ -12,14 +12,14 @@ Changes:
  .
    * Remove kernel even if APT is borked because of lack of space on /boot
 Checksums-Sha1:
- a9d070d0bca4e7cdfc0eefc14a359f85180121ad 549 mx-cleanup_22.5.dsc
- 13ee755c4b770fc5b9d493780117be1e19f53a7e 106020 mx-cleanup_22.5.tar.xz
- 51c600d12104546736ce9c31507e3053dbf427d2 10027 mx-cleanup_22.5_i386.buildinfo
+ e5fed29e518181720ef498717b666fa7439016b1 549 mx-cleanup_22.5.dsc
+ 1de7cbcf76b9a8938801f80fdcbcd24eda0be752 105980 mx-cleanup_22.5.tar.xz
+ d46220c3e242d305e18b249dfeee049040781977 10027 mx-cleanup_22.5_i386.buildinfo
 Checksums-Sha256:
- a96bff6763cb95ac7dcdd021e5208a294281873b2091f72c6236abfa7f8abb9d 549 mx-cleanup_22.5.dsc
- 73a312555a1f6d4d5f873c31c9d76ebe24fc165d4f66f35cdda65e27c5717296 106020 mx-cleanup_22.5.tar.xz
- 6010502b917a08943e311dd3b061165ea062d48c6ddbd4f002c85d86ae37eb47 10027 mx-cleanup_22.5_i386.buildinfo
+ b232236c069f34d5e91c3aed5ab0d005e155d3d9548247464c2e29d7f04e336b 549 mx-cleanup_22.5.dsc
+ f8ec33003145bc46821e66932b785d80f70b05604ea05961295aa87199b6653e 105980 mx-cleanup_22.5.tar.xz
+ 5c4823e3ed7e4cfbc979312606e3cba6d3c689f6c312afc76ae56cb16eca8e00 10027 mx-cleanup_22.5_i386.buildinfo
 Files:
- f1cec314451e86eee538287a8cdc64c8 549 admin optional mx-cleanup_22.5.dsc
- 73a0459e4b6de32fafcb03fb2fe6a88c 106020 admin optional mx-cleanup_22.5.tar.xz
- d075903eed9531d4ad47e5b3edb8d48e 10027 admin optional mx-cleanup_22.5_i386.buildinfo
+ d6b426343b3751d494000cfb9c512deb 549 admin optional mx-cleanup_22.5.dsc
+ 2c3733525a5c43912f5434ad8bed3972 105980 admin optional mx-cleanup_22.5.tar.xz
+ af2e974ca28813cf369d38cb83c7eb48 10027 admin optional mx-cleanup_22.5_i386.buildinfo
