@@ -152,14 +152,14 @@ void MainWindow::removeKernelPackages(QStringList list)
         headers << "linux-headers-" + version;
         QFile::remove("/boot/initrd.img-" + version + ".old-dkms");
     }
-    for (const auto &item : headers) {
+    for (const auto &item : qAsConst(headers)) {
         if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0)
             headers_installed << item;
     }
     QStringList headers_depends;
     QString headers_common;
     QString image_pattern;
-    for (const auto &item : headers_installed) {
+    for (const auto &item : qAsConst(headers_installed)) {
         headers_common = getCmdOut("env LC_ALL=C.UTF-8 apt-cache depends " + item.toUtf8() +
                                    "| grep 'Depends:' | grep -oE 'linux-headers-[0-9][^[:space:]]+' | sort -u");
         if (!headers_common.toUtf8().trimmed().isEmpty()) {
@@ -493,7 +493,7 @@ void MainWindow::on_buttonKernel_clicked()
     layout->addWidget(btnBox);
 
     connect(btnBox, &QDialogButtonBox::rejected, dialog, &QDialog::close);
-    connect(btnBox, &QDialogButtonBox::accepted, [this, &removal_list] {removeKernelPackages(removal_list);});
+    connect(btnBox, &QDialogButtonBox::accepted, [this, removal_list] {removeKernelPackages(removal_list);});
     connect(btnBox, &QDialogButtonBox::accepted, dialog, &QDialog::close);
 
     dialog->exec();
