@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     qDebug().noquote() << qApp->applicationName() << "version:" << qApp->applicationVersion();
     ui->setupUi(this);
+    setConnections();
     setWindowFlags(Qt::Window); // for the close, min and max buttons
     setup();
 }
@@ -75,20 +76,20 @@ void MainWindow::setup()
 
     user = getCmdOut("logname");
 
-    ui->buttonApply->setDisabled(true);
-    ui->cacheCheckBox->setChecked(true);
-    ui->thumbCheckBox->setChecked(true);
-    ui->autocleanRB->setChecked(true);
-    ui->oldLogsRB->setChecked(true);
-    ui->selectedUserCB->setChecked(true);
+    ui->pushApply->setDisabled(true);
+    ui->checkCache->setChecked(true);
+    ui->checkThumbs->setChecked(true);
+    ui->radioAutoClean->setChecked(true);
+    ui->radioOldLogs->setChecked(true);
+    ui->radioSelectedUser->setChecked(true);
 
     QString users = getCmdOut("lslogins --noheadings -u -o user | grep -vw root");
 
     qDebug() << users;
-    ui->userCleanCB->addItems(users.split("\n"));
+    ui->comboUserClean->addItems(users.split("\n"));
 
-    ui->userCleanCB->setCurrentIndex(ui->userCleanCB->findText(user));
-    ui->buttonApply->setEnabled(!ui->userCleanCB->currentText().isEmpty());
+    ui->comboUserClean->setCurrentIndex(ui->comboUserClean->findText(user));
+    ui->pushApply->setEnabled(!ui->comboUserClean->currentText().isEmpty());
     loadSchedule();
 }
 
@@ -103,26 +104,26 @@ void MainWindow::cleanup()
 void MainWindow::loadSchedule()
 {
     if (QFile::exists("/etc/cron.daily/mx-cleanup"))
-        ui->rbDaily->setChecked(true);
+        ui->radioDaily->setChecked(true);
     else if (QFile::exists("/etc/cron.weekly/mx-cleanup"))
-        ui->rbWeekly->setChecked(true);
+        ui->radioWeekly->setChecked(true);
     else if (QFile::exists("/etc/cron.monthly/mx-cleanup"))
-        ui->rbMonthly->setChecked(true);
+        ui->radioMonthly->setChecked(true);
     else
-        ui->rbNone->setChecked(true);
+        ui->radioNone->setChecked(true);
     loadOptions();
 }
 
 void MainWindow::loadSettings()
 {
     qDebug() << "Load settings";
-    int index = ui->userCleanCB->findText(settings.value("User").toString());
+    int index = ui->comboUserClean->findText(settings.value("User").toString());
     if (index == -1) index = 0;
-    ui->userCleanCB->setCurrentIndex(index);
+    ui->comboUserClean->setCurrentIndex(index);
 
     settings.beginGroup("Folders");
-    ui->thumbCheckBox->setChecked(settings.value("Thumbnails", true).toBool());
-    ui->cacheCheckBox->setChecked(settings.value("Cache", true).toBool());
+    ui->checkThumbs->setChecked(settings.value("Thumbnails", true).toBool());
+    ui->checkCache->setChecked(settings.value("Cache", true).toBool());
     settings.endGroup();
 
     settings.beginGroup("Apt");
@@ -185,11 +186,11 @@ void MainWindow::removeKernelPackages(QStringList list)
 void MainWindow::loadOptions()
 {
     QString period;
-    if (ui->rbDaily->isChecked()) {
+    if (ui->radioDaily->isChecked()) {
         period = "daily";
-    } else if (ui->rbWeekly->isChecked()) {
+    } else if (ui->radioWeekly->isChecked()) {
         period = "weekly";
-    } else if (ui->rbMonthly->isChecked()) {
+    } else if (ui->radioMonthly->isChecked()) {
         period = "monthly";
     } else {
         loadSettings();
@@ -199,23 +200,23 @@ void MainWindow::loadOptions()
     QString file_name = "/etc/cron." + period + "/mx-cleanup";
 
     // Folders
-    ui->thumbCheckBox->setChecked(system("grep -q '.thumbnails' " + file_name.toUtf8()) == 0);
-    ui->cacheCheckBox->setChecked(system("grep -q '.cache' " + file_name.toUtf8()) == 0);
+    ui->checkThumbs->setChecked(system("grep -q '.thumbnails' " + file_name.toUtf8()) == 0);
+    ui->checkCache->setChecked(system("grep -q '.cache' " + file_name.toUtf8()) == 0);
     // APT
     if (system("grep -q 'apt-get autoclean' " + file_name.toUtf8()) == 0)  // detect autoclean
-        ui->autocleanRB->setChecked(true);
+        ui->radioAutoClean->setChecked(true);
     else if (system("grep -q 'apt-get clean' " + file_name.toUtf8()) == 0)  // detect clean
-        ui->cleanRB->setChecked(true);
+        ui->radioClean->setChecked(true);
     else
-        ui->noCleanAptRB->setChecked(true);
+        ui->radioNoCleanApt->setChecked(true);
 
     // Logs
     if (system("grep -q '\\-exec sh \\-c \"echo' " + file_name.toUtf8()) == 0) // all logs
-        ui->allLogsRB->setChecked(true);
+        ui->radioAllLogs->setChecked(true);
     else if (system("grep -q '\\-type f \\-delete' " + file_name.toUtf8()) == 0) // old logs
-        ui->oldLogsRB->setChecked(true);
+        ui->radioOldLogs->setChecked(true);
     else
-        ui->noCleanLogsRB->setChecked(true);
+        ui->radioNoCleanLogs->setChecked(true);
 
     // Logs older than...
     QString ctime = getCmdOut("grep 'find /var/log' " + file_name + "| grep -Eo '\\-ctime \\+[0-9]{1,3}' | cut -f2 -d' '");
@@ -223,11 +224,11 @@ void MainWindow::loadOptions()
 
     // Trash
     if (system("grep -q '/home/\\*/.local/share/Trash' " + file_name.toUtf8()) == 0)  // all user trash
-        ui->allUsersCB->setChecked(true);
+        ui->radioAllUsers->setChecked(true);
     else if (system("grep -q '/.local/share/Trash' " + file_name.toUtf8()) == 0)  // selected user trash
-        ui->selectedUserCB->setChecked(true);
+        ui->radioSelectedUser->setChecked(true);
     else
-        ui->noCleanTrashRB->setChecked(true);
+        ui->radioNoCleanTrash->setChecked(true);
 
     // Trash older than...
     ctime = getCmdOut("grep 'find /home/' " + file_name + "| grep -Eo '\\-ctime \\+[0-9]{1,3}' | cut -f2 -d' '");
@@ -253,11 +254,11 @@ void MainWindow::saveSchedule(const QString &cmd_str, const QString &period)
 
 void MainWindow::saveSettings()
 {
-    settings.setValue("User", ui->userCleanCB->currentText());
+    settings.setValue("User", ui->comboUserClean->currentText());
 
     settings.beginGroup("Folders");
-    settings.setValue("Thumbnails", ui->thumbCheckBox->isChecked());
-    settings.setValue("Cache", ui->cacheCheckBox->isChecked());
+    settings.setValue("Thumbnails", ui->checkThumbs->isChecked());
+    settings.setValue("Cache", ui->checkCache->isChecked());
     settings.endGroup();
 
     settings.beginGroup("Apt");
@@ -287,8 +288,17 @@ void MainWindow::selectRadioButton(const QButtonGroup *group, int id)
     }
 }
 
+void MainWindow::setConnections()
+{
+    connect(ui->pushAbout, &QPushButton::clicked, this, &MainWindow::pushAbout_clicked);
+    connect(ui->pushApply, &QPushButton::clicked, this, &MainWindow::pushApply_clicked);
+    connect(ui->pushHelp, &QPushButton::clicked, this, &MainWindow::pushHelp_clicked);
+    connect(ui->pushKernel, &QPushButton::clicked, this, &MainWindow::pushKernel_clicked);
+    connect(ui->pushUsageAnalyzer, &QPushButton::clicked, this, &MainWindow::pushUsageAnalyzer_clicked);
+}
 
-void MainWindow::on_buttonApply_clicked()
+
+void MainWindow::pushApply_clicked()
 {
     int total = 0;
     setCursor(QCursor(Qt::BusyCursor));
@@ -302,21 +312,21 @@ void MainWindow::on_buttonApply_clicked()
 //        system("rm -r /tmp/* 2>/dev/null");
 //    }
 
-    if (ui->cacheCheckBox->isChecked()) {
-        total += getCmdOut("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* | tail -1 | cut -f1").toInt();
-        cache = "rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.cache/* 2>/dev/null";
+    if (ui->checkCache->isChecked()) {
+        total += getCmdOut("du -c /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/* | tail -1 | cut -f1").toInt();
+        cache = "rm -r /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/* 2>/dev/null";
         system(cache.toUtf8());
     }
 
-    if (ui->thumbCheckBox->isChecked()) {
-        total += getCmdOut("du -c /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* | tail -1 | cut -f1").toInt();
-        thumbnails = "rm -r /home/" + ui->userCleanCB->currentText().toUtf8() + "/.thumbnails/* 2>/dev/null";
+    if (ui->checkThumbs->isChecked()) {
+        total += getCmdOut("du -c /home/" + ui->comboUserClean->currentText().toUtf8() + "/.thumbnails/* | tail -1 | cut -f1").toInt();
+        thumbnails = "rm -r /home/" + ui->comboUserClean->currentText().toUtf8() + "/.thumbnails/* 2>/dev/null";
         system(thumbnails.toUtf8());
     }
 
-    if (ui->autocleanRB->isChecked())
+    if (ui->radioAutoClean->isChecked())
         apt = "apt-get autoclean";
-    else if (ui->cleanRB->isChecked())
+    else if (ui->radioClean->isChecked())
         apt = "apt-get clean";
 
     total += getCmdOut("du -s /var/cache/apt/archives/ | cut -f1").toInt();
@@ -324,19 +334,19 @@ void MainWindow::on_buttonApply_clicked()
     total -= getCmdOut("du -s /var/cache/apt/archives/ | cut -f1").toInt();
 
     QString ctime = ui->spinBoxLogs->value() == 0 ? " " : " -ctime +" + QString::number(ui->spinBoxLogs->value()) + " ";
-    if (ui->oldLogsRB->isChecked()) {
+    if (ui->radioOldLogs->isChecked()) {
         total += getCmdOut("find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\) -type f" + ctime +
                            "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
         logs = "find /var/log \\( -name \"*.gz\" -o -name \"*.old\" -o -name \"*.1\" \\)" + ctime + "-type f -delete 2>/dev/null";
         system(logs.toUtf8());
-    } else if (ui->allLogsRB->isChecked()){
+    } else if (ui->radioAllLogs->isChecked()){
         total += getCmdOut("find /var/log -type f" + ctime + "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
         logs = "find /var/log -type f" + ctime + "-exec sh -c \"echo > '{}'\" \\;";  // empty the logs
         system(logs.toUtf8());
     }
 
-    if (ui->selectedUserCB->isChecked() || ui->allUsersCB->isChecked()) {
-        QString user = ui->allUsersCB->isChecked() ? "*" : ui->userCleanCB->currentText();
+    if (ui->radioSelectedUser->isChecked() || ui->radioAllUsers->isChecked()) {
+        QString user = ui->radioAllUsers->isChecked() ? "*" : ui->comboUserClean->currentText();
         QString ctime = ui->spinBoxTrash->value() == 0 ? " " : " -ctime +" + QString::number(ui->spinBoxTrash->value()) + " ";
         total += getCmdOut("find /home/" + user + "/.local/share/Trash -type f" + ctime + "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
         trash = "find /home/" + user + "/.local/share/Trash -type f" + ctime + "-delete";
@@ -348,13 +358,13 @@ void MainWindow::on_buttonApply_clicked()
     QFile::remove("/etc/cron.weekly/mx-cleanup");
     QFile::remove("/etc/cron.monthly/mx-cleanup");
     // add schedule file
-    if (!ui->rbNone->isChecked()) {
+    if (!ui->radioNone->isChecked()) {
         QString period;
         cmd_str = cache + "\n" + thumbnails + "\n" + logs + "\n" + apt + "\n" + trash;
         qDebug() << "CMD STR" << cmd_str;
-        if (ui->rbDaily->isChecked())
+        if (ui->radioDaily->isChecked())
             period = "daily";
-        else if (ui->rbWeekly->isChecked())
+        else if (ui->radioWeekly->isChecked())
             period = "weekly";
         else
             period = "monthly";
@@ -370,7 +380,7 @@ void MainWindow::on_buttonApply_clicked()
 }
 
 // About button clicked
-void MainWindow::on_buttonAbout_clicked()
+void MainWindow::pushAbout_clicked()
 {
     QMessageBox msgBox(QMessageBox::NoIcon,
                        tr("About") + tr("MX Cleanup"), "<p align=\"center\"><b><h2>MX Cleanup</h2></b></p><p align=\"center\">" +
@@ -378,9 +388,9 @@ void MainWindow::on_buttonAbout_clicked()
                        tr("Quick and safe removal of old files") +
                        "</h3></p><p align=\"center\"><a href=\"http://mxlinux.org\">http://mxlinux.org</a><br /></p><p align=\"center\">" +
                        tr("Copyright (c) MX Linux") + "<br /><br /></p>");
-    QPushButton *btnLicense = msgBox.addButton(tr("License"), QMessageBox::HelpRole);
-    QPushButton *btnChangelog = msgBox.addButton(tr("Changelog"), QMessageBox::HelpRole);
-    QPushButton *btnCancel = msgBox.addButton(tr("Cancel"), QMessageBox::NoRole);
+    auto btnLicense = msgBox.addButton(tr("License"), QMessageBox::HelpRole);
+    auto btnChangelog = msgBox.addButton(tr("Changelog"), QMessageBox::HelpRole);
+    auto btnCancel = msgBox.addButton(tr("Cancel"), QMessageBox::NoRole);
     btnCancel->setIcon(QIcon::fromTheme("window-close"));
 
     msgBox.exec();
@@ -392,19 +402,19 @@ void MainWindow::on_buttonAbout_clicked()
         else
             system("runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
     } else if (msgBox.clickedButton() == btnChangelog) {
-        QDialog *changelog = new QDialog(this);
+        auto changelog = new QDialog(this);
         changelog->setWindowTitle(tr("Changelog"));
         changelog->resize(600, 500);
 
-        QTextEdit *text = new QTextEdit;
+        auto text = new QTextEdit;
         text->setReadOnly(true);
         text->setText(getCmdOut("zless /usr/share/doc/" + QFileInfo(QCoreApplication::applicationFilePath()).fileName()  + "/changelog.gz"));
 
-        QPushButton *btnClose = new QPushButton(tr("&Close"));
+        auto btnClose = new QPushButton(tr("&Close"));
         btnClose->setIcon(QIcon::fromTheme("window-close"));
         connect(btnClose, &QPushButton::clicked, changelog, &QDialog::close);
 
-        QVBoxLayout *layout = new QVBoxLayout;
+        auto layout = new QVBoxLayout;
         layout->addWidget(text);
         layout->addWidget(btnClose);
         changelog->setLayout(layout);
@@ -413,7 +423,7 @@ void MainWindow::on_buttonAbout_clicked()
 }
 
 // Help button clicked
-void MainWindow::on_buttonHelp_clicked()
+void MainWindow::pushHelp_clicked()
 {
     QString url = "/usr/share/doc/mx-cleanup/help/mx-cleanup.html";
 
@@ -423,7 +433,7 @@ void MainWindow::on_buttonHelp_clicked()
         system("runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
 }
 
-void MainWindow::on_buttonUsageAnalyzer_clicked()
+void MainWindow::pushUsageAnalyzer_clicked()
 {
     QString desktop = qgetenv("XDG_CURRENT_DESKTOP");
     QString run_as_user = "runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ")";
@@ -460,7 +470,7 @@ QString MainWindow::getCmdOut(const QString &cmd)
     return out;
 }
 
-void MainWindow::on_buttonKernel_clicked()
+void MainWindow::pushKernel_clicked()
 {
     auto current_kernel = getCmdOut("uname -r");
     QString similar_kernels, other_kernels;

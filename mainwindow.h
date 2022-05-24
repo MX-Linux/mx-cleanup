@@ -49,15 +49,16 @@ public:
     void saveSchedule(const QString &cmd_str, const QString &period);
     void saveSettings();
     void selectRadioButton(const QButtonGroup *group, int id);
+    void setConnections();
     void setup();
 
 private slots:
     void cleanup();
-    void on_buttonAbout_clicked();
-    void on_buttonApply_clicked();
-    void on_buttonHelp_clicked();
-    void on_buttonKernel_clicked();
-    void on_buttonUsageAnalyzer_clicked();
+    void pushAbout_clicked();
+    void pushApply_clicked();
+    void pushHelp_clicked();
+    void pushKernel_clicked();
+    void pushUsageAnalyzer_clicked();
 
 private:
     Ui::MainWindow *ui;

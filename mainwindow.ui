@@ -27,7 +27,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <widget class="QCheckBox" name="thumbCheckBox">
+       <widget class="QCheckBox" name="checkThumbs">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -43,7 +43,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="cacheCheckBox">
+       <widget class="QCheckBox" name="checkCache">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -108,7 +108,7 @@
       <number>5</number>
      </property>
      <item row="0" column="1">
-      <widget class="QPushButton" name="buttonHelp">
+      <widget class="QPushButton" name="pushHelp">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -147,7 +147,7 @@
       </spacer>
      </item>
      <item row="0" column="0">
-      <widget class="QPushButton" name="buttonAbout">
+      <widget class="QPushButton" name="pushAbout">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -189,7 +189,7 @@
       </spacer>
      </item>
      <item row="0" column="9">
-      <widget class="QPushButton" name="buttonCancel">
+      <widget class="QPushButton" name="pushCancel">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -237,7 +237,7 @@
       </widget>
      </item>
      <item row="0" column="7">
-      <widget class="QPushButton" name="buttonApply">
+      <widget class="QPushButton" name="pushApply">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -284,7 +284,7 @@
        </widget>
       </item>
       <item row="2" column="0" colspan="3">
-       <widget class="QRadioButton" name="noCleanTrashRB">
+       <widget class="QRadioButton" name="radioNoCleanTrash">
         <property name="text">
          <string>Don't empty</string>
         </property>
@@ -307,7 +307,7 @@
        </widget>
       </item>
       <item row="1" column="0" colspan="3">
-       <widget class="QRadioButton" name="allUsersCB">
+       <widget class="QRadioButton" name="radioAllUsers">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -323,7 +323,7 @@
        </widget>
       </item>
       <item row="0" column="0" colspan="3">
-       <widget class="QRadioButton" name="selectedUserCB">
+       <widget class="QRadioButton" name="radioSelectedUser">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -386,7 +386,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
-       <widget class="QRadioButton" name="autocleanRB">
+       <widget class="QRadioButton" name="radioAutoClean">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -405,7 +405,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="cleanRB">
+       <widget class="QRadioButton" name="radioClean">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -421,7 +421,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="noCleanAptRB">
+       <widget class="QRadioButton" name="radioNoCleanApt">
         <property name="text">
          <string>Don't empty</string>
         </property>
@@ -459,7 +459,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="buttonUsageAnalyzer">
+       <widget class="QPushButton" name="pushUsageAnalyzer">
         <property name="text">
          <string>Run Disk Usage Analyzer</string>
         </property>
@@ -485,28 +485,28 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QRadioButton" name="rbNone">
+       <widget class="QRadioButton" name="radioNone">
         <property name="text">
          <string>No automatic clean</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="rbDaily">
+       <widget class="QRadioButton" name="radioDaily">
         <property name="text">
          <string>Daily</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="rbWeekly">
+       <widget class="QRadioButton" name="radioWeekly">
         <property name="text">
          <string>Weekly</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="rbMonthly">
+       <widget class="QRadioButton" name="radioMonthly">
         <property name="text">
          <string>Monthly</string>
         </property>
@@ -541,7 +541,7 @@
      </property>
      <layout class="QGridLayout" name="_12">
       <item row="0" column="1">
-       <widget class="QComboBox" name="userCleanCB">
+       <widget class="QComboBox" name="comboUserClean">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -554,7 +554,7 @@
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="userCleanLabel">
+       <widget class="QLabel" name="labelUserClean">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -598,7 +598,7 @@
        </spacer>
       </item>
       <item row="1" column="0">
-       <widget class="QRadioButton" name="allLogsRB">
+       <widget class="QRadioButton" name="radioAllLogs">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -620,7 +620,7 @@
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QRadioButton" name="noCleanLogsRB">
+       <widget class="QRadioButton" name="radioNoCleanLogs">
         <property name="text">
          <string>Don't empty</string>
         </property>
@@ -630,7 +630,7 @@
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QRadioButton" name="oldLogsRB">
+       <widget class="QRadioButton" name="radioOldLogs">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -700,7 +700,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QPushButton" name="buttonKernel">
+       <widget class="QPushButton" name="pushKernel">
         <property name="text">
          <string>List and select kernels to remove</string>
         </property>
@@ -716,36 +716,36 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>userCleanCB</tabstop>
-  <tabstop>thumbCheckBox</tabstop>
-  <tabstop>cacheCheckBox</tabstop>
-  <tabstop>autocleanRB</tabstop>
-  <tabstop>cleanRB</tabstop>
-  <tabstop>noCleanAptRB</tabstop>
-  <tabstop>oldLogsRB</tabstop>
-  <tabstop>allLogsRB</tabstop>
-  <tabstop>noCleanLogsRB</tabstop>
+  <tabstop>comboUserClean</tabstop>
+  <tabstop>checkThumbs</tabstop>
+  <tabstop>checkCache</tabstop>
+  <tabstop>radioAutoClean</tabstop>
+  <tabstop>radioClean</tabstop>
+  <tabstop>radioNoCleanApt</tabstop>
+  <tabstop>radioOldLogs</tabstop>
+  <tabstop>radioAllLogs</tabstop>
+  <tabstop>radioNoCleanLogs</tabstop>
   <tabstop>spinBoxLogs</tabstop>
-  <tabstop>selectedUserCB</tabstop>
-  <tabstop>allUsersCB</tabstop>
-  <tabstop>noCleanTrashRB</tabstop>
+  <tabstop>radioSelectedUser</tabstop>
+  <tabstop>radioAllUsers</tabstop>
+  <tabstop>radioNoCleanTrash</tabstop>
   <tabstop>spinBoxTrash</tabstop>
-  <tabstop>rbNone</tabstop>
-  <tabstop>rbDaily</tabstop>
-  <tabstop>rbWeekly</tabstop>
-  <tabstop>rbMonthly</tabstop>
-  <tabstop>buttonUsageAnalyzer</tabstop>
-  <tabstop>buttonAbout</tabstop>
-  <tabstop>buttonHelp</tabstop>
-  <tabstop>buttonApply</tabstop>
-  <tabstop>buttonCancel</tabstop>
+  <tabstop>radioNone</tabstop>
+  <tabstop>radioDaily</tabstop>
+  <tabstop>radioWeekly</tabstop>
+  <tabstop>radioMonthly</tabstop>
+  <tabstop>pushUsageAnalyzer</tabstop>
+  <tabstop>pushAbout</tabstop>
+  <tabstop>pushHelp</tabstop>
+  <tabstop>pushApply</tabstop>
+  <tabstop>pushCancel</tabstop>
  </tabstops>
  <resources>
   <include location="images.qrc"/>
  </resources>
  <connections>
   <connection>
-   <sender>noCleanLogsRB</sender>
+   <sender>radioNoCleanLogs</sender>
    <signal>toggled(bool)</signal>
    <receiver>spinBoxLogs</receiver>
    <slot>setDisabled(bool)</slot>
@@ -761,7 +761,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>noCleanTrashRB</sender>
+   <sender>radioNoCleanTrash</sender>
    <signal>toggled(bool)</signal>
    <receiver>spinBoxTrash</receiver>
    <slot>setDisabled(bool)</slot>
@@ -777,7 +777,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonCancel</sender>
+   <sender>pushCancel</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
