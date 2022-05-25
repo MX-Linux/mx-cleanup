@@ -83,7 +83,7 @@ void MainWindow::setup()
     ui->radioOldLogs->setChecked(true);
     ui->radioSelectedUser->setChecked(true);
 
-    QString users = getCmdOut("lslogins --noheadings -u -o user | grep -vw root");
+    const QString users = getCmdOut("lslogins --noheadings -u -o user | grep -vw root");
 
     qDebug() << users;
     ui->comboUserClean->addItems(users.split("\n"));
@@ -374,9 +374,7 @@ void MainWindow::pushApply_clicked()
     saveSettings();
 
     setCursor(QCursor(Qt::ArrowCursor));
-    QMessageBox::information(this, tr("Done"),
-                             tr("Cleanup command done") + "\n" +
-                             tr("%1 MiB were freed").arg((total/1000)));
+    QMessageBox::information(this, tr("Done"), tr("Cleanup command done") + "\n" + tr("%1 MiB were freed").arg((total / 1000)));
 }
 
 // About button clicked
@@ -425,7 +423,7 @@ void MainWindow::pushAbout_clicked()
 // Help button clicked
 void MainWindow::pushHelp_clicked()
 {
-    QString url = "/usr/share/doc/mx-cleanup/help/mx-cleanup.html";
+    const QString url = "/usr/share/doc/mx-cleanup/help/mx-cleanup.html";
 
     if (system("command -v mx-viewer >/dev/null") == 0)
         system("mx-viewer " + url.toUtf8() + " \"" + tr("MX Cleanup").toUtf8() + "\"&");
@@ -435,8 +433,8 @@ void MainWindow::pushHelp_clicked()
 
 void MainWindow::pushUsageAnalyzer_clicked()
 {
-    QString desktop = qgetenv("XDG_CURRENT_DESKTOP");
-    QString run_as_user = "runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ")";
+    const QString desktop = qgetenv("XDG_CURRENT_DESKTOP");
+    const QString run_as_user = "runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " + user.toUtf8() + ")";
 
     if (desktop == "KDE" || desktop == "LXQt") { // try filelight, qdirstat for Qt based DEs, otherwise baobab
         if (system("command -v filelight") == 0)
@@ -503,7 +501,7 @@ void MainWindow::pushKernel_clicked()
     layout->addWidget(btnBox);
 
     connect(btnBox, &QDialogButtonBox::rejected, dialog, &QDialog::close);
-    connect(btnBox, &QDialogButtonBox::accepted, [this, removal_list] {removeKernelPackages(removal_list);});
+    connect(btnBox, &QDialogButtonBox::accepted, this, [this, removal_list] {removeKernelPackages(removal_list);});
     connect(btnBox, &QDialogButtonBox::accepted, dialog, &QDialog::close);
 
     dialog->exec();
