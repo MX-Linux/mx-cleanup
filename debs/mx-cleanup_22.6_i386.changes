@@ -15,11 +15,11 @@ Changes:
  .
    *  Fix pae kernel matching
 Checksums-Sha1:
- 5235ad3e2b96d30ac4eb418c5a703c77e51b4165 10027 mx-cleanup_22.6_i386.buildinfo
- 2edd5ab864546fbaba9b1591e961814dc8dfd245 124780 mx-cleanup_22.6_i386.deb
+ d51e074eaad43c3d1a4daa079ede36cc724f37c0 10027 mx-cleanup_22.6_i386.buildinfo
+ c831e868336a529870228f4d2109af3c4afcaa96 124452 mx-cleanup_22.6_i386.deb
 Checksums-Sha256:
- 3d6e43fdeb7cc4d0b134d9af945942b99716150b3cadad37a0e848a0ea25411d 10027 mx-cleanup_22.6_i386.buildinfo
- e3359154a5fe9dfd150ca234a0f9f079bfd6f01f2901b4173bc9153548e992b4 124780 mx-cleanup_22.6_i386.deb
+ 2e2ffbfad0bdeefa3ea082646368049fe55fe51ca328cae73d2c5694fdb31994 10027 mx-cleanup_22.6_i386.buildinfo
+ 7ca5c628d9aa50dd0e52c4a15a37f96f34aed4089a5418f0d64be78352590bd5 124452 mx-cleanup_22.6_i386.deb
 Files:
- c4ea37fb99480ef50592dee67031e92d 10027 admin optional mx-cleanup_22.6_i386.buildinfo
- ce6837a97fb626241de336bf2ef425d4 124780 admin optional mx-cleanup_22.6_i386.deb
+ ef22e3264e44b1275799b40eb08f1e67 10027 admin optional mx-cleanup_22.6_i386.buildinfo
+ 761dfb609a4583bb8d11df94e2b85509 124452 admin optional mx-cleanup_22.6_i386.deb

@@ -516,7 +516,7 @@ void MainWindow::pushKernel_clicked()
     layout->addWidget(btnBox);
 
     connect(btnBox, &QDialogButtonBox::rejected, dialog, &QDialog::close);
-    connect(btnBox, &QDialogButtonBox::accepted, this, [this, removal_list] {removeKernelPackages(removal_list);});
+    connect(btnBox, &QDialogButtonBox::accepted, this, [this, &removal_list] {removeKernelPackages(removal_list);});
     connect(btnBox, &QDialogButtonBox::accepted, dialog, &QDialog::close);
 
     dialog->exec();
