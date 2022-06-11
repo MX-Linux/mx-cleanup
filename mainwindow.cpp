@@ -473,8 +473,10 @@ void MainWindow::pushKernel_clicked()
     auto current_kernel = getCmdOut("uname -r");
     QString similar_kernels, other_kernels;
     if (system("dpkg -l linux-image\\* | grep ^ii") == 0) {
-        similar_kernels = getCmdOut("dpkg -l linux-image-[0-9]\\*.[0-9]\\* | grep ^ii | grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' | grep -v $(uname -r)");
-        other_kernels = getCmdOut("dpkg -l linux-image-[0-9]\\*.[0-9]\\* | grep ^ii | grep -v $(uname -r | cut -f1 -d'-') | cut -f3 -d' '");
+        similar_kernels = getCmdOut("dpkg -l linux-image-[0-9]\\*.[0-9]\\* | grep ^ii | "
+"grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' | grep -v --line-regex linux-image-$(uname -r)");
+        other_kernels = getCmdOut("dpkg -l linux-image-[0-9]\\*.[0-9]\\* | grep ^ii | "
+"grep -v $(uname -r | cut -f1 -d'-') | cut -f3 -d' '");
     }
     auto dialog = new QDialog(this);
     dialog->setWindowTitle(this->windowTitle());
