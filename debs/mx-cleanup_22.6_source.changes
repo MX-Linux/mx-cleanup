@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Sat, 11 Jun 2022 15:05:17 -0400
+Source: mx-cleanup
+Architecture: source
+Version: 22.6
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Changes:
+ mx-cleanup (22.6) mx; urgency=medium
+ .
+   *  Fix pae kernel matching
+Checksums-Sha1:
+ 88817e3b5d13a24048b56dada47b1fe80eac0961 549 mx-cleanup_22.6.dsc
+ 8100965228975372d819cfa0e60553d5d1e405e9 106364 mx-cleanup_22.6.tar.xz
+ 5235ad3e2b96d30ac4eb418c5a703c77e51b4165 10027 mx-cleanup_22.6_i386.buildinfo
+Checksums-Sha256:
+ fadcf76f0254f46a65e8ad2b45e82d332ff512cad9f670e4a388400c79170c81 549 mx-cleanup_22.6.dsc
+ 4b40c3fbeff385541091b8d2f3163893c9347c650b9563d34c9806e1d1ade86a 106364 mx-cleanup_22.6.tar.xz
+ 3d6e43fdeb7cc4d0b134d9af945942b99716150b3cadad37a0e848a0ea25411d 10027 mx-cleanup_22.6_i386.buildinfo
+Files:
+ 0e86f05f7d25462f3c883e44c9a8bcb8 549 admin optional mx-cleanup_22.6.dsc
+ caff4312802be2d692df8696076bc49a 106364 admin optional mx-cleanup_22.6.tar.xz
+ c4ea37fb99480ef50592dee67031e92d 10027 admin optional mx-cleanup_22.6_i386.buildinfo

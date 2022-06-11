@@ -1,0 +1,46 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Sat, 11 Jun 2022 15:05:17 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 22.6
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (22.6) mx; urgency=medium
+ .
+   *  Fix pae kernel matching
+Checksums-Sha1:
+ f7d6216a2205ed4f3b4dc100d6a074c0c23f9d3f 1111 mx-cleanup_22.6.dsc
+ cca09960fcb1571b5e2b2d9c87feb0c1aede36d4 106312 mx-cleanup_22.6.tar.xz
+ 249dcf5defcfc7d96e2e5f408e7a11f0de02d1ad 10866 mx-cleanup_22.6_amd64.buildinfo
+ eb486bc56ed70ea89c216a4305d3599597c0d593 122996 mx-cleanup_22.6_amd64.deb
+Checksums-Sha256:
+ 8b6445919c851aedc3b6d0494afa32dafc1b4f29db0d044694c1752a75cb42db 1111 mx-cleanup_22.6.dsc
+ dc7f2cfdfbeaad40f382a9db2fa92284d5d01b05166bbfc98d78196848c3865e 106312 mx-cleanup_22.6.tar.xz
+ 9dc498a11ca957dfad16bd8d62c47bc6a8bda54e1768a3a8b44e23bf0131f5d2 10866 mx-cleanup_22.6_amd64.buildinfo
+ bd32179f499f56cdb39179730c5b84cdcb323195b86e029e8c970a838c8e85a2 122996 mx-cleanup_22.6_amd64.deb
+Files:
+ 16c32a580b538cef5249bf52fcd045e9 1111 admin optional mx-cleanup_22.6.dsc
+ 177a895e01c8c7e7fec1162dbbc9b1d5 106312 admin optional mx-cleanup_22.6.tar.xz
+ a5d6ff88d7fe19f34703bb3e29e71c9a 10866 admin optional mx-cleanup_22.6_amd64.buildinfo
+ 514ab8407674d88cd896d7e2f27f7b2e 122996 admin optional mx-cleanup_22.6_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmKlE3ITHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumCZNB/9wtpOcn5Klur6PBsKQBjkx5rHmm54m
+6vr1EmIER2geWlwJ9J4AFz0EYGVIgOSZPUDbHfM6u6VR9M2f8Cjm/2fxPRiPk57E
+uoeJ3IrArXTgbeEmQxzE1Jxln1nhLPA28uO9oKsu787RAFvr5f31eWugK8CpvBWs
+5w0n3Xc/udHEucpRBFdgC2f6W5JmbV7S8HzrUhHVer3WaFl9iKCZvQU7IMkQtZ3l
+ZlTPQU816dVq0hAbM7JdtIPGBdh7sQe41s0DF3WCsyA34necGePiLENx2AJPsPdu
+9+PSLcu5axQWuT9kQQmoEWnXYixoB5tVBFDrAO9mir6x3RIaRHIiIgE4
+=II4j
+-----END PGP SIGNATURE-----
