@@ -21,7 +21,6 @@
  **********************************************************************/
 
 
-
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -41,19 +40,18 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void addGroupCheckbox(QLayout *layout, const QString &package, const QString &name, QStringList &list);
+    static void addGroupCheckbox(QLayout *layout, const QString &package, const QString &name, QStringList &list);
     void loadOptions();
     void loadSchedule();
     void loadSettings();
-    void removeKernelPackages(QStringList list);
-    void saveSchedule(const QString &cmd_str, const QString &period);
+    void removeKernelPackages(const QStringList &list);
+    static void saveSchedule(const QString &cmd_str, const QString &period);
     void saveSettings();
-    void selectRadioButton(const QButtonGroup *group, int id);
+    static void selectRadioButton(const QButtonGroup *group, int id);
     void setConnections();
     void setup();
 
 private slots:
-    void cleanup();
     void pushAbout_clicked();
     void pushApply_clicked();
     void pushHelp_clicked();
