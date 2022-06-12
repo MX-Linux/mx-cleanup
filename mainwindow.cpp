@@ -170,7 +170,7 @@ void MainWindow::removeKernelPackages(const QStringList &list)
     if (!headers_depends.isEmpty()) {
         filter = "| grep -oE '" + headers_depends.join(QStringLiteral("|")) + "'";
         common = getCmdOut("apt-get remove -s " + headers_installed.join(QStringLiteral(" ")) +
-                           " | grep '^  ' " + filter + " | tr '\\n' ' '");
+                           " | grep '^  ' " + filter + R"( | tr '\n' ' ')");
     }
     system("x-terminal-emulator -e bash -c 'apt purge " + headers_installed.join(QStringLiteral(" ")).toUtf8() + " " +
            list.join(QStringLiteral(" ")).toUtf8() +  " " + common.toUtf8() + "; apt-get install -f'");
@@ -208,17 +208,18 @@ void MainWindow::loadOptions()
     // Logs
     if (system(R"(grep -q '\-exec sh \-c "echo' )" + file_name.toUtf8()) == 0) // all logs
         ui->radioAllLogs->setChecked(true);
-    else if (system("grep -q '\\-type f \\-delete' " + file_name.toUtf8()) == 0) // old logs
+    else if (system(R"(grep -q '\-type f \-delete' )" + file_name.toUtf8()) == 0) // old logs
         ui->radioOldLogs->setChecked(true);
     else
         ui->radioNoCleanLogs->setChecked(true);
 
     // Logs older than...
-    QString ctime = getCmdOut("grep 'find /var/log' " + file_name + "| grep -Eo '\\-ctime \\+[0-9]{1,3}' | cut -f2 -d' '");
+    QString ctime = getCmdOut("grep 'find /var/log' " + file_name +
+                              R"( | grep -Eo '\-ctime \+[0-9]{1,3}' | cut -f2 -d' ')");
     ui->spinBoxLogs->setValue(ctime.toInt());
 
     // Trash
-    if (system("grep -q '/home/\\*/.local/share/Trash' " + file_name.toUtf8()) == 0)  // all user trash
+    if (system(R"(grep -q '/home/\*/.local/share/Trash' )" + file_name.toUtf8()) == 0)  // all user trash
         ui->radioAllUsers->setChecked(true);
     else if (system("grep -q '/.local/share/Trash' " + file_name.toUtf8()) == 0)  // selected user trash
         ui->radioSelectedUser->setChecked(true);
@@ -226,7 +227,8 @@ void MainWindow::loadOptions()
         ui->radioNoCleanTrash->setChecked(true);
 
     // Trash older than...
-    ctime = getCmdOut("grep 'find /home/' " + file_name + "| grep -Eo '\\-ctime \\+[0-9]{1,3}' | cut -f2 -d' '");
+    ctime = getCmdOut("grep 'find /home/' " + file_name +
+                      R"( | grep -Eo '\-ctime \+[0-9]{1,3}' | cut -f2 -d' ')");
     ui->spinBoxTrash->setValue(ctime.toInt());
 }
 
@@ -485,11 +487,11 @@ void MainWindow::pushKernel_clicked()
     auto current_kernel = getCmdOut(QStringLiteral("uname -r"));
     QString similar_kernels;
     QString other_kernels;
-    if (system("dpkg -l linux-image\\* | grep ^ii") == 0) {
-        similar_kernels = getCmdOut("dpkg -l linux-image-[0-9]\\*.[0-9]\\* | grep ^ii | "
-"grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' | grep -v --line-regex linux-image-$(uname -r)");
-        other_kernels = getCmdOut("dpkg -l linux-image-[0-9]\\*.[0-9]\\* | grep ^ii | "
-"grep -v $(uname -r | cut -f1 -d'-') | cut -f3 -d' '");
+    if (system(R"(dpkg -l linux-image\* | grep ^ii)") == 0) {
+        similar_kernels = getCmdOut(QStringLiteral(R"(dpkg -l linux-image-[0-9]\*.[0-9]\* | grep ^ii |
+    grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' | grep -v --line-regex linux-image-$(uname -r))"));
+        other_kernels = getCmdOut(QStringLiteral(R"(dpkg -l linux-image-[0-9]\*.[0-9]\* | grep ^ii |
+    grep -v $(uname -r | cut -f1 -d'-') | cut -f3 -d' ')"));
     }
     auto *dialog = new QDialog(this);
     dialog->setWindowTitle(this->windowTitle());
