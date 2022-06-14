@@ -1,0 +1,48 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Tue, 14 Jun 2022 10:41:43 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 22.6.01
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (22.6.01) mx; urgency=medium
+ .
+   * Preserve user theme when launching program as root
+   * Make sure HOME and XDG_RUNTIME_DIR are correct when launching as root
+   * Fix URL for help page
+Checksums-Sha1:
+ 7abf4fde0c38852971f9db9a1ed32c4d1cbab445 1123 mx-cleanup_22.6.01.dsc
+ fd9c994bb2667d2001d9e31e3e9b69d016aaa67b 107724 mx-cleanup_22.6.01.tar.xz
+ 0dff19862edc93006a9704d705c5651950ab5e89 10746 mx-cleanup_22.6.01_amd64.buildinfo
+ e65b873759ad8d3218d5f230780f081d642cd4ea 124460 mx-cleanup_22.6.01_amd64.deb
+Checksums-Sha256:
+ e09ecc0cc99a11dfbf15558fea73f42dfdb2332ab7ebef7325e96975c9e75266 1123 mx-cleanup_22.6.01.dsc
+ 2971ce97c2227130e07f396b1b4d31ca47cb038541728f344583742fc87ea49a 107724 mx-cleanup_22.6.01.tar.xz
+ e1e423672cc4842eb4db9e047d9396f321e1945ae269007d2938cbed33978682 10746 mx-cleanup_22.6.01_amd64.buildinfo
+ 13a02b1762a7c39c0a1d7862a86bcdd1eb61de70c149e502bed10cd8c5b12e8f 124460 mx-cleanup_22.6.01_amd64.deb
+Files:
+ 475a147466c004e48b2557e5563ec31d 1123 admin optional mx-cleanup_22.6.01.dsc
+ aba413a46ec4db7e981df618a16d0cbb 107724 admin optional mx-cleanup_22.6.01.tar.xz
+ 19a2e9678e2cdea37192c8243c2def5c 10746 admin optional mx-cleanup_22.6.01_amd64.buildinfo
+ 293873549ce72b847b249a41161b0145 124460 admin optional mx-cleanup_22.6.01_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmKooPITHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumC+xB/kBcLdtW1XwQjmDORCTGDdd8cxT+Uct
+tTuLTBmu1UysWI6HywvBPYbChosKy42eGqzw/Bro5YYn250yjpCy73SEuSZb4Da6
+Y+u90zjtAjgHGtvchz9PcxVxUfspHaq72bTj6WlC/685s1ci+GBij3/bt4HQ/ZEj
+41Re1LJj3w5IVDnxer7//1Ml9CJRlXDaN8slaVDGCsuNPkq9N/UFGTTp5xRua0qw
+XRSuOanLndidYFYs06AL4u7K5iXIWMHhDS6SCvTmvUmkaFyZ1RLnX0yMkhytG/AC
+IJyQ5aWjSpSA6DptqxfplDSYI5FcVDdQ6Mn0HR28YA6vhpglFMQclQF4
+=SZDN
+-----END PGP SIGNATURE-----
