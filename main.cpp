@@ -32,9 +32,13 @@
 #include <unistd.h>
 #include <version.h>
 
+QString starting_home = qEnvironmentVariable("HOME");
+
 int main(int argc, char *argv[])
 {
+    qputenv("XDG_RUNTIME_DIR", "/run/user/0");
     QApplication app(argc, argv);
+    qputenv("HOME", "/root");
     app.setApplicationVersion(VERSION);
     app.setOrganizationName(QStringLiteral("MX-Linux"));
 
@@ -70,6 +74,6 @@ int main(int argc, char *argv[])
         w.show();
         return app.exec();
     } else {
-        QProcess::startDetached(QStringLiteral("su-to-root"), {"-X", "-c", QApplication::applicationFilePath()});
+        QProcess::startDetached(QStringLiteral("/usr/bin/mx-cleanup-launcher"), {});
     }
 }

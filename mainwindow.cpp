@@ -29,6 +29,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+extern const QString starting_home;
+
 MainWindow::MainWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MainWindow)
@@ -391,7 +393,8 @@ void MainWindow::pushApply_clicked()
 void MainWindow::pushAbout_clicked()
 {
     QMessageBox msgBox(QMessageBox::NoIcon,
-                       tr("About") + tr("MX Cleanup"), R"(<p align="center"><b><h2>MX Cleanup</h2></b></p><p align="center">)" +
+                       tr("About") + tr("MX Cleanup"),
+                       R"(<p align="center"><b><h2>MX Cleanup</h2></b></p><p align="center">)" +
                        tr("Version: ") + qApp->applicationVersion() + "</p><p align=\"center\"><h3>" +
                        tr("Quick and safe removal of old files") +
                        R"(</h3></p><p align="center"><a href="http://mxlinux.org">http://mxlinux.org</a><br /></p><p align="center">)" +
@@ -405,11 +408,14 @@ void MainWindow::pushAbout_clicked()
 
     if (msgBox.clickedButton() == btnLicense) {
         QString url = QStringLiteral("file:///usr/share/doc/mx-cleanup/license.html");
-        if (system("command -v mx-viewer >/dev/null") == 0)  // use mx-viewer if available
+        if (system("command -v mx-viewer >/dev/null") == 0) { // use mx-viewer if available
+            qputenv("HOME", starting_home.toUtf8());
             system("mx-viewer " + url.toUtf8() + " \"" + tr("License").toUtf8() + "\"&");
-        else
+            qputenv("HOME", "/root");
+        } else {
             system("runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " +
                    user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
+        }
     } else if (msgBox.clickedButton() == btnChangelog) {
         auto *changelog = new QDialog(this);
         changelog->setWindowTitle(tr("Changelog"));
@@ -435,12 +441,14 @@ void MainWindow::pushAbout_clicked()
 void MainWindow::pushHelp_clicked()
 {
     const QString url = QStringLiteral("/usr/share/doc/mx-cleanup/help/mx-cleanup.html");
-
-    if (system("command -v mx-viewer >/dev/null") == 0)
+    if (system("command -v mx-viewer >/dev/null") == 0) {
+        qputenv("HOME", starting_home.toUtf8());
         system("mx-viewer " + url.toUtf8() + " \"" + tr("MX Cleanup").toUtf8() + "\"&");
-    else
+        qputenv("HOME", "/root");
+    } else {
         system("runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " +
                user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
+    }
 }
 
 void MainWindow::pushUsageAnalyzer_clicked()
