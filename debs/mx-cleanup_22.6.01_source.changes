@@ -1,0 +1,27 @@
+Format: 1.8
+Date: Tue, 14 Jun 2022 10:41:43 -0400
+Source: mx-cleanup
+Architecture: source
+Version: 22.6.01
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Changes:
+ mx-cleanup (22.6.01) mx; urgency=medium
+ .
+   * Preserve user theme when launching program as root
+   * Make sure HOME and XDG_RUNTIME_DIR are correct when launching as root
+   * Fix URL for help page
+Checksums-Sha1:
+ c5a6a1c49ec1ee11a03598a30e0a7a794f7cf265 561 mx-cleanup_22.6.01.dsc
+ 1f4a9cbebb23eb3322d56e92e0324d6e365ac7a6 107732 mx-cleanup_22.6.01.tar.xz
+ 2671a7afb160d7180d7129e8079a4f3e4cbd849b 10042 mx-cleanup_22.6.01_i386.buildinfo
+Checksums-Sha256:
+ fa05fbbb2701e1df3e95669d22fd75ba556b9f4f8ec2905f714de757a3e0c67c 561 mx-cleanup_22.6.01.dsc
+ b571de303c73583d0fc64a0abdfcf0d808d59de4f692b60448287bcbc6daa9cf 107732 mx-cleanup_22.6.01.tar.xz
+ ad790b4ee2c3d3f572a64d444a2de35ab799537d5a594cd1dbb08a8bfe2655af 10042 mx-cleanup_22.6.01_i386.buildinfo
+Files:
+ aaffac90e387a3c61c838cb07b470b20 561 admin optional mx-cleanup_22.6.01.dsc
+ a2ffa66c439b4198e3dd2ec822770f2a 107732 admin optional mx-cleanup_22.6.01.tar.xz
+ 3c18dddf95bda2ac15141cf46278b0be 10042 admin optional mx-cleanup_22.6.01_i386.buildinfo
