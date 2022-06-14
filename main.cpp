@@ -51,15 +51,15 @@ int main(int argc, char *argv[])
     app.setWindowIcon(QIcon::fromTheme(app.applicationName()));
 
     QTranslator qtTran;
-    if (qtTran.load(QLocale::system(), QStringLiteral("qt_"), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+    if (qtTran.load(QLocale(), QStringLiteral("qt"), QStringLiteral("_"), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
         app.installTranslator(&qtTran);
 
     QTranslator qtBaseTran;
-    if (qtBaseTran.load("qtbase_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+    if (qtBaseTran.load("qtbase_" + QLocale().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
         app.installTranslator(&qtBaseTran);
 
     QTranslator appTran;
-    if (appTran.load(app.applicationName() + "_" + QLocale::system().name(), "/usr/share/" + app.applicationName() + "/locale"))
+    if (appTran.load(app.applicationName() + "_" + QLocale().name(), "/usr/share/" + app.applicationName() + "/locale"))
         app.installTranslator(&appTran);
 
     // root guard
