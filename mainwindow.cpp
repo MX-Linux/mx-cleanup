@@ -440,7 +440,7 @@ void MainWindow::pushAbout_clicked()
 // Help button clicked
 void MainWindow::pushHelp_clicked()
 {
-    const QString url = QStringLiteral("/usr/share/doc/mx-cleanup/help/mx-cleanup.html");
+    const QString url = QStringLiteral("/usr/share/doc/mx-cleanup/mx-cleanup.html");
     if (system("command -v mx-viewer >/dev/null") == 0) {
         qputenv("HOME", starting_home.toUtf8());
         system("mx-viewer " + url.toUtf8() + " \"" + tr("MX Cleanup").toUtf8() + "\"&");
