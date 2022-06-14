@@ -17,11 +17,11 @@ Changes:
    * Make sure HOME and XDG_RUNTIME_DIR are correct when launching as root
    * Fix URL for help page
 Checksums-Sha1:
- 2671a7afb160d7180d7129e8079a4f3e4cbd849b 10042 mx-cleanup_22.6.01_i386.buildinfo
- e99d028acd8ad07e580351fcc36f102bdcf0be03 126268 mx-cleanup_22.6.01_i386.deb
+ c94114b479c95bbdae344c5dd02076d43d1a6bb6 10042 mx-cleanup_22.6.01_i386.buildinfo
+ 69da6abd23b3fcc0c97edf723a32972c8c19378e 126340 mx-cleanup_22.6.01_i386.deb
 Checksums-Sha256:
- ad790b4ee2c3d3f572a64d444a2de35ab799537d5a594cd1dbb08a8bfe2655af 10042 mx-cleanup_22.6.01_i386.buildinfo
- 28d3e6fa6d3654cc97ab8d029618dde36641cf12182a8a455b9c47ab902280bf 126268 mx-cleanup_22.6.01_i386.deb
+ 4779ac8783c79a73f7e2c3db307d23fd620d60ed87309e4d6251a2ece8bdf0cc 10042 mx-cleanup_22.6.01_i386.buildinfo
+ 0075d79db4fa4eede1053588ae6d8eb9769e75eaa8e7240364a8f4b70e12bfc6 126340 mx-cleanup_22.6.01_i386.deb
 Files:
- 3c18dddf95bda2ac15141cf46278b0be 10042 admin optional mx-cleanup_22.6.01_i386.buildinfo
- f1c3a52294188b71719ca38b65b1455c 126268 admin optional mx-cleanup_22.6.01_i386.deb
+ b563c47108b3dd7850247b56e13998b0 10042 admin optional mx-cleanup_22.6.01_i386.buildinfo
+ 5180b5e82eec9e3c806d9a02e1264fa9 126340 admin optional mx-cleanup_22.6.01_i386.deb
