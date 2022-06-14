@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+  "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+  "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<!-- 
+	/usr/share/polkit-1/actions/org.mxlinux.pkexec.mx-cleanup-launcher.policy
+!-->
+ <policyconfig>
+  <vendor>MX Linux</vendor>
+  <vendor_url>https://mxlinux.org</vendor_url>
+  <action id="org.mxlinux.pkexec.mx-cleanup-launcher">
+  <message>MX Cleanup:  Authentication is required to proceed</message>
+    <description>Run MX Cleanup</description>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/mx-cleanup-launcher</annotate>
+    <annotate key="org.freedesktop.policykit.exec.argv1">--qtenv</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+  </action>
+</policyconfig>
