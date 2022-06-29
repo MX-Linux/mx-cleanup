@@ -27,12 +27,11 @@
 #include <QLocale>
 #include <QProcess>
 #include <QTranslator>
-
 #include "mainwindow.h"
 #include <unistd.h>
 #include <version.h>
 
-QString starting_home = qEnvironmentVariable("HOME");
+extern const QString starting_home = qEnvironmentVariable("HOME");
 
 int main(int argc, char *argv[])
 {
