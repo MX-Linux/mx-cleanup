@@ -103,6 +103,8 @@ void MainWindow::loadSchedule()
         ui->radioWeekly->setChecked(true);
     else if (QFile::exists(QStringLiteral("/etc/cron.monthly/mx-cleanup")))
         ui->radioMonthly->setChecked(true);
+    else if (QFile::exists(QStringLiteral("/etc/cron.d/mx-cleanup")))
+        ui->radioReboot->setChecked(true);
     else
         ui->radioNone->setChecked(true);
     loadOptions();
@@ -238,7 +240,16 @@ void MainWindow::loadOptions()
 // Save cleanup commands to a /etc/cron.daily|weekly|monthly/mx-cleanup script
 void MainWindow::saveSchedule(const QString &cmd_str, const QString &period)
 {
-    QFile file("/etc/cron." + period + "/mx-cleanup");
+    QFile file;
+    if (period == QLatin1String("@reboot")) {
+        file.setFileName(QStringLiteral("/usr/bin/mx-cleanup-script"));
+        QFile cronfile(QStringLiteral("/etc/cron.d/mx-cleanup"));
+        cronfile.open(QFile::WriteOnly | QFile::Truncate);
+        cronfile.write("@reboot root /usr/bin/mx-cleanup-script\n");
+        cronfile.close();
+    } else {
+        file.setFileName("/etc/cron." + period + "/mx-cleanup");
+    }
     if (!file.open(QFile::WriteOnly))
         qDebug() << "Could not open file:" << file.fileName();
     QTextStream out(&file);
@@ -248,6 +259,8 @@ void MainWindow::saveSchedule(const QString &cmd_str, const QString &period)
     out << "#\n\n";
     out << cmd_str;
     file.close();
+
+
     file.setPermissions(QFlag(0x755));
 }
 
@@ -291,9 +304,12 @@ void MainWindow::setConnections()
 {
     connect(ui->pushAbout, &QPushButton::clicked, this, &MainWindow::pushAbout_clicked);
     connect(ui->pushApply, &QPushButton::clicked, this, &MainWindow::pushApply_clicked);
+    connect(ui->pushCancel, &QPushButton::clicked, this, &MainWindow::close);
     connect(ui->pushHelp, &QPushButton::clicked, this, &MainWindow::pushHelp_clicked);
     connect(ui->pushKernel, &QPushButton::clicked, this, &MainWindow::pushKernel_clicked);
     connect(ui->pushUsageAnalyzer, &QPushButton::clicked, this, &MainWindow::pushUsageAnalyzer_clicked);
+    connect(ui->radioNoCleanLogs, &QRadioButton::toggled, ui->spinBoxLogs, &QSpinBox::setDisabled);
+    connect(ui->radioNoCleanTrash, &QRadioButton::toggled, ui->spinBoxTrash, &QSpinBox::setDisabled);
 }
 
 
@@ -364,10 +380,11 @@ void MainWindow::pushApply_clicked()
         system(trash.toUtf8());
     }
 
-    // cleaup schedule
+    // cleanup schedule
     QFile::remove(QStringLiteral("/etc/cron.daily/mx-cleanup"));
     QFile::remove(QStringLiteral("/etc/cron.weekly/mx-cleanup"));
     QFile::remove(QStringLiteral("/etc/cron.monthly/mx-cleanup"));
+    QFile::remove(QStringLiteral("/etc/cron.d/mx-cleanup"));
     // add schedule file
     if (!ui->radioNone->isChecked()) {
         QString period;
@@ -377,8 +394,10 @@ void MainWindow::pushApply_clicked()
             period = QStringLiteral("daily");
         else if (ui->radioWeekly->isChecked())
             period = QStringLiteral("weekly");
-        else
+        else if (ui->radioMonthly->isChecked())
             period = QStringLiteral("monthly");
+        else if (ui->radioReboot->isChecked())
+            period = QStringLiteral("@reboot");
         saveSchedule(cmd_str, period);
     }
 
@@ -389,7 +408,6 @@ void MainWindow::pushApply_clicked()
                              tr("%1 MiB were freed").arg((total / 1000)));
 }
 
-// About button clicked
 void MainWindow::pushAbout_clicked()
 {
     QMessageBox msgBox(QMessageBox::NoIcon,
@@ -437,7 +455,6 @@ void MainWindow::pushAbout_clicked()
     }
 }
 
-// Help button clicked
 void MainWindow::pushHelp_clicked()
 {
     const QString url = QStringLiteral("/usr/share/doc/mx-cleanup/mx-cleanup.html");
@@ -475,7 +492,6 @@ void MainWindow::pushUsageAnalyzer_clicked()
     }
 }
 
-// util function for getting bash command output
 QString MainWindow::getCmdOut(const QString &cmd)
 {
     qDebug().noquote() << cmd;
