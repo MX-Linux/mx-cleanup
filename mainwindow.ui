@@ -492,6 +492,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QRadioButton" name="radioReboot">
+        <property name="text">
+         <string>At reboot</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QRadioButton" name="radioDaily">
         <property name="text">
          <string>Daily</string>
@@ -731,9 +738,11 @@
   <tabstop>radioNoCleanTrash</tabstop>
   <tabstop>spinBoxTrash</tabstop>
   <tabstop>radioNone</tabstop>
+  <tabstop>radioReboot</tabstop>
   <tabstop>radioDaily</tabstop>
   <tabstop>radioWeekly</tabstop>
   <tabstop>radioMonthly</tabstop>
+  <tabstop>pushKernel</tabstop>
   <tabstop>pushUsageAnalyzer</tabstop>
   <tabstop>pushAbout</tabstop>
   <tabstop>pushHelp</tabstop>
@@ -743,59 +752,10 @@
  <resources>
   <include location="images.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>radioNoCleanLogs</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinBoxLogs</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>81</x>
-     <y>324</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>187</x>
-     <y>357</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioNoCleanTrash</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinBoxTrash</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>400</x>
-     <y>324</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>448</x>
-     <y>357</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushCancel</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>480</x>
-     <y>574</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>266</x>
-     <y>300</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <buttongroups>
+  <buttongroup name="buttonGroupTrash"/>
   <buttongroup name="buttonGroupLogs"/>
   <buttongroup name="buttonGroupApt"/>
-  <buttongroup name="buttonGroupTrash"/>
  </buttongroups>
 </ui>
