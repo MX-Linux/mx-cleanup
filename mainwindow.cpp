@@ -355,28 +355,30 @@ void MainWindow::pushApply_clicked()
     system(apt.toUtf8());
     total -= getCmdOut(QStringLiteral("du -s /var/cache/apt/archives/ | cut -f1")).toInt();
 
-    QString ctime = ui->spinBoxLogs->value() == 0 ? QStringLiteral(" ") : " -ctime +" +
-                                                    QString::number(ui->spinBoxLogs->value()) + " ";
+    QString time = ui->spinBoxLogs->value() == 0 ? QStringLiteral(" ")
+                                                  : " -ctime +" + QString::number(ui->spinBoxLogs->value()) +
+                                                    " -atime +" + QString::number(ui->spinBoxLogs->value()) + " ";
     if (ui->radioOldLogs->isChecked()) {
         total += getCmdOut(R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.1" \) -type f)" +
-                           ctime + "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
+                           time + "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
         logs = R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.1" \))" +
-                ctime + "-type f -delete 2>/dev/null";
+                time + "-type f -delete 2>/dev/null";
         system(logs.toUtf8());
     } else if (ui->radioAllLogs->isChecked()){
-        total += getCmdOut("find /var/log -type f" + ctime + "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
-        logs = "find /var/log -type f" + ctime + R"(-exec sh -c "echo > '{}'" \;)";  // empty the logs
+        total += getCmdOut("find /var/log -type f" + time + "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
+        logs = "find /var/log -type f" + time + R"(-exec sh -c "echo > '{}'" \;)";  // empty the logs
         system(logs.toUtf8());
     }
 
     if (ui->radioSelectedUser->isChecked() || ui->radioAllUsers->isChecked()) {
         QString user = ui->radioAllUsers->isChecked() ? QStringLiteral("*")
                                                       : ui->comboUserClean->currentText();
-        QString ctime = ui->spinBoxTrash->value() == 0 ? QStringLiteral(" ")
-                                                       : " -ctime +" + QString::number(ui->spinBoxTrash->value()) + " ";
-        total += getCmdOut("find /home/" + user + "/.local/share/Trash -type f" + ctime +
+        QString time = ui->spinBoxTrash->value() == 0 ? QStringLiteral(" ")
+                                                       : " -ctime +" + QString::number(ui->spinBoxTrash->value()) +
+                                                         " -atime +" + QString::number(ui->spinBoxTrash->value()) + " ";
+        total += getCmdOut("find /home/" + user + "/.local/share/Trash -type f" + time +
                            "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
-        trash = "find /home/" + user + "/.local/share/Trash -type f" + ctime + "-delete";
+        trash = "find /home/" + user + "/.local/share/Trash -type f" + time + "-delete";
         system(trash.toUtf8());
     }
 
