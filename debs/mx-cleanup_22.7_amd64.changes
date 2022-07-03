@@ -1,0 +1,46 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Sat, 02 Jul 2022 20:30:36 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 22.7
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (22.7) mx; urgency=medium
+ .
+   * Add option to run cleanup script at @reboot
+Checksums-Sha1:
+ 3da8ad81dbe3217ed14489919f90c616ce707e93 1111 mx-cleanup_22.7.dsc
+ 1cbd4cbd3e740cf96432ebeeb265fe5abc763081 108072 mx-cleanup_22.7.tar.xz
+ d70fc78b34d974efa8979abf5169277dbb12639c 10722 mx-cleanup_22.7_amd64.buildinfo
+ 1d126652391605eb067263d3fd97b0571ad07782 124948 mx-cleanup_22.7_amd64.deb
+Checksums-Sha256:
+ b292808e6aa89b12789bde51c12b39725385f2a723764e77a40d13ae5e727ac3 1111 mx-cleanup_22.7.dsc
+ b468543015402249fb2fdc3fabe3432a5c0ac9c338e10a03a77ea4477d7462af 108072 mx-cleanup_22.7.tar.xz
+ ac401f4721bb0ee9b5d59f2992f33eefc758c17ced4bf3b18908a9cc526a5311 10722 mx-cleanup_22.7_amd64.buildinfo
+ 95b69cc25dc62f21cc75775c34c96e1baa3a2afa4885a65b8d30373fcd33e1d8 124948 mx-cleanup_22.7_amd64.deb
+Files:
+ 1b5c435bd5cd441ffbbf5259b82def40 1111 admin optional mx-cleanup_22.7.dsc
+ 47c12b08c80d241d29c929eee5a20735 108072 admin optional mx-cleanup_22.7.tar.xz
+ d5ba43a48b6faa041caa8c57c7bfda84 10722 admin optional mx-cleanup_22.7_amd64.buildinfo
+ ca0fa60c8558e83769aabb4375a04381 124948 admin optional mx-cleanup_22.7_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmLA9yYTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumBoOB/9TpCFebt+kCqCtOxuLeWvUqotRHe/s
+wGFi9mg7WTRuvDHgX+Wy/XbqHnSLgdJ6ypJtA3pqccY4Y0iIbmGGoRfCKdtESiUl
+BL6QqwtdrPrsyrCNB98qXv4+HFnfwRzjzGCrYfulcaNaG9fuaLQli22xtMKzN+Z/
+QKSGSY5QJmx+V9A0/2T6WGIavjMuopvGs948q24vna5ahsWgKy0quKQ/G8ewsQij
+G2613N3NBY1qj6TbarZIKM+SGm9LQtCEyqD/MrpMDimdbiuHvb1v+Lygbaj0Uvkk
+/Sqo/t8P7/DIr9U0hs1H3/i6JSIdfqxPRi1kqPq6PFSRNE9cuBVTCgZu
+=4Ypm
+-----END PGP SIGNATURE-----

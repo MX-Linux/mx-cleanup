@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Sat, 02 Jul 2022 20:30:36 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: i386
+Version: 22.7
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (22.7) mx; urgency=medium
+ .
+   * Add option to run cleanup script at @reboot
+Checksums-Sha1:
+ b475971e90eb54ec1ef0507ad47303ac17b061c2 10027 mx-cleanup_22.7_i386.buildinfo
+ f9175e97fd5ebe9209997e4b8108bc8a8da6a75f 126636 mx-cleanup_22.7_i386.deb
+Checksums-Sha256:
+ 2d0cae9ab2802e78c5ebf787214190bccc2bb25466344320f4a633f3f82fbdee 10027 mx-cleanup_22.7_i386.buildinfo
+ 3efd718cada983df13b385c2ae9161913408e50b12c93b4becebb3838f7b2e98 126636 mx-cleanup_22.7_i386.deb
+Files:
+ 88c81c27165a6246f56c5b40a8641b05 10027 admin optional mx-cleanup_22.7_i386.buildinfo
+ 223e5da8f9266daf916ec061709042a9 126636 admin optional mx-cleanup_22.7_i386.deb
