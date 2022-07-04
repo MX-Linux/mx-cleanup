@@ -1,0 +1,47 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Mon, 04 Jul 2022 11:17:52 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 22.7.01
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (22.7.01) mx; urgency=medium
+ .
+   * Add safer option to clean ~/.cache
+   * Minor pkexec/sudo environment parameter adjustment
+Checksums-Sha1:
+ 6ad36d2bd73c116fb038f626f6b3399318cc647b 1123 mx-cleanup_22.7.01.dsc
+ ab5f76c82fa74583fe216be5ac4eff1ab64f6175 108348 mx-cleanup_22.7.01.tar.xz
+ a9543b0c8a942b9f82e64454711effa95f0bf934 10746 mx-cleanup_22.7.01_amd64.buildinfo
+ 6762dca318c735b278c3e62faafc26743180d0f6 125812 mx-cleanup_22.7.01_amd64.deb
+Checksums-Sha256:
+ 561cc09c774ac6817588ebf93af8d1ee16377e260f74ccb9271e226eb9bca3e0 1123 mx-cleanup_22.7.01.dsc
+ 965fe73eae04875e34a1efe077ab11627fcb22c291f5b0ae4413e13040d205a5 108348 mx-cleanup_22.7.01.tar.xz
+ 1fe379fa068af9a62c0d0bf5bd51a8dcee2527ca0cadba0ef936bd2b228e4b80 10746 mx-cleanup_22.7.01_amd64.buildinfo
+ 9d82b4c58e0eeb983e8afa9d5a8acdf33e7fc910dc7552d16a59ffa6f1d07146 125812 mx-cleanup_22.7.01_amd64.deb
+Files:
+ 73b22e455396c9c4b5e217d15ed29d35 1123 admin optional mx-cleanup_22.7.01.dsc
+ 33599cc95c98803ef799f3d6c9a5ca51 108348 admin optional mx-cleanup_22.7.01.tar.xz
+ 967e2438e7797641698aa39ae8d73e63 10746 admin optional mx-cleanup_22.7.01_amd64.buildinfo
+ 3d48195d34d3d540567c889993863dd4 125812 admin optional mx-cleanup_22.7.01_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmLDBQUTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumHRkB/4+dHmmCTf/qhrJzt6BCnER7SdIEnMG
+hqxI4y1rAkK2M60KYGNUtNA5c3JNDxvl+gXec7iPaSBIxgPGKyUmNQeO1vDM+a7d
+xucV1oUf7Ck4FvBSrUqa7H/pQBUyTBadKA6n5pWrsIIuJxYio75hEGuv2/WUE8/D
+jLDWDRjZikUtgVA8YHmx53qEJThR9mrHuY/o2vh9klh0PjKMR3UoAxDpu4coe51L
+WQ7PV+w5exIGEwmSIuMax9Ber2gOErYu1tY2gSdhJFZ+DCklmZNFh5ohVncM/7mL
+hGXKA+Id21quSVy5oGbyDW2m3DTnXbrJ8t29Nu4DWauM01HTZHcE5z7S
+=OWED
+-----END PGP SIGNATURE-----
