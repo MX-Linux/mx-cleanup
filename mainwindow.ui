@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>533</width>
-    <height>622</height>
+    <width>504</width>
+    <height>663</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,8 +25,8 @@
      <property name="title">
       <string>Clean Folders</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="1" column="0" colspan="4">
        <widget class="QCheckBox" name="checkThumbs">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -42,7 +42,36 @@
         </property>
        </widget>
       </item>
-      <item>
+      <item row="0" column="0">
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::MinimumExpanding</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>10</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="7" column="2">
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="3" column="0" colspan="4">
        <widget class="QCheckBox" name="checkCache">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -58,15 +87,45 @@
         </property>
        </widget>
       </item>
-      <item>
-       <spacer name="verticalSpacer_2">
+      <item row="5" column="1">
+       <widget class="QRadioButton" name="radioAllCache">
+        <property name="text">
+         <string>All (potentially dangerous)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QRadioButton" name="radioSaferCache">
+        <property name="text">
+         <string>Not accessed today (safer)</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" colspan="2">
+       <spacer name="horizontalSpacer_8">
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Horizontal</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>20</width>
-          <height>40</height>
+          <width>40</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="3">
+       <spacer name="horizontalSpacer_7">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>0</height>
          </size>
         </property>
        </spacer>
@@ -726,6 +785,8 @@
   <tabstop>comboUserClean</tabstop>
   <tabstop>checkThumbs</tabstop>
   <tabstop>checkCache</tabstop>
+  <tabstop>radioSaferCache</tabstop>
+  <tabstop>radioAllCache</tabstop>
   <tabstop>radioAutoClean</tabstop>
   <tabstop>radioClean</tabstop>
   <tabstop>radioNoCleanApt</tabstop>
@@ -754,8 +815,8 @@
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroupTrash"/>
-  <buttongroup name="buttonGroupLogs"/>
   <buttongroup name="buttonGroupApt"/>
+  <buttongroup name="buttonGroupLogs"/>
+  <buttongroup name="buttonGroupTrash"/>
  </buttongroups>
 </ui>
