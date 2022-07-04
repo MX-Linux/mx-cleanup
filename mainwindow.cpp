@@ -185,22 +185,35 @@ void MainWindow::removeKernelPackages(const QStringList &list)
 void MainWindow::loadOptions()
 {
     QString period;
+    QString file_name = QStringLiteral("/usr/bin/mx-cleanup-script");
     if (ui->radioDaily->isChecked()) {
         period = QStringLiteral("daily");
     } else if (ui->radioWeekly->isChecked()) {
         period = QStringLiteral("weekly");
     } else if (ui->radioMonthly->isChecked()) {
         period = QStringLiteral("monthly");
+    } else if (ui->radioReboot->isChecked()) {
+        period = QStringLiteral("reboot");
     } else {
         loadSettings();
         return;
     }
 
-    QString file_name = "/etc/cron." + period + "/mx-cleanup";
+    if (period != QLatin1String("reboot"))
+        file_name = "/etc/cron." + period + "/mx-cleanup";
 
     // Folders
-    ui->checkThumbs->setChecked(system("grep -q '.thumbnails' " + file_name.toUtf8()) == 0);
-    ui->checkCache->setChecked(system("grep -q '.cache' " + file_name.toUtf8()) == 0);
+    ui->checkThumbs->setChecked(system(R"(grep -q '\.thumbnails' )" + file_name.toUtf8()) == 0);
+    if (system(R"(grep -q '\.cache' )" + file_name.toUtf8()) == 0) {
+        ui->checkCache->setChecked(true);
+        if (system("grep -q 'rm.*cache' " + file_name.toUtf8()) == 0)
+            ui->radioAllCache->setChecked(true);
+        else
+            ui->radioSaferCache->setChecked(true);
+    } else {
+        ui->checkCache->setChecked(false);
+    }
+
     // APT
     if (system("grep -q 'apt-get autoclean' " + file_name.toUtf8()) == 0)  // detect autoclean
         ui->radioAutoClean->setChecked(true);
@@ -331,10 +344,15 @@ void MainWindow::pushApply_clicked()
 //        system("rm -r /tmp/* 2>/dev/null");
 //    }
 
-    if (ui->checkCache->isChecked()) {
+    if (ui->checkCache->isChecked() && ui->radioAllCache->isChecked()) {
         total += getCmdOut("du -c /home/" + ui->comboUserClean->currentText().toUtf8() +
                            "/.cache/* | tail -1 | cut -f1").toInt();
         cache = "rm -r /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/* 2>/dev/null";
+        system(cache.toUtf8());
+    } else if (ui->checkCache->isChecked() && ui->radioSaferCache->isChecked()) {
+        total += getCmdOut("find /home/" + ui->comboUserClean->currentText().toUtf8() +
+                           "/.cache/ -atime +1 -exec du -sc '{}' + | tail -1 | cut -f1").toInt();
+        cache = "find /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/ -atime +1 -delete";
         system(cache.toUtf8());
     }
 
