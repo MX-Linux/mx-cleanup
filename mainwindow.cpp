@@ -533,7 +533,7 @@ void MainWindow::pushKernel_clicked()
     QString other_kernels;
     if (system(R"(dpkg -l linux-image\* | grep ^ii)") == 0) {
         similar_kernels = getCmdOut(QStringLiteral(R"(dpkg -l linux-image-[0-9]\*.[0-9]\* | grep ^ii |
-    grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' | grep -v --line-regex linux-image-$(uname -r))"));
+    grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' | grep -v --extended-regexp linux-image-$(uname -r)'(-unsigned)?$')"));
         other_kernels = getCmdOut(QStringLiteral(R"(dpkg -l linux-image-[0-9]\*.[0-9]\* | grep ^ii |
     grep -v $(uname -r | cut -f1 -d'-') | cut -f3 -d' ')"));
     }
