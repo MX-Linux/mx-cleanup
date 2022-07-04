@@ -35,9 +35,13 @@ extern const QString starting_home = qEnvironmentVariable("HOME");
 
 int main(int argc, char *argv[])
 {
-    qputenv("XDG_RUNTIME_DIR", "/run/user/0");
+    if (getuid() == 0) {
+        qputenv("XDG_RUNTIME_DIR", "/run/user/0");
+        qunsetenv("SESSION_MANAGER");
+    }
     QApplication app(argc, argv);
-    qputenv("HOME", "/root");
+    if (getuid() == 0) qputenv("HOME", "/root");
+
     app.setApplicationVersion(VERSION);
     app.setOrganizationName(QStringLiteral("MX-Linux"));
 
