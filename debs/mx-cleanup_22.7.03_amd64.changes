@@ -1,0 +1,46 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Sat, 09 Jul 2022 11:26:56 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 22.7.03
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (22.7.03) mx; urgency=medium
+ .
+   * Make cache cleanup safer: search only for files in ~/.cache; use mtime in addition to atime
+Checksums-Sha1:
+ 026669af5ea992a3125d659647f4688a5f8cea88 1123 mx-cleanup_22.7.03.dsc
+ e7295c7dbda39d5fa5274934e9ec08697589c767 108636 mx-cleanup_22.7.03.tar.xz
+ 26e01c49cc91bffa96496a48e3fdfb9941d46ddb 10746 mx-cleanup_22.7.03_amd64.buildinfo
+ b4a33f906fd4b1ebe2e5e32cf7783d23e8153970 126068 mx-cleanup_22.7.03_amd64.deb
+Checksums-Sha256:
+ b5557ee2b260ebb92f874801b9b9c7b051fd83341a4f6a65a38909fc7dfc84b4 1123 mx-cleanup_22.7.03.dsc
+ c9f344563643812d5860cb0a8071a20d17e4f206773c82c9b1a963a70a731e05 108636 mx-cleanup_22.7.03.tar.xz
+ 818e6960c3d0e4a99ec70160cef60c39b24a0ce4065c439e0ada255c3d405aaa 10746 mx-cleanup_22.7.03_amd64.buildinfo
+ 40b6d10f76c463b46fdbed02fdee46414cb0f9a7e25b1a30653469e136c41254 126068 mx-cleanup_22.7.03_amd64.deb
+Files:
+ fcbde984e2ad37cbab7f0e448d2524f6 1123 admin optional mx-cleanup_22.7.03.dsc
+ 8b781ee1ec5f6b04b14c73c35f666258 108636 admin optional mx-cleanup_22.7.03.tar.xz
+ b81de8d6f30460382797374f34bba13d 10746 admin optional mx-cleanup_22.7.03_amd64.buildinfo
+ b5bf09155dbcaa997af729d96fa9bbf5 126068 admin optional mx-cleanup_22.7.03_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmLJn5wTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumJ3UB/9CQijGqiiyBM7O8Ed/k1aCnU1f74Kf
+4r9B7VUR/dlO1voohiHfipx6goE5mrVNPUvl9re4i+zl2HjaQ7TmUQMzGqpbZ2ZU
+miEMVou6PrYoW+nJVivUKnhtqk6hPoXn8HpBjNCzN190wWjlr1BjVE+Mmk2krRVi
+iRdoBgqX9qNldbfdtwOrcXJBzC2Ea652OzPrjE45rbp5w3W1BKfPAM2XjDkqPjC2
+Zhe42G2s+GO0zZLhObN97r4FyIjfIfQggHiS4KUH58jEk7bjkSCpLRYP2JspxU72
+0+O/Y+sYujtIFOdGgkR/EwHNCdtJKTTdqs8qGR1pmhht50NnCWiNaQ8T
+=77u4
+-----END PGP SIGNATURE-----
