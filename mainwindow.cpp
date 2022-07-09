@@ -351,8 +351,8 @@ void MainWindow::pushApply_clicked()
         system(cache.toUtf8());
     } else if (ui->checkCache->isChecked() && ui->radioSaferCache->isChecked()) {
         total += getCmdOut("find /home/" + ui->comboUserClean->currentText().toUtf8() +
-                           "/.cache/ -atime +1 -exec du -sc '{}' + | tail -1 | cut -f1").toInt();
-        cache = "find /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/ -atime +1 -delete";
+                           "/.cache/ -type f -atime +1 -mtime +1 -exec du -sc '{}' + | tail -1 | cut -f1").toInt();
+        cache = "find /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/ -type f -atime +1 -mtime +1 -delete";
         system(cache.toUtf8());
     }
 
