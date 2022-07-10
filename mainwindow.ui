@@ -87,17 +87,10 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
-       <widget class="QRadioButton" name="radioAllCache">
-        <property name="text">
-         <string>All (potentially dangerous)</string>
-        </property>
-       </widget>
-      </item>
       <item row="4" column="1">
        <widget class="QRadioButton" name="radioSaferCache">
         <property name="text">
-         <string>Not accessed today (safer)</string>
+         <string>Not accessed for</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -129,6 +122,26 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item row="4" column="2">
+       <widget class="QSpinBox" name="spinCache">
+        <property name="suffix">
+         <string> days</string>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="value">
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1" colspan="2">
+       <widget class="QRadioButton" name="radioAllCache">
+        <property name="text">
+         <string>All (potentially dangerous)</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -787,6 +800,7 @@
   <tabstop>checkCache</tabstop>
   <tabstop>radioSaferCache</tabstop>
   <tabstop>radioAllCache</tabstop>
+  <tabstop>spinCache</tabstop>
   <tabstop>radioAutoClean</tabstop>
   <tabstop>radioClean</tabstop>
   <tabstop>radioNoCleanApt</tabstop>
@@ -815,8 +829,8 @@
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroupApt"/>
-  <buttongroup name="buttonGroupLogs"/>
   <buttongroup name="buttonGroupTrash"/>
+  <buttongroup name="buttonGroupLogs"/>
+  <buttongroup name="buttonGroupApt"/>
  </buttongroups>
 </ui>
