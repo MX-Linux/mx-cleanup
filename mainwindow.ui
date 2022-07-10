@@ -90,7 +90,7 @@
       <item row="4" column="1">
        <widget class="QRadioButton" name="radioSaferCache">
         <property name="text">
-         <string>Not accessed for</string>
+         <string>Not accessed for:</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -829,8 +829,8 @@
  </resources>
  <connections/>
  <buttongroups>
+  <buttongroup name="buttonGroupApt"/>
   <buttongroup name="buttonGroupTrash"/>
   <buttongroup name="buttonGroupLogs"/>
-  <buttongroup name="buttonGroupApt"/>
  </buttongroups>
 </ui>
