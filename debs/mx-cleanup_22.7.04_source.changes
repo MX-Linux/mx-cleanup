@@ -13,28 +13,28 @@ Changed-By: Adrian <adrian@mxlinux.org>
 Changes:
  mx-cleanup (22.7.04) mx; urgency=medium
  .
-   * "Add number of days option for cache cleanup: default = 2
+   * Add number of days option for cache cleanup: default = 2
 Checksums-Sha1:
- 6fe35498511408004ce2b84312dd91c436b1d2bc 1123 mx-cleanup_22.7.04.dsc
- 1569d585819727589b5daa8fc53df67d31d630cd 108876 mx-cleanup_22.7.04.tar.xz
- 6fad28d61192ea0a3ac82745ce35bdb5c936ecb3 10746 mx-cleanup_22.7.04_amd64.buildinfo
+ ae0d225ae60dbdcc4b112015cbb7245d76b5d10f 1123 mx-cleanup_22.7.04.dsc
+ 36def48428559a3131cb13a28ac0a0ca89a8fa27 108880 mx-cleanup_22.7.04.tar.xz
+ 290ac73fdb66cfab119cd371a7c58567a1f04ca9 10746 mx-cleanup_22.7.04_amd64.buildinfo
 Checksums-Sha256:
- dc746a61842c9fa605181ad3040a0b91dc7608cdae1078680ee190cfa5b78080 1123 mx-cleanup_22.7.04.dsc
- b0612dfab762749719165c8590066e3f37285e428ed0a80c3c4935673d9afb53 108876 mx-cleanup_22.7.04.tar.xz
- 67aefe58cc4fca7df263cb635d80c609d2a6b86eaa43208e12d65b7814a89e44 10746 mx-cleanup_22.7.04_amd64.buildinfo
+ d83b44947905d72607f97ab06d539e3c149368554a4215598a4685d6295d20eb 1123 mx-cleanup_22.7.04.dsc
+ eb38e4bb05f0265f1880128e90e13233718230d2561d2bcdb505a895d1991c4b 108880 mx-cleanup_22.7.04.tar.xz
+ c565329ce01ae21c3e239d10b63f0c24b85b448cab2fcf26f34680198ee5cc8b 10746 mx-cleanup_22.7.04_amd64.buildinfo
 Files:
- 3e3a1da733178ed54f79ab077f67ea0a 1123 admin optional mx-cleanup_22.7.04.dsc
- cd9126b4af99e9287927ee77626e6486 108876 admin optional mx-cleanup_22.7.04.tar.xz
- cd276c8fffd63369cb0526340a7c4b33 10746 admin optional mx-cleanup_22.7.04_amd64.buildinfo
+ df6c5eb5687edf13fa8bacf86bf7be68 1123 admin optional mx-cleanup_22.7.04.dsc
+ 4fac27a89d7397450a6138f10a3f4722 108880 admin optional mx-cleanup_22.7.04.tar.xz
+ 1dc864428769f213c8e4d54f439a1992 10746 admin optional mx-cleanup_22.7.04_amd64.buildinfo
 
 -----BEGIN PGP SIGNATURE-----
 
-iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmLLIOwTHGFkcmlhbkBt
-eGxpbnV4Lm9yZwAKCRBwk4x4BnnumLHPCACPmZgcJEjxoNvdRZDMIT3ik1CrIKz7
-GqC0KgXAQJRvalYaobwfarR+sbPRGkDEUIdJXFiKub4PiAjRyIIeNlwj6w75fBDJ
-7v/l07ktF64Wuojx2te3bi9p0NRYpON1sgBFwph6oAOiGw3HF+TDQB8Iod18x4vT
-l8DhZbeI3M6K1lAgo5NaiHIiSugMcETNGVV/nHsQaneNr6PSmDvAzkbzLj9o79U9
-XEkauQFDZu9g82TJcuK1e+IOjtVbpRIDMlc9xAf6n9Ubmdad9E3dgWvDqEQxwg1d
-qzv3YoMsazggMZRiuGMXHeDtIBmYJk+x5PnfnCLY+uWI8Ah204Yhmz63
-=lfIv
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmLLIgcTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumNYNCAC8f3LA0KpBVd3RDcpdCG+up/VlKiVO
+aTw3yt56wXFtnF/MFNzKtWtDrNN2zDRcCwd74K42hfKqU0yySVcksdOH7Z4Q0AGi
+/yE3TAwBCol3/FbtkqWVAvqAAPQl3yu77HzwaFbmgLAppafq8rQP2dx2WA6eYUsY
+X9bRFWImSlW/w/DqOpZgS10vSELuJ33Mlm88XfVf7H/nDNQp8GB1WIYbdXgokMcU
+VkXNUQZCE84d/4KT0kf/V2IO7JAKKu16Uyr4Bie26dD7jdRqSkktnQt2KhKs0qXF
+4FS02T6bnSFcKmasdeqh59V9MM5vZT04RSgkGRw7kejCHfgcGlt33tyR
+=0ddd
 -----END PGP SIGNATURE-----

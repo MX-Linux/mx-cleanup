@@ -13,13 +13,13 @@ Description:
 Changes:
  mx-cleanup (22.7.04) mx; urgency=medium
  .
-   * "Add number of days option for cache cleanup: default = 2
+   * Add number of days option for cache cleanup: default = 2
 Checksums-Sha1:
- b49ee3a305705e1a37eadf135346bd5c8cc0fa61 10042 mx-cleanup_22.7.04_i386.buildinfo
- bdf1d34584ed9782c60f12ae850ea3b8d19bc8bd 128960 mx-cleanup_22.7.04_i386.deb
+ 14a2b2588dba344437254bd256bf7c8014f39513 10042 mx-cleanup_22.7.04_i386.buildinfo
+ 1dc85dd346377fe4d749206ea183657d31d0dd1f 128904 mx-cleanup_22.7.04_i386.deb
 Checksums-Sha256:
- 655477393e8eee03d4a20f434d6e489198f21c968f16847df3f1df0cf1c612e7 10042 mx-cleanup_22.7.04_i386.buildinfo
- e88630806a2057a822c4c9dcf666452370ff42d2c29dfb73f1305da3a77449fa 128960 mx-cleanup_22.7.04_i386.deb
+ f879777903e9593bb6900febc7e51d69b8e1850dabc935dc88384566a0e4f7bc 10042 mx-cleanup_22.7.04_i386.buildinfo
+ cad7615758ad21079b10defc84b22320262510879cde2f29a0635c91bc63330e 128904 mx-cleanup_22.7.04_i386.deb
 Files:
- 3bb821a81716c075546ec9b022f4617f 10042 admin optional mx-cleanup_22.7.04_i386.buildinfo
- 7fc32a5f724c76f78bc52e02633832ca 128960 admin optional mx-cleanup_22.7.04_i386.deb
+ 5a1dc6bb1ec712e9d1474d07b0cf7f87 10042 admin optional mx-cleanup_22.7.04_i386.buildinfo
+ 7fb358fd204e3e2c39c60f95b1cbcc77 128904 admin optional mx-cleanup_22.7.04_i386.deb

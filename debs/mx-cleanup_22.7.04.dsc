@@ -12,20 +12,20 @@ Build-Depends: debhelper (>= 10), qtbase5-dev, qttools5-dev-tools
 Package-List:
  mx-cleanup deb admin optional arch=any
 Checksums-Sha1:
- 1569d585819727589b5daa8fc53df67d31d630cd 108876 mx-cleanup_22.7.04.tar.xz
+ 36def48428559a3131cb13a28ac0a0ca89a8fa27 108880 mx-cleanup_22.7.04.tar.xz
 Checksums-Sha256:
- b0612dfab762749719165c8590066e3f37285e428ed0a80c3c4935673d9afb53 108876 mx-cleanup_22.7.04.tar.xz
+ eb38e4bb05f0265f1880128e90e13233718230d2561d2bcdb505a895d1991c4b 108880 mx-cleanup_22.7.04.tar.xz
 Files:
- cd9126b4af99e9287927ee77626e6486 108876 mx-cleanup_22.7.04.tar.xz
+ 4fac27a89d7397450a6138f10a3f4722 108880 mx-cleanup_22.7.04.tar.xz
 
 -----BEGIN PGP SIGNATURE-----
 
-iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmLLIOwTHGFkcmlhbkBt
-eGxpbnV4Lm9yZwAKCRBwk4x4BnnumJzdB/9pKSHwVAiknhbJPzI2uK7GNs/44hHc
-TTHL/zoQM26eDSwPfYyaLnWeVqPLdH+y5Twq0bhi6PBCSmg+ubPXtdmr40VghYYe
-pMwpZ1QEraarLMecKTNNeWG3vcY1WxILS1AALNJgwZn0c5F8YOMmCUgiWAWFyYtb
-iQ5bfTNa/skaeZyeMdfm/Ur9P/Wk5YpG3G6LI9OQQVGTC4pjVbSgrhf/8R6a1yHz
-CSJlT66HPPykcKknkM1+cW7+5bw+VxRDGzmaot8cDLu9sdBXhIquuCv7lXbaTkU4
-KhBeVSmJ7JVB6wwufVcUyeDq3qQG8qqOsAP1SvhyPzAFFOJmrECZ9Bcc
-=pJUa
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmLLIgcTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumIEuB/9Ttc3W/x3DUC30pReHI0kqWezq+5DD
+gQbLMrFDbTJLI5V1OXYlcY2d6Ih+iEa+x5l1m82oNVe/QMYo6kpgu73zuuaPxJrr
+QttnDLB9CO2kjThuiKrhl+aoxCjZpaGtZWIbpYhgwa4tjQ7NgWyz2HZ6hl7eTIbH
+baSj7SBtexL8K0ErF1ZR9H2A/h9P2uDPZiShC5viz/akEtztlelyhWFTS1y/tPC3
+aKmLGf2VfhtGESV8t6hnliQNSLO+jnkHgwaVBCnPVrBgbhryLdYfYWQR65qg3DD3
+p3oO02x93Foe1jQIXB+gUFBGEhMI8JikPb/JLemOtiQleD6L6PQZ9ECa
+=9BZv
 -----END PGP SIGNATURE-----
