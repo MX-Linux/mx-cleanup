@@ -323,11 +323,11 @@ void MainWindow::setConnections()
     connect(ui->pushUsageAnalyzer, &QPushButton::clicked, this, &MainWindow::pushUsageAnalyzer_clicked);
     connect(ui->radioNoCleanLogs, &QRadioButton::toggled, ui->spinBoxLogs, &QSpinBox::setDisabled);
     connect(ui->radioNoCleanTrash, &QRadioButton::toggled, ui->spinBoxTrash, &QSpinBox::setDisabled);
-    connect(ui->spinCache, &QSpinBox::textChanged, this, [this]() {
+    connect(ui->spinCache, QOverload<int>::of(&QSpinBox::valueChanged), this, [this]() {
         (ui->spinCache->value() > 1) ? ui->spinCache->setSuffix(tr(" days")) :  ui->spinCache->setSuffix(tr(" day"));});
-    connect(ui->spinBoxLogs, &QSpinBox::textChanged, this, [this]() {
+    connect(ui->spinBoxLogs, QOverload<int>::of(&QSpinBox::valueChanged), this, [this]() {
         (ui->spinBoxLogs->value() > 1) ? ui->spinBoxLogs->setSuffix(tr(" days")) :  ui->spinBoxLogs->setSuffix(tr(" day"));});
-    connect(ui->spinBoxTrash, &QSpinBox::textChanged, this, [this]() {
+    connect(ui->spinBoxTrash, QOverload<int>::of(&QSpinBox::valueChanged), this, [this]() {
         (ui->spinBoxTrash->value() > 1) ? ui->spinBoxTrash->setSuffix(tr(" days")) :  ui->spinBoxTrash->setSuffix(tr(" day"));});
 }
 
