@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="lt">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="lt">
 <context>
     <name>MainWindow</name>
     <message>
@@ -19,7 +17,7 @@
     <message>
         <location filename="../mainwindow.ui" line="142"/>
         <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="191"/>
@@ -80,14 +78,14 @@
     <message>
         <location filename="../mainwindow.ui" line="354"/>
         <source>Trash older than:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="361"/>
         <location filename="../mainwindow.ui" line="498"/>
         <location filename="../mainwindow.ui" line="704"/>
         <source>Don&apos;t empty</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="129"/>
@@ -97,12 +95,12 @@
         <location filename="../mainwindow.cpp" line="329"/>
         <location filename="../mainwindow.cpp" line="331"/>
         <source> days</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <source>Not accessed for</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="390"/>
@@ -130,9 +128,44 @@
         <translation>Visi failai</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="530"/>
+        <source>Graphical Tool for Analyzing Disk Usage</source>
+        <translation>Grafinis įrankis, skirtas disko naudojimo analizavimui</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="536"/>
+        <source>Run Disk Usage Analyzer</source>
+        <translation>Paleisti disko naudojimo analizatorių</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="550"/>
+        <source>Schedule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="562"/>
+        <source>No automatic clean</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="569"/>
         <source>At reboot</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="576"/>
+        <source>Daily</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="583"/>
+        <source>Weekly</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="590"/>
+        <source>Monthly</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="619"/>
@@ -149,51 +182,6 @@
         <location filename="../mainwindow.ui" line="647"/>
         <source>Select user:</source>
         <translation>Pasirinkite naudotoją:</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="778"/>
-        <source>Kernel removal tool</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="784"/>
-        <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="530"/>
-        <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation>Grafinis įrankis, skirtas disko naudojimo analizavimui</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="536"/>
-        <source>Run Disk Usage Analyzer</source>
-        <translation>Paleisti disko naudojimo analizatorių</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="550"/>
-        <source>Schedule</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="562"/>
-        <source>No automatic clean</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="576"/>
-        <source>Daily</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="583"/>
-        <source>Weekly</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="590"/>
-        <source>Monthly</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="663"/>
@@ -213,14 +201,24 @@
     <message>
         <location filename="../mainwindow.ui" line="755"/>
         <source>Logs older than:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="778"/>
+        <source>Kernel removal tool</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="784"/>
+        <source>List and select kernels to remove</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="327"/>
         <location filename="../mainwindow.cpp" line="329"/>
         <location filename="../mainwindow.cpp" line="331"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="429"/>
@@ -282,34 +280,27 @@
     <message>
         <location filename="../mainwindow.cpp" line="546"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="549"/>
         <source>Remove selected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="554"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="555"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="557"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>QApplication</name>
-    <message>
-        <source>You must run this program as root.</source>
-        <translation type="vanished">Privalote paleisti šią programą kaip pagrindinis (root) naudotojas.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -317,17 +308,17 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../main.cpp" line="70"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Klaida</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="71"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fa">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es_ES">
 <context>
     <name>MainWindow</name>
     <message>
@@ -7,12 +7,12 @@
         <location filename="../mainwindow.cpp" line="436"/>
         <location filename="../mainwindow.cpp" line="485"/>
         <source>MX Cleanup</source>
-        <translation type="unfinished"/>
+        <translation>MX Limpiador</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="26"/>
         <source>Clean Folders</source>
-        <translation type="unfinished"/>
+        <translation>Limpiar Carpetas</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="142"/>
@@ -22,12 +22,12 @@
     <message>
         <location filename="../mainwindow.ui" line="191"/>
         <source>Display help </source>
-        <translation>نمایش راهنما</translation>
+        <translation>Mostrar la ayuda</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="194"/>
         <source>Help</source>
-        <translation>راهنما </translation>
+        <translation>Ayuda</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="201"/>
@@ -37,12 +37,12 @@
     <message>
         <location filename="../mainwindow.ui" line="230"/>
         <source>About this application</source>
-        <translation>درباره این نرم افزار</translation>
+        <translation>Acerca de esta aplicación</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="233"/>
         <source>About...</source>
-        <translation>درباره...</translation>
+        <translation>Acerca de...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="240"/>
@@ -52,13 +52,13 @@
     <message>
         <location filename="../mainwindow.ui" line="272"/>
         <source>Quit application</source>
-        <translation>خروج از برنامه</translation>
+        <translation>Salir de la aplicación</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="275"/>
         <location filename="../mainwindow.cpp" line="551"/>
         <source>Close</source>
-        <translation>بستن</translation>
+        <translation>Cerrar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="282"/>
@@ -68,24 +68,24 @@
     <message>
         <location filename="../mainwindow.ui" line="320"/>
         <source>Apply</source>
-        <translation>اعمال تغییرات</translation>
+        <translation>Aplicar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="348"/>
         <source>Empty Trash</source>
-        <translation type="unfinished"/>
+        <translation>Vaciar papelera</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="354"/>
         <source>Trash older than:</source>
-        <translation type="unfinished"/>
+        <translation>Papelera anterior a:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="361"/>
         <location filename="../mainwindow.ui" line="498"/>
         <location filename="../mainwindow.ui" line="704"/>
         <source>Don&apos;t empty</source>
-        <translation type="unfinished"/>
+        <translation>No vaciar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="129"/>
@@ -95,7 +95,7 @@
         <location filename="../mainwindow.cpp" line="329"/>
         <location filename="../mainwindow.cpp" line="331"/>
         <source> days</source>
-        <translation type="unfinished"/>
+        <translation> días</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="93"/>
@@ -105,47 +105,47 @@
     <message>
         <location filename="../mainwindow.ui" line="390"/>
         <source>All users</source>
-        <translation type="unfinished"/>
+        <translation>Todos los usuarios</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="409"/>
         <source>Selected user</source>
-        <translation type="unfinished"/>
+        <translation>Usuario seleccionado</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="457"/>
         <source>Clear APT Cache</source>
-        <translation type="unfinished"/>
+        <translation>Limpiar Cache de APT</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="469"/>
         <source>Old files</source>
-        <translation type="unfinished"/>
+        <translation>Archivos antiguos</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="488"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>Todos los archivos</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="530"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation type="unfinished"/>
+        <translation>Herramienta gráfica para Analizar el Uso del Disco</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="536"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation type="unfinished"/>
+        <translation>Ejecutar Analizador de Uso del Disco</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="550"/>
         <source>Schedule</source>
-        <translation type="unfinished"/>
+        <translation>Programar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="562"/>
         <source>No automatic clean</source>
-        <translation type="unfinished"/>
+        <translation>Sin limpieza automática</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="569"/>
@@ -155,53 +155,53 @@
     <message>
         <location filename="../mainwindow.ui" line="576"/>
         <source>Daily</source>
-        <translation type="unfinished"/>
+        <translation>Diariamente</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="583"/>
         <source>Weekly</source>
-        <translation type="unfinished"/>
+        <translation>Semanalmente</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="590"/>
         <source>Monthly</source>
-        <translation type="unfinished"/>
+        <translation>Mensualmente</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="619"/>
         <source>Free Disk Space for User</source>
-        <translation type="unfinished"/>
+        <translation>Espacio Libre en Disco para el Usuario</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="631"/>
         <location filename="../mainwindow.ui" line="644"/>
         <source>Select user to repair</source>
-        <translation>کاربر مورد نظر برای تعمیر را انتخاب کنید</translation>
+        <translation>Seleccione el usuario a reparar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="647"/>
         <source>Select user:</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar usuario:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="663"/>
         <source>Delete Logs</source>
-        <translation type="unfinished"/>
+        <translation>Borrar Registros</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="688"/>
         <source>All logs</source>
-        <translation type="unfinished"/>
+        <translation>Todos los registros</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="720"/>
         <source>Old logs</source>
-        <translation type="unfinished"/>
+        <translation>Registros antiguos</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="755"/>
         <source>Logs older than:</source>
-        <translation type="unfinished"/>
+        <translation>Registros anteriores a:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="778"/>
@@ -223,32 +223,32 @@
     <message>
         <location filename="../mainwindow.cpp" line="429"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Hecho</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="429"/>
         <source>Cleanup command done</source>
-        <translation type="unfinished"/>
+        <translation>Orden de limpieza hecha</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="430"/>
         <source>%1 MiB were freed</source>
-        <translation type="unfinished"/>
+        <translation>%1 MiB fueron liberados</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="436"/>
         <source>About</source>
-        <translation>درباره</translation>
+        <translation>Acerca de</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="438"/>
         <source>Version: </source>
-        <translation>نسخه:</translation>
+        <translation>Versión: </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="439"/>
         <source>Quick and safe removal of old files</source>
-        <translation type="unfinished"/>
+        <translation>Eliminación rápida y segura de archivos antiguos</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="441"/>
@@ -259,23 +259,23 @@
         <location filename="../mainwindow.cpp" line="442"/>
         <location filename="../mainwindow.cpp" line="453"/>
         <source>License</source>
-        <translation>لایسنس</translation>
+        <translation>Licencia</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="443"/>
         <location filename="../mainwindow.cpp" line="461"/>
         <source>Changelog</source>
-        <translation>لیست موارد بهبود یافته</translation>
+        <translation>Registro de cambios</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="444"/>
         <source>Cancel</source>
-        <translation>لغو</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="468"/>
         <source>&amp;Close</source>
-        <translation>بستن</translation>
+        <translation>&amp;Cerrar</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="546"/>
@@ -285,7 +285,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="549"/>
         <source>Remove selected</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar lo seleccionado</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="554"/>
@@ -313,12 +313,12 @@
     <message>
         <location filename="../main.cpp" line="70"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="71"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation type="unfinished"/>
+        <translation>Parece que ha iniciado sesión como root, cierre la sesión e inicie sesión como usuario normal para usar este programa.</translation>
     </message>
 </context>
 </TS>

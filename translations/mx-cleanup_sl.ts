@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="sl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sl">
 <context>
     <name>MainWindow</name>
     <message>
@@ -14,12 +12,12 @@
     <message>
         <location filename="../mainwindow.ui" line="26"/>
         <source>Clean Folders</source>
-        <translation>Očisti imenike</translation>
+        <translation>Počisti mape</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="142"/>
         <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="191"/>
@@ -102,7 +100,7 @@
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <source>Not accessed for</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="390"/>
@@ -130,9 +128,44 @@
         <translation>Vse datoteke</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="530"/>
+        <source>Graphical Tool for Analyzing Disk Usage</source>
+        <translation>Grafično orodje za analiziranje rabe diska</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="536"/>
+        <source>Run Disk Usage Analyzer</source>
+        <translation>Zaženi analizo rabe diska</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="550"/>
+        <source>Schedule</source>
+        <translation>Razpored</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="562"/>
+        <source>No automatic clean</source>
+        <translation>Brez samodejnega čiščenja</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="569"/>
         <source>At reboot</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="576"/>
+        <source>Daily</source>
+        <translation>Dnevno</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="583"/>
+        <source>Weekly</source>
+        <translation>Tedensko</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="590"/>
+        <source>Monthly</source>
+        <translation>Mesečno</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="619"/>
@@ -149,51 +182,6 @@
         <location filename="../mainwindow.ui" line="647"/>
         <source>Select user:</source>
         <translation>Izberi uporabnika:</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="778"/>
-        <source>Kernel removal tool</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="784"/>
-        <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="530"/>
-        <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation>Grafično orodje za analiziranje rabe diska</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="536"/>
-        <source>Run Disk Usage Analyzer</source>
-        <translation>Zaženi analizo rabe diska</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="550"/>
-        <source>Schedule</source>
-        <translation>Termin</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="562"/>
-        <source>No automatic clean</source>
-        <translation>Brez samodejnega čiščenja</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="576"/>
-        <source>Daily</source>
-        <translation>Dnevno</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="583"/>
-        <source>Weekly</source>
-        <translation>Tedensko</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="590"/>
-        <source>Monthly</source>
-        <translation>Mesečno</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="663"/>
@@ -216,11 +204,21 @@
         <translation>Dnevnike starejše od:</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="778"/>
+        <source>Kernel removal tool</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="784"/>
+        <source>List and select kernels to remove</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="327"/>
         <location filename="../mainwindow.cpp" line="329"/>
         <location filename="../mainwindow.cpp" line="331"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="429"/>
@@ -282,34 +280,27 @@
     <message>
         <location filename="../mainwindow.cpp" line="546"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="549"/>
         <source>Remove selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstrani izbrane</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="554"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="555"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="557"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>QApplication</name>
-    <message>
-        <source>You must run this program as root.</source>
-        <translation type="vanished">Ta program morate zagnati kot root</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -317,17 +308,17 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../main.cpp" line="70"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="71"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prijevljeni ste kot korenski uporabnik. Izpišite se in se ponovno prijavite kot običajen uporabnik, če želite uporabljati ta program.</translation>
     </message>
 </context>
 </TS>
