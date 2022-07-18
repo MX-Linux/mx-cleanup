@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fa">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_HK">
 <context>
     <name>MainWindow</name>
     <message>
@@ -22,53 +22,53 @@
     <message>
         <location filename="../mainwindow.ui" line="191"/>
         <source>Display help </source>
-        <translation>نمایش راهنما</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="194"/>
         <source>Help</source>
-        <translation>راهنما </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="201"/>
         <source>Alt+H</source>
-        <translation>Alt+H</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="230"/>
         <source>About this application</source>
-        <translation>درباره این نرم افزار</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="233"/>
         <source>About...</source>
-        <translation>درباره...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="240"/>
         <source>Alt+B</source>
-        <translation>Alt+B</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="272"/>
         <source>Quit application</source>
-        <translation>خروج از برنامه</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="275"/>
         <location filename="../mainwindow.cpp" line="551"/>
         <source>Close</source>
-        <translation>بستن</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="282"/>
         <source>Alt+N</source>
-        <translation>Alt+N</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="320"/>
         <source>Apply</source>
-        <translation>اعمال تغییرات</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="348"/>
@@ -176,7 +176,7 @@
         <location filename="../mainwindow.ui" line="631"/>
         <location filename="../mainwindow.ui" line="644"/>
         <source>Select user to repair</source>
-        <translation>کاربر مورد نظر برای تعمیر را انتخاب کنید</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="647"/>
@@ -238,12 +238,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="436"/>
         <source>About</source>
-        <translation>درباره</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="438"/>
         <source>Version: </source>
-        <translation>نسخه:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="439"/>
@@ -253,29 +253,29 @@
     <message>
         <location filename="../mainwindow.cpp" line="441"/>
         <source>Copyright (c) MX Linux</source>
-        <translation>Copyright (c) MX Linux</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="442"/>
         <location filename="../mainwindow.cpp" line="453"/>
         <source>License</source>
-        <translation>لایسنس</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="443"/>
         <location filename="../mainwindow.cpp" line="461"/>
         <source>Changelog</source>
-        <translation>لیست موارد بهبود یافته</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="444"/>
         <source>Cancel</source>
-        <translation>لغو</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="468"/>
         <source>&amp;Close</source>
-        <translation>بستن</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="546"/>

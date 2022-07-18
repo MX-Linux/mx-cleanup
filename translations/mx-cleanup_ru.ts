@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ru">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ru">
 <context>
     <name>MainWindow</name>
     <message>
@@ -9,7 +7,7 @@
         <location filename="../mainwindow.cpp" line="436"/>
         <location filename="../mainwindow.cpp" line="485"/>
         <source>MX Cleanup</source>
-        <translation>MX очистка</translation>
+        <translation>MX Очистка</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="26"/>
@@ -19,7 +17,7 @@
     <message>
         <location filename="../mainwindow.ui" line="142"/>
         <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="191"/>
@@ -44,7 +42,7 @@
     <message>
         <location filename="../mainwindow.ui" line="233"/>
         <source>About...</source>
-        <translation>O...</translation>
+        <translation>О программе...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="240"/>
@@ -80,7 +78,7 @@
     <message>
         <location filename="../mainwindow.ui" line="354"/>
         <source>Trash older than:</source>
-        <translation type="unfinished"></translation>
+        <translation>Мусор старше, чем:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="361"/>
@@ -97,12 +95,12 @@
         <location filename="../mainwindow.cpp" line="329"/>
         <location filename="../mainwindow.cpp" line="331"/>
         <source> days</source>
-        <translation type="unfinished"></translation>
+        <translation> дни</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <source>Not accessed for</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="390"/>
@@ -130,37 +128,6 @@
         <translation>Все файлы</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="569"/>
-        <source>At reboot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="619"/>
-        <source>Free Disk Space for User</source>
-        <translation>Свободное дисковое пространство для пользователя</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="631"/>
-        <location filename="../mainwindow.ui" line="644"/>
-        <source>Select user to repair</source>
-        <translation>Выберите пользователя для восстановления</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="647"/>
-        <source>Select user:</source>
-        <translation>Выбор пользователя:</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="778"/>
-        <source>Kernel removal tool</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="784"/>
-        <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="530"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
         <translation>Графическая утилита для анализа использования дисков</translation>
@@ -181,6 +148,11 @@
         <translation>Без автоматической очистки</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="569"/>
+        <source>At reboot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="576"/>
         <source>Daily</source>
         <translation>Ежедневно</translation>
@@ -194,6 +166,22 @@
         <location filename="../mainwindow.ui" line="590"/>
         <source>Monthly</source>
         <translation>Ежемесячно</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="619"/>
+        <source>Free Disk Space for User</source>
+        <translation>Свободное дисковое пространство для пользователя</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="631"/>
+        <location filename="../mainwindow.ui" line="644"/>
+        <source>Select user to repair</source>
+        <translation>Выберите пользователя для восстановления</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="647"/>
+        <source>Select user:</source>
+        <translation>Выбор пользователя:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="663"/>
@@ -213,14 +201,24 @@
     <message>
         <location filename="../mainwindow.ui" line="755"/>
         <source>Logs older than:</source>
-        <translation type="unfinished"></translation>
+        <translation>Журналы старше чем:</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="778"/>
+        <source>Kernel removal tool</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="784"/>
+        <source>List and select kernels to remove</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="327"/>
         <location filename="../mainwindow.cpp" line="329"/>
         <location filename="../mainwindow.cpp" line="331"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="429"/>
@@ -282,34 +280,27 @@
     <message>
         <location filename="../mainwindow.cpp" line="546"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="549"/>
         <source>Remove selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить выделенные</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="554"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="555"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="557"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>QApplication</name>
-    <message>
-        <source>You must run this program as root.</source>
-        <translation type="vanished">Вы должны запустить программу от имени суперпользователя.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -317,17 +308,17 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../main.cpp" line="70"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="71"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Программа запущена суперпользователем. Для использования программы войдите в систему как обычный пользователь.</translation>
     </message>
 </context>
 </TS>

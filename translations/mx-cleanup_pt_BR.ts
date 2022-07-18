@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt_BR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt_BR">
 <context>
     <name>MainWindow</name>
     <message>
@@ -9,27 +7,27 @@
         <location filename="../mainwindow.cpp" line="436"/>
         <location filename="../mainwindow.cpp" line="485"/>
         <source>MX Cleanup</source>
-        <translation>MX Limpador</translation>
+        <translation>Limpador do MX</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="26"/>
         <source>Clean Folders</source>
-        <translation>Pastas a Limpar</translation>
+        <translation>Limpar Pastas </translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="142"/>
         <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="191"/>
         <source>Display help </source>
-        <translation>Exibir a ajuda</translation>
+        <translation>Exibir ajuda</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="194"/>
         <source>Help</source>
-        <translation>Ajudas várias (em inglês)</translation>
+        <translation>Ajuda</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="201"/>
@@ -39,7 +37,7 @@
     <message>
         <location filename="../mainwindow.ui" line="230"/>
         <source>About this application</source>
-        <translation>Sobre esta aplicação</translation>
+        <translation>Sobre este aplicativo</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="233"/>
@@ -54,7 +52,7 @@
     <message>
         <location filename="../mainwindow.ui" line="272"/>
         <source>Quit application</source>
-        <translation>Sair da aplicação</translation>
+        <translation>Sair do aplicativo</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="275"/>
@@ -102,7 +100,7 @@
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <source>Not accessed for</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="390"/>
@@ -130,37 +128,6 @@
         <translation>Todos os arquivos</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="569"/>
-        <source>At reboot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="619"/>
-        <source>Free Disk Space for User</source>
-        <translation>Espaço Livre em Disco para o Utilizador</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="631"/>
-        <location filename="../mainwindow.ui" line="644"/>
-        <source>Select user to repair</source>
-        <translation>Selecionar utilizador a reparar</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="647"/>
-        <source>Select user:</source>
-        <translation>Selecione o usuário:</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="778"/>
-        <source>Kernel removal tool</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="784"/>
-        <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="530"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
         <translation>Ferramenta gráfica para analisar o uso do disco</translation>
@@ -181,6 +148,11 @@
         <translation>Nunca</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="569"/>
+        <source>At reboot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="576"/>
         <source>Daily</source>
         <translation>Diariamente</translation>
@@ -194,6 +166,22 @@
         <location filename="../mainwindow.ui" line="590"/>
         <source>Monthly</source>
         <translation>Mensalmente</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="619"/>
+        <source>Free Disk Space for User</source>
+        <translation>Espaço Livre em Disco para o Usuário</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="631"/>
+        <location filename="../mainwindow.ui" line="644"/>
+        <source>Select user to repair</source>
+        <translation>Selecione o usuário para reparar</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="647"/>
+        <source>Select user:</source>
+        <translation>Selecione o usuário:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="663"/>
@@ -216,11 +204,21 @@
         <translation>Registros com mais de:</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="778"/>
+        <source>Kernel removal tool</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="784"/>
+        <source>List and select kernels to remove</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="327"/>
         <location filename="../mainwindow.cpp" line="329"/>
         <location filename="../mainwindow.cpp" line="331"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="429"/>
@@ -230,7 +228,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="429"/>
         <source>Cleanup command done</source>
-        <translation>Comando de limpeza feito</translation>
+        <translation>Comando de limpeza concluído</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="430"/>
@@ -282,34 +280,27 @@
     <message>
         <location filename="../mainwindow.cpp" line="546"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="549"/>
         <source>Remove selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover os Itens Selecionados</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="554"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="555"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="557"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>QApplication</name>
-    <message>
-        <source>You must run this program as root.</source>
-        <translation type="vanished">Este programa deve ser executado como administrador</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -317,17 +308,17 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../main.cpp" line="70"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="71"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ao que parece, você está acessando a sessão com o usuário root. Por favor, saia da sessão atual e entre novamente com o usuário normal para utilizar este programa.</translation>
     </message>
 </context>
 </TS>
