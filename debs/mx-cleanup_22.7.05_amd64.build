@@ -1,0 +1,281 @@
+ dpkg-buildpackage -us -uc -ui
+dpkg-buildpackage: info: source package mx-cleanup
+dpkg-buildpackage: info: source version 22.7.05
+dpkg-buildpackage: info: source distribution mx
+dpkg-buildpackage: info: source changed by Dolphin Oracle <dolphinoracle@gmail.com>
+ dpkg-source --before-build .
+dpkg-buildpackage: info: host architecture amd64
+ fakeroot debian/rules clean
+dh clean --no-automatic-dbgsym --parallel
+   debian/rules override_dh_auto_clean
+make[1]: Entering directory '/media/demo/dataext/development/working/mx-cleanup/64'
+dh_auto_clean
+rm -f src/translations/*.qm
+make[1]: Leaving directory '/media/demo/dataext/development/working/mx-cleanup/64'
+   dh_autoreconf_clean -O--no-automatic-dbgsym -O--parallel
+   dh_clean -O--no-automatic-dbgsym -O--parallel
+ dpkg-source -b .
+dpkg-source: info: using source format '3.0 (native)'
+dpkg-source: info: building mx-cleanup in mx-cleanup_22.7.05.tar.xz
+dpkg-source: info: building mx-cleanup in mx-cleanup_22.7.05.dsc
+ debian/rules build
+dh build --no-automatic-dbgsym --parallel
+   dh_update_autotools_config -O--no-automatic-dbgsym -O--parallel
+   dh_autoreconf -O--no-automatic-dbgsym -O--parallel
+   dh_auto_configure -O--no-automatic-dbgsym -O--parallel
+	qmake -makefile "QMAKE_CFLAGS_RELEASE=-g -O2 -fdebug-prefix-map=/media/demo/dataext/development/working/mx-cleanup/64=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2" "QMAKE_CFLAGS_DEBUG=-g -O2 -fdebug-prefix-map=/media/demo/dataext/development/working/mx-cleanup/64=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2" "QMAKE_CXXFLAGS_RELEASE=-g -O2 -fdebug-prefix-map=/media/demo/dataext/development/working/mx-cleanup/64=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2" "QMAKE_CXXFLAGS_DEBUG=-g -O2 -fdebug-prefix-map=/media/demo/dataext/development/working/mx-cleanup/64=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2" QMAKE_LFLAGS_RELEASE=-Wl,-z,relro QMAKE_LFLAGS_DEBUG=-Wl,-z,relro QMAKE_STRIP=: PREFIX=/usr
+Info: creating stash file /media/demo/dataext/development/working/mx-cleanup/64/.qmake.stash
+   debian/rules override_dh_auto_build
+make[1]: Entering directory '/media/demo/dataext/development/working/mx-cleanup/64'
+lrelease *.pro
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_am.qm'...
+    Generated 24 translation(s) (24 finished and 0 unfinished)
+    Ignored 36 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_ar.qm'...
+    Generated 16 translation(s) (16 finished and 0 unfinished)
+    Ignored 44 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_bg.qm'...
+    Generated 16 translation(s) (16 finished and 0 unfinished)
+    Ignored 44 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_ca.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_cs.qm'...
+    Generated 48 translation(s) (48 finished and 0 unfinished)
+    Ignored 12 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_da.qm'...
+    Generated 44 translation(s) (44 finished and 0 unfinished)
+    Ignored 16 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_de.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_el.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_en.qm'...
+    Generated 60 translation(s) (60 finished and 0 unfinished)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_es.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_et.qm'...
+    Generated 3 translation(s) (3 finished and 0 unfinished)
+    Ignored 57 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_eu.qm'...
+    Generated 2 translation(s) (2 finished and 0 unfinished)
+    Ignored 58 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_fa.qm'...
+    Generated 18 translation(s) (18 finished and 0 unfinished)
+    Ignored 42 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_fi.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_fr.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_he_IL.qm'...
+    Generated 47 translation(s) (47 finished and 0 unfinished)
+    Ignored 13 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_hi.qm'...
+    Generated 48 translation(s) (48 finished and 0 unfinished)
+    Ignored 12 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_hr.qm'...
+    Generated 34 translation(s) (34 finished and 0 unfinished)
+    Ignored 26 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_hu.qm'...
+    Generated 16 translation(s) (16 finished and 0 unfinished)
+    Ignored 44 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_id.qm'...
+    Generated 17 translation(s) (17 finished and 0 unfinished)
+    Ignored 43 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_is.qm'...
+    Generated 18 translation(s) (18 finished and 0 unfinished)
+    Ignored 42 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_it.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_ja.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_kk.qm'...
+    Generated 16 translation(s) (16 finished and 0 unfinished)
+    Ignored 44 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_ko.qm'...
+    Generated 3 translation(s) (3 finished and 0 unfinished)
+    Ignored 57 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_lt.qm'...
+    Generated 38 translation(s) (38 finished and 0 unfinished)
+    Ignored 22 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_mk.qm'...
+    Generated 2 translation(s) (2 finished and 0 unfinished)
+    Ignored 58 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_mr.qm'...
+    Generated 14 translation(s) (14 finished and 0 unfinished)
+    Ignored 46 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_nb.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_nl.qm'...
+    Generated 48 translation(s) (48 finished and 0 unfinished)
+    Ignored 12 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_pl.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_pt.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_pt_BR.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_ro.qm'...
+    Generated 20 translation(s) (20 finished and 0 unfinished)
+    Ignored 40 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_ru.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_sk.qm'...
+    Generated 43 translation(s) (43 finished and 0 unfinished)
+    Ignored 17 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_sl.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_sq.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_sr.qm'...
+    Generated 5 translation(s) (5 finished and 0 unfinished)
+    Ignored 55 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_sv.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_tr.qm'...
+    Generated 49 translation(s) (49 finished and 0 unfinished)
+    Ignored 11 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_uk.qm'...
+    Generated 18 translation(s) (18 finished and 0 unfinished)
+    Ignored 42 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_zh_CN.qm'...
+    Generated 48 translation(s) (48 finished and 0 unfinished)
+    Ignored 12 untranslated source text(s)
+Updating '/media/demo/dataext/development/working/mx-cleanup/64/translations/mx-cleanup_zh_TW.qm'...
+    Generated 25 translation(s) (25 finished and 0 unfinished)
+    Ignored 35 untranslated source text(s)
+head -n1 debian/changelog | sed -e "s/.*(\([^(]*\)).*/#define VERSION \"\1\"/" > version.h
+dh_auto_build -- QMAKE=qmake-qt5 LRELEASE=lrelease-qt5 QMAKE_OPTS="" 
+	make -j4 QMAKE=qmake-qt5 LRELEASE=lrelease-qt5 QMAKE_OPTS=
+make[2]: Entering directory '/media/demo/dataext/development/working/mx-cleanup/64'
+/usr/lib/qt5/bin/uic mainwindow.ui -o ui_mainwindow.h
+g++ -c -pipe -g -O2 -fdebug-prefix-map=/media/demo/dataext/development/working/mx-cleanup/64=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -std=gnu++1z -Wall -W -D_REENTRANT -fPIC -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o main.o main.cpp
+/usr/lib/qt5/bin/rcc -name images images.qrc -o qrc_images.cpp
+g++ -pipe -g -O2 -fdebug-prefix-map=/media/demo/dataext/development/working/mx-cleanup/64=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -std=gnu++1z -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+g++ -c -pipe -g -O2 -fdebug-prefix-map=/media/demo/dataext/development/working/mx-cleanup/64=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -std=gnu++1z -Wall -W -D_REENTRANT -fPIC -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o qrc_images.o qrc_images.cpp
+g++ -c -pipe -g -O2 -fdebug-prefix-map=/media/demo/dataext/development/working/mx-cleanup/64=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -std=gnu++1z -Wall -W -D_REENTRANT -fPIC -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o mainwindow.o mainwindow.cpp
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include /media/demo/dataext/development/working/mx-cleanup/64/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/media/demo/dataext/development/working/mx-cleanup/64 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
+g++ -c -pipe -g -O2 -fdebug-prefix-map=/media/demo/dataext/development/working/mx-cleanup/64=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -std=gnu++1z -Wall -W -D_REENTRANT -fPIC -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_mainwindow.o moc_mainwindow.cpp
+mainwindow.cpp: In member function ‘void MainWindow::removeKernelPackages(const QStringList&)’:
+mainwindow.cpp:179:11: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+     system("x-terminal-emulator -e bash -c 'apt purge " + headers_installed.join(QStringLiteral(" ")).toUtf8() + " " +
+     ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            list.join(QStringLiteral(" ")).toUtf8() +  " " + common.toUtf8() + "; apt-get install -f'");
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mainwindow.cpp: In member function ‘void MainWindow::pushApply_clicked()’:
+mainwindow.cpp:350:15: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+         system(cache.toUtf8());
+         ~~~~~~^~~~~~~~~~~~~~~~
+mainwindow.cpp:358:15: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+         system(cache.toUtf8());
+         ~~~~~~^~~~~~~~~~~~~~~~
+mainwindow.cpp:366:15: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+         system(thumbnails.toUtf8());
+         ~~~~~~^~~~~~~~~~~~~~~~~~~~~
+mainwindow.cpp:375:11: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+     system(apt.toUtf8());
+     ~~~~~~^~~~~~~~~~~~~~
+mainwindow.cpp:386:15: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+         system(logs.toUtf8());
+         ~~~~~~^~~~~~~~~~~~~~~
+mainwindow.cpp:390:15: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+         system(logs.toUtf8());
+         ~~~~~~^~~~~~~~~~~~~~~
+mainwindow.cpp:402:15: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+         system(trash.toUtf8());
+         ~~~~~~^~~~~~~~~~~~~~~~
+mainwindow.cpp: In member function ‘void MainWindow::pushAbout_clicked()’:
+mainwindow.cpp:453:19: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+             system("mx-viewer " + url.toUtf8() + " \"" + tr("License").toUtf8() + "\"&");
+             ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mainwindow.cpp:456:19: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+             system("runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " +
+             ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mainwindow.cpp: In member function ‘void MainWindow::pushHelp_clicked()’:
+mainwindow.cpp:485:15: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+         system("mx-viewer " + url.toUtf8() + " \"" + tr("MX Cleanup").toUtf8() + "\"&");
+         ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mainwindow.cpp:488:15: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+         system("runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " +
+         ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mainwindow.cpp: In member function ‘void MainWindow::pushUsageAnalyzer_clicked()’:
+mainwindow.cpp:502:19: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+             system(run_as_user.toUtf8() + " filelight\"&");
+             ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mainwindow.cpp:504:19: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+             system(run_as_user.toUtf8() + " qdirstat\"&");
+             ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mainwindow.cpp:506:19: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+             system(run_as_user.toUtf8() + " baobab\"&");
+             ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mainwindow.cpp:509:19: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+             system(run_as_user.toUtf8() + " baobab\"&");
+             ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mainwindow.cpp:511:19: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+             system(run_as_user.toUtf8() + " filelight\"&");
+             ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mainwindow.cpp:513:19: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+             system(run_as_user.toUtf8() + " qdirstat\"&");
+             ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -Wl,-z,relro -o mx-cleanup main.o mainwindow.o qrc_images.o moc_mainwindow.o   -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
+make[2]: Leaving directory '/media/demo/dataext/development/working/mx-cleanup/64'
+make[1]: Leaving directory '/media/demo/dataext/development/working/mx-cleanup/64'
+   dh_auto_test -O--no-automatic-dbgsym -O--parallel
+   create-stamp debian/debhelper-build-stamp
+ fakeroot debian/rules binary
+dh binary --no-automatic-dbgsym --parallel
+   dh_testroot -O--no-automatic-dbgsym -O--parallel
+   dh_prep -O--no-automatic-dbgsym -O--parallel
+   debian/rules override_dh_auto_install
+make[1]: Entering directory '/media/demo/dataext/development/working/mx-cleanup/64'
+dh_auto_install -- QMAKE=qmake-qt5 LRELEASE=lrelease-qt5 QMAKE_OPTS=""
+make[1]: Leaving directory '/media/demo/dataext/development/working/mx-cleanup/64'
+   dh_install -O--no-automatic-dbgsym -O--parallel
+   dh_installdocs -O--no-automatic-dbgsym -O--parallel
+   dh_installchangelogs -O--no-automatic-dbgsym -O--parallel
+   dh_systemd_enable -O--no-automatic-dbgsym -O--parallel
+   dh_installinit -O--no-automatic-dbgsym -O--parallel
+   dh_systemd_start -O--no-automatic-dbgsym -O--parallel
+   dh_icons -O--no-automatic-dbgsym -O--parallel
+   dh_perl -O--no-automatic-dbgsym -O--parallel
+   dh_link -O--no-automatic-dbgsym -O--parallel
+   dh_strip_nondeterminism -O--no-automatic-dbgsym -O--parallel
+   dh_compress -O--no-automatic-dbgsym -O--parallel
+   dh_fixperms -O--no-automatic-dbgsym -O--parallel
+   dh_missing -O--no-automatic-dbgsym -O--parallel
+   dh_strip -O--no-automatic-dbgsym -O--parallel
+   dh_makeshlibs -O--no-automatic-dbgsym -O--parallel
+   debian/rules override_dh_shlibdeps
+make[1]: Entering directory '/media/demo/dataext/development/working/mx-cleanup/64'
+dh_shlibdeps -- -xvirtualbox-guest-x11 --ignore-missing-info
+dpkg-shlibdeps: warning: package could avoid a useless dependency if debian/mx-cleanup/usr/bin/mx-cleanup was not linked against libGL.so.1 (it uses none of the library's symbols)
+make[1]: Leaving directory '/media/demo/dataext/development/working/mx-cleanup/64'
+   dh_installdeb -O--no-automatic-dbgsym -O--parallel
+   dh_gencontrol -O--no-automatic-dbgsym -O--parallel
+   dh_md5sums -O--no-automatic-dbgsym -O--parallel
+   dh_builddeb -O--no-automatic-dbgsym -O--parallel
+dpkg-deb: building package 'mx-cleanup' in '../mx-cleanup_22.7.05_amd64.deb'.
+ dpkg-genbuildinfo
+ dpkg-genchanges  >../mx-cleanup_22.7.05_amd64.changes
+dpkg-genchanges: info: including full source code in upload
+ dpkg-source --after-build .
+dpkg-buildpackage: info: full upload; Debian-native package (full source is included)
