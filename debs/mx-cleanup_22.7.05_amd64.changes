@@ -1,0 +1,31 @@
+Format: 1.8
+Date: Sat, 23 Jul 2022 12:38:05 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 22.7.05
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Dolphin Oracle <dolphinoracle@gmail.com>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (22.7.05) mx; urgency=medium
+ .
+   * translation refresh
+Checksums-Sha1:
+ ff9dc30d478b0001928b6b47919195c85fe28ae7 561 mx-cleanup_22.7.05.dsc
+ 9a61a71a63e36d735bd6a7ac30ef1c4cd66c4bc4 482628 mx-cleanup_22.7.05.tar.xz
+ d921f77c529dc6afc3d9d42eee31a6fc0203c370 10480 mx-cleanup_22.7.05_amd64.buildinfo
+ bca038b3f32f7df5f4a26d59b4073242c6559f57 131836 mx-cleanup_22.7.05_amd64.deb
+Checksums-Sha256:
+ 2ec7007f34fe7591833b8a2d86ad844b5a4abd2be4a2760991dac74aee823104 561 mx-cleanup_22.7.05.dsc
+ d1f12414a4077beedc997dcab4e3b9383f89fb39987413002497203a068be0dc 482628 mx-cleanup_22.7.05.tar.xz
+ b5d3324aaad1702901690d831f5dfad1a095514fd06951fe8f17a4364d6e07c6 10480 mx-cleanup_22.7.05_amd64.buildinfo
+ b3e8de0b216063b9d65214a9b3d463d25ae6bd2dd62d1850e237f646f4c0348f 131836 mx-cleanup_22.7.05_amd64.deb
+Files:
+ 4e4aeb37974e0c186ef3a12f85bf0617 561 admin optional mx-cleanup_22.7.05.dsc
+ a313fe800ca12526cd6e8a1c55e67753 482628 admin optional mx-cleanup_22.7.05.tar.xz
+ f90e616a087d1cf1e4d39eaffd6734ed 10480 admin optional mx-cleanup_22.7.05_amd64.buildinfo
+ 9c1784f57f51983a31fe95853a862815 131836 admin optional mx-cleanup_22.7.05_amd64.deb
