@@ -1,0 +1,7 @@
+help/*			usr/share/doc/mx-cleanup
+mx-cleanup		usr/bin
+mx-cleanup.desktop	usr/share/applications
+images/mx-cleanup.png	usr/share/icons/hicolor/256x256/apps
+translations/*.qm	usr/share/mx-cleanup/locale
+scripts/mx-cleanup-launcher	usr/bin
+scripts/org.mxlinux.pkexec.mx-cleanup-launcher.policy	usr/share/polkit-1/actions

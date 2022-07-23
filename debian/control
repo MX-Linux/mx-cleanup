@@ -1,0 +1,15 @@
+Source: mx-cleanup
+Section: admin
+Priority: optional
+Maintainer: Adrian <adrian@mxlinux.org>
+Build-Depends: debhelper (>=10), qtbase5-dev, qttools5-dev-tools
+Standards-Version: 3.9.8
+
+Package: mx-cleanup
+Architecture: any
+Depends: baobab | qdirstat | filelight,
+         xdg-utils | mx-viewer,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: mx-cleanup
+ Quick safe removal of old files
