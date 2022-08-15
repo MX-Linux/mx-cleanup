@@ -55,6 +55,7 @@ TRANSLATIONS += translations/mx-cleanup_am.ts \
                 translations/mx-cleanup_fa.ts \
                 translations/mx-cleanup_fi.ts \
                 translations/mx-cleanup_fr.ts \
+                translations/mx-cleanup_fr_BE.ts \
                 translations/mx-cleanup_he_IL.ts \
                 translations/mx-cleanup_hi.ts \
                 translations/mx-cleanup_hr.ts \
