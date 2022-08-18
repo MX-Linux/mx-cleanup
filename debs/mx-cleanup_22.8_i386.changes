@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Wed, 17 Aug 2022 21:43:11 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: i386
+Version: 22.8
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (22.8) mx; urgency=medium
+ .
+   * Fix: launching Firefox from Help
+Checksums-Sha1:
+ f975dff341b7e32118fc891dbcb2204dac4f6f61 10027 mx-cleanup_22.8_i386.buildinfo
+ 41abcd77b0a7cc219f75b41c27591e732d4ae1e9 133760 mx-cleanup_22.8_i386.deb
+Checksums-Sha256:
+ 04fde79e6868d140d53a492c252788c089c0f8d7569232405ea54f0dcaf10732 10027 mx-cleanup_22.8_i386.buildinfo
+ 76aedade4c6d74306b99898bde3d41871620f70baf31fc9a957a456612b56e01 133760 mx-cleanup_22.8_i386.deb
+Files:
+ 00e3a5cd9ecaac08fdb35fa6ed01c539 10027 admin optional mx-cleanup_22.8_i386.buildinfo
+ b583ce9c76e9ef301915df4bf90299ed 133760 admin optional mx-cleanup_22.8_i386.deb
