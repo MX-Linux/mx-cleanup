@@ -1,3 +1,9 @@
+mx-cleanup (22.8) mx; urgency=medium
+
+  * Fix: launching Firefox from Help
+
+ -- Adrian <adrian@mxlinux.org>  Wed, 17 Aug 2022 21:43:11 -0400
+
 mx-cleanup (22.7.05) mx; urgency=medium
 
   * translation refresh 
