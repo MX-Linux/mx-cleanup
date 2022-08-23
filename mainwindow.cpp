@@ -26,6 +26,7 @@
 #include <QProcess>
 #include <QTextEdit>
 
+#include "about.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -432,62 +433,22 @@ void MainWindow::pushApply_clicked()
 
 void MainWindow::pushAbout_clicked()
 {
-    QMessageBox msgBox(QMessageBox::NoIcon,
-                       tr("About") + tr("MX Cleanup"),
+    this->hide();
+    displayAboutMsgBox(tr("About") + tr("MX Cleanup"),
                        R"(<p align="center"><b><h2>MX Cleanup</h2></b></p><p align="center">)" +
                        tr("Version: ") + qApp->applicationVersion() + "</p><p align=\"center\"><h3>" +
                        tr("Quick and safe removal of old files") +
                        R"(</h3></p><p align="center"><a href="http://mxlinux.org">http://mxlinux.org</a><br /></p><p align="center">)" +
-                       tr("Copyright (c) MX Linux") + "<br /><br /></p>");
-    auto *btnLicense = msgBox.addButton(tr("License"), QMessageBox::HelpRole);
-    auto *btnChangelog = msgBox.addButton(tr("Changelog"), QMessageBox::HelpRole);
-    auto *btnCancel = msgBox.addButton(tr("Cancel"), QMessageBox::NoRole);
-    btnCancel->setIcon(QIcon::fromTheme(QStringLiteral("window-close")));
-
-    msgBox.exec();
-
-    if (msgBox.clickedButton() == btnLicense) {
-        QString url = QStringLiteral("file:///usr/share/doc/mx-cleanup/license.html");
-        if (system("command -v mx-viewer >/dev/null") == 0) { // use mx-viewer if available
-            qputenv("HOME", starting_home.toUtf8());
-            system("mx-viewer " + url.toUtf8() + " \"" + tr("License").toUtf8() + "\"&");
-            qputenv("HOME", "/root");
-        } else {
-            system("runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " +
-                   user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
-        }
-    } else if (msgBox.clickedButton() == btnChangelog) {
-        auto *changelog = new QDialog(this);
-        changelog->setWindowTitle(tr("Changelog"));
-        changelog->resize(600, 500);
-
-        auto *text = new QTextEdit;
-        text->setReadOnly(true);
-        text->setText(getCmdOut("zless /usr/share/doc/" + QFileInfo(qApp->applicationFilePath()).fileName()  + "/changelog.gz"));
-
-        auto *btnClose = new QPushButton(tr("&Close"));
-        btnClose->setIcon(QIcon::fromTheme(QStringLiteral("window-close")));
-        connect(btnClose, &QPushButton::clicked, changelog, &QDialog::close);
-
-        auto *layout = new QVBoxLayout;
-        layout->addWidget(text);
-        layout->addWidget(btnClose);
-        changelog->setLayout(layout);
-        changelog->exec();
-    }
+                       tr("Copyright (c) MX Linux") + "<br /><br /></p>",
+                       QStringLiteral("/usr/share/doc/mx-cleanup/license.html"),
+                       tr("%1 License").arg(this->windowTitle()));
+    this->show();
 }
 
 void MainWindow::pushHelp_clicked()
 {
     const QString url = QStringLiteral("/usr/share/doc/mx-cleanup/mx-cleanup.html");
-    if (system("command -v mx-viewer >/dev/null") == 0) {
-        qputenv("HOME", starting_home.toUtf8());
-        system("mx-viewer " + url.toUtf8() + " \"" + tr("MX Cleanup").toUtf8() + "\"&");
-        qputenv("HOME", "/root");
-    } else {
-        system("runuser " + user.toUtf8() + " -c \"env XDG_RUNTIME_DIR=/run/user/$(id -u " +
-               user.toUtf8() + ") xdg-open " + url.toUtf8() + "\"&");
-    }
+    displayDoc(url, tr("%1 Help").arg(this->windowTitle()));
 }
 
 void MainWindow::pushUsageAnalyzer_clicked()
