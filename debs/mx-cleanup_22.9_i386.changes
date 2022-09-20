@@ -15,11 +15,11 @@ Changes:
  .
    * Flatpak: remove unused runtimes option
 Checksums-Sha1:
- 6710d46f75ffd81eddbe87073f96be58bc1b9e87 9963 mx-cleanup_22.9_i386.buildinfo
- 05c1de2b86c445a65907ab0bb1341cf9d5a69b48 136564 mx-cleanup_22.9_i386.deb
+ 93173543fe6b6b3f607eec409379c4557a63cb2b 9963 mx-cleanup_22.9_i386.buildinfo
+ 64ad0fb95474b028817e1b6376a12a3ed49bb565 136560 mx-cleanup_22.9_i386.deb
 Checksums-Sha256:
- 61c0fc9fe7d1197ca12b604d37711dec2b4b7e6d9a131d599c7f95af5247a3db 9963 mx-cleanup_22.9_i386.buildinfo
- 9bafd81c900fab5bcee69eaa9d06174c4b39a15b75ae5ba25c8d3b2c729f3e8d 136564 mx-cleanup_22.9_i386.deb
+ 49c1f819603dbc5686142f29ca2eeaae4a377d2e43ef88ad0c67a94c9e97bd34 9963 mx-cleanup_22.9_i386.buildinfo
+ aa4369723ab6e4bbbdd71d7623f238b853960bd6f67c6e998ba7ec931625ab2f 136560 mx-cleanup_22.9_i386.deb
 Files:
- 1b5059b0c936af1430f848b8fd8d5fef 9963 admin optional mx-cleanup_22.9_i386.buildinfo
- 9e3a7f8de756aee0a0bca24873758441 136564 admin optional mx-cleanup_22.9_i386.deb
+ 36382cb840f7c362b29b426c76835d77 9963 admin optional mx-cleanup_22.9_i386.buildinfo
+ 09a56217dcdc4c33eb33149e760ed824 136560 admin optional mx-cleanup_22.9_i386.deb
