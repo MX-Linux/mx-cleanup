@@ -1,0 +1,40 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Tue, 20 Sep 2022 13:32:37 -0400
+Source: mx-cleanup
+Architecture: source
+Version: 22.9
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Changes:
+ mx-cleanup (22.9) mx; urgency=medium
+ .
+   * Flatpak: remove unused runtimes option
+Checksums-Sha1:
+ 170ca681cfa99cb87b96922f6dae9bef520b9fd5 1111 mx-cleanup_22.9.dsc
+ 6984bd33e1d6922e1c84a94f23a68aafaaaf07cd 114388 mx-cleanup_22.9.tar.xz
+ a0ee60ad6b24ed713475389ff870a88c22d91fa9 10802 mx-cleanup_22.9_amd64.buildinfo
+Checksums-Sha256:
+ 064378f7e2e9ebac030fe2e702deae213a81635e849945c48913aec5e18f8d6a 1111 mx-cleanup_22.9.dsc
+ 6a3c00b337b6f9abae1b92e655813d15e44eb9ec5a37d8b83f9798077962e947 114388 mx-cleanup_22.9.tar.xz
+ e256a6f621c388354712b8406f2fa06b000bfb2da065773aa29bb9fe97c31d39 10802 mx-cleanup_22.9_amd64.buildinfo
+Files:
+ 502cda678282a0652ac1bbb948b9279f 1111 admin optional mx-cleanup_22.9.dsc
+ b13016e13182b3f26a877758bb4ae5a1 114388 admin optional mx-cleanup_22.9.tar.xz
+ 5cd05f5a95f459364ad12db41b2ee556 10802 admin optional mx-cleanup_22.9_amd64.buildinfo
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmMqFvQTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumO4TB/4i99+FNq9nKRh1oUu5HB7p1r+bVr8S
+NAF2dQqaSHuVVv/ZH8o/pRAeV4Rk8tzpOgxsK8fUJ5nRqEtVWtfcO6awpz8dvF2N
+xzhQ+pgMYEDqe2Zvs4sTXNR2TSJ8lwfOCvR/FRYIe+oclxF00+wiLueVsQNnWQnZ
+zu2UF7CPjEC4ecodhoQkhWzKnSg2rtbqWaL5JVxPfQtAKXTqzrn1NJ+esNfu7tdK
++nQ6n0DbfcfVtWOb8zU0oElVnDXXfkj+pFcTcVCcrZGWNhYLT8cgfn00awCrfHEK
+fkiQuvARTaUCsPE32400TQxXIPE8pAFUvuvKfwoMkDQjSGfTLj4GBeGP
+=X9x2
+-----END PGP SIGNATURE-----
