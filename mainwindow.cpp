@@ -127,6 +127,10 @@ void MainWindow::loadSettings()
     selectRadioButton(ui->buttonGroupApt, settings.value(QStringLiteral("AptSelection"), -1).toInt());
     settings.endGroup();
 
+    settings.beginGroup(QStringLiteral("Flatpak"));
+    ui->checkFlatpak->setChecked(settings.value(QStringLiteral("UninstallUnusedRuntimes"), false).toBool());
+    settings.endGroup();
+
     settings.beginGroup(QStringLiteral("Logs"));
     ui->spinBoxLogs->setValue(settings.value(QStringLiteral("LogsOlderThan"), 7).toInt());
     selectRadioButton(ui->buttonGroupLogs, settings.value(QStringLiteral("LogsSelection"), -1).toInt());
@@ -223,6 +227,9 @@ void MainWindow::loadOptions()
     else
         ui->radioNoCleanApt->setChecked(true);
 
+    // Flatpak: remove unused runtiles
+    ui->checkFlatpak->setChecked(system("grep -q 'flatpak uninstall --unused' " + file_name.toUtf8()) == 0);
+
     // Logs
     if (system(R"(grep -q '\-exec sh \-c "echo' )" + file_name.toUtf8()) == 0) // all logs
         ui->radioAllLogs->setChecked(true);
@@ -300,6 +307,10 @@ void MainWindow::saveSettings()
     settings.setValue(QStringLiteral("TrashSelection"), ui->buttonGroupTrash->checkedId());
     settings.setValue(QStringLiteral("TrashOlderThan"), ui->spinBoxTrash->value());
     settings.endGroup();
+
+    settings.beginGroup(QStringLiteral("Flatpak"));
+    settings.setValue(QStringLiteral("UninstallUnusedRuntimes"), ui->checkFlatpak->isChecked());
+    settings.endGroup();
 }
 
 void MainWindow::selectRadioButton(const QButtonGroup *group, int id)
@@ -334,26 +345,27 @@ void MainWindow::setConnections()
 
 void MainWindow::pushApply_clicked()
 {
-    int total = 0;
+    quint64 total = 0;
     setCursor(QCursor(Qt::BusyCursor));
 
-    QString cmd_str;
-    QString cache;
-    QString thumbnails;
-    QString logs;
     QString apt;
+    QString cache;
+    QString cmd_str;
+    QString flatpak;
+    QString logs;
+    QString thumbnails;
     QString trash;
 
     if (ui->checkCache->isChecked() && ui->radioAllCache->isChecked()) {
         total += getCmdOut("du -c /home/" + ui->comboUserClean->currentText().toUtf8() +
-                           "/.cache/* | tail -1 | cut -f1").toInt();
+                           "/.cache/* | tail -1 | cut -f1").toULongLong();
         cache = "rm -r /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/* 2>/dev/null";
         system(cache.toUtf8());
     } else if (ui->checkCache->isChecked() && ui->radioSaferCache->isChecked()) {
         QString days = QString::number(ui->spinCache->value());
         total += getCmdOut("find /home/" + ui->comboUserClean->currentText().toUtf8() +
                            "/.cache/ -type f -atime +" + days + " -mtime +" + days +
-                           " -exec du -sc '{}' + | tail -1 | cut -f1").toInt();
+                           " -exec du -sc '{}' + | tail -1 | cut -f1").toULongLong();
         cache = "find /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/ -type f -atime +" +
                 days + " -mtime +" + days + " -delete";
         system(cache.toUtf8());
@@ -361,10 +373,21 @@ void MainWindow::pushApply_clicked()
 
     if (ui->checkThumbs->isChecked()) {
         total += getCmdOut("du -c /home/" + ui->comboUserClean->currentText().toUtf8() +
-                           "/.thumbnails/* | tail -1 | cut -f1").toInt();
+                           "/.thumbnails/* | tail -1 | cut -f1").toULongLong();
         thumbnails = "rm -r /home/" + ui->comboUserClean->currentText().toUtf8() +
                 "/.thumbnails/* 2>/dev/null";
         system(thumbnails.toUtf8());
+    }
+
+    if (ui->checkFlatpak->isChecked()) {
+        flatpak = QStringLiteral("pgrep -a flatpak | grep -v flatpak-system-helper || flatpak uninstall --unused --noninteractive");
+        QString user_size = QStringLiteral("du -s /home/$(logname)/.local/share/flatpak/ | cut -f1");
+        QString system_size = QStringLiteral("du -s /var/lib/flatpak/ | cut -f1");
+        total += getCmdOut(user_size).toULongLong();
+        total += getCmdOut(system_size).toULongLong();
+        system(flatpak.toUtf8());
+        total -= getCmdOut(user_size).toULongLong();
+        total -= getCmdOut(system_size).toULongLong();
     }
 
     if (ui->radioAutoClean->isChecked())
@@ -372,21 +395,21 @@ void MainWindow::pushApply_clicked()
     else if (ui->radioClean->isChecked())
         apt = QStringLiteral("apt-get clean");
 
-    total += getCmdOut(QStringLiteral("du -s /var/cache/apt/archives/ | cut -f1")).toInt();
+    total += getCmdOut(QStringLiteral("du -s /var/cache/apt/archives/ | cut -f1")).toULongLong();
     system(apt.toUtf8());
-    total -= getCmdOut(QStringLiteral("du -s /var/cache/apt/archives/ | cut -f1")).toInt();
+    total -= getCmdOut(QStringLiteral("du -s /var/cache/apt/archives/ | cut -f1")).toULongLong();
 
     QString time = ui->spinBoxLogs->value() == 0 ? QStringLiteral(" ")
                                                   : " -ctime +" + QString::number(ui->spinBoxLogs->value()) +
                                                     " -atime +" + QString::number(ui->spinBoxLogs->value()) + " ";
     if (ui->radioOldLogs->isChecked()) {
         total += getCmdOut(R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.1" \) -type f)" +
-                           time + "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
+                           time + "-exec du -sc '{}' + | tail -1 | cut -f1").toULongLong();
         logs = R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.1" \))" +
                 time + "-type f -delete 2>/dev/null";
         system(logs.toUtf8());
     } else if (ui->radioAllLogs->isChecked()){
-        total += getCmdOut("find /var/log -type f" + time + "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
+        total += getCmdOut("find /var/log -type f" + time + "-exec du -sc '{}' + | tail -1 | cut -f1").toULongLong();
         logs = "find /var/log -type f" + time + R"(-exec sh -c "echo > '{}'" \;)";  // empty the logs
         system(logs.toUtf8());
     }
@@ -398,7 +421,7 @@ void MainWindow::pushApply_clicked()
                                                        : " -ctime +" + QString::number(ui->spinBoxTrash->value()) +
                                                          " -atime +" + QString::number(ui->spinBoxTrash->value()) + " ";
         total += getCmdOut("find /home/" + user + "/.local/share/Trash -type f" + time +
-                           "-exec du -sc '{}' + | tail -1 | cut -f1").toInt();
+                           "-exec du -sc '{}' + | tail -1 | cut -f1").toULongLong();
         trash = "find /home/" + user + "/.local/share/Trash -type f" + time + "-delete";
         system(trash.toUtf8());
     }
@@ -411,7 +434,7 @@ void MainWindow::pushApply_clicked()
     // add schedule file
     if (!ui->radioNone->isChecked()) {
         QString period;
-        cmd_str = cache + "\n" + thumbnails + "\n" + logs + "\n" + apt + "\n" + trash;
+        cmd_str = cache + "\n" + thumbnails + "\n" + logs + "\n" + apt + "\n" + trash + "\n" + flatpak;
         qDebug() << "CMD STR" << cmd_str;
         if (ui->radioDaily->isChecked())
             period = QStringLiteral("daily");
@@ -428,7 +451,7 @@ void MainWindow::pushApply_clicked()
 
     setCursor(QCursor(Qt::ArrowCursor));
     QMessageBox::information(this, tr("Done"), tr("Cleanup command done") + "\n" +
-                             tr("%1 MiB were freed").arg((total / 1000)));
+                             tr("%1 MiB were freed").arg(total / 1024));
 }
 
 void MainWindow::pushAbout_clicked()
