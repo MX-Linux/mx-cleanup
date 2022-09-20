@@ -693,7 +693,7 @@
       </sizepolicy>
      </property>
      <property name="title">
-      <string>Clear Flatpak</string>
+      <string>Clean Flatpak</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
