@@ -380,7 +380,7 @@ void MainWindow::pushApply_clicked()
     }
 
     if (ui->checkFlatpak->isChecked()) {
-        flatpak = QStringLiteral("pgrep -a flatpak | grep -v flatpak-system-helper || flatpak uninstall --unused --noninteractive");
+        flatpak = QStringLiteral("pgrep -a flatpak | grep -v flatpak-s || flatpak uninstall --unused --noninteractive");
         QString user_size = QStringLiteral("du -s /home/$(logname)/.local/share/flatpak/ | cut -f1");
         QString system_size = QStringLiteral("du -s /var/lib/flatpak/ | cut -f1");
         total += getCmdOut(user_size).toULongLong();
