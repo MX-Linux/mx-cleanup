@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[antix-development.mx-cleanup]
+file_filter = ./mx-cleanup_<lang>.ts
+source_file = mx-cleanup_en.ts
+source_lang = en
+type = ts
