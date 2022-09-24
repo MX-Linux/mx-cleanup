@@ -7,12 +7,12 @@
         <location filename="../mainwindow.cpp" line="436"/>
         <location filename="../mainwindow.cpp" line="485"/>
         <source>MX Cleanup</source>
-        <translation type="unfinished"/>
+        <translation>MX Opruimen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="26"/>
         <source>Clean Folders</source>
-        <translation type="unfinished"/>
+        <translation>Folders om te Schonen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="142"/>
@@ -22,7 +22,7 @@
     <message>
         <location filename="../mainwindow.ui" line="191"/>
         <source>Display help </source>
-        <translation type="unfinished"/>
+        <translation>Toon help</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="194"/>
@@ -32,60 +32,60 @@
     <message>
         <location filename="../mainwindow.ui" line="201"/>
         <source>Alt+H</source>
-        <translation type="unfinished"/>
+        <translation>Alt+H</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="230"/>
         <source>About this application</source>
-        <translation type="unfinished"/>
+        <translation>Over deze applicatie</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="233"/>
         <source>About...</source>
-        <translation type="unfinished"/>
+        <translation>Over...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="240"/>
         <source>Alt+B</source>
-        <translation type="unfinished"/>
+        <translation>Alt+B</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="272"/>
         <source>Quit application</source>
-        <translation type="unfinished"/>
+        <translation>Verlaat de applicatie</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="275"/>
         <location filename="../mainwindow.cpp" line="551"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Sluiten</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="282"/>
         <source>Alt+N</source>
-        <translation type="unfinished"/>
+        <translation>Alt+N</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="320"/>
         <source>Apply</source>
-        <translation type="unfinished"/>
+        <translation>Toepassen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="348"/>
         <source>Empty Trash</source>
-        <translation type="unfinished"/>
+        <translation>Prullenbak Legen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="354"/>
         <source>Trash older than:</source>
-        <translation type="unfinished"/>
+        <translation>Afval ouder dan:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="361"/>
         <location filename="../mainwindow.ui" line="498"/>
         <location filename="../mainwindow.ui" line="704"/>
         <source>Don&apos;t empty</source>
-        <translation type="unfinished"/>
+        <translation>Niet legen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="129"/>
@@ -95,113 +95,113 @@
         <location filename="../mainwindow.cpp" line="329"/>
         <location filename="../mainwindow.cpp" line="331"/>
         <source> days</source>
-        <translation type="unfinished"/>
+        <translation>dagen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <source>Not accessed for</source>
-        <translation type="unfinished"/>
+        <translation>Niet toegankelijk voor</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="390"/>
         <source>All users</source>
-        <translation type="unfinished"/>
+        <translation>Alle gebruikers</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="409"/>
         <source>Selected user</source>
-        <translation type="unfinished"/>
+        <translation>Selecteer gebruiker</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="457"/>
         <source>Clear APT Cache</source>
-        <translation type="unfinished"/>
+        <translation>Ruim Apt Cache op</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="469"/>
         <source>Old files</source>
-        <translation type="unfinished"/>
+        <translation>Oude bestanden</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="488"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>Alle bestanden</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="530"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation type="unfinished"/>
+        <translation>Grafisch Gereedschap voor het Analyseren van Schijfgebruik</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="536"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation type="unfinished"/>
+        <translation>Schijfgebruik Analyse</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="550"/>
         <source>Schedule</source>
-        <translation type="unfinished"/>
+        <translation>Schema</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="562"/>
         <source>No automatic clean</source>
-        <translation type="unfinished"/>
+        <translation>Geen automatische schoonmaak</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="569"/>
         <source>At reboot</source>
-        <translation type="unfinished"/>
+        <translation>Bij herstarten</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="576"/>
         <source>Daily</source>
-        <translation type="unfinished"/>
+        <translation>Dagelijks</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="583"/>
         <source>Weekly</source>
-        <translation type="unfinished"/>
+        <translation>Wekelijks</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="590"/>
         <source>Monthly</source>
-        <translation type="unfinished"/>
+        <translation>Maandelijks</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="619"/>
         <source>Free Disk Space for User</source>
-        <translation type="unfinished"/>
+        <translation>Vrije Schijfruimte voor Gebruiker</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="631"/>
         <location filename="../mainwindow.ui" line="644"/>
         <source>Select user to repair</source>
-        <translation type="unfinished"/>
+        <translation>Selecteer een gebruiker voor reparatie</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="647"/>
         <source>Select user:</source>
-        <translation type="unfinished"/>
+        <translation>Selecteer gebruiker:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="663"/>
         <source>Delete Logs</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder Logs</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="688"/>
         <source>All logs</source>
-        <translation type="unfinished"/>
+        <translation>Alle logs</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="720"/>
         <source>Old logs</source>
-        <translation type="unfinished"/>
+        <translation>Oude logs</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="755"/>
         <source>Logs older than:</source>
-        <translation type="unfinished"/>
+        <translation>Logs ouder dan:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="778"/>
@@ -218,54 +218,54 @@
         <location filename="../mainwindow.cpp" line="329"/>
         <location filename="../mainwindow.cpp" line="331"/>
         <source> day</source>
-        <translation type="unfinished"/>
+        <translation>dagen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="429"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Klaar</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="429"/>
         <source>Cleanup command done</source>
-        <translation type="unfinished"/>
+        <translation>Opruim commando klaar</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="430"/>
         <source>%1 MiB were freed</source>
-        <translation type="unfinished"/>
+        <translation>%1 MiB werd vrijgemaakt</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="436"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Over</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="438"/>
         <source>Version: </source>
-        <translation type="unfinished"/>
+        <translation>Versie:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="439"/>
         <source>Quick and safe removal of old files</source>
-        <translation type="unfinished"/>
+        <translation>Snelle en veilige verwijdering van oude bestanden</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="441"/>
         <source>Copyright (c) MX Linux</source>
-        <translation type="unfinished"/>
+        <translation>Copyright (c) MX Linux</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="442"/>
         <location filename="../mainwindow.cpp" line="453"/>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>Licentie</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="443"/>
         <location filename="../mainwindow.cpp" line="461"/>
         <source>Changelog</source>
-        <translation type="unfinished"/>
+        <translation>Changelog</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="444"/>
@@ -275,17 +275,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="468"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Sluiten</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="546"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Kernel momenteel in gebruik:&lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="549"/>
         <source>Remove selected</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder geselecteerde</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="554"/>
@@ -308,17 +308,17 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"/>
+        <translation>Snelle en veilige verwijdering van oude bestanden</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="70"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Foutmelding</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="71"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation type="unfinished"/>
+        <translation>U lijkt ingelogd te zijn als root, gelieve uit te loggen en in te loggen als normale gebruiker om dit programma te gebruiken.</translation>
     </message>
 </context>
 </TS>
