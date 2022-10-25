@@ -38,10 +38,10 @@ int main(int argc, char *argv[])
     if (getuid() == 0) {
         qputenv("XDG_RUNTIME_DIR", "/run/user/0");
         qunsetenv("SESSION_MANAGER");
+        qunsetenv("DBUS_SESSION_BUS_ADDRESS=");
     }
     QApplication app(argc, argv);
     if (getuid() == 0) qputenv("HOME", "/root");
-    if (getuid() == 0) qputenv("DBUS_SESSION_BUS_ADDRESS", "");
 
     app.setApplicationVersion(VERSION);
     app.setOrganizationName(QStringLiteral("MX-Linux"));
