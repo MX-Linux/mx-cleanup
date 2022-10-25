@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="es">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
 <context>
     <name>MainWindow</name>
     <message>
@@ -13,27 +11,27 @@
     <message>
         <location filename="../mainwindow.ui" line="696"/>
         <source>Clean Flatpak</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpiar Flatpak</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="702"/>
         <source>Remove unused runtimes</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar los tiempos de ejecución no usados</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="718"/>
         <source>Clean Folders</source>
-        <translation>Limpiar Carpetas</translation>
+        <translation>Limpiar carpetas</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="737"/>
         <source>Not accessed for:</source>
-        <translation type="unfinished"></translation>
+        <translation>No accedido por:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="805"/>
         <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos (potencialmente peligrosos)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="59"/>
@@ -114,6 +112,10 @@
         <translation>días</translation>
     </message>
     <message>
+        <source>Not accessed for</source>
+        <translation type="vanished">No accedido por</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="264"/>
         <source>All users</source>
         <translation>Todos los usuarios</translation>
@@ -161,7 +163,7 @@
     <message>
         <location filename="../mainwindow.ui" line="449"/>
         <source>At reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Al reiniciar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="456"/>
@@ -217,19 +219,19 @@
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Kernel removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Herramienta de eliminación de kernel</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="676"/>
         <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Enlista y selecciona kernels para remover</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="339"/>
         <location filename="../mainwindow.cpp" line="341"/>
         <location filename="../mainwindow.cpp" line="343"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation>día</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="453"/>
@@ -269,12 +271,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="467"/>
         <source>%1 License</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Licencia</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="474"/>
         <source>%1 Help</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Ayuda</translation>
     </message>
     <message>
         <source>License</source>
@@ -295,7 +297,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="530"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Kernel actualmente en uso: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="533"/>
@@ -305,17 +307,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="538"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kernels similares que se pueden remover:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="539"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Otros kernels que se pueden remover:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="541"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nada que remover.&lt;/b&gt; No se puede remover el kernel en uso.</translation>
     </message>
 </context>
 <context>
@@ -323,7 +325,7 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminación rápida y segura de archivos antiguos</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="70"/>
@@ -338,23 +340,23 @@
     <message>
         <location filename="../about.cpp" line="50"/>
         <source>License</source>
-        <translation type="unfinished">Licencia</translation>
+        <translation>Licencia</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="51"/>
         <location filename="../about.cpp" line="60"/>
         <source>Changelog</source>
-        <translation type="unfinished">Registro de cambios</translation>
+        <translation>Registro de cambios</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="52"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="70"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Close</translation>
+        <translation>&amp;Cerrar</translation>
     </message>
 </context>
 </TS>
