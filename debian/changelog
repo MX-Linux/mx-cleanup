@@ -1,3 +1,9 @@
+mx-cleanup (22.10) mx; urgency=medium
+
+  * Unset DBUS_SESSION_BUS_ADDRESS 
+
+ -- Adrian <adrian@mxlinux.org>  Mon, 24 Oct 2022 21:55:33 -0400
+
 mx-cleanup (22.9) mx; urgency=medium
 
   * Flatpak: remove unused runtimes option

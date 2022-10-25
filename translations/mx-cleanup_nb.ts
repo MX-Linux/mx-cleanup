@@ -323,17 +323,17 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="49"/>
+        <location filename="../main.cpp" line="50"/>
         <source>Quick safe removal of old files</source>
         <translation>Fjern gamle filer raskt og trygt</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="70"/>
+        <location filename="../main.cpp" line="71"/>
         <source>Error</source>
         <translation>Feil</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="71"/>
+        <location filename="../main.cpp" line="72"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
         <translation>Du er innlogget som root. Vennligst logg ut, og logg inn igjen som en vanlig bruker for å bruke dette programmet.</translation>
     </message>
