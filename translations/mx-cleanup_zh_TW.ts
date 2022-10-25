@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_TW">
 <context>
     <name>MainWindow</name>
     <message>
@@ -8,17 +6,17 @@
         <location filename="../mainwindow.cpp" line="76"/>
         <location filename="../mainwindow.cpp" line="460"/>
         <source>MX Cleanup</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="696"/>
         <source>Clean Flatpak</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="702"/>
         <source>Remove unused runtimes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="718"/>
@@ -28,12 +26,12 @@
     <message>
         <location filename="../mainwindow.ui" line="737"/>
         <source>Not accessed for:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="805"/>
         <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="59"/>
@@ -94,14 +92,14 @@
     <message>
         <location filename="../mainwindow.ui" line="222"/>
         <source>Trash older than:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="235"/>
         <location filename="../mainwindow.ui" line="372"/>
         <location filename="../mainwindow.ui" line="590"/>
         <source>Don&apos;t empty</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="245"/>
@@ -111,17 +109,21 @@
         <location filename="../mainwindow.cpp" line="341"/>
         <location filename="../mainwindow.cpp" line="343"/>
         <source> days</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Not accessed for</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="264"/>
         <source>All users</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="283"/>
         <source>Selected user</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="331"/>
@@ -131,52 +133,52 @@
     <message>
         <location filename="../mainwindow.ui" line="343"/>
         <source>Old files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="362"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="404"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="416"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="430"/>
         <source>Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="442"/>
         <source>No automatic clean</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="449"/>
         <source>At reboot</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="456"/>
         <source>Daily</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="463"/>
         <source>Weekly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="470"/>
         <source>Monthly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="499"/>
@@ -192,7 +194,7 @@
     <message>
         <location filename="../mainwindow.ui" line="514"/>
         <source>Select user:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="543"/>
@@ -202,34 +204,34 @@
     <message>
         <location filename="../mainwindow.ui" line="568"/>
         <source>All logs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="606"/>
         <source>Old logs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
         <source>Logs older than:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Kernel removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="676"/>
         <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="339"/>
         <location filename="../mainwindow.cpp" line="341"/>
         <location filename="../mainwindow.cpp" line="343"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="453"/>
@@ -239,12 +241,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="453"/>
         <source>Cleanup command done</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="454"/>
         <source>%1 MiB were freed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="460"/>
@@ -259,7 +261,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="463"/>
         <source>Quick and safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="465"/>
@@ -269,12 +271,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="467"/>
         <source>%1 License</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 許可</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="474"/>
         <source>%1 Help</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 幫助</translation>
     </message>
     <message>
         <source>License</source>
@@ -295,27 +297,27 @@
     <message>
         <location filename="../mainwindow.cpp" line="530"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="533"/>
         <source>Remove selected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="538"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="539"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="541"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -323,7 +325,7 @@
     <message>
         <location filename="../main.cpp" line="50"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../main.cpp" line="71"/>
@@ -333,28 +335,28 @@
     <message>
         <location filename="../main.cpp" line="72"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../about.cpp" line="50"/>
         <source>License</source>
-        <translation type="unfinished">授權條款</translation>
+        <translation>授權條款</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="51"/>
         <location filename="../about.cpp" line="60"/>
         <source>Changelog</source>
-        <translation type="unfinished">變更紀錄</translation>
+        <translation>變更紀錄</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="52"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="70"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">關閉（&amp;C）</translation>
+        <translation>關閉（&amp;C）</translation>
     </message>
 </context>
 </TS>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="he_IL">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="he_IL">
 <context>
     <name>MainWindow</name>
     <message>
@@ -13,12 +11,12 @@
     <message>
         <location filename="../mainwindow.ui" line="696"/>
         <source>Clean Flatpak</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="702"/>
         <source>Remove unused runtimes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="718"/>
@@ -28,12 +26,12 @@
     <message>
         <location filename="../mainwindow.ui" line="737"/>
         <source>Not accessed for:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="805"/>
         <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="59"/>
@@ -114,6 +112,10 @@
         <translation> ימים</translation>
     </message>
     <message>
+        <source>Not accessed for</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="264"/>
         <source>All users</source>
         <translation>כל המשתמשים</translation>
@@ -161,7 +163,7 @@
     <message>
         <location filename="../mainwindow.ui" line="449"/>
         <source>At reboot</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="456"/>
@@ -217,19 +219,19 @@
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Kernel removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="676"/>
         <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="339"/>
         <location filename="../mainwindow.cpp" line="341"/>
         <location filename="../mainwindow.cpp" line="343"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="453"/>
@@ -269,12 +271,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="467"/>
         <source>%1 License</source>
-        <translation type="unfinished"></translation>
+        <translation>רישיון של %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="474"/>
         <source>%1 Help</source>
-        <translation type="unfinished"></translation>
+        <translation>עזרה עבור %1</translation>
     </message>
     <message>
         <source>License</source>
@@ -295,27 +297,27 @@
     <message>
         <location filename="../mainwindow.cpp" line="530"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="533"/>
         <source>Remove selected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="538"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="539"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="541"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -323,7 +325,7 @@
     <message>
         <location filename="../main.cpp" line="50"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../main.cpp" line="71"/>
@@ -333,28 +335,28 @@
     <message>
         <location filename="../main.cpp" line="72"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../about.cpp" line="50"/>
         <source>License</source>
-        <translation type="unfinished">רשיון</translation>
+        <translation>רישיון</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="51"/>
         <location filename="../about.cpp" line="60"/>
         <source>Changelog</source>
-        <translation type="unfinished">יומן שינויים</translation>
+        <translation>יומן שינויים</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="52"/>
         <source>Cancel</source>
-        <translation type="unfinished">ביטול</translation>
+        <translation>ביטול</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="70"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;סגירה</translation>
+        <translation>&amp;סגירה</translation>
     </message>
 </context>
 </TS>

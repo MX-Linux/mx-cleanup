@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ru">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ru">
 <context>
     <name>MainWindow</name>
     <message>
@@ -13,12 +11,12 @@
     <message>
         <location filename="../mainwindow.ui" line="696"/>
         <source>Clean Flatpak</source>
-        <translation type="unfinished"></translation>
+        <translation>Чистый Флатпак</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="702"/>
         <source>Remove unused runtimes</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить ненужные среды выполнения</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="718"/>
@@ -28,12 +26,12 @@
     <message>
         <location filename="../mainwindow.ui" line="737"/>
         <source>Not accessed for:</source>
-        <translation type="unfinished"></translation>
+        <translation>Не доступен для:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="805"/>
         <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
+        <translation>Все (потенциально опасно)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="59"/>
@@ -114,6 +112,10 @@
         <translation> дни</translation>
     </message>
     <message>
+        <source>Not accessed for</source>
+        <translation type="vanished">Не доступен для</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="264"/>
         <source>All users</source>
         <translation>Все пользователи</translation>
@@ -161,7 +163,7 @@
     <message>
         <location filename="../mainwindow.ui" line="449"/>
         <source>At reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>При перезагрузке</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="456"/>
@@ -217,19 +219,19 @@
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Kernel removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Инструмент удаления ядра</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="676"/>
         <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Перечислить и выбрать ядра для удаления</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="339"/>
         <location filename="../mainwindow.cpp" line="341"/>
         <location filename="../mainwindow.cpp" line="343"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation>день</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="453"/>
@@ -269,12 +271,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="467"/>
         <source>%1 License</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Лицензия</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="474"/>
         <source>%1 Help</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Справка</translation>
     </message>
     <message>
         <source>License</source>
@@ -295,7 +297,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="530"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Используемое ядро: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="533"/>
@@ -305,17 +307,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="538"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Похожие ядра, которые можно удалить:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="539"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Другие ядра, которые можно удалить:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="541"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Нечего удалить.&lt;/b&gt; Не удаётся удалить используемое ядро.</translation>
     </message>
 </context>
 <context>
@@ -323,7 +325,7 @@
     <message>
         <location filename="../main.cpp" line="50"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation>Быстрое безопасное удаление старых файлов</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="71"/>
@@ -338,23 +340,23 @@
     <message>
         <location filename="../about.cpp" line="50"/>
         <source>License</source>
-        <translation type="unfinished">Лицензия</translation>
+        <translation>Лицензия</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="51"/>
         <location filename="../about.cpp" line="60"/>
         <source>Changelog</source>
-        <translation type="unfinished">Список изменений</translation>
+        <translation>Список изменений</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="52"/>
         <source>Cancel</source>
-        <translation type="unfinished">Отменить</translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="70"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Закрыть</translation>
+        <translation>Закрыть</translation>
     </message>
 </context>
 </TS>
