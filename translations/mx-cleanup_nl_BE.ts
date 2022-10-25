@@ -16,7 +16,7 @@
     <message>
         <location filename="../mainwindow.ui" line="702"/>
         <source>Remove unused runtimes</source>
-        <translation type="unfinished"/>
+        <translation>Ongebruikte looptijden verwijderen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="718"/>
@@ -26,7 +26,7 @@
     <message>
         <location filename="../mainwindow.ui" line="737"/>
         <source>Not accessed for:</source>
-        <translation type="unfinished"/>
+        <translation>Niet toegankelijk voor:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="805"/>
