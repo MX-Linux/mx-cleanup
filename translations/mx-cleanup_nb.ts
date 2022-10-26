@@ -11,7 +11,7 @@
     <message>
         <location filename="../mainwindow.ui" line="696"/>
         <source>Clean Flatpak</source>
-        <translation type="unfinished"/>
+        <translation>Rydd opp i Flatpak</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="702"/>
@@ -26,7 +26,7 @@
     <message>
         <location filename="../mainwindow.ui" line="737"/>
         <source>Not accessed for:</source>
-        <translation type="unfinished"/>
+        <translation>Ikke brukt siden:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="805"/>
@@ -323,17 +323,17 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="50"/>
+        <location filename="../main.cpp" line="49"/>
         <source>Quick safe removal of old files</source>
         <translation>Fjern gamle filer raskt og trygt</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="71"/>
+        <location filename="../main.cpp" line="70"/>
         <source>Error</source>
         <translation>Feil</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="72"/>
+        <location filename="../main.cpp" line="71"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
         <translation>Du er innlogget som root. Vennligst logg ut, og logg inn igjen som en vanlig bruker for å bruke dette programmet.</translation>
     </message>
