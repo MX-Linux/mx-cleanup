@@ -11,7 +11,7 @@
     <message>
         <location filename="../mainwindow.ui" line="696"/>
         <source>Clean Flatpak</source>
-        <translation type="unfinished"/>
+        <translation>Flatpak をクリーンアップ</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="702"/>
@@ -26,7 +26,7 @@
     <message>
         <location filename="../mainwindow.ui" line="737"/>
         <source>Not accessed for:</source>
-        <translation type="unfinished"/>
+        <translation>アクセスしていない期間:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="805"/>
@@ -158,7 +158,7 @@
     <message>
         <location filename="../mainwindow.ui" line="442"/>
         <source>No automatic clean</source>
-        <translation>自動クリーニングなし</translation>
+        <translation>自動で実行しない</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="449"/>
@@ -183,7 +183,7 @@
     <message>
         <location filename="../mainwindow.ui" line="499"/>
         <source>Free Disk Space for User</source>
-        <translation>ユーザの用の空きディスク容量</translation>
+        <translation>ユーザーが利用できる空き容量</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="511"/>
@@ -214,7 +214,7 @@
     <message>
         <location filename="../mainwindow.ui" line="641"/>
         <source>Logs older than:</source>
-        <translation>除外する日数:</translation>
+        <translation>除外する期間:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="664"/>
@@ -231,7 +231,7 @@
         <location filename="../mainwindow.cpp" line="341"/>
         <location filename="../mainwindow.cpp" line="343"/>
         <source> day</source>
-        <translation>日</translation>
+        <translation>日分</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="453"/>
@@ -241,7 +241,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="453"/>
         <source>Cleanup command done</source>
-        <translation>Cleanup コマンド終了</translation>
+        <translation>クリーンアップのコマンド終了</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="454"/>
@@ -297,7 +297,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="530"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation>現在使用中のカーネル: &lt;b&gt;%1&lt;/b&gt;</translation>
+        <translation>現在使用中のカーネルです: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="533"/>
@@ -317,23 +317,23 @@
     <message>
         <location filename="../mainwindow.cpp" line="541"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation>&lt;b&gt;何も削除しない。&lt;/b&gt; 使用中のカーネルは削除不能です。</translation>
+        <translation>&lt;b&gt;削除できません。&lt;/b&gt; 使用中のカーネルは削除不能です。</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="50"/>
+        <location filename="../main.cpp" line="49"/>
         <source>Quick safe removal of old files</source>
         <translation>古いファイルの迅速で安全な削除</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="71"/>
+        <location filename="../main.cpp" line="70"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="72"/>
+        <location filename="../main.cpp" line="71"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
         <translation>rootとしてログインしているようです。このプログラムを使用するには、一度ログアウトして通常のユーザーとしてログインしてください。</translation>
     </message>
