@@ -423,10 +423,10 @@ void MainWindow::pushApply_clicked()
                            ? QStringLiteral(" ")
                            : " -ctime +" + QString::number(ui->spinBoxTrash->value()) + " -atime +"
                                  + QString::number(ui->spinBoxTrash->value()) + " ";
-        total += getCmdOut("find /home/" + user + "/.local/share/Trash -type f" + time
+        total += getCmdOut("find /home/" + user + "/.local/share/Trash -mindepth 1" + time
                            + "-exec du -sc '{}' + | tail -1 | cut -f1")
                      .toULongLong();
-        trash = "find /home/" + user + "/.local/share/Trash -type f" + time + "-delete";
+        trash = "find /home/" + user + "/.local/share/Trash -mindepth 1" + time + "-delete";
         system(trash.toUtf8());
     }
 

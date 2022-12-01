@@ -1,0 +1,46 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Thu, 01 Dec 2022 08:47:19 -0500
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 22.12
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (22.12) mx; urgency=medium
+ .
+   * Delete folders from Trash, not only files
+Checksums-Sha1:
+ 04e9c9a243165166b88a0bd2eb647cb554456817 1115 mx-cleanup_22.12.dsc
+ 0a5be99495e33e94589ed5d6e55cb3bea2466f45 120468 mx-cleanup_22.12.tar.xz
+ 0a01595e2cc8e91e54109ccb9a36de190138bbeb 10730 mx-cleanup_22.12_amd64.buildinfo
+ 409bd543bcd7423c2b64da37630d28a96664f2c2 138748 mx-cleanup_22.12_amd64.deb
+Checksums-Sha256:
+ 55fd2ddfde1cdb992a53e9d6ec32e2e65bdf9466c74eb427e1256de5771c36f6 1115 mx-cleanup_22.12.dsc
+ 47a50771360e4a7d7cbe898d7964804a5add93df099272d1ff6944512798a1e8 120468 mx-cleanup_22.12.tar.xz
+ 47244f6aa4f09fd0f310941db7dfe35874bbab500a4f601c9cf06f4a6f66fb14 10730 mx-cleanup_22.12_amd64.buildinfo
+ bcd69723120c7dec74ef18cd12692aba6e0cce9e25cc96647e21bb4ce3e38397 138748 mx-cleanup_22.12_amd64.deb
+Files:
+ c804b5cedd49f455d36eb445aba35faa 1115 admin optional mx-cleanup_22.12.dsc
+ c941190bb6391582c7cceb2a9ac283ad 120468 admin optional mx-cleanup_22.12.tar.xz
+ 5ea6a1d480f9fe1cdf077595bb5119a8 10730 admin optional mx-cleanup_22.12_amd64.buildinfo
+ 292e7751834306328c86ff6a9ebcd926 138748 admin optional mx-cleanup_22.12_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmOIsNUTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumIycB/9U8bOooi2j1M54x24EJ1IIp6KOE9J2
+Ul0JQ1u0BHQJHq77sXGldgoebeOUNuYP5UyKwbdrnLBpj9nr++x23FMvttsKuQQt
+iJ2x3aIKCQFsg2hCC9iihi1oCYTHKxMM7/aowpz2g9eRrMd1j0GklkSuz9ypeqnG
+EQcvyvc/nHt16bQn3iXvr3OPdwFsEpZEYJy93L3Z0efxVbvI2yOEGKC7FB+mUSU/
+5MPYfPm6KTzUDmetSvMhrbIxXjbndm3K+HYPXLfdQGjUP5FgR/MPpGBa3PA6KmGE
+mR9FbVhXrYHRxvpW0XF38K93ZbpnPwtcajHUOwOJB5aHzY7TrCDhX8LS
+=PFH8
+-----END PGP SIGNATURE-----
