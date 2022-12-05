@@ -35,6 +35,8 @@ Makefile*
 *.qmlproject.user
 *.qmlproject.user.*
 
+# Transifex ignore
+.tx/
 
 # Exclude binary
 mx-cleanup
