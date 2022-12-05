@@ -1,0 +1,15 @@
+mx-cleanup-desktop_ca.po
+mx-cleanup-desktop_da.po
+mx-cleanup-desktop_de.po
+mx-cleanup-desktop_el.po
+mx-cleanup-desktop_es.po
+mx-cleanup-desktop_fr.po
+mx-cleanup-desktop_it.po
+mx-cleanup-desktop_lt.po
+mx-cleanup-desktop_nl.po
+mx-cleanup-desktop_pl.po
+mx-cleanup-desktop_pt.po
+mx-cleanup-desktop_pt_BR.po
+mx-cleanup-desktop_sk.po
+mx-cleanup-desktop_sl.po
+mx-cleanup-desktop_sv.po

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+# The desktop entry name will be displayed within the menu.
+Name=MX Cleanup
+# # The desktop entry comment will be shown within the menu.
+Comment=Quick and safe removal of old files
+Exec=mx-cleanup-launcher
+Terminal=false
+Type=Application
+Icon=mx-cleanup
+Categories=System;MX-Maintenance
+NoDisplay=false
