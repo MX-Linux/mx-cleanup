@@ -1,37 +1,39 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hu">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="hu">
 <context>
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../mainwindow.cpp" line="76"/>
-        <location filename="../mainwindow.cpp" line="460"/>
+        <location filename="../mainwindow.cpp" line="73"/>
+        <location filename="../mainwindow.cpp" line="467"/>
         <source>MX Cleanup</source>
-        <translation type="unfinished"/>
+        <translation>MX Takarító</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="696"/>
         <source>Clean Flatpak</source>
-        <translation type="unfinished"/>
+        <translation>Flatpak takarítás</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="702"/>
         <source>Remove unused runtimes</source>
-        <translation type="unfinished"/>
+        <translation>Nem használt környezetek eltávolítása</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="718"/>
         <source>Clean Folders</source>
-        <translation type="unfinished"/>
+        <translation>Mappák takarítása</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="737"/>
         <source>Not accessed for:</source>
-        <translation type="unfinished"/>
+        <translation>Ennyi ideje nem volt elérve:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="805"/>
         <source>All (potentially dangerous)</source>
-        <translation type="unfinished"/>
+        <translation>Mind (potenciálisan veszélyes)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="59"/>
@@ -56,7 +58,7 @@
     <message>
         <location filename="../mainwindow.ui" line="101"/>
         <source>About...</source>
-        <translation>Névjegy</translation>
+        <translation>Névjegy...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="108"/>
@@ -70,9 +72,9 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.cpp" line="535"/>
+        <location filename="../mainwindow.cpp" line="541"/>
         <source>Close</source>
-        <translation>Bezár</translation>
+        <translation>Bezárás</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="150"/>
@@ -82,209 +84,209 @@
     <message>
         <location filename="../mainwindow.ui" line="188"/>
         <source>Apply</source>
-        <translation>Alkamaz</translation>
+        <translation>Alkalmazás</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="216"/>
         <source>Empty Trash</source>
-        <translation type="unfinished"/>
+        <translation>Kuka ürítése</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="222"/>
         <source>Trash older than:</source>
-        <translation type="unfinished"/>
+        <translation>Kukában lévő, ennél régebbi:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="235"/>
         <location filename="../mainwindow.ui" line="372"/>
         <location filename="../mainwindow.ui" line="590"/>
         <source>Don&apos;t empty</source>
-        <translation type="unfinished"/>
+        <translation>Ne ürítse</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="245"/>
         <location filename="../mainwindow.ui" line="622"/>
         <location filename="../mainwindow.ui" line="724"/>
-        <location filename="../mainwindow.cpp" line="339"/>
-        <location filename="../mainwindow.cpp" line="341"/>
-        <location filename="../mainwindow.cpp" line="343"/>
+        <location filename="../mainwindow.cpp" line="335"/>
+        <location filename="../mainwindow.cpp" line="338"/>
+        <location filename="../mainwindow.cpp" line="342"/>
         <source> days</source>
-        <translation type="unfinished"/>
+        <translation>nap</translation>
     </message>
     <message>
         <source>Not accessed for</source>
-        <translation type="unfinished"/>
+        <translation type="vanished">Ennyi ideje nem volt elérve:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="264"/>
         <source>All users</source>
-        <translation type="unfinished"/>
+        <translation>Minden felhasználó</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="283"/>
         <source>Selected user</source>
-        <translation type="unfinished"/>
+        <translation>A kiválasztott felhasználó</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="331"/>
         <source>Clear APT Cache</source>
-        <translation type="unfinished"/>
+        <translation>APT gyorstár törlése</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="343"/>
         <source>Old files</source>
-        <translation type="unfinished"/>
+        <translation>Régi fájlok</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="362"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>Minden fájl</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="404"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation type="unfinished"/>
+        <translation>Grafikus eszköz a lemezhasználat elemzésére</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="416"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation type="unfinished"/>
+        <translation>Lemezhasználat elemző indítása</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="430"/>
         <source>Schedule</source>
-        <translation type="unfinished"/>
+        <translation>Ütemezés</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="442"/>
         <source>No automatic clean</source>
-        <translation type="unfinished"/>
+        <translation>Nincs automatikus takarítás</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="449"/>
         <source>At reboot</source>
-        <translation type="unfinished"/>
+        <translation>Újraindításkor</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="456"/>
         <source>Daily</source>
-        <translation type="unfinished"/>
+        <translation>Naponta</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="463"/>
         <source>Weekly</source>
-        <translation type="unfinished"/>
+        <translation>Hetente</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="470"/>
         <source>Monthly</source>
-        <translation type="unfinished"/>
+        <translation>Havonta</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="499"/>
         <source>Free Disk Space for User</source>
-        <translation type="unfinished"/>
+        <translation>Lemezterület felszabadítása a felhasználónál</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="511"/>
         <location filename="../mainwindow.ui" line="527"/>
         <source>Select user to repair</source>
-        <translation type="unfinished"/>
+        <translation>Válassza ki a megjavítandó felhasználót</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="514"/>
         <source>Select user:</source>
-        <translation type="unfinished"/>
+        <translation>Felhasználó kiválasztása:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="543"/>
         <source>Delete Logs</source>
-        <translation type="unfinished"/>
+        <translation>Naplófájlok törlése</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="568"/>
         <source>All logs</source>
-        <translation type="unfinished"/>
+        <translation>Minden naplófájl</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="606"/>
         <source>Old logs</source>
-        <translation type="unfinished"/>
+        <translation>Régi naplófájlok</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
         <source>Logs older than:</source>
-        <translation type="unfinished"/>
+        <translation>Ennél régebbi naplók:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Kernel removal tool</source>
-        <translation type="unfinished"/>
+        <translation>Kernel eltávolító eszköz</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="676"/>
         <source>List and select kernels to remove</source>
-        <translation type="unfinished"/>
+        <translation>Az eltávolítandó kernelek kilistázása és kiválasztása</translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp" line="335"/>
         <location filename="../mainwindow.cpp" line="339"/>
-        <location filename="../mainwindow.cpp" line="341"/>
         <location filename="../mainwindow.cpp" line="343"/>
         <source> day</source>
-        <translation type="unfinished"/>
+        <translation>nao</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="453"/>
+        <location filename="../mainwindow.cpp" line="459"/>
         <source>Done</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="453"/>
-        <source>Cleanup command done</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="454"/>
-        <source>%1 MiB were freed</source>
-        <translation type="unfinished"/>
+        <translation>Kész</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="460"/>
+        <source>Cleanup command done</source>
+        <translation>Takarítási parancs befejeződött</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="460"/>
+        <source>%1 MiB were freed</source>
+        <translation>1% MiB került felszabadításra</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="467"/>
         <source>About</source>
         <translation>Névjegy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="462"/>
+        <location filename="../mainwindow.cpp" line="468"/>
         <source>Version: </source>
         <translation>Verzió:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="463"/>
+        <location filename="../mainwindow.cpp" line="470"/>
         <source>Quick and safe removal of old files</source>
-        <translation type="unfinished"/>
+        <translation>A régi fájlok gyors és biztonságos eltávolítása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="465"/>
+        <location filename="../mainwindow.cpp" line="472"/>
         <source>Copyright (c) MX Linux</source>
         <translation>Copyright (c) MX Linux</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="467"/>
+        <location filename="../mainwindow.cpp" line="473"/>
         <source>%1 License</source>
-        <translation type="unfinished"/>
+        <translation>%1 licenc</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="474"/>
+        <location filename="../mainwindow.cpp" line="480"/>
         <source>%1 Help</source>
-        <translation type="unfinished"/>
+        <translation>%1 Súgó</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="vanished">Liszensz</translation>
+        <translation type="vanished">Licenc</translation>
     </message>
     <message>
         <source>Changelog</source>
-        <translation type="vanished">Változásbejegyzés</translation>
+        <translation type="vanished">Változások listája</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -292,71 +294,71 @@
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="vanished">&amp;Bezár</translation>
+        <translation type="vanished">&amp;Bezárás</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="530"/>
+        <location filename="../mainwindow.cpp" line="536"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Jelenleg használatban: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="533"/>
+        <location filename="../mainwindow.cpp" line="539"/>
         <source>Remove selected</source>
         <translation>Kiválasztott eltávolítása</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="538"/>
+        <location filename="../mainwindow.cpp" line="544"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"/>
+        <translation>Hasonló, szintén eltávolítható kernelek:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="539"/>
+        <location filename="../mainwindow.cpp" line="545"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"/>
+        <translation>Másik, nem eltávolítható kernelek:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="541"/>
+        <location filename="../mainwindow.cpp" line="547"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Nincs mit eltávolítani.&lt;/b&gt; A használatban lévő kernel nem távolítható el.</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="49"/>
+        <location filename="../main.cpp" line="51"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"/>
+        <translation>A régi fájlok gyors és biztonságos eltávolítása</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="70"/>
+        <location filename="../main.cpp" line="74"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="71"/>
+        <location filename="../main.cpp" line="75"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../about.cpp" line="50"/>
-        <source>License</source>
-        <translation>Liszensz</translation>
-    </message>
-    <message>
-        <location filename="../about.cpp" line="51"/>
-        <location filename="../about.cpp" line="60"/>
-        <source>Changelog</source>
-        <translation>Változásbejegyzés</translation>
+        <translation>Úgy tűnik, hogy root felhasználóként van bejelentkezve. Jelentkezzen ki és jelentkezzen be normál felhasználóként a program használatához.</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="52"/>
+        <source>License</source>
+        <translation>Licenc</translation>
+    </message>
+    <message>
+        <location filename="../about.cpp" line="53"/>
+        <location filename="../about.cpp" line="62"/>
+        <source>Changelog</source>
+        <translation>Változások listája</translation>
+    </message>
+    <message>
+        <location filename="../about.cpp" line="54"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="70"/>
+        <location filename="../about.cpp" line="74"/>
         <source>&amp;Close</source>
-        <translation>&amp;Bezár</translation>
+        <translation>&amp;Bezárás</translation>
     </message>
 </context>
 </TS>

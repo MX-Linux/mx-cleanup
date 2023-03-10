@@ -1,0 +1,47 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Fri, 10 Mar 2023 00:51:27 -0500
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 23.3
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (23.3) mx; urgency=medium
+ .
+   * Add clean up for log files with the following formats: *.[0-9] and *.[0-9].log
+   * Translation refresh
+Checksums-Sha1:
+ 090d86bd916821b1c003c80148853e4f66df3074 1111 mx-cleanup_23.3.dsc
+ 69e3d586681a89ecc5fa402c737d9291454ee552 130732 mx-cleanup_23.3.tar.xz
+ 739b6ff5929fe4e2ba2032d815b2763b69b4f949 10722 mx-cleanup_23.3_amd64.buildinfo
+ c3db34430ba3c4ad107351345a3db6d7ff901f64 140296 mx-cleanup_23.3_amd64.deb
+Checksums-Sha256:
+ d4a7591f80a39504747b0e316d9c8a2121390f04533a16a324ac9f4475bdc9cc 1111 mx-cleanup_23.3.dsc
+ 5b4c7cf29a698103fc9d901d790f6ab0a4f5bc9c65cbc2bce293a9ac8472bd54 130732 mx-cleanup_23.3.tar.xz
+ cb0e91961b305f15308be6759b640ca02288ce7176fce6be027b32bacc829eeb 10722 mx-cleanup_23.3_amd64.buildinfo
+ e27e90414f71c338ccdd71a481f66a9ca4651492207b947fbe62942d2ad106be 140296 mx-cleanup_23.3_amd64.deb
+Files:
+ b33a707506265fa24858ab44983bf8ea 1111 admin optional mx-cleanup_23.3.dsc
+ 337ce7ca58a20b38ae60c37b3aee28a3 130732 admin optional mx-cleanup_23.3.tar.xz
+ 7e3922323c3e9c78fd81b5f35cb2d827 10722 admin optional mx-cleanup_23.3_amd64.buildinfo
+ 1d0b53753aba009c02438b8afb5da3cd 140296 admin optional mx-cleanup_23.3_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmQKxscTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumAK7B/9Ppi3tiSkVxm7G0OVhIZl96KJ/9OO9
+rO5KpzYAGd3FPaUz4ZO3FPvPV5NJDw3kwwf1xBg36TaqFNUbUI9Dbiv4mPcZZyOO
+isBs6Et1JBixwl1ur8c7OOxk4xDirnQWU2aF0L8zPX4OzfR6tuEKYqITOXlCWyiO
+Z63YEBRmeU1kZcxZpGhluRPyamyMupEGvRJ/nLDxrPd6x+gcSJz0PBf44hN2jr5h
+/jF13+1qT5GI1Ohn2pUhZ6pSuLqrPb06PqgAA8bRw38QAj8NjLuaPsm1QdvTdpQA
+P3QBCZI6LlSFZ5bPWjnJiXCP2cMCaGYC7o/lJjbXo+X9KE46bvm61S/R
+=7q3m
+-----END PGP SIGNATURE-----

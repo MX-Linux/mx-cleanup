@@ -1,3 +1,10 @@
+mx-cleanup (23.3) mx; urgency=medium
+
+  * Add clean up for log files with the following formats: *.[0-9] and *.[0-9].log
+  * Translation refresh
+
+ -- Adrian <adrian@mxlinux.org>  Fri, 10 Mar 2023 00:51:27 -0500
+
 mx-cleanup (22.12) mx; urgency=medium
 
   * Delete folders from Trash, not only files

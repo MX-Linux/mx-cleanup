@@ -1,0 +1,41 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Fri, 10 Mar 2023 00:51:27 -0500
+Source: mx-cleanup
+Architecture: source
+Version: 23.3
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Changes:
+ mx-cleanup (23.3) mx; urgency=medium
+ .
+   * Add clean up for log files with the following formats: *.[0-9] and *.[0-9].log
+   * Translation refresh
+Checksums-Sha1:
+ 090d86bd916821b1c003c80148853e4f66df3074 1111 mx-cleanup_23.3.dsc
+ 69e3d586681a89ecc5fa402c737d9291454ee552 130732 mx-cleanup_23.3.tar.xz
+ 739b6ff5929fe4e2ba2032d815b2763b69b4f949 10722 mx-cleanup_23.3_amd64.buildinfo
+Checksums-Sha256:
+ d4a7591f80a39504747b0e316d9c8a2121390f04533a16a324ac9f4475bdc9cc 1111 mx-cleanup_23.3.dsc
+ 5b4c7cf29a698103fc9d901d790f6ab0a4f5bc9c65cbc2bce293a9ac8472bd54 130732 mx-cleanup_23.3.tar.xz
+ cb0e91961b305f15308be6759b640ca02288ce7176fce6be027b32bacc829eeb 10722 mx-cleanup_23.3_amd64.buildinfo
+Files:
+ b33a707506265fa24858ab44983bf8ea 1111 admin optional mx-cleanup_23.3.dsc
+ 337ce7ca58a20b38ae60c37b3aee28a3 130732 admin optional mx-cleanup_23.3.tar.xz
+ 7e3922323c3e9c78fd81b5f35cb2d827 10722 admin optional mx-cleanup_23.3_amd64.buildinfo
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmQKxsgTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumOpVB/wJUIArgI7dTr3NhVnssBBATM0wlmBy
+st/wyq3eNuG15g9EyoslCIAvh9vQifA61M84p2tYpT0rhFZreTbjFTki3909SyoN
+fQ5rz03PWpsFyhEjFiNLRv1RgGrPL4OzeXR1oNfdTaAhzUGsyqD0hPwapGxYX6NQ
+FA18piqlpMzly1CFD+bzGGKrM1/I1cJrMUmgUztqq2lHjgxu8Rr2fSOhaGcmlXpS
+ysyefj552TDAoCwujSkqXRcoo6uefxhj+BHOooDgDfu0Ml+oLPZwwxBP7PTGYxLN
+x/lFEqF2N8s/eItPbeAMN2fUpcB4/fv+iiRinlYvUOG2dDu7nyZ4IyQu
+=2xyl
+-----END PGP SIGNATURE-----
