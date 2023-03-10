@@ -405,10 +405,12 @@ void MainWindow::pushApply_clicked()
                                                  : " -ctime +" + QString::number(ui->spinBoxLogs->value()) + " -atime +"
                                                        + QString::number(ui->spinBoxLogs->value()) + " ";
     if (ui->radioOldLogs->isChecked()) {
-        total += getCmdOut(R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.1" \) -type f)" + time
-                           + "-exec du -sc '{}' + | tail -1 | cut -f1")
-                     .toULongLong();
-        logs = R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.1" \))" + time
+        total
+            += getCmdOut(
+                   R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \) -type f)"
+                   + time + "-exec du -sc '{}' + | tail -1 | cut -f1")
+                   .toULongLong();
+        logs = R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \))" + time
                + "-type f -delete 2>/dev/null";
         system(logs.toUtf8());
     } else if (ui->radioAllLogs->isChecked()) {
