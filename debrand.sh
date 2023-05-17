@@ -5,7 +5,7 @@ mv mx-cleanup.desktop cleanup.desktop
 mv mx-cleanup.png cleanup.png
 
 # remove logo
-rm images/logo.png
+rm images/logo.svg
 
 # remove mx-* translation files
 rm translations/mx-*
