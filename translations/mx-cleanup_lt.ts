@@ -11,31 +11,6 @@
         <translation>MX išvalymas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="696"/>
-        <source>Clean Flatpak</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="702"/>
-        <source>Remove unused runtimes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="718"/>
-        <source>Clean Folders</source>
-        <translation>Aplankai, kuriuos išvalyti</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="737"/>
-        <source>Not accessed for:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="805"/>
-        <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="59"/>
         <source>Display help </source>
         <translation>Rodyti žinyną</translation>
@@ -166,17 +141,17 @@
     <message>
         <location filename="../mainwindow.ui" line="456"/>
         <source>Daily</source>
-        <translation type="unfinished"></translation>
+        <translation>Kasdien</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="463"/>
         <source>Weekly</source>
-        <translation type="unfinished"></translation>
+        <translation>Kas savaitę</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="470"/>
         <source>Monthly</source>
-        <translation type="unfinished"></translation>
+        <translation>Kas mėnesį</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="499"/>
@@ -217,11 +192,36 @@
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Kernel removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Branduolių šalinimo įrankis</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="676"/>
         <source>List and select kernels to remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="696"/>
+        <source>Clean Flatpak</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="702"/>
+        <source>Remove unused runtimes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="718"/>
+        <source>Clean Folders</source>
+        <translation>Aplankai, kuriuos išvalyti</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="737"/>
+        <source>Not accessed for:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="805"/>
+        <source>All (potentially dangerous)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -277,64 +277,33 @@
         <translation>%1 žinynas</translation>
     </message>
     <message>
-        <source>License</source>
-        <translation type="vanished">Licencija</translation>
-    </message>
-    <message>
-        <source>Changelog</source>
-        <translation type="vanished">Keitinių žurnalas</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Atsisakyti</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="vanished">&amp;Užverti</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.cpp" line="536"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Šiuo metu naudojamas branduolys: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="539"/>
         <source>Remove selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Šalinti pažymėtus</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="544"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Panašūs branduoliai, kurie gali būti pašalinti:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="545"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiti branduoliai, kurie gali būti pašalinti:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="547"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nėra, ką šalinti.&lt;/b&gt; Negalima šalinti naudojamo branduolio.</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
-    <message>
-        <location filename="../main.cpp" line="51"/>
-        <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="74"/>
-        <source>Error</source>
-        <translation>Klaida</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="75"/>
-        <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../about.cpp" line="52"/>
         <source>License</source>
@@ -355,6 +324,21 @@
         <location filename="../about.cpp" line="74"/>
         <source>&amp;Close</source>
         <translation>&amp;Užverti</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="51"/>
+        <source>Quick safe removal of old files</source>
+        <translation>Greitas ir saugus senų failų šalinimas</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="74"/>
+        <source>Error</source>
+        <translation>Klaida</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="75"/>
+        <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

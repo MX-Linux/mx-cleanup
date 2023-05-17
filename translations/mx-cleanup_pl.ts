@@ -11,31 +11,6 @@
         <translation>MX Porządki</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="696"/>
-        <source>Clean Flatpak</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="702"/>
-        <source>Remove unused runtimes</source>
-        <translation>Usuń nieużywane środowiska wykonawcze</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="718"/>
-        <source>Clean Folders</source>
-        <translation>Wyczyść foldery</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="737"/>
-        <source>Not accessed for:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="805"/>
-        <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="59"/>
         <source>Display help </source>
         <translation>Wyświetl pomoc</translation>
@@ -161,7 +136,7 @@
     <message>
         <location filename="../mainwindow.ui" line="449"/>
         <source>At reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Podczas ponownego uruchamiania</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="456"/>
@@ -217,19 +192,44 @@
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Kernel removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Narzędzie do usuwania kernela</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="676"/>
         <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetl listę i wybierz kernele do usunięcia</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="696"/>
+        <source>Clean Flatpak</source>
+        <translation>Wyczyść Flatpak</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="702"/>
+        <source>Remove unused runtimes</source>
+        <translation>Usuń nieużywane środowiska wykonawcze</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="718"/>
+        <source>Clean Folders</source>
+        <translation>Wyczyść foldery</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="737"/>
+        <source>Not accessed for:</source>
+        <translation>Brak dostępu dla:</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="805"/>
+        <source>All (potentially dangerous)</source>
+        <translation>Wszystkie (potencjalnie niebezpieczne)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="335"/>
         <location filename="../mainwindow.cpp" line="339"/>
         <location filename="../mainwindow.cpp" line="343"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation>dzień</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="459"/>
@@ -277,25 +277,9 @@
         <translation>%1 Pomoc</translation>
     </message>
     <message>
-        <source>License</source>
-        <translation type="vanished">Licencja</translation>
-    </message>
-    <message>
-        <source>Changelog</source>
-        <translation type="vanished">Dziennik zmian</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Anuluj</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="vanished">&amp;Zamknij</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.cpp" line="536"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualnie używany kernel: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="539"/>
@@ -305,36 +289,21 @@
     <message>
         <location filename="../mainwindow.cpp" line="544"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Podobne kernele, które można usunąć:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="545"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Inne kernele, które można usunąć:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="547"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nic do usunięcia.&lt;/b&gt; Nie można usunąć używanego kernela.</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
-    <message>
-        <location filename="../main.cpp" line="51"/>
-        <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="74"/>
-        <source>Error</source>
-        <translation>Błąd</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="75"/>
-        <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation>Wygląda na to, że jesteś zalogowany jako root, wyloguj się i zaloguj jako zwykły użytkownik, aby korzystać z tego programu.</translation>
-    </message>
     <message>
         <location filename="../about.cpp" line="52"/>
         <source>License</source>
@@ -355,6 +324,21 @@
         <location filename="../about.cpp" line="74"/>
         <source>&amp;Close</source>
         <translation>&amp;Zamknij</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="51"/>
+        <source>Quick safe removal of old files</source>
+        <translation>Szybkie bezpieczne usuwanie starych plików</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="74"/>
+        <source>Error</source>
+        <translation>Błąd</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="75"/>
+        <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
+        <translation>Wygląda na to, że jesteś zalogowany jako root, wyloguj się i zaloguj jako zwykły użytkownik, aby korzystać z tego programu.</translation>
     </message>
 </context>
 </TS>

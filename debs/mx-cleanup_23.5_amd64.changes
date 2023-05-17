@@ -1,0 +1,47 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Wed, 17 May 2023 18:25:37 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 23.5
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (23.5) mx; urgency=medium
+ .
+   * Update logo
+   * Refresh translations
+Checksums-Sha1:
+ d0278a61388b0d3148edc7f118b6726f977aee1e 1111 mx-cleanup_23.5.dsc
+ ae9c075b041f261ba711aaca96a52482ddee7f38 130948 mx-cleanup_23.5.tar.xz
+ fab98a479e04dee18d491f6d4a7c4c1084b031c4 10722 mx-cleanup_23.5_amd64.buildinfo
+ 979c87d067c022ab7edda9351bd07d4f24b6407d 145720 mx-cleanup_23.5_amd64.deb
+Checksums-Sha256:
+ 9d0a8d624fdd459276c40b7e2c7c4e7161a574cfc7789c02b67262f9704cd6cd 1111 mx-cleanup_23.5.dsc
+ b677d01ead9369b02e85a8e1c1ee519be48b676c0b3d6e3e791804be75eac81e 130948 mx-cleanup_23.5.tar.xz
+ 007870f57aa97c366217e54bd2bff6198a3cc1fb2dd0ccd9a6fde48f09016bcd 10722 mx-cleanup_23.5_amd64.buildinfo
+ 2476d95355df3ec9367b3dfb4eda40b3fafcbd642c1f0195867c34b166b56a87 145720 mx-cleanup_23.5_amd64.deb
+Files:
+ 25198f66eed68321c42f44d379edb255 1111 admin optional mx-cleanup_23.5.dsc
+ 68014db66fb05e78f8894d5bf2b58f56 130948 admin optional mx-cleanup_23.5.tar.xz
+ 500e2a2e229485a44cc799829e217626 10722 admin optional mx-cleanup_23.5_amd64.buildinfo
+ 8c04ae043a5279c5a840f43c574d8ac3 145720 admin optional mx-cleanup_23.5_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmRlVb4THGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumL2IB/9JqBIITRIwqQRiyCnZ2RJODSEQ05Or
+0Ma4ub/aq/E/XsMlG2j8IjGYtmaX75f4lJVLN8OIJzqi6CIjn4Qy07rwi6DkUIZD
+t2AqG2gRa0SXCHROBFaHQqfmHDh9xuxslOFiRlebkLd4kVYWCLPrBbOKfVKiyMk6
+vB5xfh1D13TZHtajBbQRmXEqo/AXaruH4tSli7CE/G9c2oZuCYV5ABUzd68/NvK0
+jEbp2tD2z0mTW4v1ZdTN+fyFfvwM9RcMHbSsk7cx/axhj+AcI2qdI2qbfx27K+RG
+5u0HmX18aqCyCHPSzP/DRx7cc/1Bh3tX9uTEhJkF10rmTOL5Pg0pgacs
+=3IWc
+-----END PGP SIGNATURE-----

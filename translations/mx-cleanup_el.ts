@@ -11,31 +11,6 @@
         <translation>Καθαρισμός του MX</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="696"/>
-        <source>Clean Flatpak</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="702"/>
-        <source>Remove unused runtimes</source>
-        <translation>Αφαιρέστε τις αχρησιμοποίητες runtimes</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="718"/>
-        <source>Clean Folders</source>
-        <translation>Εκκαθάριση φακέλων</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="737"/>
-        <source>Not accessed for:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="805"/>
-        <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="59"/>
         <source>Display help </source>
         <translation>Εμφάνιση βοήθειας </translation>
@@ -94,7 +69,7 @@
     <message>
         <location filename="../mainwindow.ui" line="222"/>
         <source>Trash older than:</source>
-        <translation>Κάδος απορριμμάτων παλαιότερο από:</translation>
+        <translation>Απορρίμματα παλαιότερα από:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="235"/>
@@ -111,7 +86,7 @@
         <location filename="../mainwindow.cpp" line="338"/>
         <location filename="../mainwindow.cpp" line="342"/>
         <source> days</source>
-        <translation>μέρες</translation>
+        <translation>ημέρες</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="264"/>
@@ -146,7 +121,7 @@
     <message>
         <location filename="../mainwindow.ui" line="416"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation>Εκτέλεση του Αναλυτή χρήσης δίσκου</translation>
+        <translation>Εκτέλεση του αναλυτή χρήσης του δίσκου</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="430"/>
@@ -161,7 +136,7 @@
     <message>
         <location filename="../mainwindow.ui" line="449"/>
         <source>At reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Σε επανεκκίνηση</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="456"/>
@@ -187,7 +162,7 @@
         <location filename="../mainwindow.ui" line="511"/>
         <location filename="../mainwindow.ui" line="527"/>
         <source>Select user to repair</source>
-        <translation>Επιλέξτε το χρήστη για την απελευθέρωση χώρου</translation>
+        <translation>Επιλέξτε χρήστη για την απελευθέρωση χώρου</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="514"/>
@@ -217,19 +192,44 @@
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Kernel removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Εργαλείο αφαίρεσης πυρήνα</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="676"/>
         <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Λίστα και επιλογή πυρήνων για αφαίρεση</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="696"/>
+        <source>Clean Flatpak</source>
+        <translation>Εκκαθάριση Flatpak</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="702"/>
+        <source>Remove unused runtimes</source>
+        <translation>Αφαίρεση αχρησιμοποίητων runtimes</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="718"/>
+        <source>Clean Folders</source>
+        <translation>Εκκαθάριση φακέλων</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="737"/>
+        <source>Not accessed for:</source>
+        <translation>Χωρίς πρόσβαση για:</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="805"/>
+        <source>All (potentially dangerous)</source>
+        <translation>Όλα (πιθανά επικίνδυνο)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="335"/>
         <location filename="../mainwindow.cpp" line="339"/>
         <location filename="../mainwindow.cpp" line="343"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation>ημέρα</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="459"/>
@@ -277,25 +277,9 @@
         <translation>Βοήθεια %1</translation>
     </message>
     <message>
-        <source>License</source>
-        <translation type="vanished">Άδεια</translation>
-    </message>
-    <message>
-        <source>Changelog</source>
-        <translation type="vanished">Αρχείο αλλαγών</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Ακύρωση</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="vanished">&amp;Κλείσιμο</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.cpp" line="536"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Πυρήνας σε χρήση: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="539"/>
@@ -305,36 +289,21 @@
     <message>
         <location filename="../mainwindow.cpp" line="544"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Παρόμοιοι πυρήνες που μπορούν να αφαιρεθούν:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="545"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Άλλοι πυρήνες που μπορούν να αφαιρεθούν:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="547"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Τίποτα για αφαίρεση.&lt;/b&gt; Δεν μπορεί να αφαιρεθεί ο πυρήνας σε χρήση.</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
-    <message>
-        <location filename="../main.cpp" line="51"/>
-        <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="74"/>
-        <source>Error</source>
-        <translation>Σφάλμα</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="75"/>
-        <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation>Φαίνεται ότι έχετε συνδεθεί ως root, αποσυνδεθείτε και συνδεθείτε ως κανονικός χρήστης για να χρησιμοποιήσετε αυτό το πρόγραμμα.</translation>
-    </message>
     <message>
         <location filename="../about.cpp" line="52"/>
         <source>License</source>
@@ -355,6 +324,21 @@
         <location filename="../about.cpp" line="74"/>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="51"/>
+        <source>Quick safe removal of old files</source>
+        <translation>Γρήγορη και ασφαλής αφαίρεση των παλιών αρχείων</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="74"/>
+        <source>Error</source>
+        <translation>Σφάλμα</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="75"/>
+        <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
+        <translation>Φαίνεται ότι έχετε συνδεθεί ως root, αποσυνδεθείτε και συνδεθείτε ως κανονικός χρήστης για να χρησιμοποιήσετε αυτό το πρόγραμμα.</translation>
     </message>
 </context>
 </TS>

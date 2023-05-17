@@ -11,31 +11,6 @@
         <translation>Limpeza Automática do MX</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="696"/>
-        <source>Clean Flatpak</source>
-        <translation>Limpeza de Flatpak</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="702"/>
-        <source>Remove unused runtimes</source>
-        <translation>Remover o runtimes que não estiver sendo utilizado</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="718"/>
-        <source>Clean Folders</source>
-        <translation>Limpar Pastas </translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="737"/>
-        <source>Not accessed for:</source>
-        <translation>Não foi acessado para:</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="805"/>
-        <source>All (potentially dangerous)</source>
-        <translation>Todos (potencialmente perigosos)</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="59"/>
         <source>Display help </source>
         <translation>Exibir ajuda</translation>
@@ -112,10 +87,6 @@
         <location filename="../mainwindow.cpp" line="342"/>
         <source> days</source>
         <translation>dias</translation>
-    </message>
-    <message>
-        <source>Not accessed for</source>
-        <translation type="vanished">Não foi acessado por</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="264"/>
@@ -229,6 +200,31 @@
         <translation>Listar e selecionar os núcleos (kernels) para serem removidos</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="696"/>
+        <source>Clean Flatpak</source>
+        <translation>Limpeza de Flatpak</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="702"/>
+        <source>Remove unused runtimes</source>
+        <translation>Remover o runtimes que não estiver sendo utilizado</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="718"/>
+        <source>Clean Folders</source>
+        <translation>Limpar Pastas </translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="737"/>
+        <source>Not accessed for:</source>
+        <translation>Não foi acessado para:</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="805"/>
+        <source>All (potentially dangerous)</source>
+        <translation>Todos (potencialmente perigosos)</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="335"/>
         <location filename="../mainwindow.cpp" line="339"/>
         <location filename="../mainwindow.cpp" line="343"/>
@@ -281,22 +277,6 @@
         <translation>Ajuda do %1</translation>
     </message>
     <message>
-        <source>License</source>
-        <translation type="vanished">Licença</translation>
-    </message>
-    <message>
-        <source>Changelog</source>
-        <translation type="vanished">Relatório de alterações</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Cancelar</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="vanished">&amp;Fechar</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.cpp" line="536"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>O núcleo (kernel) atualmente em uso é &lt;b&gt;%1&lt;/b&gt;</translation>
@@ -325,21 +305,6 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="51"/>
-        <source>Quick safe removal of old files</source>
-        <translation>Remoção rápida e segura de arquivos antigos</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="74"/>
-        <source>Error</source>
-        <translation>Ocorreu um erro</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="75"/>
-        <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation>Ao que parece, você está acessando a sessão com o usuário root. Por favor, saia da sessão atual e entre novamente com o usuário normal para utilizar este programa.</translation>
-    </message>
-    <message>
         <location filename="../about.cpp" line="52"/>
         <source>License</source>
         <translation>Licença</translation>
@@ -359,6 +324,21 @@
         <location filename="../about.cpp" line="74"/>
         <source>&amp;Close</source>
         <translation>&amp;Fechar</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="51"/>
+        <source>Quick safe removal of old files</source>
+        <translation>Remoção rápida e segura de arquivos antigos</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="74"/>
+        <source>Error</source>
+        <translation>Ocorreu um erro</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="75"/>
+        <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
+        <translation>Ao que parece, você está acessando a sessão com o usuário root. Por favor, saia da sessão atual e entre novamente com o usuário normal para utilizar este programa.</translation>
     </message>
 </context>
 </TS>

@@ -11,31 +11,6 @@
         <translation>MX Очистка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="696"/>
-        <source>Clean Flatpak</source>
-        <translation>Чистый Флатпак</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="702"/>
-        <source>Remove unused runtimes</source>
-        <translation>Удалить ненужные среды выполнения</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="718"/>
-        <source>Clean Folders</source>
-        <translation>Папки для очистки</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="737"/>
-        <source>Not accessed for:</source>
-        <translation>Не доступен для:</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="805"/>
-        <source>All (potentially dangerous)</source>
-        <translation>Все (потенциально опасно)</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="59"/>
         <source>Display help </source>
         <translation>Показать справку</translation>
@@ -114,10 +89,6 @@
         <translation> дни</translation>
     </message>
     <message>
-        <source>Not accessed for</source>
-        <translation type="vanished">Не доступен для</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="264"/>
         <source>All users</source>
         <translation>Все пользователи</translation>
@@ -145,7 +116,7 @@
     <message>
         <location filename="../mainwindow.ui" line="404"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation>Графическая утилита для анализа использования дисков</translation>
+        <translation>Графический анализатор использования дисков</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="416"/>
@@ -229,6 +200,31 @@
         <translation>Перечислить и выбрать ядра для удаления</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="696"/>
+        <source>Clean Flatpak</source>
+        <translation>Чистый Флатпак</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="702"/>
+        <source>Remove unused runtimes</source>
+        <translation>Удалить ненужные среды выполнения</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="718"/>
+        <source>Clean Folders</source>
+        <translation>Папки для очистки</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="737"/>
+        <source>Not accessed for:</source>
+        <translation>Не доступен для:</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="805"/>
+        <source>All (potentially dangerous)</source>
+        <translation>Все (потенциально опасно)</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="335"/>
         <location filename="../mainwindow.cpp" line="339"/>
         <location filename="../mainwindow.cpp" line="343"/>
@@ -281,22 +277,6 @@
         <translation>%1 Справка</translation>
     </message>
     <message>
-        <source>License</source>
-        <translation type="vanished">Лицензия</translation>
-    </message>
-    <message>
-        <source>Changelog</source>
-        <translation type="vanished">Список изменений</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Отменить</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="vanished">&amp;Закрыть</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.cpp" line="536"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Используемое ядро: &lt;b&gt;%1&lt;/b&gt;</translation>
@@ -325,21 +305,6 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="51"/>
-        <source>Quick safe removal of old files</source>
-        <translation>Быстрое безопасное удаление старых файлов</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="74"/>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="75"/>
-        <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation>Программа запущена суперпользователем. Для использования программы войдите в систему как обычный пользователь.</translation>
-    </message>
-    <message>
         <location filename="../about.cpp" line="52"/>
         <source>License</source>
         <translation>Лицензия</translation>
@@ -359,6 +324,21 @@
         <location filename="../about.cpp" line="74"/>
         <source>&amp;Close</source>
         <translation>Закрыть</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="51"/>
+        <source>Quick safe removal of old files</source>
+        <translation>Быстрое безопасное удаление старых файлов</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="74"/>
+        <source>Error</source>
+        <translation>Ошибка</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="75"/>
+        <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
+        <translation>Программа запущена суперпользователем. Для использования программы войдите в систему как обычный пользователь.</translation>
     </message>
 </context>
 </TS>
