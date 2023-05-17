@@ -11,34 +11,9 @@
         <translation>MX Nettoyage - MX Cleanup</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="696"/>
-        <source>Clean Flatpak</source>
-        <translation>Flatpak à nettoyer</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="702"/>
-        <source>Remove unused runtimes</source>
-        <translation>Suppression des runtimes (environnements d&apos;exécution) inutilisés</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="718"/>
-        <source>Clean Folders</source>
-        <translation>Dossiers à nettoyer</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="737"/>
-        <source>Not accessed for:</source>
-        <translation>Non consulté depuis:</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="805"/>
-        <source>All (potentially dangerous)</source>
-        <translation>Tout (potentiellement dangereux)</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="59"/>
         <source>Display help </source>
-        <translation>Afficher l&apos;aide </translation>
+        <translation>Afficher l’aide </translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="62"/>
@@ -68,7 +43,7 @@
     <message>
         <location filename="../mainwindow.ui" line="140"/>
         <source>Quit application</source>
-        <translation>Quitter l&apos;application</translation>
+        <translation>Quitter l’application</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
@@ -114,10 +89,6 @@
         <translation> jours</translation>
     </message>
     <message>
-        <source>Not accessed for</source>
-        <translation type="vanished">Non consulté depuis</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="264"/>
         <source>All users</source>
         <translation>Tous les utilisateurs</translation>
@@ -145,12 +116,12 @@
     <message>
         <location filename="../mainwindow.ui" line="404"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation>Outil graphique d&apos;analyse de l&apos;utilisation du disque</translation>
+        <translation>Outil graphique d’analyse de l’utilisation du disque</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="416"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation>Lancer l&apos;analyse de l&apos;utilisation du disque</translation>
+        <translation>Lancer l’analyse de l’utilisation du disque</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="430"/>
@@ -185,18 +156,18 @@
     <message>
         <location filename="../mainwindow.ui" line="499"/>
         <source>Free Disk Space for User</source>
-        <translation>Espace disque libre de l&apos;utilisateur</translation>
+        <translation>Espace disque libre de l’utilisateur</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="511"/>
         <location filename="../mainwindow.ui" line="527"/>
         <source>Select user to repair</source>
-        <translation>Sélectionner l&apos;utilisateur à réparer</translation>
+        <translation>Choisir l’utilisateur à modifier ou à réparer</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="514"/>
         <source>Select user:</source>
-        <translation>Choisir l&apos;utilisateur:</translation>
+        <translation>Choisir l’utilisateur:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="543"/>
@@ -221,12 +192,37 @@
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Kernel removal tool</source>
-        <translation>Outil de suppression d&apos;un noyau</translation>
+        <translation>Outil de suppression d’un noyau</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="676"/>
         <source>List and select kernels to remove</source>
         <translation>Lister et sélectionner les noyaux à supprimer</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="696"/>
+        <source>Clean Flatpak</source>
+        <translation>Flatpak à nettoyer</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="702"/>
+        <source>Remove unused runtimes</source>
+        <translation>Suppression des runtimes « environnements d’exécution » inutilisés</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="718"/>
+        <source>Clean Folders</source>
+        <translation>Dossiers à nettoyer</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="737"/>
+        <source>Not accessed for:</source>
+        <translation>Non consulté depuis:</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="805"/>
+        <source>All (potentially dangerous)</source>
+        <translation>Tout (potentiellement dangereux)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="335"/>
@@ -281,22 +277,6 @@
         <translation>%1 Aide</translation>
     </message>
     <message>
-        <source>License</source>
-        <translation type="vanished">Licence</translation>
-    </message>
-    <message>
-        <source>Changelog</source>
-        <translation type="vanished">Journal des modifications</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Annuler</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="vanished">&amp;Fermer</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.cpp" line="536"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Noyau utilisé actuellement: &lt;b&gt;%1&lt;/b&gt;</translation>
@@ -319,26 +299,11 @@
     <message>
         <location filename="../mainwindow.cpp" line="547"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation>&lt;b&gt;Rien à supprimer.&lt;/b&gt; Impossible de retirer le noyau en cours d&apos;utilisation.</translation>
+        <translation>&lt;b&gt;Rien à supprimer.&lt;/b&gt; Impossible de retirer le noyau en cours d’utilisation.</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
-    <message>
-        <location filename="../main.cpp" line="51"/>
-        <source>Quick safe removal of old files</source>
-        <translation>Suppression rapide et sûre des anciens fichiers</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="74"/>
-        <source>Error</source>
-        <translation>Erreur</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="75"/>
-        <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation>Il semble que vous soyez connecté en tant que root, veuillez vous déconnecter et vous connecter en tant qu&apos;utilisateur normal pour utiliser ce programme.</translation>
-    </message>
     <message>
         <location filename="../about.cpp" line="52"/>
         <source>License</source>
@@ -358,7 +323,22 @@
     <message>
         <location filename="../about.cpp" line="74"/>
         <source>&amp;Close</source>
-        <translation>&amp;Fermer</translation>
+        <translation>&amp;Quitter</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="51"/>
+        <source>Quick safe removal of old files</source>
+        <translation>Suppression rapide et sûre des anciens fichiers</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="74"/>
+        <source>Error</source>
+        <translation>Erreur</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="75"/>
+        <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
+        <translation>Vous semblez être connecté en tant qu’administrateur, veuillez vous déconnecter et vous connecter en tant qu’utilisateur normal pour utiliser ce programme.</translation>
     </message>
 </context>
 </TS>
