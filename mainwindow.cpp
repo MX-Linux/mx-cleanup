@@ -45,7 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow() { delete ui; }
 
-void MainWindow::addGroupCheckbox(QLayout *layout, const QString &package, const QString &name, QStringList &list)
+void MainWindow::addGroupCheckbox(QLayout *layout, const QString &package, const QString &name, QStringList *list)
 {
     if (package.isEmpty())
         return;
@@ -57,11 +57,11 @@ void MainWindow::addGroupCheckbox(QLayout *layout, const QString &package, const
     for (const auto &item : package.split(QStringLiteral("\n"))) {
         auto *btn = new QCheckBox(item);
         vBox->addWidget(btn);
-        connect(btn, &QCheckBox::toggled, [btn, &list]() {
+        connect(btn, &QCheckBox::toggled, [btn, list]() {
             if (btn->isChecked())
-                list << btn->text();
+                *list << btn->text();
             else
-                list.removeAll(btn->text());
+                list->removeAll(btn->text());
         });
     }
     vBox->addStretch(1);
@@ -541,8 +541,8 @@ void MainWindow::pushKernel_clicked()
     btnBox->addButton(tr("Close"), QDialogButtonBox::RejectRole);
 
     QStringList removal_list;
-    addGroupCheckbox(layout, similar_kernels, tr("Similar kernels that can be removed:"), removal_list);
-    addGroupCheckbox(layout, other_kernels, tr("Other kernels that can be removed:"), removal_list);
+    addGroupCheckbox(layout, similar_kernels, tr("Similar kernels that can be removed:"), &removal_list);
+    addGroupCheckbox(layout, other_kernels, tr("Other kernels that can be removed:"), &removal_list);
     if (layout->count() == 1) {
         layout->addWidget(new QLabel(tr("<b>Nothing to remove.</b> Cannot remove kernel in use.")));
         pushRemove->setHidden(true);
