@@ -38,9 +38,9 @@ class MainWindow : public QDialog
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
 
-    static void addGroupCheckbox(QLayout *layout, const QString &package, const QString &name, QStringList &list);
+    static void addGroupCheckbox(QLayout *layout, const QString &package, const QString &name, QStringList *list);
     static void saveSchedule(const QString &cmd_str, const QString &period);
     static void selectRadioButton(const QButtonGroup *group, int id);
     void loadOptions();
