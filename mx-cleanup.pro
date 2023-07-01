@@ -45,6 +45,7 @@ FORMS    += \
 TRANSLATIONS += translations/mx-cleanup_af.ts \
                 translations/mx-cleanup_am.ts \
                 translations/mx-cleanup_ar.ts \
+                translations/mx-cleanup_ast.ts \
                 translations/mx-cleanup_be.ts \
                 translations/mx-cleanup_bg.ts \
                 translations/mx-cleanup_bn.ts \
@@ -88,12 +89,16 @@ TRANSLATIONS += translations/mx-cleanup_af.ts \
                 translations/mx-cleanup_hr.ts \
                 translations/mx-cleanup_ht.ts \
                 translations/mx-cleanup_hu.ts \
+                translations/mx-cleanup_hy_AM.ts \
+                translations/mx-cleanup_hye.ts \
                 translations/mx-cleanup_hy.ts \
                 translations/mx-cleanup_id.ts \
+                translations/mx-cleanup_ie.ts \
                 translations/mx-cleanup_is.ts \
                 translations/mx-cleanup_it.ts \
                 translations/mx-cleanup_ja.ts \
                 translations/mx-cleanup_jv.ts \
+                translations/mx-cleanup_kab.ts \
                 translations/mx-cleanup_ka.ts \
                 translations/mx-cleanup_kk.ts \
                 translations/mx-cleanup_km.ts \
@@ -119,7 +124,9 @@ TRANSLATIONS += translations/mx-cleanup_af.ts \
                 translations/mx-cleanup_ne.ts \
                 translations/mx-cleanup_nl_BE.ts \
                 translations/mx-cleanup_nl.ts \
+                translations/mx-cleanup_nn.ts \
                 translations/mx-cleanup_ny.ts \
+                translations/mx-cleanup_oc.ts \
                 translations/mx-cleanup_or.ts \
                 translations/mx-cleanup_pa.ts \
                 translations/mx-cleanup_pl.ts \
@@ -162,7 +169,7 @@ TRANSLATIONS += translations/mx-cleanup_af.ts \
                 translations/mx-cleanup_yue_CN.ts \
                 translations/mx-cleanup_zh_CN.ts \
                 translations/mx-cleanup_zh_HK.ts \
-                translations/mx-cleanup_zh_TW.ts \
+                translations/mx-cleanup_zh_TW.ts
 
 RESOURCES += \
     images.qrc

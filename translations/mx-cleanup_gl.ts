@@ -18,7 +18,7 @@
     <message>
         <location filename="../mainwindow.ui" line="62"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Axuda</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="69"/>

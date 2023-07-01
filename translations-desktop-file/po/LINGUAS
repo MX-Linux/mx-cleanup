@@ -1,6 +1,7 @@
 mx-cleanup-desktop_af
 mx-cleanup-desktop_am
 mx-cleanup-desktop_ar
+mx-cleanup-desktop_ast
 mx-cleanup-desktop_be
 mx-cleanup-desktop_bg
 mx-cleanup-desktop_bn
@@ -44,12 +45,16 @@ mx-cleanup-desktop_hr
 mx-cleanup-desktop_ht
 mx-cleanup-desktop_hu
 mx-cleanup-desktop_hy
+mx-cleanup-desktop_hy_AM
+mx-cleanup-desktop_hye
 mx-cleanup-desktop_id
+mx-cleanup-desktop_ie
 mx-cleanup-desktop_is
 mx-cleanup-desktop_it
 mx-cleanup-desktop_ja
 mx-cleanup-desktop_jv
 mx-cleanup-desktop_ka
+mx-cleanup-desktop_kab
 mx-cleanup-desktop_kk
 mx-cleanup-desktop_km
 mx-cleanup-desktop_kn
@@ -74,7 +79,9 @@ mx-cleanup-desktop_nb_NO
 mx-cleanup-desktop_ne
 mx-cleanup-desktop_nl
 mx-cleanup-desktop_nl_BE
+mx-cleanup-desktop_nn
 mx-cleanup-desktop_ny
+mx-cleanup-desktop_oc
 mx-cleanup-desktop_or
 mx-cleanup-desktop_pa
 mx-cleanup-desktop_pl
