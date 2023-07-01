@@ -8,7 +8,7 @@
         <location filename="../mainwindow.cpp" line="73"/>
         <location filename="../mainwindow.cpp" line="467"/>
         <source>MX Cleanup</source>
-        <translation>Καθαρισμός του MX</translation>
+        <translation>MX Καθαρισμός</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="59"/>
@@ -86,7 +86,7 @@
         <location filename="../mainwindow.cpp" line="338"/>
         <location filename="../mainwindow.cpp" line="342"/>
         <source> days</source>
-        <translation>ημέρες</translation>
+        <translation> ημέρες</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="264"/>
@@ -229,7 +229,7 @@
         <location filename="../mainwindow.cpp" line="339"/>
         <location filename="../mainwindow.cpp" line="343"/>
         <source> day</source>
-        <translation>ημέρα</translation>
+        <translation> ημέρα</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="459"/>
@@ -338,7 +338,7 @@
     <message>
         <location filename="../main.cpp" line="75"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation>Φαίνεται ότι έχετε συνδεθεί ως root, αποσυνδεθείτε και συνδεθείτε ως κανονικός χρήστης για να χρησιμοποιήσετε αυτό το πρόγραμμα.</translation>
+        <translation>Φαίνεται ότι έχετε συνδεθεί ως διαχειριστής, αποσυνδεθείτε και συνδεθείτε ως απλός χρήστης για να χρησιμοποιήσετε αυτό το πρόγραμμα.</translation>
     </message>
 </context>
 </TS>
