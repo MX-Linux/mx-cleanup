@@ -18,7 +18,7 @@
     <message>
         <location filename="../mainwindow.ui" line="62"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Помощь</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="69"/>
@@ -49,7 +49,7 @@
         <location filename="../mainwindow.ui" line="143"/>
         <location filename="../mainwindow.cpp" line="541"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="150"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../mainwindow.ui" line="188"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Применить</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="216"/>
@@ -249,7 +249,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="467"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>О</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="468"/>
@@ -333,7 +333,7 @@
     <message>
         <location filename="../main.cpp" line="74"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="75"/>

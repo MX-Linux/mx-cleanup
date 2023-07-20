@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Thu, 20 Jul 2023 16:23:29 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: i386
+Version: 23.7.01
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (23.7.01) mx; urgency=medium
+ .
+   * Update translations
+Checksums-Sha1:
+ cb05a543cfc19cc9d5ad259e98b13cf3cc8f24bd 10074 mx-cleanup_23.7.01_i386.buildinfo
+ 4fc7b2a433502d620b5c420c76b15a6cdb6a321e 148536 mx-cleanup_23.7.01_i386.deb
+Checksums-Sha256:
+ 6696391b6bbdd2cc7a8889bda276041a03f45d0e983a8f0aa18991b81f7f3a89 10074 mx-cleanup_23.7.01_i386.buildinfo
+ db3894d75d08e29dcdfb19f65b1d7b78d861153e8605bc293c4468d8efcbb43e 148536 mx-cleanup_23.7.01_i386.deb
+Files:
+ 35440dc55cbaaebceada1bf9370eb8ad 10074 admin optional mx-cleanup_23.7.01_i386.buildinfo
+ 1512bef7012a8b25c38ed87061a2fd30 148536 admin optional mx-cleanup_23.7.01_i386.deb

@@ -202,7 +202,7 @@
     <message>
         <location filename="../mainwindow.ui" line="696"/>
         <source>Clean Flatpak</source>
-        <translation>Flatpak&apos;ı temizle</translation>
+        <translation>Flatpak’ı temizle</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="702"/>

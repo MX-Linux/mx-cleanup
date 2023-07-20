@@ -73,7 +73,6 @@ TRANSLATIONS += translations/mx-cleanup_af.ts \
                 translations/mx-cleanup_fil.ts \
                 translations/mx-cleanup_fi.ts \
                 translations/mx-cleanup_fr_BE.ts \
-                translations/mx-cleanup_fr_FR.ts \
                 translations/mx-cleanup_fr.ts \
                 translations/mx-cleanup_fy.ts \
                 translations/mx-cleanup_ga.ts \
