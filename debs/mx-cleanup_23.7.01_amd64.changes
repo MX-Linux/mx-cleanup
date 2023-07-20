@@ -1,0 +1,46 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Thu, 20 Jul 2023 16:23:29 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: source amd64
+Version: 23.7.01
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (23.7.01) mx; urgency=medium
+ .
+   * Update translations
+Checksums-Sha1:
+ 3d4ffca70dfb29db356c05e3189405eb10810f03 1123 mx-cleanup_23.7.01.dsc
+ 11d2bba699a8cd7c9427046b658b9a4e4aa9383e 132428 mx-cleanup_23.7.01.tar.xz
+ 6ed0acddb0eda3cdf0669be8b580c2b48e2770ea 10746 mx-cleanup_23.7.01_amd64.buildinfo
+ f65b758127e7e06ec61b1460236cab38a2fa5377 146228 mx-cleanup_23.7.01_amd64.deb
+Checksums-Sha256:
+ cfc07f2a25fe8c23f88105c9293c72473966fbfa3626165e307c1a5b745b5bbc 1123 mx-cleanup_23.7.01.dsc
+ 1e168786ff9a13b7006c7dc78353cde2147bf3074212c8d3769b34488bdafabd 132428 mx-cleanup_23.7.01.tar.xz
+ 4e2e0869bc00dfa6ce5b09af75baf291e99231107208587029b2ec7d7d5d456f 10746 mx-cleanup_23.7.01_amd64.buildinfo
+ 94ae9163fb278526bf484dd82b989b9ace19a4fc308fc8e43b992b19dedd140a 146228 mx-cleanup_23.7.01_amd64.deb
+Files:
+ e72b7c5a70f35dc0aac2adc6f0e8be52 1123 admin optional mx-cleanup_23.7.01.dsc
+ d316cbb670975e7f0d92ba3f2dacfd69 132428 admin optional mx-cleanup_23.7.01.tar.xz
+ 0a1a633b8b84139a69e99b1c00abc72d 10746 admin optional mx-cleanup_23.7.01_amd64.buildinfo
+ 4aa3937bd69f86a6158f8349041dacb2 146228 admin optional mx-cleanup_23.7.01_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmS5mCwTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumEmCCACY7silHYaEXGT8RnrqzbqG+3A/vOUA
+w2UKFW9qTRjBO3zaCYUqnnxFNUCrapY9aAuLyGTBzwGf9cIpq5OGuH4YN4gm4Z+u
+YjO0J+HHLMffnyTY0zNPlL5VnCPa+xRCZNRuK1RO0wXB5/h31/vKD76/QRJo/JLn
+A8L0LUMaiF1rbfF+SCzCMKd219Fl12T1WrXADEK5kL9sTWURNqhGZPbiCtuKp+Sl
+LydSwm7SQ3BCQkpHIIGQiz5AmOhhueriUp/J/jqE7529j5smi+5VsuCgVZT9uhng
+05cSEIF0e1cfOYFTUWYrBJh3ROhcEVQW63rb5iI4O8s8FfQ1Mf3ln0j9
+=3p1C
+-----END PGP SIGNATURE-----

@@ -1,3 +1,9 @@
+mx-cleanup (23.7.01) mx; urgency=medium
+
+  * Update translations
+
+ -- Adrian <adrian@mxlinux.org>  Thu, 20 Jul 2023 16:23:29 -0400
+
 mx-cleanup (23.7) mx; urgency=medium
 
   * Refresh translations
