@@ -8,3 +8,4 @@ workflow:
     branches: 
         only:
             - main
+            - master
