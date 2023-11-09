@@ -41,12 +41,12 @@ public:
     ~MainWindow() override;
 
     static void addGroupCheckbox(QLayout *layout, const QString &package, const QString &name, QStringList *list);
-    static void saveSchedule(const QString &cmd_str, const QString &period);
     static void selectRadioButton(const QButtonGroup *group, int id);
     void loadOptions();
     void loadSchedule();
     void loadSettings();
     void removeKernelPackages(const QStringList &list);
+    void saveSchedule(const QString &cmd_str, const QString &period);
     void saveSettings();
     void setConnections();
     void setup();
@@ -56,13 +56,14 @@ private slots:
     void pushApply_clicked();
     void pushHelp_clicked();
     void pushKernel_clicked();
-    void pushUsageAnalyzer_clicked();
+    static void pushUsageAnalyzer_clicked();
 
 private:
     Ui::MainWindow *ui;
     QSettings settings;
-    QString user;
-    QString getCmdOut(const QString &cmd);
+    QString current_user;
+    QString cmdOut(const QString &cmd, bool asRoot = false);
+    QString cmdOutAsRoot(const QString &cmd);
 };
 
 #endif
