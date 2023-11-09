@@ -23,11 +23,13 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QFile>
 #include <QIcon>
 #include <QLibraryInfo>
 #include <QLocale>
 #include <QProcess>
 #include <QTranslator>
+
 #include <unistd.h>
 #include <version.h>
 
@@ -41,8 +43,9 @@ int main(int argc, char *argv[])
         qunsetenv("DBUS_SESSION_BUS_ADDRESS");
     }
     QApplication app(argc, argv);
-    if (getuid() == 0)
+    if (getuid() == 0) {
         qputenv("HOME", "/root");
+    }
 
     QApplication::setApplicationVersion(VERSION);
     QApplication::setOrganizationName(QStringLiteral("MX-Linux"));
@@ -57,16 +60,20 @@ int main(int argc, char *argv[])
 
     QTranslator qtTran;
     if (qtTran.load(QLocale(), QStringLiteral("qt"), QStringLiteral("_"),
-                    QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+                    QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
         QApplication::installTranslator(&qtTran);
+    }
 
     QTranslator qtBaseTran;
-    if (qtBaseTran.load("qtbase_" + QLocale().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+    if (qtBaseTran.load("qtbase_" + QLocale().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
         QApplication::installTranslator(&qtBaseTran);
+    }
 
     QTranslator appTran;
-    if (appTran.load(QApplication::applicationName() + "_" + QLocale().name(), "/usr/share/" + QApplication::applicationName() + "/locale"))
+    if (appTran.load(QApplication::applicationName() + "_" + QLocale().name(),
+                     "/usr/share/" + QApplication::applicationName() + "/locale")) {
         QApplication::installTranslator(&appTran);
+    }
 
     // root guard
     if (QProcess::execute(QStringLiteral("/bin/bash"), {"-c", "logname |grep -q ^root$"}) == 0) {
@@ -77,11 +84,14 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    if (getuid() == 0) {
-        MainWindow w;
-        w.show();
-        return QApplication::exec();
-    } else {
-        QProcess::startDetached(QStringLiteral("/usr/bin/mx-cleanup-launcher"), {});
+    if (getuid() != 0) {
+        if (!QFile::exists("/usr/bin/pkexec") && !QFile::exists("/usr/bin/gksu")) {
+            QMessageBox::critical(nullptr, QObject::tr("Error"),
+                                  QObject::tr("You must run this program with admin access."));
+            exit(EXIT_FAILURE);
+        }
     }
+    MainWindow w;
+    w.show();
+    return QApplication::exec();
 }

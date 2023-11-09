@@ -1,3 +1,9 @@
+mx-cleanup (23.11) mx; urgency=medium
+
+  * Run program as normal user and elevate only when needed
+
+ -- Adrian <adrian@mxlinux.org>  Thu, 09 Nov 2023 14:52:14 -0500
+
 mx-cleanup (23.7.01) mx; urgency=medium
 
   * Update translations
