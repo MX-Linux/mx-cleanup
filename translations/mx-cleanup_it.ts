@@ -6,7 +6,7 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.cpp" line="81"/>
-        <location filename="../mainwindow.cpp" line="502"/>
+        <location filename="../mainwindow.cpp" line="505"/>
         <source>MX Cleanup</source>
         <translation>MX Pulizie</translation>
     </message>
@@ -47,7 +47,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.cpp" line="586"/>
+        <location filename="../mainwindow.cpp" line="589"/>
         <source>Close</source>
         <translation>Chiudi</translation>
     </message>
@@ -82,9 +82,9 @@
         <location filename="../mainwindow.ui" line="245"/>
         <location filename="../mainwindow.ui" line="622"/>
         <location filename="../mainwindow.ui" line="724"/>
-        <location filename="../mainwindow.cpp" line="364"/>
         <location filename="../mainwindow.cpp" line="367"/>
-        <location filename="../mainwindow.cpp" line="371"/>
+        <location filename="../mainwindow.cpp" line="370"/>
+        <location filename="../mainwindow.cpp" line="374"/>
         <source> days</source>
         <translation>giorni</translation>
     </message>
@@ -230,79 +230,79 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="364"/>
-        <location filename="../mainwindow.cpp" line="368"/>
-        <location filename="../mainwindow.cpp" line="372"/>
+        <location filename="../mainwindow.cpp" line="367"/>
+        <location filename="../mainwindow.cpp" line="371"/>
+        <location filename="../mainwindow.cpp" line="375"/>
         <source> day</source>
         <translation>giorno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="494"/>
+        <location filename="../mainwindow.cpp" line="497"/>
         <source>Done</source>
         <translation>Fatto</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="495"/>
+        <location filename="../mainwindow.cpp" line="498"/>
         <source>Cleanup command done</source>
         <translation>Comando di Pulizia effettuato</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="495"/>
+        <location filename="../mainwindow.cpp" line="498"/>
         <source>%1 MiB were freed</source>
         <translation>%1 MiB sono stati liberati</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="502"/>
+        <location filename="../mainwindow.cpp" line="505"/>
         <source>About</source>
         <translation>Informazioni</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="503"/>
+        <location filename="../mainwindow.cpp" line="506"/>
         <source>Version: </source>
         <translation>Versione: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="505"/>
+        <location filename="../mainwindow.cpp" line="508"/>
         <source>Quick and safe removal of old files</source>
         <translation>Rimozione rapida e sicura dei vecchi file</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="507"/>
+        <location filename="../mainwindow.cpp" line="510"/>
         <source>Copyright (c) MX Linux</source>
         <translation>Copyright (c) MX Linux</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="508"/>
+        <location filename="../mainwindow.cpp" line="511"/>
         <source>%1 License</source>
         <translation>%1 Licenza</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="515"/>
+        <location filename="../mainwindow.cpp" line="518"/>
         <source>%1 Help</source>
         <translation>%1 Aiuto</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="581"/>
+        <location filename="../mainwindow.cpp" line="584"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Kernel attualmente in uso: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="584"/>
+        <location filename="../mainwindow.cpp" line="587"/>
         <source>Remove selected</source>
         <translation>Rimuovi selezionati</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="589"/>
+        <location filename="../mainwindow.cpp" line="592"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Kernel simili che possono essere rimossi:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="590"/>
+        <location filename="../mainwindow.cpp" line="593"/>
         <source>Other kernels that can be removed:</source>
         <translation>Altri kernel che possono essere rimossi:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="592"/>
+        <location filename="../mainwindow.cpp" line="595"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation>&lt;b&gt;Niente da rimuovere.&lt;/b&gt; Impossibile rimuovere kernel in uso.</translation>
     </message>
