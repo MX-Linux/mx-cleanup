@@ -12,14 +12,14 @@ Changes:
  .
    * Fix: ownership for mx-cleanup-script and cron job
 Checksums-Sha1:
- 5a2ea00bf4da5bd45167eb6a3f929a4e96ef840d 565 mx-cleanup_23.11.01.dsc
- f8b160264e2e552b3369226c6bd68b343d05ca07 131844 mx-cleanup_23.11.01.tar.xz
- a96d1c887c262675edd9dbb126b34025e1745a9b 10121 mx-cleanup_23.11.01_arm64.buildinfo
+ a9fd4027f08963f514273fe840d87f4cf0516dea 565 mx-cleanup_23.11.01.dsc
+ 74f7b594bdcc1e097230c3c56acf004a9f63f6e6 131816 mx-cleanup_23.11.01.tar.xz
+ e6e8e88e34de0d853c42e8d3b73e70f7b401c039 10121 mx-cleanup_23.11.01_arm64.buildinfo
 Checksums-Sha256:
- c22c8ee9e0f6594e7acc025b8165e35ea5a305f56f44dc71d0fcb3fee606df1b 565 mx-cleanup_23.11.01.dsc
- 11e0c170df0527130174fc6b47c89d113885aab3358ae65772852a1b70e1167c 131844 mx-cleanup_23.11.01.tar.xz
- 9140fe44f0ea89bc89d23911c5179ba9dc7f55a4055068fd6eb91a792953b21c 10121 mx-cleanup_23.11.01_arm64.buildinfo
+ dc6a078e09198bcb6f16f2d0676d0a7ed22e36afc953e88533c1f00b265c994c 565 mx-cleanup_23.11.01.dsc
+ 1e0da309771d1051f6426db5cd4fca7df52562f5d92f829493d433581567b8ae 131816 mx-cleanup_23.11.01.tar.xz
+ 2e5d714f675e2398503b54a8a5c7f1bf9dd3bb8377d4f95e712bbaad5ef58c62 10121 mx-cleanup_23.11.01_arm64.buildinfo
 Files:
- 6ab3150caeb5970006fca91e797133c6 565 admin optional mx-cleanup_23.11.01.dsc
- f745247c9ae9f085373e3d17df98f905 131844 admin optional mx-cleanup_23.11.01.tar.xz
- 9a43207bbfe400c6ed5beec1c082e1f5 10121 admin optional mx-cleanup_23.11.01_arm64.buildinfo
+ a386555ba62a214a82d7a0dc8f8639f8 565 admin optional mx-cleanup_23.11.01.dsc
+ f60c5e617d0cbee908b31eb1e09a0818 131816 admin optional mx-cleanup_23.11.01.tar.xz
+ a6044aa058a4b5f5b037a8e722d544ef 10121 admin optional mx-cleanup_23.11.01_arm64.buildinfo

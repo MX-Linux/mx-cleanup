@@ -15,11 +15,11 @@ Changes:
  .
    * Fix: ownership for mx-cleanup-script and cron job
 Checksums-Sha1:
- 932f7c940866c12e0cf154e6b304caf414dac6d7 10079 mx-cleanup_23.11.01_i386.buildinfo
- 0fda2768812ba62bcd33b20c175a08b068649562 148864 mx-cleanup_23.11.01_i386.deb
+ d39f663a5860b5af9a34b9faa1ba3b7533efc38a 10079 mx-cleanup_23.11.01_i386.buildinfo
+ 875b522d3747d297634533143cd2c28865913f27 148988 mx-cleanup_23.11.01_i386.deb
 Checksums-Sha256:
- 7d0e1e5686df6103ddc170ac9baae305de358412b5a448251901289d917d5513 10079 mx-cleanup_23.11.01_i386.buildinfo
- 04a86abb3c390570cba23e47bd3b6f0fca5c21a9149aa980d7de48935ae3158d 148864 mx-cleanup_23.11.01_i386.deb
+ 5924a958b1a491dafdde31bc540f82905e477424faa4d621b56694db2b29b247 10079 mx-cleanup_23.11.01_i386.buildinfo
+ 2408e5ad2f0a613d5a43eced4302607a3a73e1e79d08c11ca042362e31188854 148988 mx-cleanup_23.11.01_i386.deb
 Files:
- d9808b073caf3737fb15e9cdf581ad6e 10079 admin optional mx-cleanup_23.11.01_i386.buildinfo
- bf1168f4ce6abf8af4756a73e03d7bd2 148864 admin optional mx-cleanup_23.11.01_i386.deb
+ ddbd1f5a3476c4fb2327432bf5339504 10079 admin optional mx-cleanup_23.11.01_i386.buildinfo
+ 56e2330ffac401fc724a4ed83039b6c5 148988 admin optional mx-cleanup_23.11.01_i386.deb

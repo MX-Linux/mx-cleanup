@@ -18,29 +18,29 @@ Changes:
  .
    * Fix: ownership for mx-cleanup-script and cron job
 Checksums-Sha1:
- 0e2a66ebefcaed753bed96f905274761057bf2d4 1127 mx-cleanup_23.11.01.dsc
- c6062a1c1e15fb5ff278018763c2fb7baa9eb8b1 131760 mx-cleanup_23.11.01.tar.xz
- 22396321d38c325dcca8c6c0d3bd75271fd266f1 10930 mx-cleanup_23.11.01_amd64.buildinfo
- a035c43f1338918dc96ffdbaa14bce522f183afa 146528 mx-cleanup_23.11.01_amd64.deb
+ 9096a61887d1fc1e20bc7b31241f4c7d62b4ca41 1127 mx-cleanup_23.11.01.dsc
+ 2bf71977c6b8662f460926f84ffd8a09a621f746 131752 mx-cleanup_23.11.01.tar.xz
+ 02931fc64fb161bdc41b3f601600c51d1bc10fc4 10930 mx-cleanup_23.11.01_amd64.buildinfo
+ aaf21ebb346207b09af3b89f4136f2482da88cc1 146616 mx-cleanup_23.11.01_amd64.deb
 Checksums-Sha256:
- 2e8fb3fd3c1481d56aee2cfaec04bd61087881e880c58528fa13e3fcf7e08b16 1127 mx-cleanup_23.11.01.dsc
- 3a9cf214c6466f0743178a4cf6498593966f89c53b7706fbba738f3e60b1be50 131760 mx-cleanup_23.11.01.tar.xz
- 9976aeac2e754372b0210827f3eadebc92dd1b051f3f96144d76c9ba04356c59 10930 mx-cleanup_23.11.01_amd64.buildinfo
- 93d9b2391bdbffaba7b0fb51e33af2b8218ff84390d9e9d2d567aac837b440c8 146528 mx-cleanup_23.11.01_amd64.deb
+ ae135a6b0193119201b7fb8f5fd30b754d1d2f452f05dcd6048e6bcc0554aed5 1127 mx-cleanup_23.11.01.dsc
+ 3f06f58aaa34621a7054a1f9c7561273834c2f79ff5aa041b0e53ced40544c8c 131752 mx-cleanup_23.11.01.tar.xz
+ c45a73ad82f0e11c77abb4284127cac69d234b9fecd91a87c1243e045195b235 10930 mx-cleanup_23.11.01_amd64.buildinfo
+ b93a1bc8932f6c92a52d427bc2802f9f633e070c223c0d715922836581514512 146616 mx-cleanup_23.11.01_amd64.deb
 Files:
- fbd8c6604c078e27e771a029f71987be 1127 admin optional mx-cleanup_23.11.01.dsc
- 2babe5e16a809d01f63b03f8e2db3ad6 131760 admin optional mx-cleanup_23.11.01.tar.xz
- 8d141f339df4c8b9fe1584159c9fb275 10930 admin optional mx-cleanup_23.11.01_amd64.buildinfo
- db14aed14d1ea5d072d4d758f5ae3569 146528 admin optional mx-cleanup_23.11.01_amd64.deb
+ 043aa71637d70553b9be4ff389d2cb63 1127 admin optional mx-cleanup_23.11.01.dsc
+ 35005e1703480e2ed534a5a3f0d0eee6 131752 admin optional mx-cleanup_23.11.01.tar.xz
+ ae0f59159bf54da9556562045f8a9cae 10930 admin optional mx-cleanup_23.11.01_amd64.buildinfo
+ b70143f7ce5510172db84dcef9a3a464 146616 admin optional mx-cleanup_23.11.01_amd64.deb
 
 -----BEGIN PGP SIGNATURE-----
 
-iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmVWe0ATHGFkcmlhbkBt
-eGxpbnV4Lm9yZwAKCRBwk4x4BnnumCBlCACUja9co/nm6qD49OqDZC5Bb0vnOVn7
-Bxjpqi/soXMxIB6Lh2iLr6FgvCR10McMQoBhl4C/g6nfFPt+VSufLHy3V5s1n+vg
-17c4QYqMJ19Bi4PiJSIc/vHAvK1KRr505DZUaHIBDYv3u9+uZTIihc0tKiSQv8WM
-X0gfmbvI6JpRkj/BsQczFwyinOx/2OY19jXpPMRR/pQvuBsArgg9EtB6OUvVUGvs
-A2ka8s/SuenBSyfi8xhwbAIH5lelqgUjsfIpXPvJvUs+p5+7F/IBtjFmkG4SvlIW
-I1CqEuAnNLbOnPdnxYJrF6thgWH38ZskPThHG91SdXGxAvO6NuJPVF30
-=oP/o
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmVWgcoTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumFITCAC/oAl/i4aOihfUut9zKhEV9iqDgUOp
+o6caF6a+p110BPeDOjEN5bJcGIqp2qVg/GS6pI8M6ULfPh6QGEfqHkuhqi/mpfni
+rG1Ccoo+jF1MZ7+Jk4K80R9HEOoZgMepdD6FkqoEND5VTLtaIhm/uGlvQGCxtGFj
+oil8IEG3mklltHTGc4F3H11K60vrjQTuWbz1ZNXO5k8/meW+IIiu2r0aV4d9EGI+
+CBxpqt3HV4NSe9SqyaNyeGsjQI5qXXHHLD/D7u0iz2xWbXv3RPk3Pewod+AOyLD9
+UIkhlSxoJRXNCNwxHRrf6NhHaZrr5+xcnBLOAeO/8bXPuSaZQCL83wDv
+=LtT6
 -----END PGP SIGNATURE-----

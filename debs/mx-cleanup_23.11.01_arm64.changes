@@ -15,11 +15,11 @@ Changes:
  .
    * Fix: ownership for mx-cleanup-script and cron job
 Checksums-Sha1:
- a96d1c887c262675edd9dbb126b34025e1745a9b 10121 mx-cleanup_23.11.01_arm64.buildinfo
- fbbcc7ddcb4bfd51a3bacc016d2ba8a119abd719 141840 mx-cleanup_23.11.01_arm64.deb
+ e6e8e88e34de0d853c42e8d3b73e70f7b401c039 10121 mx-cleanup_23.11.01_arm64.buildinfo
+ 842288f979967cd2c3bf39f9f10fe819d31b5d8c 141900 mx-cleanup_23.11.01_arm64.deb
 Checksums-Sha256:
- 9140fe44f0ea89bc89d23911c5179ba9dc7f55a4055068fd6eb91a792953b21c 10121 mx-cleanup_23.11.01_arm64.buildinfo
- 0c44939af3e2c5ff6e078ccb2b923bb273630d2336b6670e26476c5321af760f 141840 mx-cleanup_23.11.01_arm64.deb
+ 2e5d714f675e2398503b54a8a5c7f1bf9dd3bb8377d4f95e712bbaad5ef58c62 10121 mx-cleanup_23.11.01_arm64.buildinfo
+ 165ab75ab83aba0dbd4659006c10d64b03126965b29f600b616a4802b6f7309a 141900 mx-cleanup_23.11.01_arm64.deb
 Files:
- 9a43207bbfe400c6ed5beec1c082e1f5 10121 admin optional mx-cleanup_23.11.01_arm64.buildinfo
- 2ec5e292939582e6e7ad99c6bcad1336 141840 admin optional mx-cleanup_23.11.01_arm64.deb
+ a6044aa058a4b5f5b037a8e722d544ef 10121 admin optional mx-cleanup_23.11.01_arm64.buildinfo
+ 80726958135c805d134026bc8249ed8b 141900 admin optional mx-cleanup_23.11.01_arm64.deb
