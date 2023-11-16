@@ -294,7 +294,7 @@ void MainWindow::saveSchedule(const QString &cmd_str, const QString &period)
         tempCron.write("@reboot root /usr/bin/mx-cleanup-script\n");
         tempCron.close();
         cmdOutAsRoot("mv " + tempCron.fileName() + " " + cronFile);
-        cmdOutAsRoot("chroot root: " + cronFile);
+        cmdOutAsRoot("chown root: " + cronFile);
         cmdOutAsRoot("chmod +r " + cronFile);
     } else {
         fileName = "/etc/cron." + period + "/mx-cleanup";
@@ -310,7 +310,7 @@ void MainWindow::saveSchedule(const QString &cmd_str, const QString &period)
     tempFile.close();
     cmdOutAsRoot("mv " + tempFile.fileName() + " " + fileName);
     cmdOutAsRoot("chmod +rx " + fileName);
-    cmdOutAsRoot("chroot root: " + fileName);
+    cmdOutAsRoot("chown root: " + fileName);
 }
 
 void MainWindow::saveSettings()
