@@ -1,0 +1,25 @@
+Format: 1.8
+Date: Thu, 16 Nov 2023 15:19:29 -0500
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: arm64
+Version: 23.11.01
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (23.11.01) mx; urgency=medium
+ .
+   * Fix: ownership for mx-cleanup-script and cron job
+Checksums-Sha1:
+ a96d1c887c262675edd9dbb126b34025e1745a9b 10121 mx-cleanup_23.11.01_arm64.buildinfo
+ fbbcc7ddcb4bfd51a3bacc016d2ba8a119abd719 141840 mx-cleanup_23.11.01_arm64.deb
+Checksums-Sha256:
+ 9140fe44f0ea89bc89d23911c5179ba9dc7f55a4055068fd6eb91a792953b21c 10121 mx-cleanup_23.11.01_arm64.buildinfo
+ 0c44939af3e2c5ff6e078ccb2b923bb273630d2336b6670e26476c5321af760f 141840 mx-cleanup_23.11.01_arm64.deb
+Files:
+ 9a43207bbfe400c6ed5beec1c082e1f5 10121 admin optional mx-cleanup_23.11.01_arm64.buildinfo
+ 2ec5e292939582e6e7ad99c6bcad1336 141840 admin optional mx-cleanup_23.11.01_arm64.deb
