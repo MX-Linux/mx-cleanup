@@ -9,8 +9,8 @@ Build-Depends: debhelper (>= 10), qtbase5-dev, qttools5-dev-tools
 Package-List:
  mx-cleanup deb admin optional arch=any
 Checksums-Sha1:
- f8b160264e2e552b3369226c6bd68b343d05ca07 131844 mx-cleanup_23.11.01.tar.xz
+ 74f7b594bdcc1e097230c3c56acf004a9f63f6e6 131816 mx-cleanup_23.11.01.tar.xz
 Checksums-Sha256:
- 11e0c170df0527130174fc6b47c89d113885aab3358ae65772852a1b70e1167c 131844 mx-cleanup_23.11.01.tar.xz
+ 1e0da309771d1051f6426db5cd4fca7df52562f5d92f829493d433581567b8ae 131816 mx-cleanup_23.11.01.tar.xz
 Files:
- f745247c9ae9f085373e3d17df98f905 131844 mx-cleanup_23.11.01.tar.xz
+ f60c5e617d0cbee908b31eb1e09a0818 131816 mx-cleanup_23.11.01.tar.xz
