@@ -37,13 +37,14 @@ SOURCES += \
 
 HEADERS  += \
     about.h \
-    mainwindow.h \
-    version.h
+    common.h \
+    mainwindow.h
 
 FORMS    += \
     mainwindow.ui
 
-TRANSLATIONS += translations/mx-cleanup_en.ts
+TRANSLATIONS += \
+    translations/mx-cleanup_en.ts
 
 RESOURCES += \
     images.qrc
