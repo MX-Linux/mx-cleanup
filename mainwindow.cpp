@@ -157,6 +157,7 @@ void MainWindow::removeKernelPackages(const QStringList &list)
     }
     setCursor(QCursor(Qt::BusyCursor));
     QStringList headers;
+    headers.reserve(list.size());
     QStringList headers_installed;
     QString rmOldVersions;
     for (const auto &item : list) {

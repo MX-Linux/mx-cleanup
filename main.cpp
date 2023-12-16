@@ -30,10 +30,9 @@
 #include <QProcess>
 #include <QTranslator>
 
+#include "common.h"
 #include <unistd.h>
 #include <version.h>
-
-extern const QString starting_home = qEnvironmentVariable("HOME");
 
 int main(int argc, char *argv[])
 {
