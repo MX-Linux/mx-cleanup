@@ -1,3 +1,9 @@
+mx-cleanup (24.2) mx; urgency=medium
+
+  * Add button to remove unneeded Realtek drivers
+
+ -- Adrian <adrian@mxlinux.org>  Thu, 01 Feb 2024 22:39:35 -0500
+
 mx-cleanup (23.11.01) mx; urgency=medium
 
   * Fix: ownership for mx-cleanup-script and cron job

@@ -6,7 +6,7 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.cpp" line="81"/>
-        <location filename="../mainwindow.cpp" line="505"/>
+        <location filename="../mainwindow.cpp" line="507"/>
         <source>MX Cleanup</source>
         <translation>MX Pulizie</translation>
     </message>
@@ -47,7 +47,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.cpp" line="589"/>
+        <location filename="../mainwindow.cpp" line="591"/>
         <source>Close</source>
         <translation>Chiudi</translation>
     </message>
@@ -81,10 +81,10 @@
     <message>
         <location filename="../mainwindow.ui" line="245"/>
         <location filename="../mainwindow.ui" line="622"/>
-        <location filename="../mainwindow.ui" line="724"/>
-        <location filename="../mainwindow.cpp" line="367"/>
-        <location filename="../mainwindow.cpp" line="370"/>
-        <location filename="../mainwindow.cpp" line="374"/>
+        <location filename="../mainwindow.ui" line="796"/>
+        <location filename="../mainwindow.cpp" line="369"/>
+        <location filename="../mainwindow.cpp" line="372"/>
+        <location filename="../mainwindow.cpp" line="376"/>
         <source> days</source>
         <translation>giorni</translation>
     </message>
@@ -191,118 +191,128 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="664"/>
-        <source>Kernel removal tool</source>
-        <translation>Strumento di rimozione kernel</translation>
+        <source>Removal tool</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="676"/>
+        <location filename="../mainwindow.ui" line="670"/>
+        <source>Remove unused RTL drivers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kernel removal tool</source>
+        <translation type="vanished">Strumento di rimozione kernel</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="686"/>
         <source>List and select kernels to remove</source>
         <translation>Elenca e seleziona i kernel da rimuovere</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="696"/>
+        <location filename="../mainwindow.ui" line="706"/>
         <source>Clean Flatpak</source>
         <translation>Pulisci flatpak</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="702"/>
+        <location filename="../mainwindow.ui" line="712"/>
         <source>Remove unused runtimes</source>
         <translation>Rimuovi i runtime inutilizzati</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="718"/>
+        <location filename="../mainwindow.ui" line="728"/>
         <source>Clean Folders</source>
         <translation>Cartelle da pulire</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="737"/>
+        <location filename="../mainwindow.ui" line="734"/>
         <source>Not accessed for:</source>
         <translation>Non acceduto per:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="805"/>
+        <location filename="../mainwindow.ui" line="776"/>
         <source>All (potentially dangerous)</source>
         <translation>Tutto (potenzialmente pericoloso)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="206"/>
+        <location filename="../mainwindow.cpp" line="207"/>
+        <location filename="../mainwindow.cpp" line="626"/>
         <source>Press any key to close</source>
-        <translation type="unfinished"></translation>
+        <translation>Premi un tasto qualsiasi per chiudere</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="367"/>
-        <location filename="../mainwindow.cpp" line="371"/>
-        <location filename="../mainwindow.cpp" line="375"/>
+        <location filename="../mainwindow.cpp" line="369"/>
+        <location filename="../mainwindow.cpp" line="373"/>
+        <location filename="../mainwindow.cpp" line="377"/>
         <source> day</source>
         <translation>giorno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="497"/>
+        <location filename="../mainwindow.cpp" line="499"/>
         <source>Done</source>
         <translation>Fatto</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="498"/>
+        <location filename="../mainwindow.cpp" line="500"/>
         <source>Cleanup command done</source>
         <translation>Comando di Pulizia effettuato</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="498"/>
+        <location filename="../mainwindow.cpp" line="500"/>
         <source>%1 MiB were freed</source>
         <translation>%1 MiB sono stati liberati</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="505"/>
+        <location filename="../mainwindow.cpp" line="507"/>
         <source>About</source>
         <translation>Informazioni</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="506"/>
+        <location filename="../mainwindow.cpp" line="508"/>
         <source>Version: </source>
         <translation>Versione: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="508"/>
+        <location filename="../mainwindow.cpp" line="510"/>
         <source>Quick and safe removal of old files</source>
         <translation>Rimozione rapida e sicura dei vecchi file</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="510"/>
+        <location filename="../mainwindow.cpp" line="512"/>
         <source>Copyright (c) MX Linux</source>
         <translation>Copyright (c) MX Linux</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="511"/>
+        <location filename="../mainwindow.cpp" line="513"/>
         <source>%1 License</source>
         <translation>%1 Licenza</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="518"/>
+        <location filename="../mainwindow.cpp" line="520"/>
         <source>%1 Help</source>
         <translation>%1 Aiuto</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="584"/>
+        <location filename="../mainwindow.cpp" line="586"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Kernel attualmente in uso: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="587"/>
+        <location filename="../mainwindow.cpp" line="589"/>
         <source>Remove selected</source>
         <translation>Rimuovi selezionati</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="592"/>
+        <location filename="../mainwindow.cpp" line="594"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Kernel simili che possono essere rimossi:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="593"/>
+        <location filename="../mainwindow.cpp" line="595"/>
         <source>Other kernels that can be removed:</source>
         <translation>Altri kernel che possono essere rimossi:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="595"/>
+        <location filename="../mainwindow.cpp" line="597"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation>&lt;b&gt;Niente da rimuovere.&lt;/b&gt; Impossibile rimuovere kernel in uso.</translation>
     </message>
@@ -310,46 +320,46 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../about.cpp" line="51"/>
+        <location filename="../about.cpp" line="50"/>
         <source>License</source>
         <translation>Licenza</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="52"/>
-        <location filename="../about.cpp" line="62"/>
+        <location filename="../about.cpp" line="51"/>
+        <location filename="../about.cpp" line="61"/>
         <source>Changelog</source>
         <translation>Registro delle modifiche</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="53"/>
+        <location filename="../about.cpp" line="52"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="75"/>
+        <location filename="../about.cpp" line="74"/>
         <source>&amp;Close</source>
         <translation>&amp;Chiudi</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="54"/>
+        <location filename="../main.cpp" line="53"/>
         <source>Quick safe removal of old files</source>
         <translation>Rimozione rapida sicura di vecchi file</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="81"/>
-        <location filename="../main.cpp" line="89"/>
+        <location filename="../main.cpp" line="80"/>
+        <location filename="../main.cpp" line="88"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="82"/>
+        <location filename="../main.cpp" line="81"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
         <translation>Sembra che tu sia loggato come root, fai il log out e poi il log in come utente normale per usare questo programma.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="90"/>
+        <location filename="../main.cpp" line="89"/>
         <source>You must run this program with admin access.</source>
-        <translation type="unfinished"></translation>
+        <translation>Devi eseguire questo programma come amministratore.</translation>
     </message>
 </context>
 </TS>

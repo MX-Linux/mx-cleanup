@@ -6,7 +6,7 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.cpp" line="81"/>
-        <location filename="../mainwindow.cpp" line="505"/>
+        <location filename="../mainwindow.cpp" line="507"/>
         <source>MX Cleanup</source>
         <translation>MX清理助手</translation>
     </message>
@@ -47,7 +47,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.cpp" line="589"/>
+        <location filename="../mainwindow.cpp" line="591"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
@@ -81,10 +81,10 @@
     <message>
         <location filename="../mainwindow.ui" line="245"/>
         <location filename="../mainwindow.ui" line="622"/>
-        <location filename="../mainwindow.ui" line="724"/>
-        <location filename="../mainwindow.cpp" line="367"/>
-        <location filename="../mainwindow.cpp" line="370"/>
-        <location filename="../mainwindow.cpp" line="374"/>
+        <location filename="../mainwindow.ui" line="796"/>
+        <location filename="../mainwindow.cpp" line="369"/>
+        <location filename="../mainwindow.cpp" line="372"/>
+        <location filename="../mainwindow.cpp" line="376"/>
         <source> days</source>
         <translation>天</translation>
     </message>
@@ -191,118 +191,124 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="664"/>
-        <source>Kernel removal tool</source>
+        <source>Removal tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="676"/>
+        <location filename="../mainwindow.ui" line="670"/>
+        <source>Remove unused RTL drivers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="686"/>
         <source>List and select kernels to remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="696"/>
+        <location filename="../mainwindow.ui" line="706"/>
         <source>Clean Flatpak</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="702"/>
+        <location filename="../mainwindow.ui" line="712"/>
         <source>Remove unused runtimes</source>
         <translation>删除未使用的运行时</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="718"/>
+        <location filename="../mainwindow.ui" line="728"/>
         <source>Clean Folders</source>
         <translation>清理文件夹</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="737"/>
+        <location filename="../mainwindow.ui" line="734"/>
         <source>Not accessed for:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="805"/>
+        <location filename="../mainwindow.ui" line="776"/>
         <source>All (potentially dangerous)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="206"/>
+        <location filename="../mainwindow.cpp" line="207"/>
+        <location filename="../mainwindow.cpp" line="626"/>
         <source>Press any key to close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="367"/>
-        <location filename="../mainwindow.cpp" line="371"/>
-        <location filename="../mainwindow.cpp" line="375"/>
+        <location filename="../mainwindow.cpp" line="369"/>
+        <location filename="../mainwindow.cpp" line="373"/>
+        <location filename="../mainwindow.cpp" line="377"/>
         <source> day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="497"/>
+        <location filename="../mainwindow.cpp" line="499"/>
         <source>Done</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="498"/>
+        <location filename="../mainwindow.cpp" line="500"/>
         <source>Cleanup command done</source>
         <translation>清理指令完成</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="498"/>
+        <location filename="../mainwindow.cpp" line="500"/>
         <source>%1 MiB were freed</source>
         <translation>%1 MiB 已清理</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="505"/>
+        <location filename="../mainwindow.cpp" line="507"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="506"/>
+        <location filename="../mainwindow.cpp" line="508"/>
         <source>Version: </source>
         <translation>版本:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="508"/>
+        <location filename="../mainwindow.cpp" line="510"/>
         <source>Quick and safe removal of old files</source>
         <translation>安全快速清理旧文件</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="510"/>
+        <location filename="../mainwindow.cpp" line="512"/>
         <source>Copyright (c) MX Linux</source>
         <translation>版权所有(c) MX Linux</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="511"/>
+        <location filename="../mainwindow.cpp" line="513"/>
         <source>%1 License</source>
         <translation>%1 许可证</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="518"/>
+        <location filename="../mainwindow.cpp" line="520"/>
         <source>%1 Help</source>
         <translation>%1 帮助</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="584"/>
+        <location filename="../mainwindow.cpp" line="586"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="587"/>
+        <location filename="../mainwindow.cpp" line="589"/>
         <source>Remove selected</source>
         <translation>删除选中的</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="592"/>
+        <location filename="../mainwindow.cpp" line="594"/>
         <source>Similar kernels that can be removed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="593"/>
+        <location filename="../mainwindow.cpp" line="595"/>
         <source>Other kernels that can be removed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="595"/>
+        <location filename="../mainwindow.cpp" line="597"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -310,46 +316,46 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../about.cpp" line="51"/>
+        <location filename="../about.cpp" line="50"/>
         <source>License</source>
         <translation>许可证</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="52"/>
-        <location filename="../about.cpp" line="62"/>
+        <location filename="../about.cpp" line="51"/>
+        <location filename="../about.cpp" line="61"/>
         <source>Changelog</source>
         <translation>更新日志</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="53"/>
+        <location filename="../about.cpp" line="52"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="75"/>
+        <location filename="../about.cpp" line="74"/>
         <source>&amp;Close</source>
         <translation>关闭(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="54"/>
+        <location filename="../main.cpp" line="53"/>
         <source>Quick safe removal of old files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="81"/>
-        <location filename="../main.cpp" line="89"/>
+        <location filename="../main.cpp" line="80"/>
+        <location filename="../main.cpp" line="88"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="82"/>
+        <location filename="../main.cpp" line="81"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
         <translation>您似乎是以 root 身份登录的，请注销并以普通用户身份登录以使用该程序。</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="90"/>
+        <location filename="../main.cpp" line="89"/>
         <source>You must run this program with admin access.</source>
-        <translation type="unfinished"></translation>
+        <translation>您必须以管理员权限运行此程序。</translation>
     </message>
 </context>
 </TS>

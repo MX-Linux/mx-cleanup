@@ -6,7 +6,7 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.cpp" line="81"/>
-        <location filename="../mainwindow.cpp" line="505"/>
+        <location filename="../mainwindow.cpp" line="507"/>
         <source>MX Cleanup</source>
         <translation>MX Puhdistus</translation>
     </message>
@@ -47,7 +47,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.cpp" line="589"/>
+        <location filename="../mainwindow.cpp" line="591"/>
         <source>Close</source>
         <translation>Sulje</translation>
     </message>
@@ -81,10 +81,10 @@
     <message>
         <location filename="../mainwindow.ui" line="245"/>
         <location filename="../mainwindow.ui" line="622"/>
-        <location filename="../mainwindow.ui" line="724"/>
-        <location filename="../mainwindow.cpp" line="367"/>
-        <location filename="../mainwindow.cpp" line="370"/>
-        <location filename="../mainwindow.cpp" line="374"/>
+        <location filename="../mainwindow.ui" line="796"/>
+        <location filename="../mainwindow.cpp" line="369"/>
+        <location filename="../mainwindow.cpp" line="372"/>
+        <location filename="../mainwindow.cpp" line="376"/>
         <source> days</source>
         <translation>päivää</translation>
     </message>
@@ -136,7 +136,7 @@
     <message>
         <location filename="../mainwindow.ui" line="449"/>
         <source>At reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Käynnistyksen yhteydessä</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="456"/>
@@ -191,165 +191,175 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="664"/>
+        <source>Removal tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="670"/>
+        <source>Remove unused RTL drivers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Kernel removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Kernel poistotyökalu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="676"/>
+        <location filename="../mainwindow.ui" line="686"/>
         <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Listaa ja valitse poistettavat kernelit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="696"/>
+        <location filename="../mainwindow.ui" line="706"/>
         <source>Clean Flatpak</source>
-        <translation type="unfinished"></translation>
+        <translation>Puhdista Flatpak</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="702"/>
+        <location filename="../mainwindow.ui" line="712"/>
         <source>Remove unused runtimes</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista käyttämättömät suoritusajat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="718"/>
+        <location filename="../mainwindow.ui" line="728"/>
         <source>Clean Folders</source>
         <translation>Puhdistettavat kansiot</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="737"/>
+        <location filename="../mainwindow.ui" line="734"/>
         <source>Not accessed for:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei käytössä:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="805"/>
+        <location filename="../mainwindow.ui" line="776"/>
         <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki (mahdollinen riski)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="206"/>
+        <location filename="../mainwindow.cpp" line="207"/>
+        <location filename="../mainwindow.cpp" line="626"/>
         <source>Press any key to close</source>
-        <translation type="unfinished"></translation>
+        <translation>Paina mitä tahansa näppäintä sulkeaksesi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="367"/>
-        <location filename="../mainwindow.cpp" line="371"/>
-        <location filename="../mainwindow.cpp" line="375"/>
+        <location filename="../mainwindow.cpp" line="369"/>
+        <location filename="../mainwindow.cpp" line="373"/>
+        <location filename="../mainwindow.cpp" line="377"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation>päivä</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="497"/>
+        <location filename="../mainwindow.cpp" line="499"/>
         <source>Done</source>
         <translation>Valmis</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="498"/>
+        <location filename="../mainwindow.cpp" line="500"/>
         <source>Cleanup command done</source>
         <translation>Puhdistus suoritettu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="498"/>
+        <location filename="../mainwindow.cpp" line="500"/>
         <source>%1 MiB were freed</source>
         <translation>%1 Mt vapautui</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="505"/>
+        <location filename="../mainwindow.cpp" line="507"/>
         <source>About</source>
         <translation>Tietoja</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="506"/>
+        <location filename="../mainwindow.cpp" line="508"/>
         <source>Version: </source>
         <translation>Versio: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="508"/>
+        <location filename="../mainwindow.cpp" line="510"/>
         <source>Quick and safe removal of old files</source>
         <translation>Vanhojen tiedostojen nopea ja turvallinen poistaminen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="510"/>
+        <location filename="../mainwindow.cpp" line="512"/>
         <source>Copyright (c) MX Linux</source>
         <translation>Copyright (c) MX Linux</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="511"/>
+        <location filename="../mainwindow.cpp" line="513"/>
         <source>%1 License</source>
         <translation>%1 lupa</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="518"/>
+        <location filename="../mainwindow.cpp" line="520"/>
         <source>%1 Help</source>
         <translation>%1 Apuopas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="584"/>
+        <location filename="../mainwindow.cpp" line="586"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytössä oleva kernel: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="587"/>
+        <location filename="../mainwindow.cpp" line="589"/>
         <source>Remove selected</source>
         <translation>Poista valittu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="592"/>
+        <location filename="../mainwindow.cpp" line="594"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="593"/>
-        <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Samankaltaiset kernelit, jotka voidaan poistaa:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="595"/>
+        <source>Other kernels that can be removed:</source>
+        <translation>Muut kernelit, jotka voidaan poistaa:</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="597"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Ei poistettavaa.&lt;/b&gt; Käytössä olevaa kerneliä ei voi poistaa.</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../about.cpp" line="51"/>
+        <location filename="../about.cpp" line="50"/>
         <source>License</source>
         <translation>Lisenssi</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="52"/>
-        <location filename="../about.cpp" line="62"/>
+        <location filename="../about.cpp" line="51"/>
+        <location filename="../about.cpp" line="61"/>
         <source>Changelog</source>
         <translation>Muutosloki</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="53"/>
+        <location filename="../about.cpp" line="52"/>
         <source>Cancel</source>
         <translation>Peru</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="75"/>
+        <location filename="../about.cpp" line="74"/>
         <source>&amp;Close</source>
         <translation>&amp;Sulje</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="54"/>
+        <location filename="../main.cpp" line="53"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation>Nopea ja turvallinen vanhojen tiedostojen poisto</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="81"/>
-        <location filename="../main.cpp" line="89"/>
+        <location filename="../main.cpp" line="80"/>
+        <location filename="../main.cpp" line="88"/>
         <source>Error</source>
         <translation>Virhe</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="82"/>
+        <location filename="../main.cpp" line="81"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
         <translation>Olet kirjautunut sisään pääkäyttäjänä. Kirjaudu sisään normaalina käyttäjänä käyttääksesi tätä ohjelmaa.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="90"/>
+        <location filename="../main.cpp" line="89"/>
         <source>You must run this program with admin access.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä ohjelma on suoritettava järjestelmänvalvojan oikeuksilla.</translation>
     </message>
 </context>
 </TS>

@@ -361,6 +361,7 @@ void MainWindow::setConnections()
     connect(ui->pushCancel, &QPushButton::clicked, this, &MainWindow::close);
     connect(ui->pushHelp, &QPushButton::clicked, this, &MainWindow::pushHelp_clicked);
     connect(ui->pushKernel, &QPushButton::clicked, this, &MainWindow::pushKernel_clicked);
+    connect(ui->pushRTLremove, &QPushButton::clicked, this, &MainWindow::pushRTLremove_clicked);
     connect(ui->pushUsageAnalyzer, &QPushButton::clicked, this, &MainWindow::pushUsageAnalyzer_clicked);
     connect(ui->radioNoCleanLogs, &QRadioButton::toggled, ui->spinBoxLogs, &QSpinBox::setDisabled);
     connect(ui->radioNoCleanTrash, &QRadioButton::toggled, ui->spinBoxTrash, &QSpinBox::setDisabled);
@@ -607,4 +608,21 @@ void MainWindow::pushKernel_clicked()
     connect(btnBox, &QDialogButtonBox::accepted, dialog, &QDialog::close);
 
     dialog->exec();
+}
+
+void MainWindow::pushRTLremove_clicked()
+{
+    setCursor(QCursor(Qt::BusyCursor));
+    QString dumpList = cmdOut(
+        R"(for module in 8812au 8821au rtl8821ce; do
+             if ! lsmod | grep -q $module; then
+                modname="${module}"
+                [[ "${module}" != "rtl"* ]] && modname="rtl${module}"
+                echo -n "${modname}-dkms "
+             fi
+           done)");
+    QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};
+    system("x-terminal-emulator -e pkexec " + helper.toUtf8() + " 'apt purge " + dumpList.toUtf8()
+           + "; apt-get install -f; read -n1 -srp \"" + tr("Press any key to close").toUtf8() + "\"'");
+    setCursor(QCursor(Qt::ArrowCursor));
 }
