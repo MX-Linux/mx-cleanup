@@ -667,10 +667,11 @@
       <item>
        <widget class="QPushButton" name="pushRTLremove">
         <property name="text">
-         <string>Remove unused RTL drivers</string>
+         <string>Remove unused WiFi drivers</string>
         </property>
         <property name="icon">
-         <iconset theme="list-remove"/>
+         <iconset theme="list-remove">
+          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -855,8 +856,8 @@
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroupLogs"/>
-  <buttongroup name="buttonGroupTrash"/>
   <buttongroup name="buttonGroupApt"/>
+  <buttongroup name="buttonGroupTrash"/>
+  <buttongroup name="buttonGroupLogs"/>
  </buttongroups>
 </ui>
