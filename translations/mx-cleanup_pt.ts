@@ -81,7 +81,7 @@
     <message>
         <location filename="../mainwindow.ui" line="245"/>
         <location filename="../mainwindow.ui" line="622"/>
-        <location filename="../mainwindow.ui" line="796"/>
+        <location filename="../mainwindow.ui" line="797"/>
         <location filename="../mainwindow.cpp" line="369"/>
         <location filename="../mainwindow.cpp" line="372"/>
         <location filename="../mainwindow.cpp" line="376"/>
@@ -196,7 +196,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="670"/>
-        <source>Remove unused RTL drivers</source>
+        <source>Remove unused WiFi drivers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -204,38 +204,38 @@
         <translation type="vanished">Ferramenta de remoção de núcleos (kernels)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="686"/>
+        <location filename="../mainwindow.ui" line="687"/>
         <source>List and select kernels to remove</source>
         <translation>Listar e selecionar os núcleos (kernels) a remover</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="706"/>
+        <location filename="../mainwindow.ui" line="707"/>
         <source>Clean Flatpak</source>
         <translation>Limpeza de Flatpak</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="712"/>
+        <location filename="../mainwindow.ui" line="713"/>
         <source>Remove unused runtimes</source>
         <translation>Remover tempos de execução (runtimes) não utilizados</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="728"/>
+        <location filename="../mainwindow.ui" line="729"/>
         <source>Clean Folders</source>
         <translation>Pastas a limpar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="734"/>
+        <location filename="../mainwindow.ui" line="735"/>
         <source>Not accessed for:</source>
         <translation>Não acedido durante:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="776"/>
+        <location filename="../mainwindow.ui" line="777"/>
         <source>All (potentially dangerous)</source>
         <translation>Tudo (potencialmente perigoso)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="207"/>
-        <location filename="../mainwindow.cpp" line="626"/>
+        <location filename="../mainwindow.cpp" line="629"/>
         <source>Press any key to close</source>
         <translation>Premir qualquer tecla para fechar</translation>
     </message>
