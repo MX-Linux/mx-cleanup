@@ -1,3 +1,9 @@
+mx-cleanup (24.2.01) mx; urgency=medium
+
+  * Check for and remove rtl8814au, rtl8821cu, broadcom-sta-dkms
+
+ -- Adrian <adrian@mxlinux.org>  Thu, 01 Feb 2024 23:26:58 -0500
+
 mx-cleanup (24.2) mx; urgency=medium
 
   * Add button to remove unneeded Realtek drivers

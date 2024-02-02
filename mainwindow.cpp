@@ -614,13 +614,16 @@ void MainWindow::pushRTLremove_clicked()
 {
     setCursor(QCursor(Qt::BusyCursor));
     QString dumpList = cmdOut(
-        R"(for module in 8812au 8821au rtl8821ce; do
+        R"(for module in 8812au 8814au 8821au 8821cu rtl8821ce; do
              if ! lsmod | grep -q $module; then
                 modname="${module}"
                 [[ "${module}" != "rtl"* ]] && modname="rtl${module}"
                 echo -n "${modname}-dkms "
              fi
-           done)");
+           done
+           if ! lsmod | grep -q -w ^wl; then
+                echo -n broadcom-sta-dkms
+           fi)");
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};
     system("x-terminal-emulator -e pkexec " + helper.toUtf8() + " 'apt purge " + dumpList.toUtf8()
            + "; apt-get install -f; read -n1 -srp \"" + tr("Press any key to close").toUtf8() + "\"'");
