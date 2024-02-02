@@ -81,7 +81,7 @@
     <message>
         <location filename="../mainwindow.ui" line="245"/>
         <location filename="../mainwindow.ui" line="622"/>
-        <location filename="../mainwindow.ui" line="796"/>
+        <location filename="../mainwindow.ui" line="797"/>
         <location filename="../mainwindow.cpp" line="369"/>
         <location filename="../mainwindow.cpp" line="372"/>
         <location filename="../mainwindow.cpp" line="376"/>
@@ -196,7 +196,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="670"/>
-        <source>Remove unused RTL drivers</source>
+        <source>Remove unused WiFi drivers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -204,38 +204,38 @@
         <translation type="vanished">Orodje za odstranitev jedra</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="686"/>
+        <location filename="../mainwindow.ui" line="687"/>
         <source>List and select kernels to remove</source>
         <translation>Prikaz in izbira jeder za odstranitev</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="706"/>
+        <location filename="../mainwindow.ui" line="707"/>
         <source>Clean Flatpak</source>
         <translation>Čisti Flatpak</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="712"/>
+        <location filename="../mainwindow.ui" line="713"/>
         <source>Remove unused runtimes</source>
         <translation>Odstrani neuporabljene zagone</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="728"/>
+        <location filename="../mainwindow.ui" line="729"/>
         <source>Clean Folders</source>
         <translation>Počisti mape</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="734"/>
+        <location filename="../mainwindow.ui" line="735"/>
         <source>Not accessed for:</source>
         <translation>Ni bil v uporabi:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="776"/>
+        <location filename="../mainwindow.ui" line="777"/>
         <source>All (potentially dangerous)</source>
         <translation>Vse (je lahko nevarno)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="207"/>
-        <location filename="../mainwindow.cpp" line="626"/>
+        <location filename="../mainwindow.cpp" line="629"/>
         <source>Press any key to close</source>
         <translation>Pritisnite poljubno tipko za izhod</translation>
     </message>

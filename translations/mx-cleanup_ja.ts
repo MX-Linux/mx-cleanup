@@ -81,7 +81,7 @@
     <message>
         <location filename="../mainwindow.ui" line="245"/>
         <location filename="../mainwindow.ui" line="622"/>
-        <location filename="../mainwindow.ui" line="796"/>
+        <location filename="../mainwindow.ui" line="797"/>
         <location filename="../mainwindow.cpp" line="369"/>
         <location filename="../mainwindow.cpp" line="372"/>
         <location filename="../mainwindow.cpp" line="376"/>
@@ -196,7 +196,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="670"/>
-        <source>Remove unused RTL drivers</source>
+        <source>Remove unused WiFi drivers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -204,38 +204,38 @@
         <translation type="vanished">カーネルの削除ツール</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="686"/>
+        <location filename="../mainwindow.ui" line="687"/>
         <source>List and select kernels to remove</source>
         <translation>削除するカーネルを一覧から選択</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="706"/>
+        <location filename="../mainwindow.ui" line="707"/>
         <source>Clean Flatpak</source>
         <translation>Flatpak をクリーンアップ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="712"/>
+        <location filename="../mainwindow.ui" line="713"/>
         <source>Remove unused runtimes</source>
         <translation>未使用のランタイムを削除</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="728"/>
+        <location filename="../mainwindow.ui" line="729"/>
         <source>Clean Folders</source>
         <translation>フォルダの片付け</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="734"/>
+        <location filename="../mainwindow.ui" line="735"/>
         <source>Not accessed for:</source>
         <translation>アクセスしていない期間:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="776"/>
+        <location filename="../mainwindow.ui" line="777"/>
         <source>All (potentially dangerous)</source>
         <translation>すべて（これは危険かもしれません）</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="207"/>
-        <location filename="../mainwindow.cpp" line="626"/>
+        <location filename="../mainwindow.cpp" line="629"/>
         <source>Press any key to close</source>
         <translation>任意のキーを押せば閉じます</translation>
     </message>

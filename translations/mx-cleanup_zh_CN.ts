@@ -81,7 +81,7 @@
     <message>
         <location filename="../mainwindow.ui" line="245"/>
         <location filename="../mainwindow.ui" line="622"/>
-        <location filename="../mainwindow.ui" line="796"/>
+        <location filename="../mainwindow.ui" line="797"/>
         <location filename="../mainwindow.cpp" line="369"/>
         <location filename="../mainwindow.cpp" line="372"/>
         <location filename="../mainwindow.cpp" line="376"/>
@@ -196,42 +196,42 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="670"/>
-        <source>Remove unused RTL drivers</source>
+        <source>Remove unused WiFi drivers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="686"/>
+        <location filename="../mainwindow.ui" line="687"/>
         <source>List and select kernels to remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="706"/>
+        <location filename="../mainwindow.ui" line="707"/>
         <source>Clean Flatpak</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="712"/>
+        <location filename="../mainwindow.ui" line="713"/>
         <source>Remove unused runtimes</source>
         <translation>删除未使用的运行时</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="728"/>
+        <location filename="../mainwindow.ui" line="729"/>
         <source>Clean Folders</source>
         <translation>清理文件夹</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="734"/>
+        <location filename="../mainwindow.ui" line="735"/>
         <source>Not accessed for:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="776"/>
+        <location filename="../mainwindow.ui" line="777"/>
         <source>All (potentially dangerous)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="207"/>
-        <location filename="../mainwindow.cpp" line="626"/>
+        <location filename="../mainwindow.cpp" line="629"/>
         <source>Press any key to close</source>
         <translation type="unfinished"></translation>
     </message>
