@@ -54,6 +54,7 @@ private slots:
     void pushApply_clicked();
     void pushHelp_clicked();
     void pushKernel_clicked();
+    void pushRTLremove_clicked();
     static void pushUsageAnalyzer_clicked();
 
 private:
