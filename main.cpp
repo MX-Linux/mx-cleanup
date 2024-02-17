@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     }
 
     QApplication::setApplicationVersion(VERSION);
-    QApplication::setOrganizationName(QStringLiteral("MX-Linux"));
+    QApplication::setOrganizationName("MX-Linux");
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QObject::tr("Quick safe removal of old files"));
@@ -58,8 +58,7 @@ int main(int argc, char *argv[])
     QApplication::setWindowIcon(QIcon::fromTheme(QApplication::applicationName()));
 
     QTranslator qtTran;
-    if (qtTran.load(QLocale(), QStringLiteral("qt"), QStringLiteral("_"),
-                    QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+    if (qtTran.load(QLocale(), "qt", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
         QApplication::installTranslator(&qtTran);
     }
 
@@ -74,8 +73,8 @@ int main(int argc, char *argv[])
         QApplication::installTranslator(&appTran);
     }
 
-    // root guard
-    if (QProcess::execute(QStringLiteral("/bin/bash"), {"-c", "logname |grep -q ^root$"}) == 0) {
+    // Root guard
+    if (QProcess::execute("/bin/bash", {"-c", "logname |grep -q ^root$"}) == 0) {
         QMessageBox::critical(
             nullptr, QObject::tr("Error"),
             QObject::tr(
