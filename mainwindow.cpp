@@ -26,6 +26,7 @@
 #include <QDialogButtonBox>
 #include <QFileInfo>
 #include <QProcess>
+#include <QStandardPaths>
 #include <QTemporaryFile>
 #include <QTextEdit>
 
@@ -42,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
     qDebug().noquote() << QApplication::applicationName() << "version:" << QApplication::applicationVersion();
     ui->setupUi(this);
     setConnections();
-    setWindowFlags(Qt::Window); // for the close, min and max buttons
+    setWindowFlags(Qt::Window); // For the close, min and max buttons
     setup();
 }
 
@@ -61,7 +62,7 @@ void MainWindow::addGroupCheckbox(QLayout *layout, const QString &package, const
     auto *vBox = new QVBoxLayout;
     grpBox->setLayout(vBox);
     layout->addWidget(grpBox);
-    for (const auto &item : package.split("\n")) {
+    for (const auto &item : package.split('\n')) {
         auto *btn = new QCheckBox(item);
         vBox->addWidget(btn);
         connect(btn, &QCheckBox::toggled, [btn, list]() {
@@ -93,7 +94,7 @@ void MainWindow::setup()
     const QString users = cmdOut("lslogins --noheadings -u -o user | grep -vw root").trimmed();
 
     qDebug() << users;
-    ui->comboUserClean->addItems(users.split("\n"));
+    ui->comboUserClean->addItems(users.split('\n'));
 
     ui->comboUserClean->setCurrentIndex(ui->comboUserClean->findText(current_user));
     ui->pushApply->setEnabled(!ui->comboUserClean->currentText().isEmpty());
@@ -441,9 +442,12 @@ void MainWindow::pushApply_clicked()
     cmdOutAsRoot(apt);
     total -= cmdOutAsRoot("du -s /var/cache/apt/archives/ | cut -f1").toULongLong();
 
-    QString time = ui->spinBoxLogs->value() == 0 ? QStringLiteral(" ")
-                                                 : " -ctime +" + QString::number(ui->spinBoxLogs->value()) + " -atime +"
-                                                       + QString::number(ui->spinBoxLogs->value()) + " ";
+    QString time = " ";
+    int logRetentionDays = ui->spinBoxLogs->value();
+    if (logRetentionDays > 0) {
+        time = QString(" -ctime +%1 -atime +%1 ").arg(logRetentionDays);
+    }
+
     if (ui->radioOldLogs->isChecked()) {
         total
             += cmdOutAsRoot(
@@ -460,26 +464,28 @@ void MainWindow::pushApply_clicked()
     }
 
     if (ui->radioSelectedUser->isChecked() || ui->radioAllUsers->isChecked()) {
-        QString user = ui->radioAllUsers->isChecked() ? QStringLiteral("*") : ui->comboUserClean->currentText();
-        time = ui->spinBoxTrash->value() == 0 ? QStringLiteral(" ")
-                                              : " -ctime +" + QString::number(ui->spinBoxTrash->value()) + " -atime +"
-                                                    + QString::number(ui->spinBoxTrash->value()) + " ";
-        total += cmdOut("find /home/" + user + "/.local/share/Trash -mindepth 1" + time
+        QString user = ui->radioAllUsers->isChecked() ? "*" : ui->comboUserClean->currentText();
+        QString timeTrash = " ";
+        int trashRetentionDays = ui->spinBoxTrash->value();
+        if (trashRetentionDays > 0) {
+            timeTrash = QString(" -ctime +%1 -atime +%1 ").arg(trashRetentionDays);
+        }
+        total += cmdOut("find /home/" + user + "/.local/share/Trash -mindepth 1" + timeTrash
                         + "-exec du -sc '{}' + | tail -1 | cut -f1")
                      .toULongLong();
-        trash = "find /home/" + user + "/.local/share/Trash -mindepth 1" + time + "-delete";
+        trash = "find /home/" + user + "/.local/share/Trash -mindepth 1" + timeTrash + "-delete";
         system(trash.toUtf8());
     }
 
-    // cleanup schedule
+    // Cleanup schedule
     cmdOutAsRoot("rm /etc/cron.daily/mx-cleanup");
     cmdOutAsRoot("rm /etc/cron.weekly/mx-cleanup");
     cmdOutAsRoot("rm /etc/cron.monthly/mx-cleanup");
     cmdOutAsRoot("rm /etc/cron.d/mx-cleanup");
-    // add schedule file
+    // Add schedule file
     if (!ui->radioNone->isChecked()) {
         QString period;
-        QString cmd_str = cache + "\n" + thumbnails + "\n" + logs + "\n" + apt + "\n" + trash + "\n" + flatpak;
+        QString cmd_str = cache + '\n' + thumbnails + '\n' + logs + '\n' + apt + '\n' + trash + '\n' + flatpak;
         qDebug() << "CMD STR" << cmd_str;
         if (ui->radioDaily->isChecked()) {
             period = "daily";
@@ -497,7 +503,7 @@ void MainWindow::pushApply_clicked()
 
     setCursor(QCursor(Qt::ArrowCursor));
     QMessageBox::information(this, tr("Done"),
-                             tr("Cleanup command done") + "\n" + tr("%1 MiB were freed").arg(total / 1024));
+                             tr("Cleanup command done") + '\n' + tr("%1 MiB were freed").arg(total / 1024));
 }
 
 void MainWindow::pushAbout_clicked()
@@ -510,7 +516,7 @@ void MainWindow::pushAbout_clicked()
             + tr("Quick and safe removal of old files")
             + R"(</h3></p><p align="center"><a href="http://mxlinux.org">http://mxlinux.org</a><br /></p><p align="center">)"
             + tr("Copyright (c) MX Linux") + "<br /><br /></p>",
-        QStringLiteral("/usr/share/doc/mx-cleanup/license.html"), tr("%1 License").arg(this->windowTitle()));
+        "/usr/share/doc/mx-cleanup/license.html", tr("%1 License").arg(this->windowTitle()));
     this->show();
 }
 
@@ -523,19 +529,19 @@ void MainWindow::pushHelp_clicked()
 void MainWindow::pushUsageAnalyzer_clicked()
 {
     const QString desktop = qgetenv("XDG_CURRENT_DESKTOP");
-    // try filelight, qdirstat for Qt based DEs, otherwise baobab
+    // Try filelight, qdirstat for Qt based DEs, otherwise baobab
     if (desktop == "KDE" || desktop == "LXQt") {
-        if (system("command -v filelight") == 0) {
+        if (!QStandardPaths::findExecutable("filelight").isEmpty()) {
             QProcess::startDetached("filelight", {});
-        } else if (system("command -v qdirstat") == 0) {
+        } else if (!QStandardPaths::findExecutable("qdirstat").isEmpty()) {
             QProcess::startDetached("qdirstat", {});
-        } else { // failsafe just in case the des
+        } else {
             QProcess::startDetached("baobab", {});
         }
     } else {
-        if (system("command -v baobab") == 0) {
+        if (!QStandardPaths::findExecutable("baobab").isEmpty()) {
             QProcess::startDetached("baobab", {});
-        } else if (system("command -v filelight") == 0) {
+        } else if (!QStandardPaths::findExecutable("filelight").isEmpty()) {
             QProcess::startDetached("filelight", {});
         } else {
             QProcess::startDetached("qdirstat", {});
@@ -613,17 +619,17 @@ void MainWindow::pushKernel_clicked()
 void MainWindow::pushRTLremove_clicked()
 {
     setCursor(QCursor(Qt::BusyCursor));
-    QString dumpList = cmdOut(
-        R"(for module in 8812au 8814au 8821au 8821cu rtl8821ce; do
-             if ! lsmod | grep -q $module; then
-                modname="${module}"
-                [[ "${module}" != "rtl"* ]] && modname="rtl${module}"
-                echo -n "${modname}-dkms "
-             fi
-           done
-           if ! lsmod | grep -q -w ^wl; then
-                echo -n broadcom-sta-dkms
-           fi)");
+    QString dumpList = cmdOut(R"(
+    for module in 8812au 8814au 8821au 8821cu rtl8821ce; do
+        if ! lsmod | grep -q $module; then
+            modname="${module}"
+            [[ "${module}" != "rtl"* ]] && modname="rtl${module}"
+            echo -n "${modname}-dkms "
+        fi
+    done
+    if ! lsmod | grep -q -w ^wl; then
+        echo -n broadcom-sta-dkms
+    fi)");
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};
     system("x-terminal-emulator -e pkexec " + helper.toUtf8() + " 'apt purge " + dumpList.toUtf8()
            + "; apt-get install -f; read -n1 -srp \"" + tr("Press any key to close").toUtf8() + "\"'");
