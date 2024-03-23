@@ -1,3 +1,9 @@
+mx-cleanup (24.3) mx; urgency=medium
+
+  * Update translations
+
+ -- Adrian <adrian@mxlinux.org>  Sat, 23 Mar 2024 12:34:33 -0400
+
 mx-cleanup (24.2.01) mx; urgency=medium
 
   * Check for and remove rtl8814au, rtl8821cu, broadcom-sta-dkms

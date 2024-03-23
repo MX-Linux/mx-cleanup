@@ -5,8 +5,8 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../mainwindow.cpp" line="81"/>
-        <location filename="../mainwindow.cpp" line="507"/>
+        <location filename="../mainwindow.cpp" line="82"/>
+        <location filename="../mainwindow.cpp" line="513"/>
         <source>MX Cleanup</source>
         <translation>MX Cleanup</translation>
     </message>
@@ -47,7 +47,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.cpp" line="591"/>
+        <location filename="../mainwindow.cpp" line="597"/>
         <source>Close</source>
         <translation>Tanca</translation>
     </message>
@@ -82,9 +82,9 @@
         <location filename="../mainwindow.ui" line="245"/>
         <location filename="../mainwindow.ui" line="622"/>
         <location filename="../mainwindow.ui" line="797"/>
-        <location filename="../mainwindow.cpp" line="369"/>
-        <location filename="../mainwindow.cpp" line="372"/>
-        <location filename="../mainwindow.cpp" line="376"/>
+        <location filename="../mainwindow.cpp" line="370"/>
+        <location filename="../mainwindow.cpp" line="373"/>
+        <location filename="../mainwindow.cpp" line="377"/>
         <source> days</source>
         <translation>dies</translation>
     </message>
@@ -192,16 +192,12 @@
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Eina d&apos;eliminació</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="670"/>
         <source>Remove unused WiFi drivers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Kernel removal tool</source>
-        <translation type="vanished">Eina d&apos;eliminació de kernels</translation>
+        <translation>Elimina els controladors de WiFi que no s&apos;usen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="687"/>
@@ -234,85 +230,85 @@
         <translation>Tots (potencialment perillós)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="207"/>
-        <location filename="../mainwindow.cpp" line="629"/>
+        <location filename="../mainwindow.cpp" line="208"/>
+        <location filename="../mainwindow.cpp" line="635"/>
         <source>Press any key to close</source>
         <translation>Premeu qualsevol tecla per tancar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="369"/>
-        <location filename="../mainwindow.cpp" line="373"/>
-        <location filename="../mainwindow.cpp" line="377"/>
+        <location filename="../mainwindow.cpp" line="370"/>
+        <location filename="../mainwindow.cpp" line="374"/>
+        <location filename="../mainwindow.cpp" line="378"/>
         <source> day</source>
         <translation>dia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="499"/>
+        <location filename="../mainwindow.cpp" line="505"/>
         <source>Done</source>
         <translation>Fet </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="500"/>
+        <location filename="../mainwindow.cpp" line="506"/>
         <source>Cleanup command done</source>
         <translation>Feta l&apos;ordre de neteja</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="500"/>
+        <location filename="../mainwindow.cpp" line="506"/>
         <source>%1 MiB were freed</source>
         <translation>S&apos;ha alliberat %1 MiB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="507"/>
+        <location filename="../mainwindow.cpp" line="513"/>
         <source>About</source>
         <translation>Quant a </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="508"/>
+        <location filename="../mainwindow.cpp" line="514"/>
         <source>Version: </source>
         <translation>Versió: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="510"/>
+        <location filename="../mainwindow.cpp" line="516"/>
         <source>Quick and safe removal of old files</source>
         <translation>Eliminació ràpida i segura de fitxers antics</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="512"/>
+        <location filename="../mainwindow.cpp" line="518"/>
         <source>Copyright (c) MX Linux</source>
         <translation>Copyright (c) MX Linux</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="513"/>
+        <location filename="../mainwindow.cpp" line="519"/>
         <source>%1 License</source>
         <translation>Llicència de %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="520"/>
+        <location filename="../mainwindow.cpp" line="526"/>
         <source>%1 Help</source>
         <translation>Ajuda de %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="586"/>
+        <location filename="../mainwindow.cpp" line="592"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Kernel actualment en ús: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="589"/>
+        <location filename="../mainwindow.cpp" line="595"/>
         <source>Remove selected</source>
         <translation>Elimina els seleccionats</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="594"/>
+        <location filename="../mainwindow.cpp" line="600"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Es poden eliminar kernels semblants</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="595"/>
+        <location filename="../mainwindow.cpp" line="601"/>
         <source>Other kernels that can be removed:</source>
         <translation>Altres kernels que es poden eliminar: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="597"/>
+        <location filename="../mainwindow.cpp" line="603"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation>&lt;b&gt;Res a eliminar.&lt;/b&gt; No es pot eliminar el kernel en ús.</translation>
     </message>
@@ -320,23 +316,23 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../about.cpp" line="50"/>
+        <location filename="../about.cpp" line="70"/>
         <source>License</source>
         <translation>Llicència</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="51"/>
-        <location filename="../about.cpp" line="61"/>
+        <location filename="../about.cpp" line="71"/>
+        <location filename="../about.cpp" line="81"/>
         <source>Changelog</source>
         <translation>Registre de canvis</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="52"/>
+        <location filename="../about.cpp" line="72"/>
         <source>Cancel</source>
         <translation>Cancel·la</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="74"/>
+        <location filename="../about.cpp" line="94"/>
         <source>&amp;Close</source>
         <translation>Tan&amp;ca </translation>
     </message>
@@ -346,18 +342,18 @@
         <translation>Eliminació ràpida i segura de fitxers vells</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="80"/>
-        <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="79"/>
+        <location filename="../main.cpp" line="87"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="81"/>
+        <location filename="../main.cpp" line="80"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
         <translation>Sembla que esteu connectat com a administrador, si us plau sortiu i connecteu-vos com a usuari normal per a usar aquest programa.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
+        <location filename="../main.cpp" line="88"/>
         <source>You must run this program with admin access.</source>
         <translation>Cal executar aquest programa com a administrador.</translation>
     </message>
