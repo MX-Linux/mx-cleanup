@@ -67,7 +67,7 @@ void MainWindow::addGroupCheckbox(QLayout *layout, const QString &package, const
         vBox->addWidget(btn);
         connect(btn, &QCheckBox::toggled, [btn, list]() {
             if (btn->isChecked()) {
-                *list << btn->text();
+                list->append(btn->text());
             } else {
                 list->removeAll(btn->text());
             }
@@ -232,13 +232,13 @@ void MainWindow::loadOptions()
     }
 
     // Folders
-    ui->checkThumbs->setChecked(system(R"(grep -q '\.thumbnails' )" + file_name.toUtf8()) == 0);
-    if (system(R"(grep -q '\.cache' )" + file_name.toUtf8()) == 0) {
+    ui->checkThumbs->setChecked(system(R"(grep -q '\.cache/thumbnails' )" + file_name.toUtf8()) == 0);
+    if (system(R"(grep -E '.cache(\s|/\*)' )" + file_name.toUtf8()) == 0) {
         ui->checkCache->setChecked(true);
-        if (system("grep -q 'rm.*cache' " + file_name.toUtf8()) == 0) {
-            ui->radioAllCache->setChecked(true);
-        } else {
+        if (system(R"(grep -q 'find.*cache.*-atime' )" + file_name.toUtf8()) == 0) {
             ui->radioSaferCache->setChecked(true);
+        } else {
+            ui->radioAllCache->setChecked(true);
         }
     } else {
         ui->checkCache->setChecked(false);
@@ -346,11 +346,9 @@ void MainWindow::saveSettings()
 void MainWindow::selectRadioButton(const QButtonGroup *group, int id)
 {
     if (id != -1) {
-        for (auto *button : group->buttons()) {
-            if (group->id(button) == id) {
-                button->setChecked(true);
-                break;
-            }
+        auto *selectedButton = group->button(id);
+        if (selectedButton) {
+            selectedButton->setChecked(true);
         }
     }
 }
@@ -392,25 +390,29 @@ void MainWindow::pushApply_clicked()
     QString trash;
 
     if (ui->checkCache->isChecked() && ui->radioAllCache->isChecked()) {
-        total += cmdOut("du -c /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/* | tail -1 | cut -f1")
+        total += cmdOut("du -c /home/" + ui->comboUserClean->currentText().toUtf8()
+                        + "/.cache/* --exclude=thumbnails | tail -1 | cut -f1")
                      .toULongLong();
-        cache = "rm -r /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/* 2>/dev/null";
+        cache = "find /home/" + ui->comboUserClean->currentText().toUtf8()
+                + "/.cache -type d -name 'thumbnails' -prune -o -type f -delete";
         system(cache.toUtf8());
     } else if (ui->checkCache->isChecked() && ui->radioSaferCache->isChecked()) {
         QString days = QString::number(ui->spinCache->value());
-        total += cmdOut("find /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/ -type f -atime +" + days
-                        + " -mtime +" + days + " -exec du -sc '{}' + | tail -1 | cut -f1")
+        total += cmdOut("find /home/" + ui->comboUserClean->currentText().toUtf8()
+                        + "/.cache/ -type d -name 'thumbnails' -prune -o -type f -atime +" + days + " -mtime +" + days
+                        + " -exec du -sc '{}' + | tail -1 | cut -f1")
                      .toULongLong();
-        cache = "find /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/ -type f -atime +" + days
-                + " -mtime +" + days + " -delete";
+        cache = "find /home/" + ui->comboUserClean->currentText().toUtf8()
+                + "/.cache -type d -name 'thumbnails' -prune -o -type f -atime +" + days + " -mtime +" + days
+                + " -delete";
         system(cache.toUtf8());
     }
 
     if (ui->checkThumbs->isChecked()) {
         total += cmdOut("du -c /home/" + ui->comboUserClean->currentText().toUtf8()
-                        + "/.thumbnails/* | tail -1 | cut -f1")
+                        + "/.cache/thumbnails/* | tail -1 | cut -f1")
                      .toULongLong();
-        thumbnails = "rm -r /home/" + ui->comboUserClean->currentText().toUtf8() + "/.thumbnails/* 2>/dev/null";
+        thumbnails = "rm -r /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/thumbnails/* 2>/dev/null";
         system(thumbnails.toUtf8());
     }
 

@@ -14,18 +14,306 @@
    <string>MX Cleanup</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="9" column="0" colspan="2">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+   <item row="2" column="1">
+    <widget class="QGroupBox" name="groupBoxApt">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>10</height>
-      </size>
+     <property name="title">
+      <string>Clear APT Cache</string>
      </property>
-    </spacer>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <widget class="QRadioButton" name="radioAutoClean">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Old files</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroupApt</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioClean">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>All files</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroupApt</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioNoCleanApt">
+        <property name="text">
+         <string>Don't empty</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroupApt</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QGroupBox" name="groupBoxTrash">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>Empty Trash</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelTrashOlder">
+        <property name="text">
+         <string>Trash older than:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="3">
+       <widget class="QRadioButton" name="radioNoCleanTrash">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Don't empty</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroupTrash</string>
+        </attribute>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QSpinBox" name="spinBoxTrash">
+        <property name="suffix">
+         <string> days</string>
+        </property>
+        <property name="maximum">
+         <number>365</number>
+        </property>
+        <property name="value">
+         <number>30</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <widget class="QRadioButton" name="radioAllUsers">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>All users</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroupTrash</string>
+        </attribute>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="3">
+       <widget class="QRadioButton" name="radioSelectedUser">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Selected user</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroupTrash</string>
+        </attribute>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <spacer name="verticalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="3" column="2">
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBoxUser">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>Free Disk Space for User</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="labelUserClean">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Select user to repair</string>
+        </property>
+        <property name="text">
+         <string>Select user:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboUserClean">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Select user to repair</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBoxKernel">
+     <property name="title">
+      <string>Removal tool</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QPushButton" name="pushRTLremove">
+        <property name="text">
+         <string>Remove unused WiFi drivers</string>
+        </property>
+        <property name="icon">
+         <iconset theme="list-remove">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushKernel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>List and select kernels to remove</string>
+        </property>
+        <property name="icon">
+         <iconset theme="view-list">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBoxUsage">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>Graphical Tool for Analyzing Disk Usage</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="pushUsageAnalyzer">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Run Disk Usage Analyzer</string>
+        </property>
+        <property name="icon">
+         <iconset theme="baobab">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
    <item row="10" column="0" colspan="2">
     <layout class="QGridLayout" name="buttonBar" columnstretch="0,0,0,0,0,0,0,0,0,0">
@@ -204,333 +492,6 @@
      </item>
     </layout>
    </item>
-   <item row="4" column="1">
-    <widget class="QGroupBox" name="groupBoxTrash">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="title">
-      <string>Empty Trash</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="3" column="0">
-       <widget class="QLabel" name="labelTrashOlder">
-        <property name="text">
-         <string>Trash older than:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0" colspan="3">
-       <widget class="QRadioButton" name="radioNoCleanTrash">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Don't empty</string>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroupTrash</string>
-        </attribute>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QSpinBox" name="spinBoxTrash">
-        <property name="suffix">
-         <string> days</string>
-        </property>
-        <property name="maximum">
-         <number>365</number>
-        </property>
-        <property name="value">
-         <number>30</number>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="3">
-       <widget class="QRadioButton" name="radioAllUsers">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>All users</string>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroupTrash</string>
-        </attribute>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="3">
-       <widget class="QRadioButton" name="radioSelectedUser">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Selected user</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroupTrash</string>
-        </attribute>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <spacer name="verticalSpacer_5">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>0</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="3" column="2">
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QGroupBox" name="groupBoxApt">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="title">
-      <string>Clear APT Cache</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_5">
-      <item>
-       <widget class="QRadioButton" name="radioAutoClean">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Old files</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroupApt</string>
-        </attribute>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioClean">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>All files</string>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroupApt</string>
-        </attribute>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioNoCleanApt">
-        <property name="text">
-         <string>Don't empty</string>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">buttonGroupApt</string>
-        </attribute>
-       </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>0</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="7" column="0" colspan="2">
-    <widget class="QGroupBox" name="groupBoxUsage">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="title">
-      <string>Graphical Tool for Analyzing Disk Usage</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QPushButton" name="pushUsageAnalyzer">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Run Disk Usage Analyzer</string>
-        </property>
-        <property name="icon">
-         <iconset theme="baobab">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="5" column="0" colspan="2">
-    <widget class="QGroupBox" name="groupBoxSchedule">
-     <property name="title">
-      <string>Schedule</string>
-     </property>
-     <property name="checkable">
-      <bool>false</bool>
-     </property>
-     <property name="checked">
-      <bool>false</bool>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QRadioButton" name="radioNone">
-        <property name="text">
-         <string>No automatic clean</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioReboot">
-        <property name="text">
-         <string>At reboot</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioDaily">
-        <property name="text">
-         <string>Daily</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioWeekly">
-        <property name="text">
-         <string>Weekly</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioMonthly">
-        <property name="text">
-         <string>Monthly</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QGroupBox" name="groupBoxUser">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="title">
-      <string>Free Disk Space for User</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <widget class="QLabel" name="labelUserClean">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Select user to repair</string>
-        </property>
-        <property name="text">
-         <string>Select user:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="comboUserClean">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Select user to repair</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item row="4" column="0">
     <widget class="QGroupBox" name="groupBoxLogs">
      <property name="sizePolicy">
@@ -658,43 +619,6 @@
      </layout>
     </widget>
    </item>
-   <item row="6" column="0" colspan="2">
-    <widget class="QGroupBox" name="groupBoxKernel">
-     <property name="title">
-      <string>Removal tool</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QPushButton" name="pushRTLremove">
-        <property name="text">
-         <string>Remove unused WiFi drivers</string>
-        </property>
-        <property name="icon">
-         <iconset theme="list-remove">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushKernel">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>List and select kernels to remove</string>
-        </property>
-        <property name="icon">
-         <iconset theme="view-list">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item row="3" column="1">
     <widget class="QGroupBox" name="groupBoxFlatpak">
      <property name="sizePolicy">
@@ -717,6 +641,82 @@
      </layout>
     </widget>
    </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBoxSchedule">
+     <property name="title">
+      <string>Schedule</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QRadioButton" name="radioNone">
+        <property name="text">
+         <string>No automatic clean</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioReboot">
+        <property name="text">
+         <string>At reboot</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioDaily">
+        <property name="text">
+         <string>Daily</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioWeekly">
+        <property name="text">
+         <string>Weekly</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioMonthly">
+        <property name="text">
+         <string>Monthly</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="9" column="0" colspan="2">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>10</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
    <item row="2" column="0" rowspan="2">
     <widget class="QGroupBox" name="groupBoxFolders">
      <property name="sizePolicy">
@@ -729,7 +729,7 @@
       <string>Clean Folders</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
-      <item row="2" column="1">
+      <item row="3" column="1">
        <widget class="QRadioButton" name="radioSaferCache">
         <property name="text">
          <string>Not accessed for:</string>
@@ -739,46 +739,7 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0" colspan="4">
-       <widget class="QCheckBox" name="checkThumbs">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string notr="true">~/.thumbnails</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="4">
-       <widget class="QCheckBox" name="checkCache">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string notr="true">~/.cache</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1" colspan="2">
-       <widget class="QRadioButton" name="radioAllCache">
-        <property name="text">
-         <string>All (potentially dangerous)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3">
+      <item row="3" column="3">
        <spacer name="horizontalSpacer_4">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -791,7 +752,30 @@
         </property>
        </spacer>
       </item>
-      <item row="2" column="2">
+      <item row="1" column="0" colspan="4">
+       <widget class="QCheckBox" name="checkCache">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string notr="true">Cache</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" colspan="2">
+       <widget class="QRadioButton" name="radioAllCache">
+        <property name="text">
+         <string>All (potentially dangerous)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
        <widget class="QSpinBox" name="spinCache">
         <property name="suffix">
          <string> days</string>
@@ -804,7 +788,7 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="2">
+      <item row="5" column="2">
        <spacer name="verticalSpacer_2">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -817,6 +801,22 @@
         </property>
        </spacer>
       </item>
+      <item row="2" column="0" colspan="3">
+       <widget class="QCheckBox" name="checkThumbs">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string notr="true">Thumbnails</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -824,7 +824,6 @@
  </widget>
  <tabstops>
   <tabstop>comboUserClean</tabstop>
-  <tabstop>checkThumbs</tabstop>
   <tabstop>checkCache</tabstop>
   <tabstop>radioAllCache</tabstop>
   <tabstop>spinCache</tabstop>
@@ -856,8 +855,8 @@
  </resources>
  <connections/>
  <buttongroups>
+  <buttongroup name="buttonGroupLogs"/>
   <buttongroup name="buttonGroupApt"/>
   <buttongroup name="buttonGroupTrash"/>
-  <buttongroup name="buttonGroupLogs"/>
  </buttongroups>
 </ui>
