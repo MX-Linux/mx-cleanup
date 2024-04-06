@@ -1,3 +1,9 @@
+mx-cleanup (24.4) mx; urgency=medium
+
+  * Fix: thumbnails folder location
+
+ -- Adrian <adrian@mxlinux.org>  Sat, 06 Apr 2024 19:15:02 -0400
+
 mx-cleanup (24.3) mx; urgency=medium
 
   * Update translations
