@@ -531,22 +531,19 @@ void MainWindow::pushHelp_clicked()
 void MainWindow::pushUsageAnalyzer_clicked()
 {
     const QString desktop = qgetenv("XDG_CURRENT_DESKTOP");
-    // Try filelight, qdirstat for Qt based DEs, otherwise baobab
     if (desktop == "KDE" || desktop == "LXQt") {
-        if (!QStandardPaths::findExecutable("filelight").isEmpty()) {
-            QProcess::startDetached("filelight", {});
-        } else if (!QStandardPaths::findExecutable("qdirstat").isEmpty()) {
-            QProcess::startDetached("qdirstat", {});
-        } else {
-            QProcess::startDetached("baobab", {});
-        }
+        startPreferredApp({"filelight", "qdirstat", "baobab"});
     } else {
-        if (!QStandardPaths::findExecutable("baobab").isEmpty()) {
-            QProcess::startDetached("baobab", {});
-        } else if (!QStandardPaths::findExecutable("filelight").isEmpty()) {
-            QProcess::startDetached("filelight", {});
-        } else {
-            QProcess::startDetached("qdirstat", {});
+        startPreferredApp({"baobab", "filelight", "qdirstat"});
+    }
+}
+
+void MainWindow::startPreferredApp(const QStringList &apps)
+{
+    for (const auto &app : apps) {
+        if (!QStandardPaths::findExecutable(app).isEmpty()) {
+            QProcess::startDetached(app, {});
+            break;
         }
     }
 }

@@ -48,6 +48,7 @@ public:
     void saveSettings();
     void setConnections();
     void setup();
+    void startPreferredApp(const QStringList &apps);
 
 private slots:
     void pushAbout_clicked();
@@ -55,7 +56,7 @@ private slots:
     void pushHelp_clicked();
     void pushKernel_clicked();
     void pushRTLremove_clicked();
-    static void pushUsageAnalyzer_clicked();
+    void pushUsageAnalyzer_clicked();
 
 private:
     Ui::MainWindow *ui;
