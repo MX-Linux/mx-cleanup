@@ -551,21 +551,19 @@ void MainWindow::startPreferredApp(const QStringList &apps)
 QString MainWindow::cmdOut(const QString &cmd, bool asRoot)
 {
     qDebug().noquote() << cmd;
-    auto *proc = new QProcess(this);
+    QProcess proc;
     QEventLoop loop;
-    connect(proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), &loop, &QEventLoop::quit);
-    proc->setProcessChannelMode(QProcess::MergedChannels);
+    connect(&proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), &loop, &QEventLoop::quit);
+    proc.setProcessChannelMode(QProcess::MergedChannels);
     if (asRoot && getuid() != 0) {
         QString elevate {QFile::exists("/usr/bin/pkexec") ? "/usr/bin/pkexec" : "/usr/bin/gksu"};
         QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper"};
-        proc->start(elevate, {helper, cmd});
+        proc.start(elevate, {helper, cmd});
     } else {
-        proc->start("/bin/bash", {"-c", cmd});
+        proc.start("/bin/bash", {"-c", cmd});
     }
     loop.exec();
-    QString out = proc->readAll().trimmed();
-    delete proc;
-    return out;
+    return proc.readAll().trimmed();
 }
 
 QString MainWindow::cmdOutAsRoot(const QString &cmd)
