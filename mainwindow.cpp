@@ -187,10 +187,10 @@ void MainWindow::removeKernelPackages(const QStringList &list)
                                 + "| grep 'Depends:' | grep -oE 'linux-headers-[0-9][^[:space:]]+' | sort -u");
         if (!headers_common.toUtf8().trimmed().isEmpty()) {
             image_pattern = headers_common;
-            image_pattern.replace(QLatin1String("-common"), QLatin1String(""));
-            image_pattern.replace(QLatin1String("headers"), QLatin1String("image"));
+            image_pattern.remove("-common");
+            image_pattern.replace("headers", "image");
             if (system("dpkg -l 'linux-image-[0-9]*' | grep ^ii | cut -d ' ' -f3  | grep -v -E '"
-                       + list.join("|").toUtf8() + "' | grep -q " + image_pattern.toUtf8())
+                       + list.join('|').toUtf8() + "' | grep -q " + image_pattern.toUtf8())
                 != 0) {
                 headers_depends << headers_common;
             }
@@ -198,13 +198,13 @@ void MainWindow::removeKernelPackages(const QStringList &list)
     }
     QString common;
     if (!headers_depends.isEmpty()) {
-        QString filter = "| grep -oE '" + headers_depends.join("|") + "'";
-        common = cmdOut("apt-get remove -s " + headers_installed.join(" ") + " | grep '^  ' " + filter
+        QString filter = "| grep -oE '" + headers_depends.join('|') + "'";
+        common = cmdOut("apt-get remove -s " + headers_installed.join(' ') + " | grep '^  ' " + filter
                         + R"( | tr '\n' ' ')");
     }
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};
     system("x-terminal-emulator -e pkexec " + helper.toUtf8() + " '" + rmOldVersions.toUtf8() + " apt purge "
-           + headers_installed.join(" ").toUtf8() + " " + list.join(" ").toUtf8() + " " + common.toUtf8()
+           + headers_installed.join(' ').toUtf8() + ' ' + list.join(' ').toUtf8() + ' ' + common.toUtf8()
            + "; apt-get install -f; read -n1 -srp \"" + tr("Press any key to close").toUtf8() + "\"'");
     setCursor(QCursor(Qt::ArrowCursor));
 }
@@ -227,7 +227,7 @@ void MainWindow::loadOptions()
         return;
     }
 
-    if (period != QLatin1String("reboot")) {
+    if (period != "reboot") {
         file_name = "/etc/cron." + period + "/mx-cleanup";
     }
 
@@ -288,14 +288,14 @@ void MainWindow::loadOptions()
 void MainWindow::saveSchedule(const QString &cmd_str, const QString &period)
 {
     QString fileName;
-    if (period == QLatin1String("@reboot")) {
+    if (period == "@reboot") {
         fileName = "/usr/bin/mx-cleanup-script";
         QString cronFile {"/etc/cron.d/mx-cleanup"};
         QTemporaryFile tempCron;
         tempCron.open();
         tempCron.write("@reboot root /usr/bin/mx-cleanup-script\n");
         tempCron.close();
-        cmdOutAsRoot("mv " + tempCron.fileName() + " " + cronFile);
+        cmdOutAsRoot("mv " + tempCron.fileName() + ' ' + cronFile);
         cmdOutAsRoot("chown root: " + cronFile);
         cmdOutAsRoot("chmod +r " + cronFile);
     } else {
