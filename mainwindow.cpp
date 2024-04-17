@@ -394,7 +394,9 @@ void MainWindow::pushApply_clicked()
                   .toULongLong();
         cache = QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete")
                     .arg(ui->comboUserClean->currentText(), period);
-        cmdOut(cache);
+        if (!ui->radioReboot->isChecked()) {
+            cmdOut(cache);
+        }
     }
 
     QString thumbnails;
@@ -403,7 +405,9 @@ void MainWindow::pushApply_clicked()
                             .arg(ui->comboUserClean->currentText()))
                      .toULongLong();
         thumbnails = QString("rm -r /home/%1/.cache/thumbnails/* 2>/dev/null").arg(ui->comboUserClean->currentText());
-        cmdOut(thumbnails);
+        if (!ui->radioReboot->isChecked()) {
+            cmdOut(thumbnails);
+        }
     }
 
     QString flatpak;
@@ -417,7 +421,9 @@ void MainWindow::pushApply_clicked()
         if (ok) {
             total += system_size_num;
         }
-        cmdOut(flatpak);
+        if (!ui->radioReboot->isChecked()) {
+            cmdOut(flatpak);
+        }
         total -= cmdOut(user_size).toULongLong();
         system_size_num = cmdOutAsRoot(system_size).toULongLong(&ok);
         if (ok) {
@@ -433,7 +439,9 @@ void MainWindow::pushApply_clicked()
     }
 
     total += cmdOutAsRoot("du -s /var/cache/apt/archives/ | cut -f1").toULongLong();
-    cmdOutAsRoot(apt);
+    if (!ui->radioReboot->isChecked()) {
+        cmdOutAsRoot(apt);
+    }
     total -= cmdOutAsRoot("du -s /var/cache/apt/archives/ | cut -f1").toULongLong();
 
     QString time
@@ -468,7 +476,9 @@ void MainWindow::pushApply_clicked()
                             .arg(user, timeTrash))
                      .toULongLong();
         trash = QString("find /home/%1/.local/share/Trash -mindepth 1%2 -delete").arg(user, timeTrash);
-        cmdOut(trash);
+        if (!ui->radioReboot->isChecked()) {
+            cmdOut(trash);
+        }
     }
 
     // Cleanup schedule
@@ -497,8 +507,12 @@ void MainWindow::pushApply_clicked()
     saveSettings();
 
     setCursor(QCursor(Qt::ArrowCursor));
-    QMessageBox::information(this, tr("Done"),
-                             tr("Cleanup command done") + '\n' + tr("%1 MiB were freed").arg(total / 1024));
+    if (ui->radioReboot->isChecked()) {
+        QMessageBox::information(this, tr("Done"), tr("Cleanup script will run at reboot"));
+    } else {
+        QMessageBox::information(this, tr("Done"),
+                                 tr("Cleanup command done") + '\n' + tr("%1 MiB were freed").arg(total / 1024));
+    }
 }
 
 void MainWindow::pushAbout_clicked()
