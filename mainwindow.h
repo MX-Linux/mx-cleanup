@@ -62,6 +62,6 @@ private:
     Ui::MainWindow *ui;
     QSettings settings;
     QString current_user;
-    QString cmdOut(const QString &cmd, bool asRoot = false);
-    QString cmdOutAsRoot(const QString &cmd);
+    QString cmdOut(const QString &cmd, bool asRoot = false, bool quiet = false);
+    QString cmdOutAsRoot(const QString &cmd, bool quiet = false);
 };

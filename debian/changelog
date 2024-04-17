@@ -1,3 +1,10 @@
+mx-cleanup (24.4.01) mx; urgency=medium
+
+  * Run cleanup script at reboot not immediately if option is selected
+  * Fix: cache cleanup command
+
+ -- Adrian <adrian@mxlinux.org>  Tue, 16 Apr 2024 22:56:51 -0400
+
 mx-cleanup (24.4) mx; urgency=medium
 
   * Fix: thumbnails folder location

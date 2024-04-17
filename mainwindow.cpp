@@ -82,7 +82,7 @@ void MainWindow::setup()
     this->setWindowTitle(tr("MX Cleanup"));
     this->adjustSize();
 
-    current_user = cmdOut("logname");
+    current_user = cmdOut("logname", false, true);
 
     ui->pushApply->setDisabled(true);
     ui->checkCache->setChecked(true);
@@ -91,9 +91,7 @@ void MainWindow::setup()
     ui->radioOldLogs->setChecked(true);
     ui->radioSelectedUser->setChecked(true);
 
-    const QString users = cmdOut("lslogins --noheadings -u -o user | grep -vw root").trimmed();
-
-    qDebug() << users;
+    const QString users = cmdOut("lslogins --noheadings -u -o user | grep -vw root", false, true).trimmed();
     ui->comboUserClean->addItems(users.split('\n'));
 
     ui->comboUserClean->setCurrentIndex(ui->comboUserClean->findText(current_user));
@@ -230,10 +228,9 @@ void MainWindow::loadOptions()
     if (period != "reboot") {
         file_name = "/etc/cron." + period + "/mx-cleanup";
     }
-
     // Folders
     ui->checkThumbs->setChecked(system(R"(grep -q 'rm -r.*\.cache/thumbnails' )" + file_name.toUtf8()) == 0);
-    if (system(R"(grep -E 'find \/home\/.*\/\.cache(\s|/\*)' )" + file_name.toUtf8()) == 0) {
+    if (system(R"(grep -qE 'find \/home\/.*\/\.cache(\s|/\*)' )" + file_name.toUtf8()) == 0) {
         ui->checkCache->setChecked(true);
         if (system(R"(grep -q 'find.*cache.*-atime' )" + file_name.toUtf8()) == 0) {
             ui->radioSaferCache->setChecked(true);
@@ -252,7 +249,6 @@ void MainWindow::loadOptions()
     } else {
         ui->radioNoCleanApt->setChecked(true);
     }
-
     // Flatpak: remove unused runtiles
     ui->checkFlatpak->setChecked(system("grep -q 'flatpak uninstall --unused' " + file_name.toUtf8()) == 0);
 
@@ -266,8 +262,8 @@ void MainWindow::loadOptions()
     }
 
     // Logs older than...
-    QString ctime
-        = cmdOut("grep 'find /var/log' " + file_name + R"( | grep -Eo '\-ctime \+[0-9]{1,3}' | cut -f2 -d' ')");
+    QString ctime = cmdOut(
+        "grep 'find /var/log' " + file_name + R"( | grep -Eo '\-ctime \+[0-9]{1,3}' | cut -f2 -d' ')", false, true);
     ui->spinBoxLogs->setValue(ctime.toInt());
 
     // Trash
@@ -280,7 +276,8 @@ void MainWindow::loadOptions()
     }
 
     // Trash older than...
-    ctime = cmdOut("grep 'find /home/' " + file_name + R"( | grep -Eo '\-ctime \+[0-9]{1,3}' | cut -f2 -d' ')");
+    ctime = cmdOut("grep 'find /home/' " + file_name + R"( | grep -Eo '\-ctime \+[0-9]{1,3}' | cut -f2 -d' ')", false,
+                   true);
     ui->spinBoxTrash->setValue(ctime.toInt());
 }
 
@@ -555,9 +552,11 @@ void MainWindow::startPreferredApp(const QStringList &apps)
     }
 }
 
-QString MainWindow::cmdOut(const QString &cmd, bool asRoot)
+QString MainWindow::cmdOut(const QString &cmd, bool asRoot, bool quiet)
 {
-    qDebug().noquote() << cmd;
+    if (!quiet) {
+        qDebug().noquote() << cmd;
+    }
     QProcess proc;
     QEventLoop loop;
     connect(&proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), &loop, &QEventLoop::quit);
@@ -573,9 +572,9 @@ QString MainWindow::cmdOut(const QString &cmd, bool asRoot)
     return proc.readAll().trimmed();
 }
 
-QString MainWindow::cmdOutAsRoot(const QString &cmd)
+QString MainWindow::cmdOutAsRoot(const QString &cmd, bool quiet)
 {
-    return cmdOut(cmd, true);
+    return cmdOut(cmd, true, quiet);
 }
 
 void MainWindow::pushKernel_clicked()
