@@ -232,8 +232,8 @@ void MainWindow::loadOptions()
     }
 
     // Folders
-    ui->checkThumbs->setChecked(system(R"(grep -q '\.cache/thumbnails' )" + file_name.toUtf8()) == 0);
-    if (system(R"(grep -E '.cache(\s|/\*)' )" + file_name.toUtf8()) == 0) {
+    ui->checkThumbs->setChecked(system(R"(grep -q 'rm -r.*\.cache/thumbnails' )" + file_name.toUtf8()) == 0);
+    if (system(R"(grep -E 'find \/home\/.*\/\.cache(\s|/\*)' )" + file_name.toUtf8()) == 0) {
         ui->checkCache->setChecked(true);
         if (system(R"(grep -q 'find.*cache.*-atime' )" + file_name.toUtf8()) == 0) {
             ui->radioSaferCache->setChecked(true);
@@ -379,43 +379,34 @@ void MainWindow::setConnections()
 
 void MainWindow::pushApply_clicked()
 {
-    quint64 total = 0;
     setCursor(QCursor(Qt::BusyCursor));
 
-    QString apt;
+    quint64 total {};
     QString cache;
-    QString flatpak;
-    QString logs;
+    if (ui->checkCache->isChecked()) {
+        QString period = ui->radioSaferCache->isChecked()
+                             ? QString(" -atime +%1 -mtime +%1").arg(ui->spinCache->value())
+                             : QString();
+        total
+            = cmdOut(QString("find /home/%1/.cache -type d -name 'thumbnails' -prune -o -type f%2 -exec du -sc '{}' + "
+                             "| awk '{field = $1} END {print field}'")
+                         .arg(ui->comboUserClean->currentText(), period))
+                  .toULongLong();
+        cache = QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete")
+                    .arg(ui->comboUserClean->currentText(), period);
+        cmdOut(cache);
+    }
+
     QString thumbnails;
-    QString trash;
-
-    if (ui->checkCache->isChecked() && ui->radioAllCache->isChecked()) {
-        total += cmdOut("du -c /home/" + ui->comboUserClean->currentText().toUtf8()
-                        + "/.cache/* --exclude=thumbnails | tail -1 | cut -f1")
-                     .toULongLong();
-        cache = "find /home/" + ui->comboUserClean->currentText().toUtf8()
-                + "/.cache -type d -name 'thumbnails' -prune -o -type f -delete";
-        system(cache.toUtf8());
-    } else if (ui->checkCache->isChecked() && ui->radioSaferCache->isChecked()) {
-        QString days = QString::number(ui->spinCache->value());
-        total += cmdOut("find /home/" + ui->comboUserClean->currentText().toUtf8()
-                        + "/.cache/ -type d -name 'thumbnails' -prune -o -type f -atime +" + days + " -mtime +" + days
-                        + " -exec du -sc '{}' + | tail -1 | cut -f1")
-                     .toULongLong();
-        cache = "find /home/" + ui->comboUserClean->currentText().toUtf8()
-                + "/.cache -type d -name 'thumbnails' -prune -o -type f -atime +" + days + " -mtime +" + days
-                + " -delete";
-        system(cache.toUtf8());
-    }
-
     if (ui->checkThumbs->isChecked()) {
-        total += cmdOut("du -c /home/" + ui->comboUserClean->currentText().toUtf8()
-                        + "/.cache/thumbnails/* | tail -1 | cut -f1")
+        total += cmdOut(QString("du -c /home/%1/.cache/thumbnails/* | awk '{field = $1} END {print field}'")
+                            .arg(ui->comboUserClean->currentText()))
                      .toULongLong();
-        thumbnails = "rm -r /home/" + ui->comboUserClean->currentText().toUtf8() + "/.cache/thumbnails/* 2>/dev/null";
-        system(thumbnails.toUtf8());
+        thumbnails = QString("rm -r /home/%1/.cache/thumbnails/* 2>/dev/null").arg(ui->comboUserClean->currentText());
+        cmdOut(thumbnails);
     }
 
+    QString flatpak;
     if (ui->checkFlatpak->isChecked()) {
         flatpak = "pgrep -a flatpak | grep -v flatpak-s || flatpak uninstall --unused --noninteractive";
         QString user_size = "du -s /home/$(logname)/.local/share/flatpak/ | cut -f1";
@@ -426,7 +417,7 @@ void MainWindow::pushApply_clicked()
         if (ok) {
             total += system_size_num;
         }
-        system(flatpak.toUtf8());
+        cmdOut(flatpak);
         total -= cmdOut(user_size).toULongLong();
         system_size_num = cmdOutAsRoot(system_size).toULongLong(&ok);
         if (ok) {
@@ -434,6 +425,7 @@ void MainWindow::pushApply_clicked()
         }
     }
 
+    QString apt;
     if (ui->radioAutoClean->isChecked()) {
         apt = "apt-get autoclean";
     } else if (ui->radioClean->isChecked()) {
@@ -444,39 +436,39 @@ void MainWindow::pushApply_clicked()
     cmdOutAsRoot(apt);
     total -= cmdOutAsRoot("du -s /var/cache/apt/archives/ | cut -f1").toULongLong();
 
-    QString time = " ";
-    int logRetentionDays = ui->spinBoxLogs->value();
-    if (logRetentionDays > 0) {
-        time = QString(" -ctime +%1 -atime +%1 ").arg(logRetentionDays);
-    }
-
+    QString time
+        = ui->spinBoxLogs->value() > 0 ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxLogs->value()) : QString();
+    QString logs;
     if (ui->radioOldLogs->isChecked()) {
         total
             += cmdOutAsRoot(
                    R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \) -type f)"
-                   + time + "-exec du -sc '{}' + | tail -1 | cut -f1")
+                   + time + " -exec du -sc '{}' + | awk '{field = $1} END {print field}'")
                    .toULongLong();
         logs = R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \))" + time
-               + "-type f -delete 2>/dev/null";
+               + " -type f -delete 2>/dev/null";
         cmdOutAsRoot(logs);
     } else if (ui->radioAllLogs->isChecked()) {
-        total += cmdOutAsRoot("find /var/log -type f" + time + "-exec du -sc '{}' + | tail -1 | cut -f1").toULongLong();
-        logs = "find /var/log -type f" + time + R"(-exec sh -c "echo > '{}'" \;)"; // empty the logs
+        total += cmdOutAsRoot(
+                     QString("find /var/log -type f%1 -exec du -sc '{}' + | awk '{field = $1} END {print field}'")
+                         .arg(time))
+                     .toULongLong();
+        logs = "find /var/log -type f" + time + R"( -exec sh -c "echo > '{}'" \;)"; // empty the logs
         cmdOutAsRoot(logs);
     }
 
+    QString trash;
     if (ui->radioSelectedUser->isChecked() || ui->radioAllUsers->isChecked()) {
         QString user = ui->radioAllUsers->isChecked() ? "*" : ui->comboUserClean->currentText();
-        QString timeTrash = " ";
-        int trashRetentionDays = ui->spinBoxTrash->value();
-        if (trashRetentionDays > 0) {
-            timeTrash = QString(" -ctime +%1 -atime +%1 ").arg(trashRetentionDays);
-        }
-        total += cmdOut("find /home/" + user + "/.local/share/Trash -mindepth 1" + timeTrash
-                        + "-exec du -sc '{}' + | tail -1 | cut -f1")
+        QString timeTrash = ui->spinBoxTrash->value() > 0
+                                ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxTrash->value())
+                                : QString();
+        total += cmdOut(QString("find /home/%1/.local/share/Trash -mindepth 1%2 -exec du -sc '{}' + | awk '{field = "
+                                "$1} END {print field}'")
+                            .arg(user, timeTrash))
                      .toULongLong();
-        trash = "find /home/" + user + "/.local/share/Trash -mindepth 1" + timeTrash + "-delete";
-        system(trash.toUtf8());
+        trash = QString("find /home/%1/.local/share/Trash -mindepth 1%2 -delete").arg(user, timeTrash);
+        cmdOut(trash);
     }
 
     // Cleanup schedule
@@ -486,19 +478,20 @@ void MainWindow::pushApply_clicked()
     cmdOutAsRoot("rm /etc/cron.d/mx-cleanup");
     // Add schedule file
     if (!ui->radioNone->isChecked()) {
-        QString period;
-        QString cmd_str = cache + '\n' + thumbnails + '\n' + logs + '\n' + apt + '\n' + trash + '\n' + flatpak;
+        QStringList parts {cache, thumbnails, logs, apt, trash, flatpak};
+        QString cmd_str = parts.join("\n");
         qDebug() << "CMD STR" << cmd_str;
+        QString schedule;
         if (ui->radioDaily->isChecked()) {
-            period = "daily";
+            schedule = "daily";
         } else if (ui->radioWeekly->isChecked()) {
-            period = "weekly";
+            schedule = "weekly";
         } else if (ui->radioMonthly->isChecked()) {
-            period = "monthly";
+            schedule = "monthly";
         } else if (ui->radioReboot->isChecked()) {
-            period = "@reboot";
+            schedule = "@reboot";
         }
-        saveSchedule(cmd_str, period);
+        saveSchedule(cmd_str, schedule);
     }
 
     saveSettings();
