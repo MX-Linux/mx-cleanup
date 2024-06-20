@@ -16,7 +16,7 @@ jobs:
       - name: Get Latest Changelog Entry
         id: get-changelog
         run: |
-          changelog=$(awk '/^$name/{i++} i==1' debian/changelog | grep '^[[:space:]]*\*')
+          changelog=$(awk '/^mx-cleanup/{i++} i==1' debian/changelog | grep '^[[:space:]]*\*')
           echo "changelog<<EOF" >> $GITHUB_ENV
           echo "$changelog" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
@@ -28,8 +28,8 @@ jobs:
           name: Release ${{ github.ref_name }} 
           body: |
             ### Automated release created for tag *${{ github.ref_name }}*
-             - Direct download link: [![build service)](https://build.opensuse.org/projects/home:mx-packaging/packages/$name/badge.svg?type=default)](https://software.opensuse.org//download.html?project=home%3Amx-packaging&package=$name) 
-             - In repos: [![latest packaged version](https://repology.org/badge/latest-versions/$name.svg)](https://repology.org/project/$name/versions)
+             - Direct download link: [![build service)](https://build.opensuse.org/projects/home:mx-packaging/packages/mx-cleanup/badge.svg?type=default)](https://software.opensuse.org//download.html?project=home%3Amx-packaging&package=mx-cleanup) 
+             - In repos: [![latest packaged version](https://repology.org/badge/latest-versions/mx-cleanup.svg)](https://repology.org/project/mx-cleanup/versions)
             
             ### Changelog
             ${{ env.changelog }}
