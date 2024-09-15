@@ -1,3 +1,9 @@
+mx-cleanup (24.9.02) mx; urgency=medium
+
+  * Fix: adjust regexp again in kernel cleanup
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 15 Sep 2024 19:12:57 -0400
+
 mx-cleanup (24.9.01) mx; urgency=medium
 
   * Fix: regexp in kernel cleanup
