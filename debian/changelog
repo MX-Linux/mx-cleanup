@@ -1,3 +1,9 @@
+mx-cleanup (24.9.01) mx; urgency=medium
+
+  * Fix: regexp in kernel cleanup
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 15 Sep 2024 17:26:26 -0400
+
 mx-cleanup (24.4.01) mx; urgency=medium
 
   * Run cleanup script at reboot not immediately if option is selected
