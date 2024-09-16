@@ -52,9 +52,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::addGroupCheckbox(QLayout *layout, const QString &package, const QString &name, QStringList *list)
+void MainWindow::addGroupCheckbox(QLayout *layout, const QStringList &packages, const QString &name, QStringList *list)
 {
-    if (package.isEmpty()) {
+    if (packages.isEmpty()) {
         return;
     }
     auto *grpBox = new QGroupBox(name);
@@ -62,7 +62,7 @@ void MainWindow::addGroupCheckbox(QLayout *layout, const QString &package, const
     auto *vBox = new QVBoxLayout;
     grpBox->setLayout(vBox);
     layout->addWidget(grpBox);
-    for (const auto &item : package.split('\n')) {
+    for (const auto &item : packages) {
         auto *btn = new QCheckBox(item);
         vBox->addWidget(btn);
         connect(btn, &QCheckBox::toggled, [btn, list]() {
@@ -580,15 +580,21 @@ QString MainWindow::cmdOutAsRoot(const QString &cmd, bool quiet)
 void MainWindow::pushKernel_clicked()
 {
     auto current_kernel = cmdOut("uname -r");
-    QString similar_kernels;
-    QString other_kernels;
-    if (system(R"(dpkg -l linux-image\* | grep ^ii)") == 0) {
-        similar_kernels = cmdOut(R"(dpkg -l linux-image-[0-9]\*.[0-9]\* | grep ^ii |
-    grep $(uname -r | cut -f1 -d'-') | cut -f3 -d' ' |
-    grep -vE -- '(-unsigned)?$' | grep -vF linux-image-$(uname -r))");
-        other_kernels = cmdOut(R"(dpkg -l linux-image-[0-9]\*.[0-9]\* | grep ^ii |
-    grep -v $(uname -r | cut -f1 -d'-') | cut -f3 -d' ')");
+    QStringList similar_kernels;
+    QStringList other_kernels;
+    QStringList installedKernels = cmdOut("dpkg -l linux-image* | grep ^ii").split('\n', Qt::SkipEmptyParts);
+    if (!installedKernels.isEmpty()) {
+        QString currentKernelMajor = cmdOut("uname -r | cut -f1 -d'-'").trimmed();
+        QString similarKernelsCmd
+            = R"(dpkg -l linux-image-[0-9]*\.[0-9]* | grep ^ii | grep ")" + currentKernelMajor
+              + R"STR(" | awk '{print $2}' | grep -vE '(-unsigned)?$' | grep -vF "linux-image-$(uname -r)")STR";
+        similar_kernels = cmdOut(similarKernelsCmd).split('\n', Qt::SkipEmptyParts);
+
+        QString otherKernelsCmd = R"(dpkg -l linux-image-[0-9]*\.[0-9]* | grep ^ii | grep -v ")" + currentKernelMajor
+                                  + R"(" | awk '{print $2}')";
+        other_kernels = cmdOut(otherKernelsCmd).split('\n', Qt::SkipEmptyParts);
     }
+
     auto *dialog = new QDialog(this);
     dialog->setWindowTitle(this->windowTitle());
     auto *layout = new QVBoxLayout;

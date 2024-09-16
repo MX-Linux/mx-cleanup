@@ -38,7 +38,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
-    static void addGroupCheckbox(QLayout *layout, const QString &package, const QString &name, QStringList *list);
+    static void addGroupCheckbox(QLayout *layout, const QStringList &package, const QString &name, QStringList *list);
     static void selectRadioButton(const QButtonGroup *group, int id);
     void loadOptions();
     void loadSchedule();
