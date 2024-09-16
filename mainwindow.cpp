@@ -587,7 +587,7 @@ void MainWindow::pushKernel_clicked()
         QString currentKernelMajor = cmdOut("uname -r | cut -f1 -d'-'").trimmed();
         QString similarKernelsCmd
             = R"(dpkg -l linux-image-[0-9]*\.[0-9]* | grep ^ii | grep ")" + currentKernelMajor
-              + R"STR(" | awk '{print $2}' | grep -vE '(-unsigned)?$' | grep -vF "linux-image-$(uname -r)")STR";
+              + R"STR(" | awk '{print $2}' | grep -vE '-unsigned$' | grep -vF "linux-image-$(uname -r)")STR";
         similar_kernels = cmdOut(similarKernelsCmd).split('\n', Qt::SkipEmptyParts);
 
         QString otherKernelsCmd = R"(dpkg -l linux-image-[0-9]*\.[0-9]* | grep ^ii | grep -v ")" + currentKernelMajor
