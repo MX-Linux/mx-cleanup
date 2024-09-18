@@ -579,20 +579,33 @@ QString MainWindow::cmdOutAsRoot(const QString &cmd, bool quiet)
 
 void MainWindow::pushKernel_clicked()
 {
-    auto current_kernel = cmdOut("uname -r");
+    QString current_kernel = cmdOut("uname -r").trimmed();
     QStringList similar_kernels;
     QStringList other_kernels;
-    QStringList installedKernels = cmdOut("dpkg -l linux-image* | grep ^ii").split('\n', Qt::SkipEmptyParts);
-    if (!installedKernels.isEmpty()) {
-        QString currentKernelMajor = cmdOut("uname -r | cut -f1 -d'-'").trimmed();
-        QString similarKernelsCmd
-            = R"(dpkg -l linux-image-[0-9]*\.[0-9]* | grep ^ii | grep ")" + currentKernelMajor
-              + R"STR(" | awk '{print $2}' | grep -vE '-unsigned$' | grep -vF "linux-image-$(uname -r)")STR";
-        similar_kernels = cmdOut(similarKernelsCmd).split('\n', Qt::SkipEmptyParts);
+    QStringList installedKernels = cmdOut("dpkg -l 'linux-image-[0-9]*' | grep ^ii").split('\n', Qt::SkipEmptyParts);
 
-        QString otherKernelsCmd = R"(dpkg -l linux-image-[0-9]*\.[0-9]* | grep ^ii | grep -v ")" + currentKernelMajor
-                                  + R"(" | awk '{print $2}')";
+    if (!installedKernels.isEmpty()) {
+        QRegularExpression regex_version("^[0-9]+[.][0-9]+([.][0-9]+)?");
+        QRegularExpressionMatch match = regex_version.match(current_kernel);
+        QString current_kernel_version = match.hasMatch() ? match.captured(0) : QString();
+
+        QString similarKernelsCmd
+            = R"STR(dpkg-query -f '${db:Status-Abbrev}${Package}\n' -W 'linux-image-[0-9]*' |
+    grep ^ii | cut -c4- | grep '^linux-image-)STR" + current_kernel_version + R"STR(' |
+    grep -v '^linux-image-)STR" + current_kernel + R"STR(-unsigned$' |
+    grep -v '^linux-image-)STR" + current_kernel + R"STR(' |
+    sort -rV
+    )STR";
+
+        QString otherKernelsCmd
+            = R"STR(dpkg-query -f '${db:Status-Abbrev}${Package}\n' -W 'linux-image-[0-9]*' |
+    grep ^ii | cut -c4- | grep -v '^linux-image-)STR" + current_kernel_version + R"STR(' |
+    sort -rV
+    )STR";
+
+        similar_kernels = cmdOut(similarKernelsCmd).split('\n', Qt::SkipEmptyParts);
         other_kernels = cmdOut(otherKernelsCmd).split('\n', Qt::SkipEmptyParts);
+
     }
 
     auto *dialog = new QDialog(this);

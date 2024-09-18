@@ -1,8 +1,10 @@
 mx-cleanup (24.9.01) mx; urgency=medium
 
   * Fix: regexp in kernel cleanup
+  * Add: kernel removal list, sorted by version
+  * Fix: debconf frontend as non-gui to avoid error warnings
 
- -- fehlix <fehlix@mxlinux.org>  Sun, 15 Sep 2024 17:26:26 -0400
+ -- fehlix <fehlix@mxlinux.org>  Tue, 17 Sep 2024 15:09:20 -0400
 
 mx-cleanup (24.4.01) mx; urgency=medium
 
