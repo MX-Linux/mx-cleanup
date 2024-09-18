@@ -47,7 +47,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.cpp" line="600"/>
+        <location filename="../mainwindow.cpp" line="620"/>
         <source>Close</source>
         <translation>Zamknij</translation>
     </message>
@@ -192,12 +192,12 @@
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Narzędzie do usuwania</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="670"/>
         <source>Remove unused WiFi drivers</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń nieużywane sterowniki WiFi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="687"/>
@@ -227,7 +227,7 @@
     <message>
         <location filename="../mainwindow.ui" line="751"/>
         <source>Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Pamięć podręczna</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="787"/>
@@ -237,11 +237,11 @@
     <message>
         <location filename="../mainwindow.ui" line="813"/>
         <source>Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatury</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="206"/>
-        <location filename="../mainwindow.cpp" line="638"/>
+        <location filename="../mainwindow.cpp" line="658"/>
         <source>Press any key to close</source>
         <translation>Naciśnij dowolny klawisz, aby zamknąć</translation>
     </message>
@@ -261,7 +261,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="508"/>
         <source>Cleanup script will run at reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrypt czyszczący zostanie uruchomiony przy ponownym uruchomieniu systemu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="511"/>
@@ -304,27 +304,27 @@
         <translation>%1 Pomoc</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="595"/>
+        <location filename="../mainwindow.cpp" line="615"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Aktualnie używany kernel: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="598"/>
+        <location filename="../mainwindow.cpp" line="618"/>
         <source>Remove selected</source>
         <translation>Usuń zaznaczone</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="603"/>
+        <location filename="../mainwindow.cpp" line="623"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Podobne kernele, które można usunąć:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="604"/>
+        <location filename="../mainwindow.cpp" line="624"/>
         <source>Other kernels that can be removed:</source>
         <translation>Inne kernele, które można usunąć:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="606"/>
+        <location filename="../mainwindow.cpp" line="626"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation>&lt;b&gt;Nic do usunięcia.&lt;/b&gt; Nie można usunąć używanego kernela.</translation>
     </message>
@@ -371,7 +371,7 @@
     <message>
         <location filename="../main.cpp" line="88"/>
         <source>You must run this program with admin access.</source>
-        <translation type="unfinished"></translation>
+        <translation>Musisz uruchomić ten program z uprawnieniami administratora.</translation>
     </message>
 </context>
 </TS>

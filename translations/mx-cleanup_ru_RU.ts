@@ -47,7 +47,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.cpp" line="600"/>
+        <location filename="../mainwindow.cpp" line="620"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
@@ -227,7 +227,7 @@
     <message>
         <location filename="../mainwindow.ui" line="751"/>
         <source>Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Кэш</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="787"/>
@@ -237,11 +237,11 @@
     <message>
         <location filename="../mainwindow.ui" line="813"/>
         <source>Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Миниатюры</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="206"/>
-        <location filename="../mainwindow.cpp" line="638"/>
+        <location filename="../mainwindow.cpp" line="658"/>
         <source>Press any key to close</source>
         <translation>Нажмите любую клавишу, чтобы закрыть</translation>
     </message>
@@ -261,7 +261,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="508"/>
         <source>Cleanup script will run at reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Скрипт очистки запустится при перезагрузке</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="511"/>
@@ -304,27 +304,27 @@
         <translation>%1 Справка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="595"/>
+        <location filename="../mainwindow.cpp" line="615"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Используемое ядро: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="598"/>
+        <location filename="../mainwindow.cpp" line="618"/>
         <source>Remove selected</source>
         <translation>Удалить выделенные</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="603"/>
+        <location filename="../mainwindow.cpp" line="623"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Похожие ядра, которые можно удалить.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="604"/>
+        <location filename="../mainwindow.cpp" line="624"/>
         <source>Other kernels that can be removed:</source>
         <translation>Другие ядра, которые можно удалить:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="606"/>
+        <location filename="../mainwindow.cpp" line="626"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation>&lt;b&gt;Нечего удалить.&lt;/b&gt; Не удаётся удалить используемое ядро.</translation>
     </message>

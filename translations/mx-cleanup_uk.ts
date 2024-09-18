@@ -8,7 +8,7 @@
         <location filename="../mainwindow.cpp" line="82"/>
         <location filename="../mainwindow.cpp" line="519"/>
         <source>MX Cleanup</source>
-        <translation type="unfinished"></translation>
+        <translation>MX очистка</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="59"/>
@@ -47,7 +47,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.cpp" line="600"/>
+        <location filename="../mainwindow.cpp" line="620"/>
         <source>Close</source>
         <translation>Закрити</translation>
     </message>
@@ -64,19 +64,19 @@
     <message>
         <location filename="../mainwindow.ui" line="216"/>
         <source>Empty Trash</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистити корзину</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="222"/>
         <source>Trash older than:</source>
-        <translation type="unfinished"></translation>
+        <translation>Сміття старіше за:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="235"/>
         <location filename="../mainwindow.ui" line="372"/>
         <location filename="../mainwindow.ui" line="590"/>
         <source>Don&apos;t empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Не очищувати</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="245"/>
@@ -86,128 +86,128 @@
         <location filename="../mainwindow.cpp" line="368"/>
         <location filename="../mainwindow.cpp" line="372"/>
         <source> days</source>
-        <translation type="unfinished"></translation>
+        <translation> днів</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="264"/>
         <source>All users</source>
-        <translation type="unfinished"></translation>
+        <translation>Всі користувачі</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="283"/>
         <source>Selected user</source>
-        <translation type="unfinished"></translation>
+        <translation>Обраний користувач</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="331"/>
         <source>Clear APT Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистити APT кеш</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="343"/>
         <source>Old files</source>
-        <translation type="unfinished"></translation>
+        <translation>Старі файли</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="362"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation>Усі файли</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="404"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>Графічний додаток для аналізу використання диску</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="416"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Запустити аналіз використовування місця на диску</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="430"/>
         <source>Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation>Запланувати</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="442"/>
         <source>No automatic clean</source>
-        <translation type="unfinished"></translation>
+        <translation>Без автоматичної очистки</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="449"/>
         <source>At reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>При перезавантаженні</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="456"/>
         <source>Daily</source>
-        <translation type="unfinished"></translation>
+        <translation>Щоденно</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="463"/>
         <source>Weekly</source>
-        <translation type="unfinished"></translation>
+        <translation>Щотижня</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="470"/>
         <source>Monthly</source>
-        <translation type="unfinished"></translation>
+        <translation>Щомісяця</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="499"/>
         <source>Free Disk Space for User</source>
-        <translation type="unfinished"></translation>
+        <translation>Вільне місце на диску для користувача</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="511"/>
         <location filename="../mainwindow.ui" line="527"/>
         <source>Select user to repair</source>
-        <translation>Виберіть користувача для виправлення</translation>
+        <translation>Оберіть користувача для виправлення</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="514"/>
         <source>Select user:</source>
-        <translation type="unfinished"></translation>
+        <translation>Оберіть користувача</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="543"/>
         <source>Delete Logs</source>
-        <translation type="unfinished"></translation>
+        <translation>Видалити логи</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="568"/>
         <source>All logs</source>
-        <translation type="unfinished"></translation>
+        <translation>Всі логи</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="606"/>
         <source>Old logs</source>
-        <translation type="unfinished"></translation>
+        <translation>Старі логи</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
         <source>Logs older than:</source>
-        <translation type="unfinished"></translation>
+        <translation>Логи старіші за:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Додаток для видалення</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="670"/>
         <source>Remove unused WiFi drivers</source>
-        <translation type="unfinished"></translation>
+        <translation>Видалити невикористані драйвери до WiFi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="687"/>
         <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати і вибрати ядра до видалення</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="707"/>
         <source>Clean Flatpak</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистити Flatpak</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="713"/>
@@ -217,7 +217,7 @@
     <message>
         <location filename="../mainwindow.ui" line="729"/>
         <source>Clean Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистити теки</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="735"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../mainwindow.ui" line="751"/>
         <source>Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Кеш</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="787"/>
         <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
+        <translation>Всі (потенційно небезпечне)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="813"/>
@@ -241,37 +241,37 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="206"/>
-        <location filename="../mainwindow.cpp" line="638"/>
+        <location filename="../mainwindow.cpp" line="658"/>
         <source>Press any key to close</source>
-        <translation type="unfinished"></translation>
+        <translation>Натисніть будь-яку кнопку щоб закрити</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="365"/>
         <location filename="../mainwindow.cpp" line="369"/>
         <location filename="../mainwindow.cpp" line="373"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation> день</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="508"/>
         <location filename="../mainwindow.cpp" line="510"/>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>Готова</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="508"/>
         <source>Cleanup script will run at reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Скрипт очистки буде запущено під час перезавантаження</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="511"/>
         <source>Cleanup command done</source>
-        <translation type="unfinished"></translation>
+        <translation>Команда очистки виконана</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="511"/>
         <source>%1 MiB were freed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB будо звільнено</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="519"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="522"/>
         <source>Quick and safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation>Швидке і безпечне видалення старих файлів</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="524"/>
@@ -304,29 +304,29 @@
         <translation>%1 Довідка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="595"/>
+        <location filename="../mainwindow.cpp" line="615"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ядро зараз використовується: &lt;b&gt;%1 &lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="598"/>
+        <location filename="../mainwindow.cpp" line="618"/>
         <source>Remove selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Видалити обране</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="603"/>
+        <location filename="../mainwindow.cpp" line="623"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Подібні ядра, які можуть бути видалені</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="604"/>
+        <location filename="../mainwindow.cpp" line="624"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Інші ядра, які можуть бути видалені</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="606"/>
+        <location filename="../mainwindow.cpp" line="626"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt; Немає чого видаляти. &lt;/b&gt; Неможливо видалити ядро яке використовується</translation>
     </message>
 </context>
 <context>
@@ -355,7 +355,7 @@
     <message>
         <location filename="../main.cpp" line="53"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation>Швидке і безпечне видалення старих файлів</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="79"/>
@@ -371,7 +371,7 @@
     <message>
         <location filename="../main.cpp" line="88"/>
         <source>You must run this program with admin access.</source>
-        <translation type="unfinished"></translation>
+        <translation>Вам потрібно запустити цю програму з доступом адміністратора</translation>
     </message>
 </context>
 </TS>

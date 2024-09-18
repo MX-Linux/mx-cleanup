@@ -47,7 +47,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.cpp" line="600"/>
+        <location filename="../mainwindow.cpp" line="620"/>
         <source>Close</source>
         <translation>Fechar</translation>
     </message>
@@ -197,7 +197,7 @@
     <message>
         <location filename="../mainwindow.ui" line="670"/>
         <source>Remove unused WiFi drivers</source>
-        <translation>Remova os controladores de placas de redes sem fio ou Wi-Fi que não estão sendo utilizados</translation>
+        <translation>Remova os controladores das placas de redes sem fio ou Wi-Fi que não estão sendo utilizados</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="687"/>
@@ -212,12 +212,12 @@
     <message>
         <location filename="../mainwindow.ui" line="713"/>
         <source>Remove unused runtimes</source>
-        <translation>Remover o runtimes que não estiver sendo utilizado</translation>
+        <translation>Remover o ‘runtimes’ (ambiente de tempo de execução) que não estiver sendo utilizado</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="729"/>
         <source>Clean Folders</source>
-        <translation>Limpar Pastas </translation>
+        <translation>Limpar as Pastas </translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="735"/>
@@ -241,7 +241,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="206"/>
-        <location filename="../mainwindow.cpp" line="638"/>
+        <location filename="../mainwindow.cpp" line="658"/>
         <source>Press any key to close</source>
         <translation>Pressione qualquer tecla para fechar</translation>
     </message>
@@ -261,17 +261,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="508"/>
         <source>Cleanup script will run at reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>O programa de limpeza automática será executado na reinicialização</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="511"/>
         <source>Cleanup command done</source>
-        <translation>O comando de limpeza foi concluído com sucesso</translation>
+        <translation>O comando da limpeza foi concluído com sucesso</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="511"/>
         <source>%1 MiB were freed</source>
-        <translation>%1 MiB foram liberados</translation>
+        <translation>Foram liberados %1 MiB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="519"/>
@@ -304,29 +304,29 @@
         <translation>Ajuda do %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="595"/>
+        <location filename="../mainwindow.cpp" line="615"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>O núcleo (kernel) atualmente em uso é &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="598"/>
+        <location filename="../mainwindow.cpp" line="618"/>
         <source>Remove selected</source>
         <translation>Remover os itens selecionados</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="603"/>
+        <location filename="../mainwindow.cpp" line="623"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Os núcleos (kernels) similares que podem ser removidos:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="604"/>
+        <location filename="../mainwindow.cpp" line="624"/>
         <source>Other kernels that can be removed:</source>
         <translation>Outros núcleos (kernels) que podem ser removidos:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="606"/>
+        <location filename="../mainwindow.cpp" line="626"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation>&lt;b&gt;Não pode ser removido.&lt;/b&gt; Não é possível remover o núcleo (kernel) que está em uso.</translation>
+        <translation>&lt;b&gt;Este núcleo pode ser removido.&lt;/b&gt; Não é possível remover o núcleo (kernel) que está em uso.</translation>
     </message>
 </context>
 <context>
@@ -366,7 +366,7 @@
     <message>
         <location filename="../main.cpp" line="80"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation>Ao que parece, você está acessando a sessão com o usuário root. Por favor, saia da sessão atual e entre novamente com o usuário normal para utilizar este programa.</translation>
+        <translation>Ao que parece, você está acessando a sessão com o usuário ‘root’. Por favor, saia da sessão atual e entre novamente com o usuário normal para utilizar este programa.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="88"/>

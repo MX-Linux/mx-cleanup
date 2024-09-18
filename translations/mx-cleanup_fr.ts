@@ -47,7 +47,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.cpp" line="600"/>
+        <location filename="../mainwindow.cpp" line="620"/>
         <source>Close</source>
         <translation>Quitter</translation>
     </message>
@@ -241,7 +241,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="206"/>
-        <location filename="../mainwindow.cpp" line="638"/>
+        <location filename="../mainwindow.cpp" line="658"/>
         <source>Press any key to close</source>
         <translation>Appuyez sur une touche pour fermer</translation>
     </message>
@@ -261,7 +261,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="508"/>
         <source>Cleanup script will run at reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Le script de nettoyage s’exécutera au redémarrage</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="511"/>
@@ -304,27 +304,27 @@
         <translation>%1 Aide</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="595"/>
+        <location filename="../mainwindow.cpp" line="615"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Noyau utilisé actuellement&#xa0;: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="598"/>
+        <location filename="../mainwindow.cpp" line="618"/>
         <source>Remove selected</source>
         <translation>Supprimer le(s) sélectionné(s)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="603"/>
+        <location filename="../mainwindow.cpp" line="623"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Noyaux similaires qui peuvent être supprimés&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="604"/>
+        <location filename="../mainwindow.cpp" line="624"/>
         <source>Other kernels that can be removed:</source>
         <translation>Autres noyaux qui peuvent être supprimés&#xa0;:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="606"/>
+        <location filename="../mainwindow.cpp" line="626"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation>&lt;b&gt;Rien à supprimer.&lt;/b&gt; Impossible de retirer le noyau en cours d’utilisation.</translation>
     </message>
@@ -366,7 +366,7 @@
     <message>
         <location filename="../main.cpp" line="80"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation>Vous semblez être connecté en tant qu’administrateur, veuillez vous déconnecter et vous connecter en tant qu’utilisateur normal pour utiliser ce programme.</translation>
+        <translation>Vous êtes apparemment connecté en tant que root, veuillez vous déconnecter et vous connecter en tant qu’utilisateur normal pour utiliser ce programme.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="88"/>

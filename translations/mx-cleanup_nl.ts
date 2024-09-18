@@ -47,7 +47,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.cpp" line="600"/>
+        <location filename="../mainwindow.cpp" line="620"/>
         <source>Close</source>
         <translation>Sluiten</translation>
     </message>
@@ -136,7 +136,7 @@
     <message>
         <location filename="../mainwindow.ui" line="449"/>
         <source>At reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Bij herstarten</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="456"/>
@@ -192,22 +192,22 @@
     <message>
         <location filename="../mainwindow.ui" line="664"/>
         <source>Removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijderingsgereedschap</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="670"/>
         <source>Remove unused WiFi drivers</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongebruikte wifi-stuurprogramma&apos;s verwijderen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="687"/>
         <source>List and select kernels to remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Lijst en selectie van te verwijderen kernels</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="707"/>
         <source>Clean Flatpak</source>
-        <translation type="unfinished"></translation>
+        <translation>Schoonmaken Flatpak</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="713"/>
@@ -222,26 +222,26 @@
     <message>
         <location filename="../mainwindow.ui" line="735"/>
         <source>Not accessed for:</source>
-        <translation type="unfinished"></translation>
+        <translation>Niet toegankelijk voor:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="751"/>
         <source>Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="787"/>
         <source>All (potentially dangerous)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle (potentieel gevaarlijk)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="813"/>
         <source>Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Thumbnails</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="206"/>
-        <location filename="../mainwindow.cpp" line="638"/>
+        <location filename="../mainwindow.cpp" line="658"/>
         <source>Press any key to close</source>
         <translation>Druk een toets om te sluiten</translation>
     </message>
@@ -250,7 +250,7 @@
         <location filename="../mainwindow.cpp" line="369"/>
         <location filename="../mainwindow.cpp" line="373"/>
         <source> day</source>
-        <translation type="unfinished"></translation>
+        <translation>dag</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="508"/>
@@ -261,7 +261,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="508"/>
         <source>Cleanup script will run at reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Opschoonscript wordt uitgevoerd bij opnieuw opstarten</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="511"/>
@@ -304,29 +304,29 @@
         <translation>%1 Help</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="595"/>
+        <location filename="../mainwindow.cpp" line="615"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Kernel momenteel in gebruik:&lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="598"/>
+        <location filename="../mainwindow.cpp" line="618"/>
         <source>Remove selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijder geselecteerde</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="603"/>
+        <location filename="../mainwindow.cpp" line="623"/>
         <source>Similar kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Soortgelijke kernels die kunnen worden verwijderd:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="604"/>
+        <location filename="../mainwindow.cpp" line="624"/>
         <source>Other kernels that can be removed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Andere kernels die kunnen worden verwijderd:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="606"/>
+        <location filename="../mainwindow.cpp" line="626"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Niets om te verwijderen.&lt;/b&gt; Kan kernel in gebruik niet verwijderen.</translation>
     </message>
 </context>
 <context>
@@ -355,7 +355,7 @@
     <message>
         <location filename="../main.cpp" line="53"/>
         <source>Quick safe removal of old files</source>
-        <translation type="unfinished"></translation>
+        <translation>Snel en veilig oude bestanden verwijderen</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="79"/>
