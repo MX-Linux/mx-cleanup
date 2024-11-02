@@ -1,3 +1,9 @@
+mx-cleanup (24.11.01) mx; urgency=medium
+
+  * Adjust the window height to smaller screens
+
+ -- fehlix <fehlix@mxlinux.org>  Fri, 01 Nov 2024 20:28:09 -0400
+
 mx-cleanup (24.9.01) mx; urgency=medium
 
   * Fix: regexp in kernel cleanup
