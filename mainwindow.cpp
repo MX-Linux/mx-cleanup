@@ -59,9 +59,9 @@ void MainWindow::addGroupCheckbox(QLayout *layout, const QStringList &packages, 
     }
     auto *grpBox = new QGroupBox(name);
     grpBox->setFlat(true);
-    auto *vBox = new QVBoxLayout;
-    grpBox->setLayout(vBox);
+    auto *vBox = new QVBoxLayout(grpBox);
     layout->addWidget(grpBox);
+
     for (const auto &item : packages) {
         auto *btn = new QCheckBox(item);
         vBox->addWidget(btn);
@@ -76,11 +76,11 @@ void MainWindow::addGroupCheckbox(QLayout *layout, const QStringList &packages, 
     vBox->addStretch(1);
 }
 
-// Setup versious items first time program runs
+// Setup various items for the first run of the program
 void MainWindow::setup()
 {
-    this->setWindowTitle(tr("MX Cleanup"));
-    this->adjustSize();
+    setWindowTitle(tr("MX Cleanup"));
+    adjustSize();
 
     current_user = cmdOut("logname", false, true);
 
@@ -99,16 +99,19 @@ void MainWindow::setup()
     loadSchedule();
 }
 
-// Check if /etc/cron.daily|weekly|monthly/mx-cleanup script exists
+// Check if the cleanup script exists in the cron directories
 void MainWindow::loadSchedule()
 {
-    if (QFile::exists("/etc/cron.daily/mx-cleanup")) {
+    const QStringList cronPaths = {"/etc/cron.daily/mx-cleanup", "/etc/cron.weekly/mx-cleanup",
+                                   "/etc/cron.monthly/mx-cleanup", "/etc/cron.d/mx-cleanup"};
+
+    if (QFile::exists(cronPaths.at(0))) {
         ui->radioDaily->setChecked(true);
-    } else if (QFile::exists("/etc/cron.weekly/mx-cleanup")) {
+    } else if (QFile::exists(cronPaths.at(1))) {
         ui->radioWeekly->setChecked(true);
-    } else if (QFile::exists("/etc/cron.monthly/mx-cleanup")) {
+    } else if (QFile::exists(cronPaths.at(2))) {
         ui->radioMonthly->setChecked(true);
-    } else if (QFile::exists("/etc/cron.d/mx-cleanup")) {
+    } else if (QFile::exists(cronPaths.at(3))) {
         ui->radioReboot->setChecked(true);
     } else {
         ui->radioNone->setChecked(true);
@@ -120,10 +123,7 @@ void MainWindow::loadSettings()
 {
     qDebug() << "Load settings";
     int index = ui->comboUserClean->findText(settings.value("User").toString());
-    if (index == -1) {
-        index = 0;
-    }
-    ui->comboUserClean->setCurrentIndex(index);
+    ui->comboUserClean->setCurrentIndex(index == -1 ? 0 : index);
 
     settings.beginGroup("Folders");
     ui->checkThumbs->setChecked(settings.value("Thumbnails", true).toBool());
@@ -159,6 +159,7 @@ void MainWindow::removeKernelPackages(const QStringList &list)
     headers.reserve(list.size());
     QStringList headers_installed;
     QString rmOldVersions;
+
     for (const auto &item : list) {
         const QString version
             = item.section(QRegularExpression("linux-image-"), 1).remove(QRegularExpression("-unsigned$"));
@@ -169,17 +170,21 @@ void MainWindow::removeKernelPackages(const QStringList &list)
             }
         }
     }
+
     if (!rmOldVersions.isEmpty()) {
         rmOldVersions = rmOldVersions.trimmed().prepend("rm ").append(";");
     }
+
     for (const auto &item : qAsConst(headers)) {
         if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0) {
             headers_installed << item;
         }
     }
+
     QStringList headers_depends;
     QString headers_common;
     QString image_pattern;
+
     for (const auto &item : qAsConst(headers_installed)) {
         headers_common = cmdOut("env LC_ALL=C.UTF-8 apt-cache depends " + item.toUtf8()
                                 + "| grep 'Depends:' | grep -oE 'linux-headers-[0-9][^[:space:]]+' | sort -u");
@@ -194,12 +199,14 @@ void MainWindow::removeKernelPackages(const QStringList &list)
             }
         }
     }
+
     QString common;
     if (!headers_depends.isEmpty()) {
         QString filter = "| grep -oE '" + headers_depends.join('|') + "'";
         common = cmdOut("apt-get remove -s " + headers_installed.join(' ') + " | grep '^  ' " + filter
                         + R"( | tr '\n' ' ')");
     }
+
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};
     system("x-terminal-emulator -e pkexec " + helper.toUtf8() + " '" + rmOldVersions.toUtf8() + " apt purge "
            + headers_installed.join(' ').toUtf8() + ' ' + list.join(' ').toUtf8() + ' ' + common.toUtf8()
@@ -228,15 +235,13 @@ void MainWindow::loadOptions()
     if (period != "reboot") {
         file_name = "/etc/cron." + period + "/mx-cleanup";
     }
+
     // Folders
     ui->checkThumbs->setChecked(system(R"(grep -q 'rm -r.*\.cache/thumbnails' )" + file_name.toUtf8()) == 0);
     if (system(R"(grep -qE 'find \/home\/.*\/\.cache(\s|/\*)' )" + file_name.toUtf8()) == 0) {
         ui->checkCache->setChecked(true);
-        if (system(R"(grep -q 'find.*cache.*-atime' )" + file_name.toUtf8()) == 0) {
-            ui->radioSaferCache->setChecked(true);
-        } else {
-            ui->radioAllCache->setChecked(true);
-        }
+        ui->radioSaferCache->setChecked(system(R"(grep -q 'find.*cache.*-atime' )" + file_name.toUtf8()) == 0);
+        ui->radioAllCache->setChecked(!ui->radioSaferCache->isChecked());
     } else {
         ui->checkCache->setChecked(false);
     }
@@ -249,7 +254,8 @@ void MainWindow::loadOptions()
     } else {
         ui->radioNoCleanApt->setChecked(true);
     }
-    // Flatpak: remove unused runtiles
+
+    // Flatpak: remove unused runtimes
     ui->checkFlatpak->setChecked(system("grep -q 'flatpak uninstall --unused' " + file_name.toUtf8()) == 0);
 
     // Logs
@@ -284,9 +290,9 @@ void MainWindow::loadOptions()
 // Save cleanup commands to a /etc/cron.daily|weekly|monthly/mx-cleanup script
 void MainWindow::saveSchedule(const QString &cmd_str, const QString &period)
 {
-    QString fileName;
+    QString fileName = (period == "@reboot") ? "/usr/bin/mx-cleanup-script" : "/etc/cron." + period + "/mx-cleanup";
+
     if (period == "@reboot") {
-        fileName = "/usr/bin/mx-cleanup-script";
         QString cronFile {"/etc/cron.d/mx-cleanup"};
         QTemporaryFile tempCron;
         tempCron.open();
@@ -295,9 +301,8 @@ void MainWindow::saveSchedule(const QString &cmd_str, const QString &period)
         cmdOutAsRoot("mv " + tempCron.fileName() + ' ' + cronFile);
         cmdOutAsRoot("chown root: " + cronFile);
         cmdOutAsRoot("chmod +r " + cronFile);
-    } else {
-        fileName = "/etc/cron." + period + "/mx-cleanup";
     }
+
     QTemporaryFile tempFile;
     tempFile.open();
     QTextStream out(&tempFile);
@@ -361,17 +366,11 @@ void MainWindow::setConnections()
     connect(ui->pushUsageAnalyzer, &QPushButton::clicked, this, &MainWindow::pushUsageAnalyzer_clicked);
     connect(ui->radioNoCleanLogs, &QRadioButton::toggled, ui->spinBoxLogs, &QSpinBox::setDisabled);
     connect(ui->radioNoCleanTrash, &QRadioButton::toggled, ui->spinBoxTrash, &QSpinBox::setDisabled);
-    connect(ui->spinCache, QOverload<int>::of(&QSpinBox::valueChanged), this, [this]() {
-        (ui->spinCache->value() > 1) ? ui->spinCache->setSuffix(tr(" days")) : ui->spinCache->setSuffix(tr(" day"));
-    });
-    connect(ui->spinBoxLogs, QOverload<int>::of(&QSpinBox::valueChanged), this, [this]() {
-        (ui->spinBoxLogs->value() > 1) ? ui->spinBoxLogs->setSuffix(tr(" days"))
-                                       : ui->spinBoxLogs->setSuffix(tr(" day"));
-    });
-    connect(ui->spinBoxTrash, QOverload<int>::of(&QSpinBox::valueChanged), this, [this]() {
-        (ui->spinBoxTrash->value() > 1) ? ui->spinBoxTrash->setSuffix(tr(" days"))
-                                        : ui->spinBoxTrash->setSuffix(tr(" day"));
-    });
+
+    for (auto *spinBox : {ui->spinCache, ui->spinBoxLogs, ui->spinBoxTrash}) {
+        connect(spinBox, QOverload<int>::of(&QSpinBox::valueChanged), this,
+                [spinBox]() { spinBox->setSuffix(spinBox->value() > 1 ? tr(" days") : tr(" day")); });
+    }
 }
 
 void MainWindow::pushApply_clicked()
@@ -483,6 +482,7 @@ void MainWindow::pushApply_clicked()
     cmdOutAsRoot("rm /etc/cron.weekly/mx-cleanup");
     cmdOutAsRoot("rm /etc/cron.monthly/mx-cleanup");
     cmdOutAsRoot("rm /etc/cron.d/mx-cleanup");
+
     // Add schedule file
     if (!ui->radioNone->isChecked()) {
         QStringList parts {cache, thumbnails, logs, apt, trash, flatpak};
@@ -504,12 +504,10 @@ void MainWindow::pushApply_clicked()
     saveSettings();
 
     setCursor(QCursor(Qt::ArrowCursor));
-    if (ui->radioReboot->isChecked()) {
-        QMessageBox::information(this, tr("Done"), tr("Cleanup script will run at reboot"));
-    } else {
-        QMessageBox::information(this, tr("Done"),
-                                 tr("Cleanup command done") + '\n' + tr("%1 MiB were freed").arg(total / 1024));
-    }
+    QMessageBox::information(this, tr("Done"),
+                             ui->radioReboot->isChecked()
+                                 ? tr("Cleanup script will run at reboot")
+                                 : tr("Cleanup command done") + '\n' + tr("%1 MiB were freed").arg(total / 1024));
 }
 
 void MainWindow::pushAbout_clicked()
@@ -589,29 +587,29 @@ void MainWindow::pushKernel_clicked()
         QRegularExpressionMatch match = regex_version.match(current_kernel);
         QString current_kernel_version = match.hasMatch() ? match.captured(0) : QString();
 
-        QString similarKernelsCmd
-            = R"STR(dpkg-query -f '${db:Status-Abbrev}${Package}\n' -W 'linux-image-[0-9]*' |
-    grep ^ii | cut -c4- | grep '^linux-image-)STR" + current_kernel_version + R"STR(' |
-    grep -v '^linux-image-)STR" + current_kernel + R"STR(-unsigned$' |
-    grep -v '^linux-image-)STR" + current_kernel + R"STR(' |
+        QString similarKernelsCmd = R"STR(dpkg-query -f '${db:Status-Abbrev}${Package}\n' -W 'linux-image-[0-9]*' |
+    grep ^ii | cut -c4- | grep '^linux-image-)STR"
+                                    + current_kernel_version + R"STR(' |
+    grep -v '^linux-image-)STR" + current_kernel
+                                    + R"STR(-unsigned$' |
+    grep -v '^linux-image-)STR" + current_kernel
+                                    + R"STR(' |
     sort -rV
     )STR";
 
-        QString otherKernelsCmd
-            = R"STR(dpkg-query -f '${db:Status-Abbrev}${Package}\n' -W 'linux-image-[0-9]*' |
-    grep ^ii | cut -c4- | grep -v '^linux-image-)STR" + current_kernel_version + R"STR(' |
+        QString otherKernelsCmd = R"STR(dpkg-query -f '${db:Status-Abbrev}${Package}\n' -W 'linux-image-[0-9]*' |
+    grep ^ii | cut -c4- | grep -v '^linux-image-)STR"
+                                  + current_kernel_version + R"STR(' |
     sort -rV
     )STR";
 
         similar_kernels = cmdOut(similarKernelsCmd).split('\n', Qt::SkipEmptyParts);
         other_kernels = cmdOut(otherKernelsCmd).split('\n', Qt::SkipEmptyParts);
-
     }
 
     auto *dialog = new QDialog(this);
     dialog->setWindowTitle(this->windowTitle());
-    auto *layout = new QVBoxLayout;
-    dialog->setLayout(layout);
+    auto *layout = new QVBoxLayout(dialog);
     layout->addWidget(new QLabel(tr("Kernel currently in use: <b>%1</b>").arg(current_kernel)));
 
     auto *btnBox = new QDialogButtonBox(dialog);
@@ -622,6 +620,7 @@ void MainWindow::pushKernel_clicked()
     QStringList removal_list;
     addGroupCheckbox(layout, similar_kernels, tr("Similar kernels that can be removed:"), &removal_list);
     addGroupCheckbox(layout, other_kernels, tr("Other kernels that can be removed:"), &removal_list);
+
     if (layout->count() == 1) {
         layout->addWidget(new QLabel(tr("<b>Nothing to remove.</b> Cannot remove kernel in use.")));
         pushRemove->setHidden(true);
@@ -653,6 +652,7 @@ void MainWindow::pushRTLremove_clicked()
     if ! lsmod | grep -q -w ^wl; then
         echo -n broadcom-sta-dkms
     fi)");
+
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};
     system("x-terminal-emulator -e pkexec " + helper.toUtf8() + " 'apt purge " + dumpList.toUtf8()
            + "; apt-get install -f; read -n1 -srp \"" + tr("Press any key to close").toUtf8() + "\"'");
