@@ -266,7 +266,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="510"/>
         <source>%1 MiB were freed</source>
-        <translation>1% MiB került felszabadításra</translation>
+        <translation>%1 MiB került felszabadításra</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="517"/>
