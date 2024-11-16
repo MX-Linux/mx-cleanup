@@ -1,3 +1,9 @@
+mx-cleanup (24.11.02) mx; urgency=medium
+
+  * Translation update
+
+ -- Adrian <adrian@mxlinux.org>  Sat, 16 Nov 2024 15:45:32 -0500
+
 mx-cleanup (24.11.01) mx; urgency=medium
 
   * Adjust the window height to smaller screens

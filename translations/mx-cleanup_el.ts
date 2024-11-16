@@ -28,12 +28,12 @@
     <message>
         <location filename="../mainwindow.ui" line="98"/>
         <source>About this application</source>
-        <translation>Σχετικά με την εφαρμογή</translation>
+        <translation>Περί της εφαρμογής</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="101"/>
         <source>About...</source>
-        <translation>Σχετικά με...</translation>
+        <translation>Περί...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="108"/>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../mainwindow.ui" line="267"/>
         <source>All users</source>
-        <translation>Όλοι οι χρήστες</translation>
+        <translation>Ολοι οι χρήστες</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="286"/>
@@ -119,12 +119,12 @@
     <message>
         <location filename="../mainwindow.ui" line="425"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation>Εκτέλεση του εργαλείου ανάλυσης της χρήσης δίσκου</translation>
+        <translation>Εκτέλεση του αναλυτή χρήσης δίσκου</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="439"/>
         <source>Schedule</source>
-        <translation>Πρόγραμμα</translation>
+        <translation>Προγραμματισμός</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="454"/>
@@ -134,7 +134,7 @@
     <message>
         <location filename="../mainwindow.ui" line="461"/>
         <source>At reboot</source>
-        <translation>Σε επανεκκίνηση</translation>
+        <translation>Στην επανεκκίνηση</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="468"/>
@@ -195,7 +195,7 @@
     <message>
         <location filename="../mainwindow.ui" line="694"/>
         <source>Remove unused WiFi drivers</source>
-        <translation>Αφαίρεση μη χρησιμοποιούμενων οδηγών WiFi</translation>
+        <translation>Αφαίρεση αχρησιμοποίητων οδηγών WiFi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="711"/>
@@ -271,7 +271,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="517"/>
         <source>About</source>
-        <translation>Σχετικά με</translation>
+        <translation>Περί</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="518"/>
@@ -281,7 +281,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="520"/>
         <source>Quick and safe removal of old files</source>
-        <translation>Γρήγορη και ασφαλής αφαίρεση παλιών αρχείων</translation>
+        <translation>Γρήγορη και ασφαλής αφαίρεση παλαιών αρχείων</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="522"/>
