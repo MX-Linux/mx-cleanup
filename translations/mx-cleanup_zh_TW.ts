@@ -361,12 +361,12 @@
     <message>
         <location filename="../main.cpp" line="80"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation type="unfinished"></translation>
+        <translation>您似乎是以 root 身份登錄，請登出並以一般使用者身份登錄以使用此程式。</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="88"/>
         <source>You must run this program with admin access.</source>
-        <translation type="unfinished"></translation>
+        <translation>您必須以系統管理員權限執行此程式。</translation>
     </message>
 </context>
 </TS>

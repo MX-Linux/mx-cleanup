@@ -1,3 +1,10 @@
+mx-cleanup (25.4) mx; urgency=medium
+
+  * Update to Qt6
+  * Update translations
+
+ -- Adrian <adrian@mxlinux.org>  Wed, 23 Apr 2025 22:29:29 -0400
+
 mx-cleanup (24.11.02) mx; urgency=medium
 
   * Translation update

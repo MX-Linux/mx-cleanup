@@ -225,7 +225,7 @@
     <message>
         <location filename="../mainwindow.ui" line="756"/>
         <source>Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Fshehtinë</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="792"/>

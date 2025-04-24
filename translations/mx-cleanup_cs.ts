@@ -190,12 +190,12 @@
     <message>
         <location filename="../mainwindow.ui" line="685"/>
         <source>Removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Nástroj pro odstranění</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="694"/>
         <source>Remove unused WiFi drivers</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranění nepoužívaných ovladačů WiFi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="711"/>
@@ -225,7 +225,7 @@
     <message>
         <location filename="../mainwindow.ui" line="756"/>
         <source>Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Mezipaměť</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="792"/>
@@ -235,7 +235,7 @@
     <message>
         <location filename="../mainwindow.ui" line="818"/>
         <source>Thumbnails</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatury</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="213"/>
@@ -256,7 +256,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="509"/>
         <source>Cleanup script will run at reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>Při restartu se spustí čisticí skript</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="510"/>
@@ -366,7 +366,7 @@
     <message>
         <location filename="../main.cpp" line="88"/>
         <source>You must run this program with admin access.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento program musíte spustit s oprávněním správce.</translation>
     </message>
 </context>
 </TS>

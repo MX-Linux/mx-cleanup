@@ -190,12 +190,12 @@
     <message>
         <location filename="../mainwindow.ui" line="685"/>
         <source>Removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Temizleme aracı</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="694"/>
         <source>Remove unused WiFi drivers</source>
-        <translation type="unfinished"></translation>
+        <translation>Kullanılmayan WiFi sürücülerini kaldır</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="711"/>
