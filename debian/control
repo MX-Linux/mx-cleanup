@@ -2,8 +2,15 @@ Source: mx-cleanup
 Section: admin
 Priority: optional
 Maintainer: Adrian <adrian@mxlinux.org>
-Build-Depends: debhelper (>=10), qt6-base-dev, qt6-base-dev-tools, qt6-tools-dev, qt6-tools-dev-tools
+Build-Depends: debhelper-compat (= 13),
+               qt6-base-dev,
+               qt6-base-dev-tools,
+               qt6-tools-dev,
+               qt6-tools-dev-tools
 Standards-Version: 3.9.8
+Homepage: https://github.com/mxlinux/mx-cleanup
+Vcs-Git: https://github.com/mxlinux/mx-cleanup.git
+Vcs-Browser: https://github.com/mxlinux/mx-cleanup
 
 Package: mx-cleanup
 Architecture: any
@@ -11,5 +18,8 @@ Depends: baobab | qdirstat | filelight,
          xdg-utils | mx-viewer,
          ${misc:Depends},
          ${shlibs:Depends}
-Description: mx-cleanup
- Quick safe removal of old files
+Description: GUI for system cleanup and maintenance
+ A user-friendly graphical interface that allows users to:
+  * Safely remove old and unnecessary files
+  * Free up disk space by cleaning temporary files
+ .
