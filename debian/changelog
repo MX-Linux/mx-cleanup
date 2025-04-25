@@ -1,4 +1,4 @@
-mx-cleanup (25.4) mx; urgency=medium
+mx-cleanup (25.4.01) mx; urgency=medium
 
   * Update to Qt6
   * Update translations
