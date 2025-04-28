@@ -54,6 +54,9 @@
        <property name="shortcut">
         <string>Alt+H</string>
        </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
      <item row="0" column="5">
@@ -93,7 +96,7 @@
         <string>Alt+B</string>
        </property>
        <property name="autoDefault">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -134,7 +137,7 @@
         <string>Alt+N</string>
        </property>
        <property name="autoDefault">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -178,7 +181,7 @@
         <string/>
        </property>
        <property name="autoDefault">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="default">
         <bool>true</bool>
@@ -188,7 +191,7 @@
     </layout>
    </item>
    <item row="0" column="0" rowspan="10" colspan="2">
-    <widget class="QTabWidget" name="tabWidgetMain">
+    <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -792,6 +795,9 @@
             <property name="icon">
              <iconset theme="list-remove"/>
             </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
            </widget>
           </item>
           <item>
@@ -807,6 +813,9 @@
             </property>
             <property name="icon">
              <iconset theme="view-list"/>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -841,6 +850,9 @@
             </property>
             <property name="icon">
              <iconset theme="baobab"/>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
