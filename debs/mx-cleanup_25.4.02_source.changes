@@ -1,0 +1,41 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Mon, 28 Apr 2025 17:46:43 -0400
+Source: mx-cleanup
+Architecture: source
+Version: 25.4.02
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Changes:
+ mx-cleanup (25.4.02) mx; urgency=medium
+ .
+   * Move tools to a second tab to make the window fit on smaller screens
+   * Failure to elevate pops up a message and returns
+Checksums-Sha1:
+ ceacd7a8c4f7186786b775c389be40be9663d0d2 1123 mx-cleanup_25.4.02.dsc
+ ee57796d54157f73f3772c010384038b753ef1f2 146692 mx-cleanup_25.4.02.tar.xz
+ acbbb7555f2eb5b8f8a8d95794beba0944a3fd17 10609 mx-cleanup_25.4.02_amd64.buildinfo
+Checksums-Sha256:
+ d6a52c4bfcfec3a0ad4b3f02ac70a92c5d7a177f0bc099e260d521d3a13dbd11 1123 mx-cleanup_25.4.02.dsc
+ af3c9a769b1f36f959b327bc82c15bbeb5746c9f85aaf918c6993dafa00e6f31 146692 mx-cleanup_25.4.02.tar.xz
+ 51ad2754953bc5a90feda026308fe1f7717afa3f12e5a3ecfb8bed268e8bcfdf 10609 mx-cleanup_25.4.02_amd64.buildinfo
+Files:
+ 09680bcc691af8b5b3e9f61252d69f83 1123 admin optional mx-cleanup_25.4.02.dsc
+ 199a03345179693de4aacf4178d5116e 146692 admin optional mx-cleanup_25.4.02.tar.xz
+ 5f45dae3c829e7f477c53dd966a6f326 10609 admin optional mx-cleanup_25.4.02_amd64.buildinfo
+
+-----BEGIN PGP SIGNATURE-----
+
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmgQAZITHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumA1KB/9FsfbS5zTDe2OzXXTsk+OfvvYqg2wA
+Ek5X+J6zbUxQ+pFGb/woE937DS2jYhAeIxcoSD8NvimFDd0ks95NBW1G4Rk1VZ8v
+JKCZ8kdK+g7t2mDjHYCoY5zF3iw2683H2+Q/lov1c2RpezVvIeN0lAk13pLsFANS
+0siAL0HYCXpiaQ5ui6BS8O0bhuqigh0Alln3osYdgSFUSwAKi9qABKg1FzEu/Hs3
+tkB3a/CyAqkf9ZIxPO72BhKEvHDNU7ZlBl1+vE79REOe/VQJQRu1qKoorOiCjaNh
+HhwqoDycc0pJR9AvtyAQvvzU4k4wm0l6tpwIRSymxW3TtT1+jR8hBk4B
+=Hq8l
+-----END PGP SIGNATURE-----

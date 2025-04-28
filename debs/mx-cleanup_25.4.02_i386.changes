@@ -1,0 +1,26 @@
+Format: 1.8
+Date: Mon, 28 Apr 2025 17:46:43 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: i386
+Version: 25.4.02
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (25.4.02) mx; urgency=medium
+ .
+   * Move tools to a second tab to make the window fit on smaller screens
+   * Failure to elevate pops up a message and returns
+Checksums-Sha1:
+ 56c14316ba5c575a747ac9c47fc769fcd4e272b9 9756 mx-cleanup_25.4.02_i386.buildinfo
+ 60592ab103b25f5d69c39d0dc565ac49cdbbe99c 151512 mx-cleanup_25.4.02_i386.deb
+Checksums-Sha256:
+ adbabc7ca20c3b6d69ae919617475a61cc873e687b7b7ced73dc599ee29a7f33 9756 mx-cleanup_25.4.02_i386.buildinfo
+ 587cc250562815cfc0fc7d7b2d018f6e3db9370ea6aea062ff4541782ad6f116 151512 mx-cleanup_25.4.02_i386.deb
+Files:
+ 562835145084146d407cdac6707413dd 9756 admin optional mx-cleanup_25.4.02_i386.buildinfo
+ c646de21d34cd14f20dbf9ef4667081f 151512 admin optional mx-cleanup_25.4.02_i386.deb

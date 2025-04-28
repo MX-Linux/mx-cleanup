@@ -209,9 +209,10 @@ void MainWindow::removeKernelPackages(const QStringList &list)
     }
 
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};
-    system("x-terminal-emulator -e pkexec " + helper.toUtf8() + " '" + rmOldVersions.toUtf8() + " apt purge "
-           + headers_installed.join(' ').toUtf8() + ' ' + list.join(' ').toUtf8() + ' ' + common.toUtf8()
-           + "; apt-get install -f; read -n1 -srp \"" + tr("Press any key to close").toUtf8() + "\"'");
+    [[maybe_unused]] auto result
+        = system("x-terminal-emulator -e pkexec " + helper.toUtf8() + " '" + rmOldVersions.toUtf8() + " apt purge "
+                 + headers_installed.join(' ').toUtf8() + ' ' + list.join(' ').toUtf8() + ' ' + common.toUtf8()
+                 + "; apt-get install -f; read -n1 -srp \"" + tr("Press any key to close").toUtf8() + "\"'");
     setCursor(QCursor(Qt::ArrowCursor));
 }
 
@@ -385,7 +386,7 @@ void MainWindow::pushApply_clicked()
 {
     setCursor(QCursor(Qt::BusyCursor));
 
-     if (getuid() != 0) {
+    if (getuid() != 0) {
         QString elevate {QFile::exists("/usr/bin/pkexec") ? "/usr/bin/pkexec" : "/usr/bin/gksu"};
         QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper"};
         QProcess proc;
@@ -675,7 +676,8 @@ void MainWindow::pushRTLremove_clicked()
     fi)");
 
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};
-    system("x-terminal-emulator -e pkexec " + helper.toUtf8() + " 'apt purge " + dumpList.toUtf8()
-           + "; apt-get install -f; read -n1 -srp \"" + tr("Press any key to close").toUtf8() + "\"'");
+    [[maybe_unused]] auto result
+        = system("x-terminal-emulator -e pkexec " + helper.toUtf8() + " 'apt purge " + dumpList.toUtf8()
+                 + "; apt-get install -f; read -n1 -srp \"" + tr("Press any key to close").toUtf8() + "\"'");
     setCursor(QCursor(Qt::ArrowCursor));
 }

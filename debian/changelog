@@ -1,3 +1,10 @@
+mx-cleanup (25.4.02) mx; urgency=medium
+
+  * Move tools to a second tab to make the window fit on smaller screens
+  * Failure to elevate pops up a message and returns
+
+ -- Adrian <adrian@mxlinux.org>  Mon, 28 Apr 2025 17:46:43 -0400
+
 mx-cleanup (24.11.02) mx; urgency=medium
 
   * Translation update
