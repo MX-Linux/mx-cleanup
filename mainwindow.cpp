@@ -80,6 +80,7 @@ void MainWindow::addGroupCheckbox(QLayout *layout, const QStringList &packages, 
 void MainWindow::setup()
 {
     setWindowTitle(tr("MX Cleanup"));
+    ui->tabWidget->setCurrentIndex(0);
     adjustSize();
 
     current_user = cmdOut("logname", false, true);
@@ -366,6 +367,13 @@ void MainWindow::setConnections()
     connect(ui->pushUsageAnalyzer, &QPushButton::clicked, this, &MainWindow::pushUsageAnalyzer_clicked);
     connect(ui->radioNoCleanLogs, &QRadioButton::toggled, ui->spinBoxLogs, &QSpinBox::setDisabled);
     connect(ui->radioNoCleanTrash, &QRadioButton::toggled, ui->spinBoxTrash, &QSpinBox::setDisabled);
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, [this](int index) {
+        if (index == 1) {
+            ui->pushApply->setDisabled(true);
+        } else {
+            setup();
+        }
+    });
 
     for (auto *spinBox : {ui->spinCache, ui->spinBoxLogs, ui->spinBoxTrash}) {
         connect(spinBox, QOverload<int>::of(&QSpinBox::valueChanged), this,
