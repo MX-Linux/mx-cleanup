@@ -377,6 +377,19 @@ void MainWindow::pushApply_clicked()
 {
     setCursor(QCursor(Qt::BusyCursor));
 
+     if (getuid() != 0) {
+        QString elevate {QFile::exists("/usr/bin/pkexec") ? "/usr/bin/pkexec" : "/usr/bin/gksu"};
+        QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper"};
+        QProcess proc;
+        proc.start(elevate, {helper, "true"});
+        proc.waitForFinished();
+        if (proc.exitCode() != 0) {
+            QMessageBox::critical(this, tr("Error"), tr("Failed to elevate privileges"));
+            setCursor(QCursor(Qt::ArrowCursor));
+            return;
+        }
+    }
+
     quint64 total {};
     QString cache;
     if (ui->checkCache->isChecked()) {
