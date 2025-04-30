@@ -39,7 +39,7 @@ public:
     ~MainWindow() override;
 
     static void addGroupCheckbox(QLayout *layout, const QStringList &package, const QString &name, QStringList *list);
-    static void selectRadioButton(const QButtonGroup *group, int id);
+    static void selectRadioButton(class QGroupBox *groupbox, const QButtonGroup *group, int id);
     void loadOptions();
     void loadSchedule();
     void loadSettings();

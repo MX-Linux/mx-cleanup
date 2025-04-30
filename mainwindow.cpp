@@ -132,7 +132,7 @@ void MainWindow::loadSettings()
     settings.endGroup();
 
     settings.beginGroup("Apt");
-    selectRadioButton(ui->buttonGroupApt, settings.value("AptSelection", -1).toInt());
+    selectRadioButton(ui->groupBoxApt, ui->buttonGroupApt, settings.value("AptSelection", -1).toInt());
     settings.endGroup();
 
     settings.beginGroup("Flatpak");
@@ -141,12 +141,12 @@ void MainWindow::loadSettings()
 
     settings.beginGroup("Logs");
     ui->spinBoxLogs->setValue(settings.value("LogsOlderThan", 7).toInt());
-    selectRadioButton(ui->buttonGroupLogs, settings.value("LogsSelection", -1).toInt());
+    selectRadioButton(ui->groupBoxLogs, ui->buttonGroupLogs, settings.value("LogsSelection", -1).toInt());
     settings.endGroup();
 
     settings.beginGroup("Trash");
     ui->spinBoxTrash->setValue(settings.value("TrashOlderThan", 30).toInt());
-    selectRadioButton(ui->buttonGroupTrash, settings.value("TrashSelection", -1).toInt());
+    selectRadioButton(ui->groupBoxTrash, ui->buttonGroupTrash, settings.value("TrashSelection", -1).toInt());
     settings.endGroup();
 }
 
@@ -254,7 +254,7 @@ void MainWindow::loadOptions()
     } else if (system("grep -q 'apt-get clean' " + file_name.toUtf8()) == 0) { // detect clean
         ui->radioClean->setChecked(true);
     } else {
-        ui->radioNoCleanApt->setChecked(true);
+        ui->groupBoxApt->setChecked(false);
     }
 
     // Flatpak: remove unused runtimes
@@ -266,7 +266,7 @@ void MainWindow::loadOptions()
     } else if (system(R"(grep -q '\-type f \-delete' )" + file_name.toUtf8()) == 0) { // old logs
         ui->radioOldLogs->setChecked(true);
     } else {
-        ui->radioNoCleanLogs->setChecked(true);
+        ui->groupBoxLogs->setChecked(false);
     }
 
     // Logs older than...
@@ -280,7 +280,7 @@ void MainWindow::loadOptions()
     } else if (system("grep -q '/.local/share/Trash' " + file_name.toUtf8()) == 0) { // selected user trash
         ui->radioSelectedUser->setChecked(true);
     } else {
-        ui->radioNoCleanTrash->setChecked(true);
+        ui->groupBoxTrash->setChecked(false);
     }
 
     // Trash older than...
@@ -347,8 +347,11 @@ void MainWindow::saveSettings()
     settings.endGroup();
 }
 
-void MainWindow::selectRadioButton(const QButtonGroup *group, int id)
+void MainWindow::selectRadioButton(QGroupBox *groupbox, const QButtonGroup *group, int id)
 {
+    if (groupbox) {
+        groupbox->setChecked(id != -1);
+    }
     if (id != -1) {
         auto *selectedButton = group->button(id);
         if (selectedButton) {
@@ -366,8 +369,6 @@ void MainWindow::setConnections()
     connect(ui->pushKernel, &QPushButton::clicked, this, &MainWindow::pushKernel_clicked);
     connect(ui->pushRTLremove, &QPushButton::clicked, this, &MainWindow::pushRTLremove_clicked);
     connect(ui->pushUsageAnalyzer, &QPushButton::clicked, this, &MainWindow::pushUsageAnalyzer_clicked);
-    connect(ui->radioNoCleanLogs, &QRadioButton::toggled, ui->spinBoxLogs, &QSpinBox::setDisabled);
-    connect(ui->radioNoCleanTrash, &QRadioButton::toggled, ui->spinBoxTrash, &QSpinBox::setDisabled);
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, [this](int index) {
         if (index == 1) {
             ui->pushApply->setDisabled(true);
@@ -450,41 +451,45 @@ void MainWindow::pushApply_clicked()
     }
 
     QString apt;
-    if (ui->radioAutoClean->isChecked()) {
-        apt = "apt-get autoclean";
-    } else if (ui->radioClean->isChecked()) {
-        apt = "apt-get clean";
+    if (ui->groupBoxApt->isChecked()) {
+        if (ui->radioAutoClean->isChecked()) {
+            apt = "apt-get autoclean";
+        } else if (ui->radioClean->isChecked()) {
+            apt = "apt-get clean";
+        }
+
+        total += cmdOutAsRoot("du -s /var/cache/apt/archives/ | cut -f1").toULongLong();
+        if (!ui->radioReboot->isChecked()) {
+            cmdOutAsRoot(apt);
+        }
+        total -= cmdOutAsRoot("du -s /var/cache/apt/archives/ | cut -f1").toULongLong();
     }
 
-    total += cmdOutAsRoot("du -s /var/cache/apt/archives/ | cut -f1").toULongLong();
-    if (!ui->radioReboot->isChecked()) {
-        cmdOutAsRoot(apt);
-    }
-    total -= cmdOutAsRoot("du -s /var/cache/apt/archives/ | cut -f1").toULongLong();
-
-    QString time
-        = ui->spinBoxLogs->value() > 0 ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxLogs->value()) : QString();
     QString logs;
-    if (ui->radioOldLogs->isChecked()) {
-        total
-            += cmdOutAsRoot(
-                   R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \) -type f)"
-                   + time + " -exec du -sc '{}' + | awk '{field = $1} END {print field}'")
-                   .toULongLong();
-        logs = R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \))" + time
-               + " -type f -delete 2>/dev/null";
-        cmdOutAsRoot(logs);
-    } else if (ui->radioAllLogs->isChecked()) {
-        total += cmdOutAsRoot(
-                     QString("find /var/log -type f%1 -exec du -sc '{}' + | awk '{field = $1} END {print field}'")
-                         .arg(time))
-                     .toULongLong();
-        logs = "find /var/log -type f" + time + R"( -exec sh -c "echo > '{}'" \;)"; // empty the logs
-        cmdOutAsRoot(logs);
+    if (ui->groupBoxLogs->isChecked()) {
+        QString time
+            = ui->spinBoxLogs->value() > 0 ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxLogs->value()) : QString();
+        if (ui->radioOldLogs->isChecked()) {
+            total
+                += cmdOutAsRoot(
+                       R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \) -type f)"
+                       + time + " -exec du -sc '{}' + | awk '{field = $1} END {print field}'")
+                       .toULongLong();
+            logs = R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \))" + time
+                   + " -type f -delete 2>/dev/null";
+            cmdOutAsRoot(logs);
+        } else if (ui->radioAllLogs->isChecked()) {
+            total += cmdOutAsRoot(
+                         QString("find /var/log -type f%1 -exec du -sc '{}' + | awk '{field = $1} END {print field}'")
+                             .arg(time))
+                         .toULongLong();
+            logs = "find /var/log -type f" + time + R"( -exec sh -c "echo > '{}'" \;)"; // empty the logs
+            cmdOutAsRoot(logs);
+        }
     }
 
     QString trash;
-    if (ui->radioSelectedUser->isChecked() || ui->radioAllUsers->isChecked()) {
+    if (ui->groupBoxTrash->isChecked()) {
         QString user = ui->radioAllUsers->isChecked() ? "*" : ui->comboUserClean->currentText();
         QString timeTrash = ui->spinBoxTrash->value() > 0
                                 ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxTrash->value())
