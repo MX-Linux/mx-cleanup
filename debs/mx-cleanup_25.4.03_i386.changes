@@ -1,0 +1,26 @@
+Format: 1.8
+Date: Wed, 30 Apr 2025 11:05:39 -0400
+Source: mx-cleanup
+Binary: mx-cleanup
+Architecture: i386
+Version: 25.4.03
+Distribution: mx
+Urgency: medium
+Maintainer: Adrian <adrian@mxlinux.org>
+Changed-By: Adrian <adrian@mxlinux.org>
+Description:
+ mx-cleanup - mx-cleanup
+Changes:
+ mx-cleanup (25.4.03) mx; urgency=medium
+ .
+   * Use checkable group boxes instead of do-nothing radio buttons
+   * Don't reload when switching tabs
+Checksums-Sha1:
+ d2c1c763e0cd44896f16876b45724eb3128fafc6 9804 mx-cleanup_25.4.03_i386.buildinfo
+ 23df59223b551a7ff96491838ed29d19dd8a05c8 151872 mx-cleanup_25.4.03_i386.deb
+Checksums-Sha256:
+ 98ebeec59154dda761df467d777d9ee33be79f1711a0dafd3ed129ec95fa31c3 9804 mx-cleanup_25.4.03_i386.buildinfo
+ 8c373f1a88149efb5aaa46fd8d20042cf84e2f7b73a3288d2f99f2aa15cf0aa8 151872 mx-cleanup_25.4.03_i386.deb
+Files:
+ 44ebc4676a09c2253e8d3bf0b469d956 9804 admin optional mx-cleanup_25.4.03_i386.buildinfo
+ 8f45e7adc18823d50c7516a7d89449e9 151872 admin optional mx-cleanup_25.4.03_i386.deb

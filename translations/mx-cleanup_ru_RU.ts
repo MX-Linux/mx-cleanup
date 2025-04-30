@@ -11,239 +11,236 @@
         <translation>MX Очистка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="46"/>
+        <location filename="../mainwindow.ui" line="608"/>
         <source>Display help </source>
         <translation>Показать справку</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="49"/>
+        <location filename="../mainwindow.ui" line="611"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="55"/>
+        <location filename="../mainwindow.ui" line="617"/>
         <source>Alt+H</source>
         <translation>Alt+H</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="87"/>
+        <location filename="../mainwindow.ui" line="583"/>
         <source>About this application</source>
         <translation>Об этом приложении</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="90"/>
+        <location filename="../mainwindow.ui" line="24"/>
+        <source>Main</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="483"/>
+        <source>Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="586"/>
         <source>About...</source>
         <translation>О программе...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="96"/>
+        <location filename="../mainwindow.ui" line="592"/>
         <source>Alt+B</source>
         <translation>Alt+B</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="128"/>
+        <location filename="../mainwindow.ui" line="694"/>
         <source>Quit application</source>
         <translation>Выйти из приложения</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="131"/>
+        <location filename="../mainwindow.ui" line="697"/>
         <location filename="../mainwindow.cpp" line="640"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="137"/>
+        <location filename="../mainwindow.ui" line="703"/>
         <source>Alt+N</source>
         <translation>Alt+N</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="175"/>
+        <location filename="../mainwindow.ui" line="669"/>
         <source>Apply</source>
         <translation>Применить</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="200"/>
-        <source>Main</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="542"/>
+        <location filename="../mainwindow.ui" line="398"/>
         <source>Empty Trash</source>
         <translation>Очистить корзину</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="551"/>
+        <location filename="../mainwindow.ui" line="407"/>
         <source>Trash older than:</source>
         <translation>Мусор старше, чем:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="265"/>
-        <location filename="../mainwindow.ui" line="564"/>
-        <location filename="../mainwindow.ui" line="704"/>
         <source>Don&apos;t empty</source>
-        <translation>Не очищать</translation>
+        <translation type="vanished">Не очищать</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="297"/>
-        <location filename="../mainwindow.ui" line="447"/>
-        <location filename="../mainwindow.ui" line="574"/>
-        <location filename="../mainwindow.cpp" line="381"/>
+        <location filename="../mainwindow.ui" line="164"/>
+        <location filename="../mainwindow.ui" line="224"/>
+        <location filename="../mainwindow.ui" line="459"/>
+        <location filename="../mainwindow.cpp" line="377"/>
         <source> days</source>
         <translation> дни</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="593"/>
+        <location filename="../mainwindow.ui" line="420"/>
         <source>All users</source>
         <translation>Все пользователи</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="612"/>
+        <location filename="../mainwindow.ui" line="446"/>
         <source>Selected user</source>
         <translation>Выбранный пользователь</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="660"/>
+        <location filename="../mainwindow.ui" line="345"/>
         <source>Clear APT Cache</source>
         <translation>Очистить кэш APT</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="675"/>
+        <location filename="../mainwindow.ui" line="360"/>
         <source>Old files</source>
         <translation>Старые файлы</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="694"/>
+        <location filename="../mainwindow.ui" line="379"/>
         <source>All files</source>
         <translation>Все файлы</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="778"/>
-        <source>Tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="834"/>
+        <location filename="../mainwindow.ui" line="536"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
         <translation>Графический анализатор использования дисков</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="849"/>
+        <location filename="../mainwindow.ui" line="548"/>
         <source>Run Disk Usage Analyzer</source>
         <translation>Запустить анализатор использования дисков</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="470"/>
+        <location filename="../mainwindow.ui" line="282"/>
         <source>Schedule</source>
         <translation>Расписание</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="485"/>
+        <location filename="../mainwindow.ui" line="294"/>
         <source>No automatic clean</source>
         <translation>Без автоматической очистки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="492"/>
+        <location filename="../mainwindow.ui" line="301"/>
         <source>At reboot</source>
         <translation>При перезагрузке</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="499"/>
+        <location filename="../mainwindow.ui" line="308"/>
         <source>Daily</source>
         <translation>Ежедневно</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="506"/>
+        <location filename="../mainwindow.ui" line="315"/>
         <source>Weekly</source>
         <translation>Еженедельно</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="513"/>
+        <location filename="../mainwindow.ui" line="322"/>
         <source>Monthly</source>
         <translation>Ежемесячно</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="736"/>
+        <location filename="../mainwindow.ui" line="58"/>
         <source>Free Disk Space for User</source>
         <translation>Свободное дисковое пространство для пользователя</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="751"/>
-        <location filename="../mainwindow.ui" line="767"/>
+        <location filename="../mainwindow.ui" line="70"/>
+        <location filename="../mainwindow.ui" line="86"/>
         <source>Select user to repair</source>
         <translation>Выберите пользователя для восстановления</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="754"/>
+        <location filename="../mainwindow.ui" line="73"/>
         <source>Select user:</source>
         <translation>Выбор пользователя:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="212"/>
+        <location filename="../mainwindow.ui" line="193"/>
         <source>Delete Logs</source>
         <translation>Удаление журналов</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="243"/>
+        <location filename="../mainwindow.ui" line="208"/>
         <source>All logs</source>
         <translation>Все журналы</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="281"/>
+        <location filename="../mainwindow.ui" line="263"/>
         <source>Old logs</source>
         <translation>Старые журналы</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="316"/>
+        <location filename="../mainwindow.ui" line="250"/>
         <source>Logs older than:</source>
         <translation>Журналы старше чем:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="784"/>
+        <location filename="../mainwindow.ui" line="489"/>
         <source>Removal tool</source>
         <translation>Инструмент для удаления</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="793"/>
+        <location filename="../mainwindow.ui" line="495"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Удалить неиспользуемые драйверы WiFi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="812"/>
+        <location filename="../mainwindow.ui" line="514"/>
         <source>List and select kernels to remove</source>
         <translation>Список и выбор ядер для удаления</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="345"/>
+        <location filename="../mainwindow.ui" line="36"/>
         <source>Clean Flatpak</source>
         <translation>Очистить Flatpak</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="354"/>
+        <location filename="../mainwindow.ui" line="42"/>
         <source>Remove unused runtimes</source>
         <translation>Удалить неиспользуемые среды выполнения</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="370"/>
+        <location filename="../mainwindow.ui" line="102"/>
         <source>Clean Folders</source>
         <translation>Очистить папки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="437"/>
+        <location filename="../mainwindow.ui" line="154"/>
         <source>Not accessed for:</source>
         <translation>Не использовалось в течение:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="385"/>
+        <location filename="../mainwindow.ui" line="114"/>
         <source>Cache</source>
         <translation>Кэш</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="460"/>
+        <location filename="../mainwindow.ui" line="177"/>
         <source>All (potentially dangerous)</source>
         <translation>Все (потенциально опасно)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="414"/>
+        <location filename="../mainwindow.ui" line="137"/>
         <source>Thumbnails</source>
         <translation>Миниатюры</translation>
     </message>
@@ -254,17 +251,17 @@
         <translation>Нажмите любую клавишу, чтобы закрыть</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="381"/>
+        <location filename="../mainwindow.cpp" line="377"/>
         <source> day</source>
         <translation>день</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="396"/>
+        <location filename="../mainwindow.cpp" line="392"/>
         <source>Error</source>
         <translation type="unfinished">Ошибка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="396"/>
+        <location filename="../mainwindow.cpp" line="392"/>
         <source>Failed to elevate privileges</source>
         <translation type="unfinished"></translation>
     </message>

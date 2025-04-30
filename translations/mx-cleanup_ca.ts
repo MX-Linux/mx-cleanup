@@ -11,239 +11,236 @@
         <translation>MX Cleanup</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="46"/>
+        <location filename="../mainwindow.ui" line="608"/>
         <source>Display help </source>
         <translation>Mostra l&apos;ajuda</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="49"/>
+        <location filename="../mainwindow.ui" line="611"/>
         <source>Help</source>
         <translation>Ajuda </translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="55"/>
+        <location filename="../mainwindow.ui" line="617"/>
         <source>Alt+H</source>
         <translation>Alt+H</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="87"/>
+        <location filename="../mainwindow.ui" line="583"/>
         <source>About this application</source>
         <translation>Quant a aquest programa</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="90"/>
+        <location filename="../mainwindow.ui" line="24"/>
+        <source>Main</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="483"/>
+        <source>Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="586"/>
         <source>About...</source>
         <translation>Quant a...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="96"/>
+        <location filename="../mainwindow.ui" line="592"/>
         <source>Alt+B</source>
         <translation>Alt+B</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="128"/>
+        <location filename="../mainwindow.ui" line="694"/>
         <source>Quit application</source>
         <translation>Surt de l&apos;aplicació</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="131"/>
+        <location filename="../mainwindow.ui" line="697"/>
         <location filename="../mainwindow.cpp" line="640"/>
         <source>Close</source>
         <translation>Tanca</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="137"/>
+        <location filename="../mainwindow.ui" line="703"/>
         <source>Alt+N</source>
         <translation>Alt+N</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="175"/>
+        <location filename="../mainwindow.ui" line="669"/>
         <source>Apply</source>
         <translation>Aplica</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="200"/>
-        <source>Main</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="542"/>
+        <location filename="../mainwindow.ui" line="398"/>
         <source>Empty Trash</source>
         <translation>Buida la Paperera </translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="551"/>
+        <location filename="../mainwindow.ui" line="407"/>
         <source>Trash older than:</source>
         <translation>Esborra els més antics de:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="265"/>
-        <location filename="../mainwindow.ui" line="564"/>
-        <location filename="../mainwindow.ui" line="704"/>
         <source>Don&apos;t empty</source>
-        <translation>No ho buidis</translation>
+        <translation type="vanished">No ho buidis</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="297"/>
-        <location filename="../mainwindow.ui" line="447"/>
-        <location filename="../mainwindow.ui" line="574"/>
-        <location filename="../mainwindow.cpp" line="381"/>
+        <location filename="../mainwindow.ui" line="164"/>
+        <location filename="../mainwindow.ui" line="224"/>
+        <location filename="../mainwindow.ui" line="459"/>
+        <location filename="../mainwindow.cpp" line="377"/>
         <source> days</source>
         <translation>dies</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="593"/>
+        <location filename="../mainwindow.ui" line="420"/>
         <source>All users</source>
         <translation>Tots els usuaris</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="612"/>
+        <location filename="../mainwindow.ui" line="446"/>
         <source>Selected user</source>
         <translation>Usuari seleccionat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="660"/>
+        <location filename="../mainwindow.ui" line="345"/>
         <source>Clear APT Cache</source>
         <translation>Buida la memòria cau de l&apos;APT</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="675"/>
+        <location filename="../mainwindow.ui" line="360"/>
         <source>Old files</source>
         <translation>Fitxers antics</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="694"/>
+        <location filename="../mainwindow.ui" line="379"/>
         <source>All files</source>
         <translation>Tots els fitxers</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="778"/>
-        <source>Tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="834"/>
+        <location filename="../mainwindow.ui" line="536"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
         <translation>Eina gràfica per analitzar l&apos;ús del disc</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="849"/>
+        <location filename="../mainwindow.ui" line="548"/>
         <source>Run Disk Usage Analyzer</source>
         <translation>Executa l&apos;analitzador de l&apos;ús del disc</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="470"/>
+        <location filename="../mainwindow.ui" line="282"/>
         <source>Schedule</source>
         <translation>Planificació</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="485"/>
+        <location filename="../mainwindow.ui" line="294"/>
         <source>No automatic clean</source>
         <translation>Sense neteja automàtica</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="492"/>
+        <location filename="../mainwindow.ui" line="301"/>
         <source>At reboot</source>
         <translation>En reiniciar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="499"/>
+        <location filename="../mainwindow.ui" line="308"/>
         <source>Daily</source>
         <translation>Diari</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="506"/>
+        <location filename="../mainwindow.ui" line="315"/>
         <source>Weekly</source>
         <translation>Setmanal</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="513"/>
+        <location filename="../mainwindow.ui" line="322"/>
         <source>Monthly</source>
         <translation>Mensual</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="736"/>
+        <location filename="../mainwindow.ui" line="58"/>
         <source>Free Disk Space for User</source>
         <translation>Espai de disc lliure per l&apos;usuari</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="751"/>
-        <location filename="../mainwindow.ui" line="767"/>
+        <location filename="../mainwindow.ui" line="70"/>
+        <location filename="../mainwindow.ui" line="86"/>
         <source>Select user to repair</source>
         <translation>Trieu l&apos;usuari a reparar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="754"/>
+        <location filename="../mainwindow.ui" line="73"/>
         <source>Select user:</source>
         <translation>Trieu l&apos;usuari: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="212"/>
+        <location filename="../mainwindow.ui" line="193"/>
         <source>Delete Logs</source>
         <translation>Esborra els Registres</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="243"/>
+        <location filename="../mainwindow.ui" line="208"/>
         <source>All logs</source>
         <translation>Tots els registres</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="281"/>
+        <location filename="../mainwindow.ui" line="263"/>
         <source>Old logs</source>
         <translation>Registres antics</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="316"/>
+        <location filename="../mainwindow.ui" line="250"/>
         <source>Logs older than:</source>
         <translation>Registres més antics de:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="784"/>
+        <location filename="../mainwindow.ui" line="489"/>
         <source>Removal tool</source>
         <translation>Eina d&apos;eliminació</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="793"/>
+        <location filename="../mainwindow.ui" line="495"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Elimina els controladors de WiFi que no s&apos;usen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="812"/>
+        <location filename="../mainwindow.ui" line="514"/>
         <source>List and select kernels to remove</source>
         <translation>Mostra i selecciona kernels a eliminar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="345"/>
+        <location filename="../mainwindow.ui" line="36"/>
         <source>Clean Flatpak</source>
         <translation>Neteja Flatpaks</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="354"/>
+        <location filename="../mainwindow.ui" line="42"/>
         <source>Remove unused runtimes</source>
         <translation>Elimina els executables sense ús</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="370"/>
+        <location filename="../mainwindow.ui" line="102"/>
         <source>Clean Folders</source>
         <translation>Neteja carpetes</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="437"/>
+        <location filename="../mainwindow.ui" line="154"/>
         <source>Not accessed for:</source>
         <translation>No accedit per:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="385"/>
+        <location filename="../mainwindow.ui" line="114"/>
         <source>Cache</source>
         <translation>Memòria cau</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="460"/>
+        <location filename="../mainwindow.ui" line="177"/>
         <source>All (potentially dangerous)</source>
         <translation>Tots (potencialment perillós)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="414"/>
+        <location filename="../mainwindow.ui" line="137"/>
         <source>Thumbnails</source>
         <translation>Miniatures</translation>
     </message>
@@ -254,17 +251,17 @@
         <translation>Premeu qualsevol tecla per tancar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="381"/>
+        <location filename="../mainwindow.cpp" line="377"/>
         <source> day</source>
         <translation>dia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="396"/>
+        <location filename="../mainwindow.cpp" line="392"/>
         <source>Error</source>
         <translation type="unfinished">Error</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="396"/>
+        <location filename="../mainwindow.cpp" line="392"/>
         <source>Failed to elevate privileges</source>
         <translation type="unfinished"></translation>
     </message>
