@@ -16,11 +16,11 @@ Changes:
    * Use checkable group boxes instead of do-nothing radio buttons
    * Don't reload when switching tabs
 Checksums-Sha1:
- 930fb3ff4f622dab558a0f88e6d2a1081430d45e 9775 mx-cleanup_25.4.03_arm64.buildinfo
+ 4647a9a0019f73760bed475ed57ca98443d56353 9775 mx-cleanup_25.4.03_arm64.buildinfo
  d77ca6f36660b96406649d74627e40ed03c2c36a 143508 mx-cleanup_25.4.03_arm64.deb
 Checksums-Sha256:
- 87748cb5a97f8aba125e3c531577b95ea30f4283f8e5e71132e9a46771fc8cba 9775 mx-cleanup_25.4.03_arm64.buildinfo
+ 2d11ff5c4b14fdbcad2548f079cb722480517a8f034725fa4375f728ba1bf176 9775 mx-cleanup_25.4.03_arm64.buildinfo
  198fb7ea63cc83c5b934343e9696d3fc38983eed073438d93039ea4ca4fa9de1 143508 mx-cleanup_25.4.03_arm64.deb
 Files:
- 93a6d47174c95999411f59922f4a071e 9775 admin optional mx-cleanup_25.4.03_arm64.buildinfo
+ 8b5d62d8efa02aef2fa4c4aedf2b02a9 9775 admin optional mx-cleanup_25.4.03_arm64.buildinfo
  cc548f0d7db6455993dc80f82968967a 143508 admin optional mx-cleanup_25.4.03_arm64.deb

@@ -16,11 +16,11 @@ Changes:
    * Use checkable group boxes instead of do-nothing radio buttons
    * Don't reload when switching tabs
 Checksums-Sha1:
- d2c1c763e0cd44896f16876b45724eb3128fafc6 9804 mx-cleanup_25.4.03_i386.buildinfo
+ e77063083cf3ee878ef63222ec7ada6bf91f0456 9804 mx-cleanup_25.4.03_i386.buildinfo
  23df59223b551a7ff96491838ed29d19dd8a05c8 151872 mx-cleanup_25.4.03_i386.deb
 Checksums-Sha256:
- 98ebeec59154dda761df467d777d9ee33be79f1711a0dafd3ed129ec95fa31c3 9804 mx-cleanup_25.4.03_i386.buildinfo
+ 376f164383fef5a0c8225def04b979ff6e79e130964f9fa50b8ae2b13f2ce793 9804 mx-cleanup_25.4.03_i386.buildinfo
  8c373f1a88149efb5aaa46fd8d20042cf84e2f7b73a3288d2f99f2aa15cf0aa8 151872 mx-cleanup_25.4.03_i386.deb
 Files:
- 44ebc4676a09c2253e8d3bf0b469d956 9804 admin optional mx-cleanup_25.4.03_i386.buildinfo
+ 1f51148254a34af902b9975c1ea9e110 9804 admin optional mx-cleanup_25.4.03_i386.buildinfo
  8f45e7adc18823d50c7516a7d89449e9 151872 admin optional mx-cleanup_25.4.03_i386.deb

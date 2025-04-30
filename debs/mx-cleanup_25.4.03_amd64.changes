@@ -19,29 +19,29 @@ Changes:
    * Use checkable group boxes instead of do-nothing radio buttons
    * Don't reload when switching tabs
 Checksums-Sha1:
- 5d879e76f6df713c7e982e32ede0303816b314e3 1123 mx-cleanup_25.4.03.dsc
- b24109d26dda4b864e3a7640dd1d7d9a6ab5c956 135164 mx-cleanup_25.4.03.tar.xz
- 6b216a22847e67c2f5d201690cc84dd4a4fc6e62 10657 mx-cleanup_25.4.03_amd64.buildinfo
+ 4c81ff70b6d4c0041da0e186ad7cb4239b266194 1123 mx-cleanup_25.4.03.dsc
+ cfeaa9fd600cd4d39c197b89e2577b7d39d7ea2d 135164 mx-cleanup_25.4.03.tar.xz
+ bd8f8a16df89c0253ab979cea3aa20abbb5a1927 10657 mx-cleanup_25.4.03_amd64.buildinfo
  be0c78aa2aa0f032bf3aa92a1893e9dc4a0df995 148248 mx-cleanup_25.4.03_amd64.deb
 Checksums-Sha256:
- 304c64dc1f202882cd4c78e2a02e339775078e2209f78e6288a6482829fd3e39 1123 mx-cleanup_25.4.03.dsc
- 5762ca67c5cb224cab55b647994cbb81b16645adfd593991b4e400ed5cb650f3 135164 mx-cleanup_25.4.03.tar.xz
- 5402562c75209191240d6786943646d57322c6dceb583ebba7baa3a02b228980 10657 mx-cleanup_25.4.03_amd64.buildinfo
+ 41d2789a88ecb98d71310bf0f8e6f91c6d3873020885366eee9e2508641442bc 1123 mx-cleanup_25.4.03.dsc
+ e1560f2771bdfcaef32977a1177eb53f3c0dd698cd18aea8c2e5ac2cbcfd1456 135164 mx-cleanup_25.4.03.tar.xz
+ e8d92457073f31b1d0e81e88d807fb1c947c993af64568667cebe77daea675d0 10657 mx-cleanup_25.4.03_amd64.buildinfo
  41255aea0ce8e725529be21f6c0586e282dab4cc3c5f16516813ce6312530c91 148248 mx-cleanup_25.4.03_amd64.deb
 Files:
- 962b46db191a9adb2136f37acd391bbb 1123 admin optional mx-cleanup_25.4.03.dsc
- 093e8c75cd3842e29aaddc651c5a17df 135164 admin optional mx-cleanup_25.4.03.tar.xz
- 4b1a0c076dab07623f9530a1adec4755 10657 admin optional mx-cleanup_25.4.03_amd64.buildinfo
+ bfd3a9d63abe9e69e11d096471200b94 1123 admin optional mx-cleanup_25.4.03.dsc
+ b25f1db679bbdf3deb569112128f18db 135164 admin optional mx-cleanup_25.4.03.tar.xz
+ 3af6eff2ff03ab0be16f06ee38bd149e 10657 admin optional mx-cleanup_25.4.03_amd64.buildinfo
  fa441e06f85098814ffe3ce6f51c769d 148248 admin optional mx-cleanup_25.4.03_amd64.deb
 
 -----BEGIN PGP SIGNATURE-----
 
-iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmgSPKgTHGFkcmlhbkBt
-eGxpbnV4Lm9yZwAKCRBwk4x4BnnumOPzB/9k+b6/HkSeztgJpmuCcS1Xkj2xwwM6
-2O6Ibw50g9sFJlbCloQlgsISsDni42alq+ybRI78Jau5gJyoYr/sJMI2KIcQC1L7
-GzUU7xJGDxJN46E0Jy76YlbvQsBItYZATqLl6xwbVe/jacWzt74VcM5ti7Vkl2xx
-07Ar/SO/brDnitQbcsoCXxjbbUTzvL0Cec85FHRqZTi3OHtokfz7cwOvDYjH1xJt
-ImpuZK6Ec2HNOEnoKiuLRelD/xWFOqcLIj4vRpsBO1Bmjxa+wE42LNL/OkGXwHCv
-G9Veov9kaCUXfYx3YCQxTb3X1xLSrfAHDGOjq/uMavxe+6/8w+mSg8F7
-=yRiT
+iQFHBAEBCgAxFiEE8ndToY6S45N+YzXncJOMeAZ57pgFAmgSZksTHGFkcmlhbkBt
+eGxpbnV4Lm9yZwAKCRBwk4x4BnnumM8RCAC1y7/wBxVuf2N5HT2032OgZ4s0dH1F
+yZKwz+OcdkX/gZDeLcfjlZCwHlw2kjZXXZzQyd4w3kcCM5vmv7/vyW5MKK3GlQr6
+jCeHVAEycF3WszfvD7xf3gvwJcROI8Xft0GcT2SseJuFKzS42V53gnCkf4g2BhYn
+1COniHsFwWleAydznBONYp6pOqDFCT0okMSexYgUcXRn1+ra9AqzdP4jU2oX2uSP
+LhoyevhDsSbwRc26MkX3bJLuWL0Wzco/orK6xLee1hLOfP4QbC+iRDneyivvh9+I
+Z3k0g5NXiLlTRtknrrnRlPMoN3fg7eECDdYNta9F6afDsjAZxZYHJbBH
+=+Hz6
 -----END PGP SIGNATURE-----
