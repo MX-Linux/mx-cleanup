@@ -368,13 +368,8 @@ void MainWindow::setConnections()
     connect(ui->pushKernel, &QPushButton::clicked, this, &MainWindow::pushKernel_clicked);
     connect(ui->pushRTLremove, &QPushButton::clicked, this, &MainWindow::pushRTLremove_clicked);
     connect(ui->pushUsageAnalyzer, &QPushButton::clicked, this, &MainWindow::pushUsageAnalyzer_clicked);
-    connect(ui->tabWidget, &QTabWidget::currentChanged, this, [this](int index) {
-        if (index == 1) {
-            ui->pushApply->setDisabled(true);
-        } else {
-            setup();
-        }
-    });
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this,
+            [this](int index) { ui->pushApply->setDisabled(index == 1); });
 
     for (auto *spinBox : {ui->spinCache, ui->spinBoxLogs, ui->spinBoxTrash}) {
         connect(spinBox, QOverload<int>::of(&QSpinBox::valueChanged), this,
@@ -466,16 +461,16 @@ void MainWindow::pushApply_clicked()
 
     QString logs;
     if (ui->groupBoxLogs->isChecked()) {
-        QString time
-            = ui->spinBoxLogs->value() > 0 ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxLogs->value()) : QString();
+        QString time = ui->spinBoxLogs->value() > 0 ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxLogs->value())
+                                                    : QString();
         if (ui->radioOldLogs->isChecked()) {
             total
                 += cmdOutAsRoot(
                        R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \) -type f)"
                        + time + " -exec du -sc '{}' + | awk '{field = $1} END {print field}'")
                        .toULongLong();
-            logs = R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \))" + time
-                   + " -type f -delete 2>/dev/null";
+            logs = R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \))"
+                   + time + " -type f -delete 2>/dev/null";
             cmdOutAsRoot(logs);
         } else if (ui->radioAllLogs->isChecked()) {
             total += cmdOutAsRoot(
