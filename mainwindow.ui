@@ -712,15 +712,22 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>tabWidget</tabstop>
   <tabstop>comboUserClean</tabstop>
   <tabstop>checkCache</tabstop>
-  <tabstop>radioAllCache</tabstop>
+  <tabstop>checkThumbs</tabstop>
+  <tabstop>radioSaferCache</tabstop>
   <tabstop>spinCache</tabstop>
+  <tabstop>radioAllCache</tabstop>
+  <tabstop>groupBoxApt</tabstop>
   <tabstop>radioAutoClean</tabstop>
   <tabstop>radioClean</tabstop>
+  <tabstop>checkFlatpak</tabstop>
+  <tabstop>groupBoxLogs</tabstop>
   <tabstop>radioOldLogs</tabstop>
   <tabstop>radioAllLogs</tabstop>
   <tabstop>spinBoxLogs</tabstop>
+  <tabstop>groupBoxTrash</tabstop>
   <tabstop>radioSelectedUser</tabstop>
   <tabstop>radioAllUsers</tabstop>
   <tabstop>spinBoxTrash</tabstop>
@@ -729,6 +736,7 @@
   <tabstop>radioDaily</tabstop>
   <tabstop>radioWeekly</tabstop>
   <tabstop>radioMonthly</tabstop>
+  <tabstop>pushRTLremove</tabstop>
   <tabstop>pushKernel</tabstop>
   <tabstop>pushUsageAnalyzer</tabstop>
   <tabstop>pushAbout</tabstop>
