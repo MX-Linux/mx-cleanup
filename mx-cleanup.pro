@@ -23,6 +23,12 @@ CONFIG   += c++1z
 
 TARGET = mx-cleanup
 TEMPLATE = app
+CONFIG += debug_and_release warn_on strict_c++
+CONFIG(release, debug|release) {
+    DEFINES += NDEBUG
+    QMAKE_CXXFLAGS += -flto=auto
+    QMAKE_LFLAGS += -flto=auto
+}
 
 # The following define makes your compiler warn you if you use any
 # feature of Qt which has been marked as deprecated (the exact warnings
