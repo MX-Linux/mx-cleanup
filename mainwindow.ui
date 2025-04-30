@@ -192,10 +192,26 @@
          <property name="title">
           <string>Delete Logs</string>
          </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
          <layout class="QGridLayout">
+          <item row="3" column="1">
+           <widget class="QSpinBox" name="spinBoxLogs">
+            <property name="suffix">
+             <string> days</string>
+            </property>
+            <property name="prefix">
+             <string/>
+            </property>
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>365</number>
+            </property>
+            <property name="value">
+             <number>7</number>
+            </property>
+           </widget>
+          </item>
           <item row="1" column="0">
            <widget class="QRadioButton" name="radioAllLogs">
             <property name="sizePolicy">
@@ -218,33 +234,23 @@
             </attribute>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="QSpinBox" name="spinBoxLogs">
-            <property name="suffix">
-             <string> days</string>
+          <item row="2" column="0">
+           <widget class="QRadioButton" name="radioNoCleanLogs">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
-            <property name="prefix">
-             <string/>
+            <property name="text">
+             <string>Don't empty</string>
             </property>
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>365</number>
-            </property>
-            <property name="value">
-             <number>7</number>
-            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupLogs</string>
+            </attribute>
            </widget>
           </item>
-          <item row="2" column="2">
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </spacer>
-          </item>
-          <item row="2" column="0">
+          <item row="3" column="0">
            <widget class="QLabel" name="labelLogsOlder">
             <property name="text">
              <string>Logs older than:</string>
@@ -272,6 +278,13 @@
              <string notr="true">buttonGroupLogs</string>
             </attribute>
            </widget>
+          </item>
+          <item row="3" column="2">
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
@@ -344,9 +357,6 @@
          <property name="title">
           <string>Clear APT Cache</string>
          </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
          <layout class="QVBoxLayout">
           <item>
            <widget class="QRadioButton" name="radioAutoClean">
@@ -383,6 +393,16 @@
             </attribute>
            </widget>
           </item>
+          <item>
+           <widget class="QRadioButton" name="radioNoCleanApt">
+            <property name="text">
+             <string>Don't empty</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupApt</string>
+            </attribute>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -397,11 +417,44 @@
          <property name="title">
           <string>Empty Trash</string>
          </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
          <layout class="QGridLayout">
-          <item row="2" column="0">
+          <item row="3" column="1">
+           <widget class="QSpinBox" name="spinBoxTrash">
+            <property name="suffix">
+             <string> days</string>
+            </property>
+            <property name="maximum">
+             <number>365</number>
+            </property>
+            <property name="value">
+             <number>30</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <widget class="QRadioButton" name="radioNoCleanTrash">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Don't empty</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroupTrash</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </spacer>
+          </item>
+          <item row="3" column="0">
            <widget class="QLabel" name="labelTrashOlder">
             <property name="text">
              <string>Trash older than:</string>
@@ -424,13 +477,6 @@
             </attribute>
            </widget>
           </item>
-          <item row="2" column="2">
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </spacer>
-          </item>
           <item row="0" column="0" colspan="3">
            <widget class="QRadioButton" name="radioSelectedUser">
             <property name="sizePolicy">
@@ -451,19 +497,6 @@
             <attribute name="buttonGroup">
              <string notr="true">buttonGroupTrash</string>
             </attribute>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QSpinBox" name="spinBoxTrash">
-            <property name="suffix">
-             <string> days</string>
-            </property>
-            <property name="maximum">
-             <number>365</number>
-            </property>
-            <property name="value">
-             <number>30</number>
-            </property>
            </widget>
           </item>
          </layout>
@@ -749,8 +782,8 @@
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroupLogs"/>
   <buttongroup name="buttonGroupTrash"/>
+  <buttongroup name="buttonGroupLogs"/>
   <buttongroup name="buttonGroupApt"/>
  </buttongroups>
 </ui>
