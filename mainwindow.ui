@@ -722,6 +722,8 @@
   <tabstop>groupBoxApt</tabstop>
   <tabstop>radioAutoClean</tabstop>
   <tabstop>radioClean</tabstop>
+  <tabstop>checkFlatpak</tabstop>
+  <tabstop>groupBoxLogs</tabstop>
   <tabstop>radioOldLogs</tabstop>
   <tabstop>radioAllLogs</tabstop>
   <tabstop>spinBoxLogs</tabstop>
