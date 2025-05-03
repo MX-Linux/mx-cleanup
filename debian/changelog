@@ -1,3 +1,12 @@
+mx-cleanup (25.5) mx; urgency=medium
+
+  * Use checkable group boxes instead of do-nothing radio buttons
+  * Don't reload when switching tabs
+  * Move tools to a second tab to make the window fit on smaller screens
+  * Failure to elevate pops up a message and returns
+
+ -- Adrian <adrian@mxlinux.org>  Sat, 03 May 2025 08:06:51 -0400
+
 mx-cleanup (25.4.01) mx; urgency=medium
 
   * Update to Qt6
