@@ -26,6 +26,7 @@
 #include <QDialogButtonBox>
 #include <QFileInfo>
 #include <QProcess>
+#include <QProgressDialog>
 #include <QStandardPaths>
 #include <QTemporaryFile>
 #include <QTextEdit>
@@ -50,6 +51,45 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::removeManuals()
+{
+    QSettings defaultlocale("/etc/default/locale", QSettings::NativeFormat);
+    QString lang = defaultlocale.value("LANG", "C").toString().replace(".utf8", ".UTF-8");
+    if (lang.isEmpty()) {
+        return;
+    }
+
+    QString exclusionPattern
+        = QString("mx-(docs|faq)-(en|common%1)").arg(lang == "en" || lang == "C" ? "" : QString("|%1").arg(lang));
+    QString listCmd
+        = QString("dpkg-query -W --showformat=\"\\${Package}\\n\" -- 'mx-docs-*' 'mx-faq-*' | grep -vE '%1'")
+              .arg(exclusionPattern);
+
+    QStringList packageList = cmdOut(listCmd, true).split('\n', Qt::SkipEmptyParts);
+
+    if (packageList.isEmpty()) {
+        QMessageBox::information(this, tr("Remove Manuals"), tr("No manuals to remove."));
+        return;
+    }
+
+    QString purgeCmd = QString("apt-get purge -y %1").arg(packageList.join(' '));
+
+    ui->tabWidget->setDisabled(true);
+    QProgressDialog prog(tr("Removing packages, please wait"), nullptr, 0, packageList.count());
+
+    QProcess proc;
+    QEventLoop loop;
+    connect(&proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), &loop, &QEventLoop::quit);
+    connect(&proc, &QProcess::readyReadStandardOutput, this, [&prog]() { prog.setValue(prog.value() + 1); });
+    proc.setProcessChannelMode(QProcess::MergedChannels);
+    QString elevate {QFile::exists("/usr/bin/pkexec") ? "/usr/bin/pkexec" : "/usr/bin/gksu"};
+    QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper"};
+    proc.start(elevate, {helper, purgeCmd});
+    prog.show();
+    loop.exec();
+    ui->tabWidget->setEnabled(true);
 }
 
 void MainWindow::addGroupCheckbox(QLayout *layout, const QStringList &packages, const QString &name, QStringList *list)
@@ -366,6 +406,7 @@ void MainWindow::setConnections()
     connect(ui->pushCancel, &QPushButton::clicked, this, &MainWindow::close);
     connect(ui->pushHelp, &QPushButton::clicked, this, &MainWindow::pushHelp_clicked);
     connect(ui->pushKernel, &QPushButton::clicked, this, &MainWindow::pushKernel_clicked);
+    connect(ui->pushRemoveManuals, &QPushButton::clicked, this, &MainWindow::removeManuals);
     connect(ui->pushRTLremove, &QPushButton::clicked, this, &MainWindow::pushRTLremove_clicked);
     connect(ui->pushUsageAnalyzer, &QPushButton::clicked, this, &MainWindow::pushUsageAnalyzer_clicked);
     connect(ui->tabWidget, &QTabWidget::currentChanged, this,
@@ -381,7 +422,7 @@ void MainWindow::pushApply_clicked()
 {
     setCursor(QCursor(Qt::BusyCursor));
 
-     if (getuid() != 0) {
+    if (getuid() != 0) {
         QString elevate {QFile::exists("/usr/bin/pkexec") ? "/usr/bin/pkexec" : "/usr/bin/gksu"};
         QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper"};
         QProcess proc;

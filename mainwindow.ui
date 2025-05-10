@@ -123,6 +123,12 @@
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
            </spacer>
           </item>
           <item row="1" column="0" colspan="4">
@@ -145,6 +151,12 @@
            <spacer>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
             </property>
            </spacer>
           </item>
@@ -242,6 +254,12 @@
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
            </spacer>
           </item>
           <item row="2" column="0">
@@ -327,6 +345,12 @@
            <spacer>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
             </property>
            </spacer>
           </item>
@@ -429,6 +453,12 @@
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
            </spacer>
           </item>
           <item row="0" column="0" colspan="3">
@@ -474,6 +504,12 @@
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
         </spacer>
        </item>
       </layout>
@@ -486,7 +522,7 @@
        <item>
         <widget class="QGroupBox" name="groupBoxKernel">
          <property name="title">
-          <string>Removal tool</string>
+          <string>Removal Tools</string>
          </property>
          <layout class="QVBoxLayout">
           <item>
@@ -515,6 +551,19 @@
             </property>
             <property name="icon">
              <iconset theme="view-list"/>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushRemoveManuals">
+            <property name="text">
+             <string>Remove MX manuals for languages other than system default</string>
+            </property>
+            <property name="icon">
+             <iconset theme="text-x-generic"/>
             </property>
             <property name="autoDefault">
              <bool>false</bool>
@@ -562,6 +611,12 @@
         <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
          </property>
         </spacer>
        </item>
@@ -626,6 +681,12 @@
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
       </spacer>
      </item>
      <item>
@@ -654,6 +715,12 @@
       <spacer>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
        </property>
       </spacer>
      </item>
@@ -749,8 +816,8 @@
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroupLogs"/>
   <buttongroup name="buttonGroupTrash"/>
+  <buttongroup name="buttonGroupLogs"/>
   <buttongroup name="buttonGroupApt"/>
  </buttongroups>
 </ui>

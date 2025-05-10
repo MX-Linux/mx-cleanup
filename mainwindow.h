@@ -38,18 +38,6 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
-    static void addGroupCheckbox(QLayout *layout, const QStringList &package, const QString &name, QStringList *list);
-    static void selectRadioButton(class QGroupBox *groupbox, const QButtonGroup *group, int id);
-    void loadOptions();
-    void loadSchedule();
-    void loadSettings();
-    void removeKernelPackages(const QStringList &list);
-    void saveSchedule(const QString &cmd_str, const QString &period);
-    void saveSettings();
-    void setConnections();
-    void setup();
-    void startPreferredApp(const QStringList &apps);
-
 private slots:
     void pushAbout_clicked();
     void pushApply_clicked();
@@ -64,4 +52,17 @@ private:
     QString current_user;
     QString cmdOut(const QString &cmd, bool asRoot = false, bool quiet = false);
     QString cmdOutAsRoot(const QString &cmd, bool quiet = false);
+
+    static void addGroupCheckbox(QLayout *layout, const QStringList &package, const QString &name, QStringList *list);
+    static void selectRadioButton(class QGroupBox *groupbox, const QButtonGroup *group, int id);
+    void loadOptions();
+    void loadSchedule();
+    void loadSettings();
+    void removeKernelPackages(const QStringList &list);
+    void removeManuals();
+    void saveSchedule(const QString &cmd_str, const QString &period);
+    void saveSettings();
+    void setConnections();
+    void setup();
+    void startPreferredApp(const QStringList &apps);
 };
