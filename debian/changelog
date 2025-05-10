@@ -1,3 +1,9 @@
+mx-cleanup (25.5.01) mx; urgency=medium
+
+  * Add button to remove manuals in other languages
+
+ -- Adrian <adrian@mxlinux.org>  Sat, 10 May 2025 17:46:46 -0400
+
 mx-cleanup (25.5) mx; urgency=medium
 
   * Use checkable group boxes instead of do-nothing radio buttons
