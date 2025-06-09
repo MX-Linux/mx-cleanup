@@ -6,27 +6,27 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.cpp" line="122"/>
-        <location filename="../mainwindow.cpp" line="579"/>
+        <location filename="../mainwindow.cpp" line="597"/>
         <source>MX Cleanup</source>
         <translation>MX Limpar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="663"/>
+        <location filename="../mainwindow.ui" line="683"/>
         <source>Display help </source>
         <translation>Amosar axuda</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="666"/>
+        <location filename="../mainwindow.ui" line="686"/>
         <source>Help</source>
         <translation>Axuda</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="672"/>
+        <location filename="../mainwindow.ui" line="692"/>
         <source>Alt+H</source>
         <translation>Alt+H</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="638"/>
+        <location filename="../mainwindow.ui" line="658"/>
         <source>About this application</source>
         <translation>Sobre esta aplicación</translation>
     </message>
@@ -36,212 +36,217 @@
         <translation>Principal</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="519"/>
+        <location filename="../mainwindow.ui" line="531"/>
+        <source>Purge residual configurations from removed packages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="539"/>
         <source>Tools</source>
         <translation>Ferramentas</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="525"/>
+        <location filename="../mainwindow.ui" line="545"/>
         <source>Removal Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="563"/>
+        <location filename="../mainwindow.ui" line="583"/>
         <source>Remove MX manuals for languages other than system default</source>
         <translation>Elimina os manuais de MX para idiomas distintos do predeterminado do sistema</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="641"/>
+        <location filename="../mainwindow.ui" line="661"/>
         <source>About...</source>
         <translation>Sobre...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="647"/>
+        <location filename="../mainwindow.ui" line="667"/>
         <source>Alt+B</source>
         <translation>Alt+B</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="761"/>
+        <location filename="../mainwindow.ui" line="781"/>
         <source>Quit application</source>
         <translation>Saír do aplicativo</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="764"/>
-        <location filename="../mainwindow.cpp" line="680"/>
+        <location filename="../mainwindow.ui" line="784"/>
+        <location filename="../mainwindow.cpp" line="698"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="770"/>
+        <location filename="../mainwindow.ui" line="790"/>
         <source>Alt+N</source>
         <translation>Alt+N</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="736"/>
+        <location filename="../mainwindow.ui" line="756"/>
         <source>Apply</source>
         <translation>Aplicar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="422"/>
+        <location filename="../mainwindow.ui" line="36"/>
         <source>Empty Trash</source>
         <translation>Amosar axuda</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="431"/>
+        <location filename="../mainwindow.ui" line="45"/>
         <source>Trash older than:</source>
         <translation>Lixo con máis de:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="176"/>
-        <location filename="../mainwindow.ui" line="236"/>
-        <location filename="../mainwindow.ui" line="489"/>
-        <location filename="../mainwindow.cpp" line="417"/>
+        <location filename="../mainwindow.ui" line="103"/>
+        <location filename="../mainwindow.ui" line="294"/>
+        <location filename="../mainwindow.ui" line="438"/>
+        <location filename="../mainwindow.cpp" line="419"/>
         <source> days</source>
         <translation>días</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="444"/>
+        <location filename="../mainwindow.ui" line="58"/>
         <source>All users</source>
         <translation>Todos os usuarios</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="476"/>
+        <location filename="../mainwindow.ui" line="90"/>
         <source>Selected user</source>
         <translation>Usuario seleccionado</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="369"/>
+        <location filename="../mainwindow.ui" line="210"/>
         <source>Clear APT Cache</source>
         <translation>Limpar o caché APT</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="384"/>
+        <location filename="../mainwindow.ui" line="225"/>
         <source>Old files</source>
         <translation>Ficheiros antigos</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="403"/>
+        <location filename="../mainwindow.ui" line="244"/>
         <source>All files</source>
         <translation>Todos os ficheiros</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="585"/>
+        <location filename="../mainwindow.ui" line="605"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
         <translation>Ferramenta gráfica para o análise da utilización do disco</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="597"/>
+        <location filename="../mainwindow.ui" line="617"/>
         <source>Run Disk Usage Analyzer</source>
         <translation>Executar o análise da utilización do disco</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="300"/>
+        <location filename="../mainwindow.ui" line="141"/>
         <source>Schedule</source>
         <translation>Calendario</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="312"/>
+        <location filename="../mainwindow.ui" line="153"/>
         <source>No automatic clean</source>
         <translation>Nunca</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="319"/>
+        <location filename="../mainwindow.ui" line="160"/>
         <source>At reboot</source>
         <translation>Ao reiniciar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="326"/>
+        <location filename="../mainwindow.ui" line="167"/>
         <source>Daily</source>
         <translation>Diariamente</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="333"/>
+        <location filename="../mainwindow.ui" line="174"/>
         <source>Weekly</source>
         <translation>Semanalmente</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="340"/>
+        <location filename="../mainwindow.ui" line="181"/>
         <source>Monthly</source>
         <translation>Mensualmente</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="58"/>
+        <location filename="../mainwindow.ui" line="467"/>
         <source>Free Disk Space for User</source>
         <translation>Espazo no Disco Libre para o Usuario</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="70"/>
-        <location filename="../mainwindow.ui" line="86"/>
+        <location filename="../mainwindow.ui" line="479"/>
+        <location filename="../mainwindow.ui" line="495"/>
         <source>Select user to repair</source>
         <translation>Seleccionar usuario para reparar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="73"/>
+        <location filename="../mainwindow.ui" line="482"/>
         <source>Select user:</source>
         <translation>Seleccionar usuario:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="205"/>
+        <location filename="../mainwindow.ui" line="263"/>
         <source>Delete Logs</source>
         <translation>Eliminar os rexistros</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="220"/>
+        <location filename="../mainwindow.ui" line="278"/>
         <source>All logs</source>
         <translation>Todos os rexistros</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="281"/>
+        <location filename="../mainwindow.ui" line="339"/>
         <source>Old logs</source>
         <translation>Rexistros antigos</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="268"/>
+        <location filename="../mainwindow.ui" line="326"/>
         <source>Logs older than:</source>
         <translation>Rexistros con máis de:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="531"/>
+        <location filename="../mainwindow.ui" line="551"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Eliminar controladores de WiFi no utilizados</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="550"/>
+        <location filename="../mainwindow.ui" line="570"/>
         <source>List and select kernels to remove</source>
         <translation>Listar e seleccionar Kernels para eliminar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="36"/>
+        <location filename="../mainwindow.ui" line="125"/>
         <source>Clean Flatpak</source>
         <translation>Limpar Flatpak</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="42"/>
+        <location filename="../mainwindow.ui" line="131"/>
         <source>Remove unused runtimes</source>
         <translation>Elimina os tempos de execución non utilizados</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="102"/>
+        <location filename="../mainwindow.ui" line="364"/>
         <source>Clean Folders</source>
         <translation>Borrar cartafoles</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="166"/>
+        <location filename="../mainwindow.ui" line="428"/>
         <source>Not accessed for:</source>
         <translation>Non accedido durante:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="114"/>
+        <location filename="../mainwindow.ui" line="376"/>
         <source>Cache</source>
         <translation>Cache</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="189"/>
+        <location filename="../mainwindow.ui" line="451"/>
         <source>All (potentially dangerous)</source>
         <translation>Todo (potencialmente perigoso)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="143"/>
+        <location filename="../mainwindow.ui" line="405"/>
         <source>Thumbnails</source>
         <translation>Miniaturas</translation>
     </message>
@@ -261,98 +266,98 @@
         <translation>Eliminando paquetes, agarde</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="254"/>
-        <location filename="../mainwindow.cpp" line="720"/>
+        <location filename="../mainwindow.cpp" line="255"/>
+        <location filename="../mainwindow.cpp" line="738"/>
         <source>Press any key to close</source>
         <translation>Premer calquera tecla para pechar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="417"/>
+        <location filename="../mainwindow.cpp" line="419"/>
         <source> day</source>
         <translation>día</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="432"/>
+        <location filename="../mainwindow.cpp" line="435"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="432"/>
+        <location filename="../mainwindow.cpp" line="435"/>
         <source>Failed to elevate privileges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="569"/>
+        <location filename="../mainwindow.cpp" line="586"/>
         <source>Done</source>
         <translation>Feito</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="571"/>
+        <location filename="../mainwindow.cpp" line="588"/>
         <source>Cleanup script will run at reboot</source>
         <translation>O script de limpeza executarase ao reiniciar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="572"/>
+        <location filename="../mainwindow.cpp" line="589"/>
         <source>Cleanup command done</source>
         <translation>Comando Limpar executado</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="572"/>
+        <location filename="../mainwindow.cpp" line="589"/>
         <source>%1 MiB were freed</source>
         <translation>Liberáronse %1 MiB&#xa0;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="579"/>
+        <location filename="../mainwindow.cpp" line="597"/>
         <source>About</source>
         <translation>Sobre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="580"/>
+        <location filename="../mainwindow.cpp" line="598"/>
         <source>Version: </source>
         <translation>Versión</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="582"/>
+        <location filename="../mainwindow.cpp" line="600"/>
         <source>Quick and safe removal of old files</source>
         <translation>Eliminación rápida e segura de ficheiros antigos que xa non son necesarios</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="584"/>
+        <location filename="../mainwindow.cpp" line="602"/>
         <source>Copyright (c) MX Linux</source>
         <translation>Copyright (c) MX Linux</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="585"/>
+        <location filename="../mainwindow.cpp" line="603"/>
         <source>%1 License</source>
         <translation>Licenza de %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="592"/>
+        <location filename="../mainwindow.cpp" line="610"/>
         <source>%1 Help</source>
         <translation>Axuda para %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="675"/>
+        <location filename="../mainwindow.cpp" line="693"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Kernel actualmente en uso: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="678"/>
+        <location filename="../mainwindow.cpp" line="696"/>
         <source>Remove selected</source>
         <translation>Eliminar seleccionado</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="683"/>
+        <location filename="../mainwindow.cpp" line="701"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Kernels semellantes que se poden eliminar:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="684"/>
+        <location filename="../mainwindow.cpp" line="702"/>
         <source>Other kernels that can be removed:</source>
         <translation>Outros Kernels que se poden eliminar:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="687"/>
+        <location filename="../mainwindow.cpp" line="705"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation>&lt;b&gt;Sen nada que eliminar.&lt;/b&gt; Non se pode eliminar o núcleo en uso.</translation>
     </message>

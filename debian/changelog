@@ -1,3 +1,11 @@
+mx-cleanup (25.6.01) mx; urgency=medium
+
+  * Add option to remove remaining configuration files from removed packages
+  * Add --delete-data for flatpak removal of unused apps
+  * Disable interface while applying changes to avoid random button clicks
+
+ -- Adrian <adrian@mxlinux.org>  Mon, 09 Jun 2025 18:21:17 -0400
+
 mx-cleanup (25.6) mx; urgency=medium
 
   * Fix: processing local language when removing manuals
