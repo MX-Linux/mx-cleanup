@@ -469,12 +469,12 @@ void MainWindow::pushApply_clicked()
 
     QString flatpak;
     if (ui->checkFlatpak->isChecked()) {
-        flatpak = "pgrep -a flatpak | grep -v flatpak-s || flatpak uninstall --unused --noninteractive";
+        flatpak = "pgrep -a flatpak | grep -v flatpak-s || flatpak uninstall --unused --delete-data --noninteractive";
         QString user_size = "du -s /home/$(logname)/.local/share/flatpak/ | cut -f1";
         QString system_size = "du -s /var/lib/flatpak/ | cut -f1";
         total += cmdOut(user_size).toULongLong();
         bool ok {false};
-        qulonglong system_size_num = cmdOutAsRoot(system_size).toULongLong(&ok);
+        quint64 system_size_num = cmdOutAsRoot(system_size).toULongLong(&ok);
         if (ok) {
             total += system_size_num;
         }
