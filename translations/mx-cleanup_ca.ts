@@ -43,12 +43,12 @@
     <message>
         <location filename="../mainwindow.ui" line="525"/>
         <source>Removal Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Eines de  neteja</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="563"/>
         <source>Remove MX manuals for languages other than system default</source>
-        <translation type="unfinished"></translation>
+        <translation>Elimina els manuals de MX per idiomes diferents al del sistema</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
@@ -201,10 +201,6 @@
         <translation>Registres més antics de:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Eina d&apos;eliminació</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Elimina els controladors de WiFi que no s&apos;usen</translation>
@@ -252,17 +248,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>Remove Manuals</source>
-        <translation type="unfinished"></translation>
+        <translation>Elimina Manuals</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>No manuals to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation>No hi ha manuals per eliminar.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>Removing packages, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminant paquets, espereu si us plau</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>

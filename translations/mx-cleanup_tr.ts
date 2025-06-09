@@ -201,10 +201,6 @@
         <translation>Daha eski günlükler:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Temizleme aracı</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Kullanılmayan WiFi sürücülerini kaldır</translation>
@@ -262,7 +258,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>Removing packages, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Paketler kaldırılıyor, lütfen bekleyin</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>

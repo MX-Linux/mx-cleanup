@@ -43,12 +43,12 @@
     <message>
         <location filename="../mainwindow.ui" line="525"/>
         <source>Removal Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistotyökalut</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="563"/>
         <source>Remove MX manuals for languages other than system default</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista MX-käyttöohjeet kaikilta muilta kuin oletuskieliltä</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
@@ -201,10 +201,6 @@
         <translation>Ylöskirjausmerkinnät jotka ovat vanhempia kuin:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Poistotyökalu</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Poista tarpeettomat wifi-laiteajurit</translation>
@@ -252,17 +248,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>Remove Manuals</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista käyttöohjeet</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>No manuals to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei poistettavia käyttöohjeita.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>Removing packages, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistetaan paketteja, odota</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>

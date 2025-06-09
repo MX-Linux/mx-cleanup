@@ -201,10 +201,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Šalinimo įrankis</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Šalinti nenaudojamas belaidžio ryšio (WiFi) tvarkykles</translation>

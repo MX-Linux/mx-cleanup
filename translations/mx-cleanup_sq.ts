@@ -43,12 +43,12 @@
     <message>
         <location filename="../mainwindow.ui" line="525"/>
         <source>Removal Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Mjete Heqjeje</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="563"/>
         <source>Remove MX manuals for languages other than system default</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiq doracakë MX për gjuhë të tjera nga ajo parazgjedhje e sistemit</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
@@ -201,10 +201,6 @@
         <translation>Regjistra më të vjetër se:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Mjet heqjeje</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Hiqni përudhës WiFi të papërdorur</translation>
@@ -252,17 +248,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>Remove Manuals</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiqi Doracakët</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>No manuals to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation>S’ka doracakë për heqje.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>Removing packages, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Po hiqen paketa, ju lutemi, prisni</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>

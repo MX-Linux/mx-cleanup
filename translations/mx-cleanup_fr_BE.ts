@@ -43,12 +43,12 @@
     <message>
         <location filename="../mainwindow.ui" line="525"/>
         <source>Removal Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Outil de suppression</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="563"/>
         <source>Remove MX manuals for languages other than system default</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer les manuels MX pour les langues autres que la langue par défaut du système</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
@@ -201,10 +201,6 @@
         <translation>Journaux - logs plus vieux que:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Outil de suppression</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Supprimer les pilotes WiFi inutilisés</translation>
@@ -252,17 +248,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>Remove Manuals</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer les manuels</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>No manuals to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun manuel à supprimer.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>Removing packages, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Suppression des paquets, veuillez patienter</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>

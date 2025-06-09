@@ -43,12 +43,12 @@
     <message>
         <location filename="../mainwindow.ui" line="525"/>
         <source>Removal Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Инструмент для удаления</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="563"/>
         <source>Remove MX manuals for languages other than system default</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить руководства MX для языков, отличных от системных по умолчанию.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
@@ -201,10 +201,6 @@
         <translation>Журналы старше чем:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Инструмент для удаления</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Удалить неиспользуемые драйверы WiFi</translation>
@@ -252,17 +248,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>Remove Manuals</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить руководства</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>No manuals to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет руководств для удаления.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>Removing packages, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Удаление пакетов, пожалуйста, подождите</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>

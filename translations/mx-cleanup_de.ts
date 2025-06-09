@@ -48,7 +48,7 @@
     <message>
         <location filename="../mainwindow.ui" line="563"/>
         <source>Remove MX manuals for languages other than system default</source>
-        <translation type="unfinished"></translation>
+        <translation>MX-Handbücher für andere Sprachen als die Standardsprache des Systems werden entfernt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
@@ -201,10 +201,6 @@
         <translation>Die Protokolldateien sind älter als:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Bereinigungswerkzeug</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Ungenutzte WiFi-Treiber entfernen</translation>
@@ -252,17 +248,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>Remove Manuals</source>
-        <translation type="unfinished"></translation>
+        <translation>Handbücher entfernen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>No manuals to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Handbücher zum Entfernen gefunden.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>Removing packages, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakete werden entfernt, bitte warten</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>

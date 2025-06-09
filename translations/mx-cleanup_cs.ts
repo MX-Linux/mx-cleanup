@@ -201,10 +201,6 @@
         <translation>Záznamy starší než:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Nástroj pro odstranění</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Odstranění nepoužívaných ovladačů WiFi</translation>

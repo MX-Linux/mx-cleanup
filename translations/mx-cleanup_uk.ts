@@ -201,10 +201,6 @@
         <translation>Логи старіші за:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Додаток для видалення</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Видалити невикористані драйвери до WiFi</translation>

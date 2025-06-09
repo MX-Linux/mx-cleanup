@@ -48,7 +48,7 @@
     <message>
         <location filename="../mainwindow.ui" line="563"/>
         <source>Remove MX manuals for languages other than system default</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση εγχειριδίων χρήσης του MX για διαφορετικές γλώσσες από τη προεπιλεγμένη</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
@@ -201,10 +201,6 @@
         <translation>Αρχεία καταγραφής παλαιότερα από:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Εργαλείο αφαίρεσης</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Αφαίρεση αχρησιμοποίητων οδηγών WiFi</translation>
@@ -252,17 +248,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>Remove Manuals</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση εγχειριδίων χρήσης</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>No manuals to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν υπάρχουν εγχειρίδια χρήσης για αφαίρεση.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>Removing packages, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση πακέτων, παρακαλώ περιμένετε</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>

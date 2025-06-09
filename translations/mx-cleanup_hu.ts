@@ -48,7 +48,7 @@
     <message>
         <location filename="../mainwindow.ui" line="563"/>
         <source>Remove MX manuals for languages other than system default</source>
-        <translation type="unfinished"></translation>
+        <translation>A rendszer alapértelmezett nyelvétől eltérő MX kézikönyvek eltávolítása</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
@@ -201,10 +201,6 @@
         <translation>Ennél régebbi naplók:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Eltávolító eszköz</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Nem használt WiFi illesztőprogramok eltávolítása</translation>
@@ -252,17 +248,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>Remove Manuals</source>
-        <translation type="unfinished"></translation>
+        <translation>Kézikönyvek eltávolítása</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>No manuals to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincsenek eltávolítandó kézikönyvek.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>Removing packages, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Csomagok eltávolítása, kis türelmet</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>

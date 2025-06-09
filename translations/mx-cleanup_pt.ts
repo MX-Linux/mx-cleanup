@@ -43,12 +43,12 @@
     <message>
         <location filename="../mainwindow.ui" line="525"/>
         <source>Removal Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferramentas de remoção</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="563"/>
         <source>Remove MX manuals for languages other than system default</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover os manuais do MX das línguas que não sejam a sistema operativo</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
@@ -201,10 +201,6 @@
         <translation>Registos com mais de:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Ferramenta de remoção</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Remover controladores WiFi não utilizados</translation>
@@ -252,17 +248,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>Remove Manuals</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover Manuais</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>No manuals to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem manuais a remover.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>Removing packages, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>A remover pacotes, por favor aguarde</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>
@@ -283,7 +279,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="432"/>
         <source>Failed to elevate privileges</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu uma falha ao elevar os privilégios</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="569"/>

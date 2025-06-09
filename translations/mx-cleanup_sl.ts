@@ -48,7 +48,7 @@
     <message>
         <location filename="../mainwindow.ui" line="563"/>
         <source>Remove MX manuals for languages other than system default</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstrani MX vodnike, ki niso v privzetem jeziku sistema</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="641"/>
@@ -201,10 +201,6 @@
         <translation>Dnevnike starejše od:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">Orodje za odstranjevanje</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Odstrani neuporabljene brezžične WiFi povezave</translation>
@@ -252,17 +248,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>Remove Manuals</source>
-        <translation type="unfinished"></translation>
+        <translation>Ostrani vodnike</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>No manuals to remove.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ni vodnikov za odstranjevanje.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>Removing packages, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranjevanje paketov. Počakajte.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>

@@ -201,10 +201,6 @@
         <translation>日志早于:</translation>
     </message>
     <message>
-        <source>Removal tool</source>
-        <translation type="vanished">移除工具</translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Remove unused WiFi drivers</source>
         <translation>移除未使用的 WiFi 驱动</translation>
