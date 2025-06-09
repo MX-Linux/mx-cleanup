@@ -173,6 +173,7 @@ void MainWindow::loadSettings()
 
     settings.beginGroup("Apt");
     selectRadioButton(ui->groupBoxApt, ui->buttonGroupApt, settings.value("AptSelection", -1).toInt());
+    ui->checkPurge->setChecked(settings.value("AptPurge", false).toBool());
     settings.endGroup();
 
     settings.beginGroup("Flatpak");
@@ -369,6 +370,7 @@ void MainWindow::saveSettings()
 
     settings.beginGroup("Apt");
     settings.setValue("AptSelection", ui->buttonGroupApt->checkedId());
+    settings.setValue("AptPurge", ui->checkPurge->isChecked());
     settings.endGroup();
 
     settings.beginGroup("Logs");
@@ -421,6 +423,7 @@ void MainWindow::setConnections()
 void MainWindow::pushApply_clicked()
 {
     setCursor(QCursor(Qt::BusyCursor));
+    setEnabled(false);
 
     if (getuid() != 0) {
         QString elevate {QFile::exists("/usr/bin/pkexec") ? "/usr/bin/pkexec" : "/usr/bin/gksu"};
@@ -493,11 +496,25 @@ void MainWindow::pushApply_clicked()
             apt = "apt-get clean";
         }
 
-        total += cmdOutAsRoot("du -s /var/cache/apt/archives/ | cut -f1").toULongLong();
-        if (!ui->radioReboot->isChecked()) {
-            cmdOutAsRoot(apt);
+        if (ui->checkPurge->isChecked()) {
+            if (!apt.isEmpty()) {
+                apt += '\n';
+            }
+            apt += "dpkg -l | awk '/^rc/ { print $2 }' | xargs -r apt-get purge -y";
         }
-        total -= cmdOutAsRoot("du -s /var/cache/apt/archives/ | cut -f1").toULongLong();
+
+        if (!apt.isEmpty()) {
+            const QString size_cmd
+                = "du -s /var/cache/apt/archives/ /var/lib/dpkg/info/ | awk '{sum += $1} END {print sum}'";
+            quint64 before_size = cmdOutAsRoot(size_cmd).toULongLong();
+
+            if (!ui->radioReboot->isChecked()) {
+                cmdOutAsRoot(apt);
+            }
+
+            quint64 after_size = cmdOutAsRoot(size_cmd).toULongLong();
+            total += (before_size - after_size);
+        }
     }
 
     QString logs;
@@ -540,10 +557,10 @@ void MainWindow::pushApply_clicked()
     }
 
     // Cleanup schedule
-    cmdOutAsRoot("rm /etc/cron.daily/mx-cleanup");
-    cmdOutAsRoot("rm /etc/cron.weekly/mx-cleanup");
-    cmdOutAsRoot("rm /etc/cron.monthly/mx-cleanup");
-    cmdOutAsRoot("rm /etc/cron.d/mx-cleanup");
+    cmdOutAsRoot("rm /etc/cron.daily/mx-cleanup", true);
+    cmdOutAsRoot("rm /etc/cron.weekly/mx-cleanup", true);
+    cmdOutAsRoot("rm /etc/cron.monthly/mx-cleanup", true);
+    cmdOutAsRoot("rm /etc/cron.d/mx-cleanup", true);
 
     // Add schedule file
     if (!ui->radioNone->isChecked()) {
@@ -570,6 +587,7 @@ void MainWindow::pushApply_clicked()
                              ui->radioReboot->isChecked()
                                  ? tr("Cleanup script will run at reboot")
                                  : tr("Cleanup command done") + '\n' + tr("%1 MiB were freed").arg(total / 1024));
+    setEnabled(true);
 }
 
 void MainWindow::pushAbout_clicked()
