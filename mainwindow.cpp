@@ -56,7 +56,7 @@ MainWindow::~MainWindow()
 void MainWindow::removeManuals()
 {
     QSettings defaultlocale("/etc/default/locale", QSettings::NativeFormat);
-    QString lang = defaultlocale.value("LANG", "C").toString().replace(".utf8", ".UTF-8");
+    QString lang = defaultlocale.value("LANG", "C").toString().section('.', 0, 0).section('_', 0, 0);
     if (lang.isEmpty()) {
         return;
     }
