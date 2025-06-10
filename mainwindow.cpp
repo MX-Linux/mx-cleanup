@@ -172,6 +172,7 @@ void MainWindow::loadSettings()
     settings.endGroup();
 
     settings.beginGroup("Apt");
+    ui->groupBoxApt->setChecked(settings.value("AptCleanup", true).toBool());
     selectRadioButton(ui->groupBoxApt, ui->buttonGroupApt, settings.value("AptSelection", -1).toInt());
     ui->checkPurge->setChecked(settings.value("AptPurge", false).toBool());
     settings.endGroup();
@@ -181,11 +182,13 @@ void MainWindow::loadSettings()
     settings.endGroup();
 
     settings.beginGroup("Logs");
+    ui->groupBoxLogs->setChecked(settings.value("LogsCleanup", true).toBool());
     ui->spinBoxLogs->setValue(settings.value("LogsOlderThan", 7).toInt());
     selectRadioButton(ui->groupBoxLogs, ui->buttonGroupLogs, settings.value("LogsSelection", -1).toInt());
     settings.endGroup();
 
     settings.beginGroup("Trash");
+    ui->groupBoxTrash->setChecked(settings.value("TrashCleanup", true).toBool());
     ui->spinBoxTrash->setValue(settings.value("TrashOlderThan", 30).toInt());
     selectRadioButton(ui->groupBoxTrash, ui->buttonGroupTrash, settings.value("TrashSelection", -1).toInt());
     settings.endGroup();
@@ -238,8 +241,9 @@ void MainWindow::removeKernelPackages(const QStringList &list)
             image_pattern.remove("-common");
             image_pattern.replace("headers", "image");
             QProcess checkProc;
-            QString checkCmd = QString("dpkg -l 'linux-image-[0-9]*' | grep ^ii | cut -d ' ' -f3 | grep -v -E '%1' | grep -q %2")
-                .arg(list.join('|'), image_pattern);
+            QString checkCmd
+                = QString("dpkg -l 'linux-image-[0-9]*' | grep ^ii | cut -d ' ' -f3 | grep -v -E '%1' | grep -q %2")
+                      .arg(list.join('|'), image_pattern);
             checkProc.start("/bin/bash", {"-c", checkCmd});
             checkProc.waitForFinished();
             if (checkProc.exitCode() != 0) {
@@ -256,8 +260,9 @@ void MainWindow::removeKernelPackages(const QStringList &list)
     }
 
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};
-    QString terminalCmd = QString("%1 apt purge %2 %3 %4; apt-get install -f; read -n1 -srp \"%5\"")
-        .arg(rmOldVersions, headers_installed.join(' '), list.join(' '), common, tr("Press any key to close"));
+    QString terminalCmd
+        = QString("%1 apt purge %2 %3 %4; apt-get install -f; read -n1 -srp \"%5\"")
+              .arg(rmOldVersions, headers_installed.join(' '), list.join(' '), common, tr("Press any key to close"));
     QProcess terminalProc;
     terminalProc.start("x-terminal-emulator", {"-e", "pkexec", helper, terminalCmd});
     terminalProc.waitForFinished();
@@ -321,6 +326,12 @@ void MainWindow::loadOptions()
             ui->groupBoxApt->setChecked(false);
         }
     }
+
+    // APT purge
+    QProcess purgeProc;
+    purgeProc.start("grep", {"-q", "apt-get purge", file_name});
+    purgeProc.waitForFinished();
+    ui->checkPurge->setChecked(purgeProc.exitCode() == 0);
 
     // Flatpak: remove unused runtimes
     QProcess flatpakProc;
@@ -413,6 +424,7 @@ void MainWindow::saveSettings()
     settings.endGroup();
 
     settings.beginGroup("Apt");
+    settings.setValue("AptCleanup", ui->groupBoxApt->isChecked());
     settings.setValue("AptSelection", ui->buttonGroupApt->checkedId());
     settings.setValue("AptPurge", ui->checkPurge->isChecked());
     settings.endGroup();
@@ -423,11 +435,13 @@ void MainWindow::saveSettings()
     settings.endGroup();
 
     settings.beginGroup("Trash");
+    settings.setValue("TrashCleanup", ui->groupBoxTrash->isChecked());
     settings.setValue("TrashSelection", ui->buttonGroupTrash->checkedId());
     settings.setValue("TrashOlderThan", ui->spinBoxTrash->value());
     settings.endGroup();
 
     settings.beginGroup("Flatpak");
+    settings.setValue("FlatpakCleanup", ui->groupBoxFlatpak->isChecked());
     settings.setValue("UninstallUnusedRuntimes", ui->checkFlatpak->isChecked());
     settings.endGroup();
 }
@@ -570,10 +584,6 @@ void MainWindow::pushApply_clicked()
         total += (before_size - after_size);
     }
 
-
-
-
-
     QString logs;
     if (ui->groupBoxLogs->isChecked()) {
         QString time = ui->spinBoxLogs->value() > 0 ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxLogs->value())
@@ -622,12 +632,24 @@ void MainWindow::pushApply_clicked()
     // Add schedule file
     if (!ui->radioNone->isChecked()) {
         QStringList parts;
-        if (!cache.isEmpty()) parts << cache;
-        if (!thumbnails.isEmpty()) parts << thumbnails;
-        if (!logs.isEmpty()) parts << logs;
-        if (!apt.isEmpty()) parts << apt;
-        if (!trash.isEmpty()) parts << trash;
-        if (!flatpak.isEmpty()) parts << flatpak;
+        if (!cache.isEmpty()) {
+            parts << cache;
+        }
+        if (!thumbnails.isEmpty()) {
+            parts << thumbnails;
+        }
+        if (!logs.isEmpty()) {
+            parts << logs;
+        }
+        if (!apt.isEmpty()) {
+            parts << apt;
+        }
+        if (!trash.isEmpty()) {
+            parts << trash;
+        }
+        if (!flatpak.isEmpty()) {
+            parts << flatpak;
+        }
         QString cmd_str = parts.join('\n');
         qDebug() << "CMD STR" << cmd_str;
         QString schedule;
@@ -797,8 +819,8 @@ void MainWindow::pushRTLremove_clicked()
     fi)");
 
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};
-    QString terminalCmd = QString("apt purge %1; apt-get install -f; read -n1 -srp \"%2\"")
-        .arg(dumpList, tr("Press any key to close"));
+    QString terminalCmd
+        = QString("apt purge %1; apt-get install -f; read -n1 -srp \"%2\"").arg(dumpList, tr("Press any key to close"));
     QProcess terminalProc;
     terminalProc.start("x-terminal-emulator", {"-e", "pkexec", helper, terminalCmd});
     terminalProc.waitForFinished();
