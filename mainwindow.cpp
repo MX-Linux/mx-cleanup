@@ -218,7 +218,10 @@ void MainWindow::removeKernelPackages(const QStringList &list)
     }
 
     for (const auto &item : std::as_const(headers)) {
-        if (system("dpkg -s " + item.toUtf8() + "| grep -q 'Status: install ok installed'") == 0) {
+        QProcess proc;
+        proc.start("dpkg", {"-s", item});
+        proc.waitForFinished();
+        if (proc.exitCode() == 0 && proc.readAllStandardOutput().contains("Status: install ok installed")) {
             headers_installed << item;
         }
     }
@@ -234,9 +237,12 @@ void MainWindow::removeKernelPackages(const QStringList &list)
             image_pattern = headers_common;
             image_pattern.remove("-common");
             image_pattern.replace("headers", "image");
-            if (system("dpkg -l 'linux-image-[0-9]*' | grep ^ii | cut -d ' ' -f3  | grep -v -E '"
-                       + list.join('|').toUtf8() + "' | grep -q " + image_pattern.toUtf8())
-                != 0) {
+            QProcess checkProc;
+            QString checkCmd = QString("dpkg -l 'linux-image-[0-9]*' | grep ^ii | cut -d ' ' -f3 | grep -v -E '%1' | grep -q %2")
+                .arg(list.join('|'), image_pattern);
+            checkProc.start("/bin/bash", {"-c", checkCmd});
+            checkProc.waitForFinished();
+            if (checkProc.exitCode() != 0) {
                 headers_depends << headers_common;
             }
         }
@@ -250,9 +256,11 @@ void MainWindow::removeKernelPackages(const QStringList &list)
     }
 
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};
-    system("x-terminal-emulator -e pkexec " + helper.toUtf8() + " '" + rmOldVersions.toUtf8() + " apt purge "
-           + headers_installed.join(' ').toUtf8() + ' ' + list.join(' ').toUtf8() + ' ' + common.toUtf8()
-           + "; apt-get install -f; read -n1 -srp \"" + tr("Press any key to close").toUtf8() + "\"'");
+    QString terminalCmd = QString("%1 apt purge %2 %3 %4; apt-get install -f; read -n1 -srp \"%5\"")
+        .arg(rmOldVersions, headers_installed.join(' '), list.join(' '), common, tr("Press any key to close"));
+    QProcess terminalProc;
+    terminalProc.start("x-terminal-emulator", {"-e", "pkexec", helper, terminalCmd});
+    terminalProc.waitForFinished();
     setCursor(QCursor(Qt::ArrowCursor));
 }
 
@@ -279,34 +287,62 @@ void MainWindow::loadOptions()
     }
 
     // Folders
-    ui->checkThumbs->setChecked(system(R"(grep -q 'rm -r.*\.cache/thumbnails' )" + file_name.toUtf8()) == 0);
-    if (system(R"(grep -qE 'find \/home\/.*\/\.cache(\s|/\*)' )" + file_name.toUtf8()) == 0) {
+    QProcess thumbsProc;
+    thumbsProc.start("grep", {"-q", "rm -r.*\\.cache/thumbnails", file_name});
+    thumbsProc.waitForFinished();
+    ui->checkThumbs->setChecked(thumbsProc.exitCode() == 0);
+    QProcess cacheProc;
+    cacheProc.start("grep", {"-qE", "find /home/.*/\\.cache(\\s|/\\*)", file_name});
+    cacheProc.waitForFinished();
+    if (cacheProc.exitCode() == 0) {
         ui->checkCache->setChecked(true);
-        ui->radioSaferCache->setChecked(system(R"(grep -q 'find.*cache.*-atime' )" + file_name.toUtf8()) == 0);
+        QProcess atimeProc;
+        atimeProc.start("grep", {"-q", "find.*cache.*-atime", file_name});
+        atimeProc.waitForFinished();
+        ui->radioSaferCache->setChecked(atimeProc.exitCode() == 0);
         ui->radioAllCache->setChecked(!ui->radioSaferCache->isChecked());
     } else {
         ui->checkCache->setChecked(false);
     }
 
     // APT
-    if (system("grep -q 'apt-get autoclean' " + file_name.toUtf8()) == 0) { // detect autoclean
+    QProcess autocleanProc;
+    autocleanProc.start("grep", {"-q", "apt-get autoclean", file_name});
+    autocleanProc.waitForFinished();
+    if (autocleanProc.exitCode() == 0) { // detect autoclean
         ui->radioAutoClean->setChecked(true);
-    } else if (system("grep -q 'apt-get clean' " + file_name.toUtf8()) == 0) { // detect clean
-        ui->radioClean->setChecked(true);
     } else {
-        ui->groupBoxApt->setChecked(false);
+        QProcess cleanProc;
+        cleanProc.start("grep", {"-q", "apt-get clean", file_name});
+        cleanProc.waitForFinished();
+        if (cleanProc.exitCode() == 0) { // detect clean
+            ui->radioClean->setChecked(true);
+        } else {
+            ui->groupBoxApt->setChecked(false);
+        }
     }
 
     // Flatpak: remove unused runtimes
-    ui->checkFlatpak->setChecked(system("grep -q 'flatpak uninstall --unused' " + file_name.toUtf8()) == 0);
+    QProcess flatpakProc;
+    flatpakProc.start("grep", {"-q", "flatpak uninstall --unused", file_name});
+    flatpakProc.waitForFinished();
+    ui->checkFlatpak->setChecked(flatpakProc.exitCode() == 0);
 
     // Logs
-    if (system(R"(grep -q '\-exec sh \-c "echo' )" + file_name.toUtf8()) == 0) { // all logs
+    QProcess allLogsProc;
+    allLogsProc.start("grep", {"-q", "\\-exec sh \\-c \"echo", file_name});
+    allLogsProc.waitForFinished();
+    if (allLogsProc.exitCode() == 0) { // all logs
         ui->radioAllLogs->setChecked(true);
-    } else if (system(R"(grep -q '\-type f \-delete' )" + file_name.toUtf8()) == 0) { // old logs
-        ui->radioOldLogs->setChecked(true);
     } else {
-        ui->groupBoxLogs->setChecked(false);
+        QProcess oldLogsProc;
+        oldLogsProc.start("grep", {"-q", "\\-type f \\-delete", file_name});
+        oldLogsProc.waitForFinished();
+        if (oldLogsProc.exitCode() == 0) { // old logs
+            ui->radioOldLogs->setChecked(true);
+        } else {
+            ui->groupBoxLogs->setChecked(false);
+        }
     }
 
     // Logs older than...
@@ -315,12 +351,20 @@ void MainWindow::loadOptions()
     ui->spinBoxLogs->setValue(ctime.toInt());
 
     // Trash
-    if (system(R"(grep -q '/home/\*/.local/share/Trash' )" + file_name.toUtf8()) == 0) { // all user trash
+    QProcess allUsersProc;
+    allUsersProc.start("grep", {"-q", "/home/\\*/.local/share/Trash", file_name});
+    allUsersProc.waitForFinished();
+    if (allUsersProc.exitCode() == 0) { // all user trash
         ui->radioAllUsers->setChecked(true);
-    } else if (system("grep -q '/.local/share/Trash' " + file_name.toUtf8()) == 0) { // selected user trash
-        ui->radioSelectedUser->setChecked(true);
     } else {
-        ui->groupBoxTrash->setChecked(false);
+        QProcess selectedUserProc;
+        selectedUserProc.start("grep", {"-q", "/.local/share/Trash", file_name});
+        selectedUserProc.waitForFinished();
+        if (selectedUserProc.exitCode() == 0) { // selected user trash
+            ui->radioSelectedUser->setChecked(true);
+        } else {
+            ui->groupBoxTrash->setChecked(false);
+        }
     }
 
     // Trash older than...
@@ -734,7 +778,10 @@ void MainWindow::pushRTLremove_clicked()
     fi)");
 
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};
-    system("x-terminal-emulator -e pkexec " + helper.toUtf8() + " 'apt purge " + dumpList.toUtf8()
-           + "; apt-get install -f; read -n1 -srp \"" + tr("Press any key to close").toUtf8() + "\"'");
+    QString terminalCmd = QString("apt purge %1; apt-get install -f; read -n1 -srp \"%2\"")
+        .arg(dumpList, tr("Press any key to close"));
+    QProcess terminalProc;
+    terminalProc.start("x-terminal-emulator", {"-e", "pkexec", helper, terminalCmd});
+    terminalProc.waitForFinished();
     setCursor(QCursor(Qt::ArrowCursor));
 }
