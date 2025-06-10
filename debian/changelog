@@ -1,3 +1,9 @@
+mx-cleanup (25.6.03) mx; urgency=medium
+
+  * Fix saving/loading default values
+
+ -- Adrian <adrian@mxlinux.org>  Tue, 10 Jun 2025 16:02:13 -0400
+
 mx-cleanup (25.6.02) mx; urgency=medium
 
   * Fix: run removal of config files independent of apt cleanup checkbox
