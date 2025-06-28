@@ -267,7 +267,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="265"/>
-        <location filename="../mainwindow.cpp" line="823"/>
+        <location filename="../mainwindow.cpp" line="828"/>
         <source>Press any key to close</source>
         <translation>बंद करने के लिए कोई भी कुंजी दबाएँ</translation>
     </message>

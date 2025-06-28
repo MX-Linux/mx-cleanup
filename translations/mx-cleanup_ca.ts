@@ -38,7 +38,7 @@
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Purge residual configurations from removed packages</source>
-        <translation type="unfinished"></translation>
+        <translation>Purga la configuració residual dels paquets eliminats</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
@@ -267,7 +267,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="265"/>
-        <location filename="../mainwindow.cpp" line="823"/>
+        <location filename="../mainwindow.cpp" line="828"/>
         <source>Press any key to close</source>
         <translation>Premeu qualsevol tecla per tancar</translation>
     </message>

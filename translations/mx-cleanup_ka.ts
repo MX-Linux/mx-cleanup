@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="nl">
+<TS version="2.1" language="ka">
 <context>
     <name>MainWindow</name>
     <message>
@@ -8,17 +8,17 @@
         <location filename="../mainwindow.cpp" line="122"/>
         <location filename="../mainwindow.cpp" line="682"/>
         <source>MX Cleanup</source>
-        <translation>MX Opruimen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="683"/>
         <source>Display help </source>
-        <translation>Toon help</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="686"/>
         <source>Help</source>
-        <translation>Hulp</translation>
+        <translation>დახმარება</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="692"/>
@@ -28,12 +28,12 @@
     <message>
         <location filename="../mainwindow.ui" line="658"/>
         <source>About this application</source>
-        <translation>Over deze toepassing</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="24"/>
         <source>Main</source>
-        <translation>Hoofd</translation>
+        <translation>მთავარი</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="531"/>
@@ -43,7 +43,7 @@
     <message>
         <location filename="../mainwindow.ui" line="539"/>
         <source>Tools</source>
-        <translation>Gereedschap</translation>
+        <translation>ხელსაწყოები</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="545"/>
@@ -53,12 +53,12 @@
     <message>
         <location filename="../mainwindow.ui" line="583"/>
         <source>Remove MX manuals for languages other than system default</source>
-        <translation>MX-handleidingen voor andere talen dan de systeemstandaard verwijderen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="661"/>
         <source>About...</source>
-        <translation>Over...</translation>
+        <translation>შესახებ...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="667"/>
@@ -68,13 +68,13 @@
     <message>
         <location filename="../mainwindow.ui" line="781"/>
         <source>Quit application</source>
-        <translation>Verlaat de applicatie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="784"/>
         <location filename="../mainwindow.cpp" line="783"/>
         <source>Close</source>
-        <translation>Sluiten</translation>
+        <translation>დახურვა</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="790"/>
@@ -84,17 +84,17 @@
     <message>
         <location filename="../mainwindow.ui" line="756"/>
         <source>Apply</source>
-        <translation>Toepassen</translation>
+        <translation>გადატარება</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="36"/>
         <source>Empty Trash</source>
-        <translation>Prullenbak Legen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="45"/>
         <source>Trash older than:</source>
-        <translation>Afval ouder dan:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="103"/>
@@ -102,184 +102,184 @@
         <location filename="../mainwindow.ui" line="438"/>
         <location filename="../mainwindow.cpp" line="477"/>
         <source> days</source>
-        <translation>dagen</translation>
+        <translation>დღე</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="58"/>
         <source>All users</source>
-        <translation>Alle gebruikers</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="90"/>
         <source>Selected user</source>
-        <translation>Geselecteerde gebruiker</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="210"/>
         <source>Clear APT Cache</source>
-        <translation>Ruim Apt Cache op</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="225"/>
         <source>Old files</source>
-        <translation>Oude bestanden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="244"/>
         <source>All files</source>
-        <translation>Alle bestanden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="605"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation>Grafisch Gereedschap voor het Analyseren van Schijfgebruik</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="617"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation>Schijfgebruik Analyse</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="141"/>
         <source>Schedule</source>
-        <translation>Schema</translation>
+        <translation>გეგმა</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="153"/>
         <source>No automatic clean</source>
-        <translation>Geen automatische schoonmaak</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="160"/>
         <source>At reboot</source>
-        <translation>Bij herstarten</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="167"/>
         <source>Daily</source>
-        <translation>Dagelijks</translation>
+        <translation>ყოველდღე</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="174"/>
         <source>Weekly</source>
-        <translation>Wekelijks</translation>
+        <translation>ყოველკვირა</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="181"/>
         <source>Monthly</source>
-        <translation>Maandelijks</translation>
+        <translation>ყოველთვე</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="467"/>
         <source>Free Disk Space for User</source>
-        <translation>Vrije Schijfruimte voor Gebruiker</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="479"/>
         <location filename="../mainwindow.ui" line="495"/>
         <source>Select user to repair</source>
-        <translation>Selecteer een gebruiker voor reparatie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="482"/>
         <source>Select user:</source>
-        <translation>Selecteer gebruiker:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="263"/>
         <source>Delete Logs</source>
-        <translation>Verwijder Logs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="278"/>
         <source>All logs</source>
-        <translation>Alle logs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="339"/>
         <source>Old logs</source>
-        <translation>Oude logs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="326"/>
         <source>Logs older than:</source>
-        <translation>Logs ouder dan:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="551"/>
         <source>Remove unused WiFi drivers</source>
-        <translation>Ongebruikte wifi-stuurprogramma&apos;s verwijderen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="570"/>
         <source>List and select kernels to remove</source>
-        <translation>Lijst en selectie van te verwijderen kernels</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="125"/>
         <source>Clean Flatpak</source>
-        <translation>Schoonmaken Flatpak</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="131"/>
         <source>Remove unused runtimes</source>
-        <translation>Ongebruikte looptijden verwijderen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="364"/>
         <source>Clean Folders</source>
-        <translation>Folders om te Schonen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="428"/>
         <source>Not accessed for:</source>
-        <translation>Niet toegankelijk voor:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="376"/>
         <source>Cache</source>
-        <translation>Cache</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="451"/>
         <source>All (potentially dangerous)</source>
-        <translation>Alle (potentieel gevaarlijk)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="405"/>
         <source>Thumbnails</source>
-        <translation>Thumbnails</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>Remove Manuals</source>
-        <translation>Handleidingen verwijderen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>No manuals to remove.</source>
-        <translation>Geen handleidingen om te verwijderen.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>Removing packages, please wait</source>
-        <translation>Pakketten worden verwijderd, even geduld alstublieft</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="265"/>
         <location filename="../mainwindow.cpp" line="828"/>
         <source>Press any key to close</source>
-        <translation>Druk een toets om te sluiten</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="477"/>
         <source> day</source>
-        <translation>dag</translation>
+        <translation>დღე</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="493"/>
         <source>Error</source>
-        <translation>Fout</translation>
+        <translation>შეცდომა</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="493"/>
@@ -289,77 +289,77 @@
     <message>
         <location filename="../mainwindow.cpp" line="671"/>
         <source>Done</source>
-        <translation>Klaar</translation>
+        <translation>მზადაა</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="673"/>
         <source>Cleanup script will run at reboot</source>
-        <translation>Opschoonscript wordt uitgevoerd bij opnieuw opstarten</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="674"/>
         <source>Cleanup command done</source>
-        <translation>Opruim commando klaar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="674"/>
         <source>%1 MiB were freed</source>
-        <translation>%1 MiB werd vrijgemaakt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="682"/>
         <source>About</source>
-        <translation>Over</translation>
+        <translation>შესახებ</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="683"/>
         <source>Version: </source>
-        <translation>Versie:</translation>
+        <translation>ვერსია:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="685"/>
         <source>Quick and safe removal of old files</source>
-        <translation>Snelle en veilige verwijdering van oude bestanden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="687"/>
         <source>Copyright (c) MX Linux</source>
-        <translation>Copyright (c) MX Linux</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="688"/>
         <source>%1 License</source>
-        <translation>%1 Licentie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="695"/>
         <source>%1 Help</source>
-        <translation>%1 Help</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="778"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation>Kernel momenteel in gebruik:&lt;b&gt;%1&lt;/b&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="781"/>
         <source>Remove selected</source>
-        <translation>Verwijder geselecteerde</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="786"/>
         <source>Similar kernels that can be removed:</source>
-        <translation>Soortgelijke kernels die kunnen worden verwijderd:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="787"/>
         <source>Other kernels that can be removed:</source>
-        <translation>Andere kernels die kunnen worden verwijderd:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="790"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation>&lt;b&gt;Niets om te verwijderen.&lt;/b&gt; Kan kernel in gebruik niet verwijderen.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -367,44 +367,44 @@
     <message>
         <location filename="../about.cpp" line="70"/>
         <source>License</source>
-        <translation>Licentie</translation>
+        <translation>ლიცენზია</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="71"/>
         <location filename="../about.cpp" line="81"/>
         <source>Changelog</source>
-        <translation>Changelog</translation>
+        <translation>ცვლილებების ჟურნალი</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="72"/>
         <source>Cancel</source>
-        <translation>Ongedaan maken</translation>
+        <translation>გაუქმება</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="94"/>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;დახურვა</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="53"/>
         <source>Quick safe removal of old files</source>
-        <translation>Snel en veilig oude bestanden verwijderen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="79"/>
         <location filename="../main.cpp" line="87"/>
         <source>Error</source>
-        <translation>Fout</translation>
+        <translation>შეცდომა</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="80"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation>U lijkt ingelogd te zijn als root, gelieve uit te loggen en in te loggen als normale gebruiker om dit programma te gebruiken.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="88"/>
         <source>You must run this program with admin access.</source>
-        <translation>Je moet dit programma uitvoeren met admin-toegang.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

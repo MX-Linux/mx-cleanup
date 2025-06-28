@@ -38,7 +38,7 @@
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Purge residual configurations from removed packages</source>
-        <translation type="unfinished"></translation>
+        <translation>Očisti ostanke nastavitev odstranjenih paketov</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
@@ -48,7 +48,7 @@
     <message>
         <location filename="../mainwindow.ui" line="545"/>
         <source>Removal Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Orodja za odstranjevanje</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="583"/>
@@ -267,7 +267,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="265"/>
-        <location filename="../mainwindow.cpp" line="823"/>
+        <location filename="../mainwindow.cpp" line="828"/>
         <source>Press any key to close</source>
         <translation>Pritisnite poljubno tipko za izhod</translation>
     </message>

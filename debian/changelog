@@ -1,3 +1,9 @@
+mx-cleanup (25.6.04) mx; urgency=medium
+
+  * Remove broadcom-sta-dkms if wl but no broadcom pci devices are found 
+
+ -- Adrian <adrian@mxlinux.org>  Fri, 27 Jun 2025 21:44:25 -0400
+
 mx-cleanup (25.6.03) mx; urgency=medium
 
   * Fix saving/loading default values

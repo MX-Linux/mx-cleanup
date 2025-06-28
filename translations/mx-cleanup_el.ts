@@ -38,7 +38,7 @@
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Purge residual configurations from removed packages</source>
-        <translation type="unfinished"></translation>
+        <translation>Εκκαθάριση υπολειπόμενων ρυθμίσεων από πακέτα που έχουν αφαιρεθεί</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
@@ -107,7 +107,7 @@
     <message>
         <location filename="../mainwindow.ui" line="58"/>
         <source>All users</source>
-        <translation>Ολοι οι χρήστες</translation>
+        <translation>Όλοι οι χρήστες</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="90"/>
@@ -208,7 +208,7 @@
     <message>
         <location filename="../mainwindow.ui" line="551"/>
         <source>Remove unused WiFi drivers</source>
-        <translation>Αφαίρεση αχρησιμοποίητων οδηγών WiFi</translation>
+        <translation>Αφαίρεση οδηγών WiFi που δεν χρησιμοποιούνται</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="570"/>
@@ -223,7 +223,7 @@
     <message>
         <location filename="../mainwindow.ui" line="131"/>
         <source>Remove unused runtimes</source>
-        <translation>Αφαίρεση αχρησιμοποίητων runtimes</translation>
+        <translation>Αφαίρεση runtimes που δεν χρησιμοποιούνται</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="364"/>
@@ -267,7 +267,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="265"/>
-        <location filename="../mainwindow.cpp" line="823"/>
+        <location filename="../mainwindow.cpp" line="828"/>
         <source>Press any key to close</source>
         <translation>Πατήστε οποιοδήποτε πλήκτρο για να κλείσει</translation>
     </message>

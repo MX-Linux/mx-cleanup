@@ -38,7 +38,7 @@
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Purge residual configurations from removed packages</source>
-        <translation type="unfinished"></translation>
+        <translation>Eltávolított csomagok maradványkonfigurációinak törlése</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
@@ -48,7 +48,7 @@
     <message>
         <location filename="../mainwindow.ui" line="545"/>
         <source>Removal Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Eltávolító eszközök</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="583"/>
@@ -267,14 +267,14 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="265"/>
-        <location filename="../mainwindow.cpp" line="823"/>
+        <location filename="../mainwindow.cpp" line="828"/>
         <source>Press any key to close</source>
         <translation>Nyomjon meg egy billentyűt a bezáráshoz</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="477"/>
         <source> day</source>
-        <translation>nao</translation>
+        <translation>nap</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="493"/>
@@ -284,7 +284,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="493"/>
         <source>Failed to elevate privileges</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem sikerült emelt jogosultságokat szerezni</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="671"/>
