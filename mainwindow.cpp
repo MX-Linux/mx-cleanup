@@ -814,8 +814,13 @@ void MainWindow::pushRTLremove_clicked()
             echo -n "${modname}-dkms "
         fi
     done
-    if ! lsmod | grep -q -w ^wl; then
-        echo -n broadcom-sta-dkms
+    if ! lsmod | grep -q -w ^wl
+        then
+            echo -n broadcom-sta-dkms
+        else
+            lspci -v  | grep -q "Kernel driver in use: wl"$ || \
+            lsusb -tv | grep -q "Driver=wl, "               || \
+            echo -n broadcom-sta-dkms
     fi)");
 
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal"};

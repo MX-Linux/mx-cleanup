@@ -19,7 +19,7 @@
 # **********************************************************************/
 
 QT       += core gui widgets
-CONFIG   += c++1z
+CONFIG   += c++20
 
 TARGET = mx-cleanup
 TEMPLATE = app
