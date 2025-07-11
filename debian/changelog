@@ -1,3 +1,9 @@
+mx-cleanup (25.7) mx; urgency=medium
+
+  * Cleanup MX Fluxbox manuals in addition to regular ones
+
+ -- Adrian <adrian@mxlinux.org>  Fri, 11 Jul 2025 11:37:03 -0400
+
 mx-cleanup (25.6.04) mx; urgency=medium
 
   * Remove broadcom-sta-dkms if wl but no broadcom pci devices are found 

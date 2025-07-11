@@ -38,7 +38,7 @@
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Purge residual configurations from removed packages</source>
-        <translation type="unfinished"></translation>
+        <translation>Полное удаление остаточных конфигураций от удалённых пакетов</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>

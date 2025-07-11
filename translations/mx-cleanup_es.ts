@@ -38,7 +38,7 @@
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Purge residual configurations from removed packages</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar la configuración residual de los paquetes eliminados</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
@@ -48,7 +48,7 @@
     <message>
         <location filename="../mainwindow.ui" line="545"/>
         <source>Removal Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Herramientas de eliminación</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="583"/>
@@ -284,7 +284,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="493"/>
         <source>Failed to elevate privileges</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudieron elevar los privilegios</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="671"/>

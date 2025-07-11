@@ -61,11 +61,11 @@ void MainWindow::removeManuals()
         return;
     }
 
-    QString exclusionPattern
-        = QString("mx-(docs|faq)-(en|common%1)").arg(lang == "en" || lang == "C" ? "" : QString("|%1").arg(lang));
-    QString listCmd
-        = QString("dpkg-query -W --showformat=\"\\${Package}\\n\" -- 'mx-docs-*' 'mx-faq-*' | grep -vE '%1'")
-              .arg(exclusionPattern);
+    QString exclusionPattern = QString("(mx|mxfb)-(docs|faq)-(en|common%1)")
+                                   .arg(lang == "en" || lang == "C" ? "" : QString("|%1").arg(lang));
+    QString listCmd = QString("dpkg-query -W -f='${Package}\n' -- 'mx-docs-*' 'mxfb-docs-*' 'mx-faq-*' 'mxfb-faq-*' "
+                              "2>/dev/null | grep -vE '%1'")
+                          .arg(exclusionPattern);
 
     QStringList packageList = cmdOut(listCmd, true).split('\n', Qt::SkipEmptyParts);
 
