@@ -41,6 +41,13 @@ int main(int argc, char *argv[])
         qunsetenv("SESSION_MANAGER");
         qunsetenv("DBUS_SESSION_BUS_ADDRESS");
     }
+    // Set Qt platform to XCB (X11) if not already set and we're in X11 environment
+    if (qEnvironmentVariableIsEmpty("QT_QPA_PLATFORM")) {
+        if (!qEnvironmentVariableIsEmpty("DISPLAY")) {
+            qputenv("QT_QPA_PLATFORM", "xcb");
+        }
+    }
+
     QApplication app(argc, argv);
     if (getuid() == 0) {
         qputenv("HOME", "/root");
