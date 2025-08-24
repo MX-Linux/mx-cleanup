@@ -1,5 +1,0 @@
-#pragma once
-
-#include <QString>
-
-const QString VERSION {"@PROJECT_VERSION@"};

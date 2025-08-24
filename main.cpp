@@ -1,7 +1,7 @@
 /**********************************************************************
  *  main.cpp
  **********************************************************************
- * Copyright (C) 2018 MX Authors
+ * Copyright (C) 2018-2025 MX Authors
  *
  * Authors: Adrian
  *          MX Linux <http://mxlinux.org>
@@ -32,7 +32,10 @@
 
 #include "common.h"
 #include <unistd.h>
-#include <version.h>
+
+#ifndef VERSION
+    #define VERSION "?.?.?.?"
+#endif
 
 int main(int argc, char *argv[])
 {
