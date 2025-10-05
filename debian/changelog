@@ -1,3 +1,10 @@
+mx-cleanup (25.8) UNRELEASED; urgency=medium
+
+  * Remove hard dependencies and move them to recommended; hide button
+    if the programs are not available
+
+ -- Adrian <adrian@mxlinux.org>  Sat, 04 Oct 2025 20:49:37 -0400
+
 mx-cleanup (25.7) mx; urgency=medium
 
   * Cleanup MX Fluxbox manuals in addition to regular ones

@@ -10,10 +10,10 @@ Vcs-Browser: https://github.com/mxlinux/mx-cleanup
 
 Package: mx-cleanup
 Architecture: any
-Depends: baobab | qdirstat | filelight,
-         xdg-utils | mx-viewer,
+Depends: xdg-utils | mx-viewer,
          ${misc:Depends},
          ${shlibs:Depends}
+Recommends: baobab | qdirstat | filelight
 Description: GUI for system cleanup and maintenance
  A user-friendly graphical interface that allows users to:
   * Safely remove old and unnecessary files
