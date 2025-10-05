@@ -1,4 +1,4 @@
-mx-cleanup (25.8) UNRELEASED; urgency=medium
+mx-cleanup (25.10) mx; urgency=medium
 
   * Remove hard dependencies and move them to recommended; hide button
     if the programs are not available
@@ -13,7 +13,7 @@ mx-cleanup (25.7) mx; urgency=medium
 
 mx-cleanup (25.6.04) mx; urgency=medium
 
-  * Remove broadcom-sta-dkms if wl but no broadcom pci devices are found 
+  * Remove broadcom-sta-dkms if wl but no broadcom pci devices are found
 
  -- Adrian <adrian@mxlinux.org>  Fri, 27 Jun 2025 21:44:25 -0400
 
@@ -163,13 +163,13 @@ mx-cleanup (22.12) mx; urgency=medium
 
 mx-cleanup (22.10.01) mx; urgency=medium
 
-  * update translations 
+  * update translations
 
  -- Dolphin Oracle <dolphinoracle@gmail.com>  Wed, 26 Oct 2022 19:39:26 -0400
 
 mx-cleanup (22.10) mx; urgency=medium
 
-  * Unset DBUS_SESSION_BUS_ADDRESS 
+  * Unset DBUS_SESSION_BUS_ADDRESS
 
  -- Adrian <adrian@mxlinux.org>  Mon, 24 Oct 2022 21:55:33 -0400
 
@@ -181,7 +181,7 @@ mx-cleanup (22.9) mx; urgency=medium
 
 mx-cleanup (22.8.01) mx; urgency=medium
 
-  * Fix: launching documents from Help (fixes a problem in Plasma) 
+  * Fix: launching documents from Help (fixes a problem in Plasma)
 
  -- Adrian <adrian@mxlinux.org>  Mon, 22 Aug 2022 21:15:13 -0400
 
@@ -193,7 +193,7 @@ mx-cleanup (22.8) mx; urgency=medium
 
 mx-cleanup (22.7.05) mx; urgency=medium
 
-  * translation refresh 
+  * translation refresh
 
  -- Dolphin Oracle <dolphinoracle@gmail.com>  Sat, 23 Jul 2022 12:38:05 -0400
 
@@ -256,7 +256,7 @@ mx-cleanup (22.4.06) mx; urgency=medium
 
 mx-cleanup (22.4.05) mx; urgency=medium
 
-  * Adjust common kernel headers removal 
+  * Adjust common kernel headers removal
 
  -- Adrian <adrian@mxlinux.org>  Sun, 24 Apr 2022 22:17:14 -0400
 
@@ -268,7 +268,7 @@ mx-cleanup (22.4.04) mx; urgency=medium
 
 mx-cleanup (22.4.03) mx; urgency=medium
 
-  * Tighten list of package to remove; remove only linux-image/headers 
+  * Tighten list of package to remove; remove only linux-image/headers
 
  -- Adrian <adrian@mxlinux.org>  Sat, 23 Apr 2022 14:56:43 -0400
 
@@ -334,7 +334,7 @@ mx-cleanup (19.9) mx; urgency=medium
 
 mx-cleanup (19.8.2) mx; urgency=medium
 
-  * minor fix 
+  * minor fix
 
  -- Adrian <adrian@mxlinux.org>  Sat, 31 Aug 2019 20:47:07 -0400
 
@@ -390,7 +390,7 @@ mx-cleanup (18.11) mx; urgency=medium
 
 mx-cleanup (18.10.1) mx; urgency=medium
 
-  * updated translations 
+  * updated translations
 
  -- Adrian <adrian@mxlinux.org>  Wed, 31 Oct 2018 12:10:10 -0400
 

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr_BE">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr_BE">
 <context>
     <name>MainWindow</name>
     <message>
@@ -58,7 +56,7 @@
     <message>
         <location filename="../mainwindow.ui" line="661"/>
         <source>About...</source>
-        <translation>À propos ...</translation>
+        <translation>À propos …</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="667"/>
@@ -223,7 +221,7 @@
     <message>
         <location filename="../mainwindow.ui" line="131"/>
         <source>Remove unused runtimes</source>
-        <translation>Suppression des runtimes «&#xa0;environnements d’exécution&#xa0;» inutilisés</translation>
+        <translation>Suppression des runtimes « environnements d’exécution » inutilisés</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="364"/>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr">
 <context>
     <name>MainWindow</name>
     <message>
@@ -58,7 +56,7 @@
     <message>
         <location filename="../mainwindow.ui" line="661"/>
         <source>About...</source>
-        <translation>À propos...</translation>
+        <translation>À propos…</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="667"/>
@@ -94,7 +92,7 @@
     <message>
         <location filename="../mainwindow.ui" line="45"/>
         <source>Trash older than:</source>
-        <translation>Poubelle plus vieille que&#xa0;:</translation>
+        <translation>Poubelle plus vieille que :</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="103"/>
@@ -183,7 +181,7 @@
     <message>
         <location filename="../mainwindow.ui" line="482"/>
         <source>Select user:</source>
-        <translation>Choisir l’utilisateur&#xa0;:</translation>
+        <translation>Choisir l’utilisateur :</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="263"/>
@@ -203,7 +201,7 @@
     <message>
         <location filename="../mainwindow.ui" line="326"/>
         <source>Logs older than:</source>
-        <translation>Journaux - logs plus vieux que&#xa0;:</translation>
+        <translation>Journaux - logs plus vieux que :</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="551"/>
@@ -223,7 +221,7 @@
     <message>
         <location filename="../mainwindow.ui" line="131"/>
         <source>Remove unused runtimes</source>
-        <translation>Suppression des runtimes «&#xa0;environnements d’exécution&#xa0;» inutilisés</translation>
+        <translation>Suppression des runtimes « environnements d’exécution » inutilisés</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="364"/>
@@ -233,7 +231,7 @@
     <message>
         <location filename="../mainwindow.ui" line="428"/>
         <source>Not accessed for:</source>
-        <translation>Non consulté depuis&#xa0;:</translation>
+        <translation>Non consulté depuis :</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="376"/>
@@ -314,7 +312,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="683"/>
         <source>Version: </source>
-        <translation>Version&#xa0;: </translation>
+        <translation>Version : </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="685"/>
@@ -339,7 +337,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="778"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
-        <translation>Noyau utilisé actuellement&#xa0;: &lt;b&gt;%1&lt;/b&gt;</translation>
+        <translation>Noyau utilisé actuellement : &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="781"/>
@@ -349,12 +347,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="786"/>
         <source>Similar kernels that can be removed:</source>
-        <translation>Noyaux similaires qui peuvent être supprimés&#xa0;:</translation>
+        <translation>Noyaux similaires qui peuvent être supprimés :</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="787"/>
         <source>Other kernels that can be removed:</source>
-        <translation>Autres noyaux qui peuvent être supprimés&#xa0;:</translation>
+        <translation>Autres noyaux qui peuvent être supprimés :</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="790"/>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ja">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ja">
 <context>
     <name>MainWindow</name>
     <message>
@@ -38,7 +36,7 @@
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Purge residual configurations from removed packages</source>
-        <translation type="unfinished"></translation>
+        <translation>削除済みパッケージの残留設定を削除</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
@@ -48,7 +46,7 @@
     <message>
         <location filename="../mainwindow.ui" line="545"/>
         <source>Removal Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>削除ツール</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="583"/>

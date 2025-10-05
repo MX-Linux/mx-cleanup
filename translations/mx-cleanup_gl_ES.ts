@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="gl_ES">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="gl_ES">
 <context>
     <name>MainWindow</name>
     <message>
@@ -38,7 +36,7 @@
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Purge residual configurations from removed packages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
@@ -48,7 +46,7 @@
     <message>
         <location filename="../mainwindow.ui" line="545"/>
         <source>Removal Tools</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="583"/>
@@ -284,7 +282,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="493"/>
         <source>Failed to elevate privileges</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="671"/>
@@ -304,7 +302,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="674"/>
         <source>%1 MiB were freed</source>
-        <translation>Liberáronse %1 MiB&#xa0;</translation>
+        <translation>Liberáronse %1 MiB </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="682"/>
