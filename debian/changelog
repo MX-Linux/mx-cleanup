@@ -1,3 +1,9 @@
+mx-cleanup (25.10.1) mx; urgency=medium
+
+  * Fix: special case removal function for pt-br locale
+
+ -- Adrian <adrian@mxlinux.org>  Sat, 11 Oct 2025 21:50:41 -0400
+
 mx-cleanup (25.10) mx; urgency=medium
 
   * Remove hard dependencies and move them to recommended; hide button

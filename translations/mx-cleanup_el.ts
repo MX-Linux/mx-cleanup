@@ -36,7 +36,7 @@
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Purge residual configurations from removed packages</source>
-        <translation>Εκκαθάριση υπολειπόμενων ρυθμίσεων από πακέτα που έχουν αφαιρεθεί</translation>
+        <translation>Καθαρισμός ρυθμίσεων από πακέτα που έχουν αφαιρεθεί και παραμένουν</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
@@ -115,7 +115,7 @@
     <message>
         <location filename="../mainwindow.ui" line="210"/>
         <source>Clear APT Cache</source>
-        <translation>Εκκαθάριση προσωρινής μνήμης πακέτων</translation>
+        <translation>Καθαρισμός προσωρινής μνήμης πακέτων</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="225"/>
@@ -170,7 +170,7 @@
     <message>
         <location filename="../mainwindow.ui" line="467"/>
         <source>Free Disk Space for User</source>
-        <translation>Απελευθέρωση χώρου του χρήστη</translation>
+        <translation>Απελευθέρωση χώρου</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="479"/>
@@ -216,17 +216,17 @@
     <message>
         <location filename="../mainwindow.ui" line="125"/>
         <source>Clean Flatpak</source>
-        <translation>Εκκαθάριση Flatpak</translation>
+        <translation>Καθαρισμός Flatpak</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="131"/>
         <source>Remove unused runtimes</source>
-        <translation>Αφαίρεση runtimes που δεν χρησιμοποιούνται</translation>
+        <translation>Αφαίρεση προγραμμάτων που δεν χρησιμοποιούνται</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="364"/>
         <source>Clean Folders</source>
-        <translation>Εκκαθάριση φακέλων</translation>
+        <translation>Καθαρισμός φακέλων</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="428"/>
@@ -292,7 +292,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="673"/>
         <source>Cleanup script will run at reboot</source>
-        <translation>Οι εντολές εκκαθάρισης θα εκτελεστούν στην επανεκκίνηση</translation>
+        <translation>Οι εντολές καθαρισμού θα εκτελεστούν στην επανεκκίνηση</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="674"/>
