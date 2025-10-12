@@ -58,17 +58,11 @@ void MainWindow::removeManuals()
     QSettings defaultlocale("/etc/default/locale", QSettings::NativeFormat);
     QString lang = defaultlocale.value("LANG", "C").toString().section('.', 0, 0);
 
-    // Special case for pt_BR manuals
-    if (lang != "pt_BR") {
-        lang = lang.section("_", 0, 0);
-    }
-
-    // Modify pt lang value to match package name, which cannot have an underscore or capital letters
-    if (lang == "pt_PT") {
-        lang = "pt-pt";
-    }
+    // Fix for pt_BR, others use base language
     if (lang == "pt_BR") {
         lang = "pt-br";
+    } else {
+        lang = lang.section("_", 0, 0);
     }
 
     if (lang.isEmpty()) {
