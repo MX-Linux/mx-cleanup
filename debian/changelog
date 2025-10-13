@@ -1,3 +1,9 @@
+mx-cleanup (25.10.3) mx; urgency=medium
+
+  * Clean thumbnails respecting the 'not accessed by' specification
+
+ -- Adrian <adrian@mxlinux.org>  Mon, 13 Oct 2025 08:39:37 -0400
+
 mx-cleanup (25.10.2) mx; urgency=medium
 
   * Fix only for pt_BR
