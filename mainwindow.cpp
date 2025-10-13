@@ -537,10 +537,14 @@ void MainWindow::pushApply_clicked()
 
     QString thumbnails;
     if (ui->checkThumbs->isChecked()) {
-        total += cmdOut(QString("du -c /home/%1/.cache/thumbnails/* | awk '{field = $1} END {print field}'")
-                            .arg(ui->comboUserClean->currentText()))
+        QString period = ui->radioSaferCache->isChecked()
+                             ? QString(" -atime +%1 -mtime +%1").arg(ui->spinCache->value())
+                             : QString();
+        total += cmdOut(QString("find /home/%1/.cache/thumbnails -type f%2 -exec du -c '{}' + | awk '{field = $1} END {print field}'")
+                            .arg(ui->comboUserClean->currentText(), period))
                      .toULongLong();
-        thumbnails = QString("rm -r /home/%1/.cache/thumbnails/* 2>/dev/null").arg(ui->comboUserClean->currentText());
+        thumbnails = QString("find /home/%1/.cache/thumbnails -type f%2 -delete 2>/dev/null")
+                         .arg(ui->comboUserClean->currentText(), period);
         if (!ui->radioReboot->isChecked()) {
             cmdOut(thumbnails);
         }
