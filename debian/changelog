@@ -1,7 +1,9 @@
-mx-cleanup (25.10.4) UNRELEASED; urgency=medium
+mx-cleanup (25.10.4) mx; urgency=medium
 
   * Fix: loading Tumbnails status from the cleanup script
   * Load atime info from cleanup script into the access time spinbox
+  * Make it trully multi-user, allow each user to have a separate
+    cleaning script
 
  -- Adrian <adrian@mxlinux.org>  Wed, 22 Oct 2025 12:00:05 -0400
 

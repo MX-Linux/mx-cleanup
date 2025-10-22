@@ -36,7 +36,7 @@
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Purge residual configurations from removed packages</source>
-        <translation type="unfinished"/>
+        <translation>Spastro formësime të mbetura nga heqje paketash</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
@@ -231,7 +231,7 @@
     <message>
         <location filename="../mainwindow.ui" line="428"/>
         <source>Not accessed for:</source>
-        <translation type="unfinished"/>
+        <translation>E papërdorur për:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="376"/>

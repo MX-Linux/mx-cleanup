@@ -27,6 +27,7 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QLocale>
 #include <QProcess>
 #include <QProgressDialog>
 #include <QStandardPaths>
@@ -821,6 +822,14 @@ void MainWindow::pushApply_clicked()
     QString cache;
     const QString selectedUser = ui->comboUserClean->currentText();
     const bool elevate = (selectedUser != currentUser);
+
+    auto addToTotal = [&](const QString &label, quint64 amount) {
+        if (amount == 0) {
+            return;
+        }
+        total += amount;
+        qDebug().noquote() << "Freed" << label << amount << "KiB";
+    };
     if (ui->checkCache->isChecked()) {
         QString period = ui->radioSaferCache->isChecked()
                              ? QString(" -atime +%1 -mtime +%1").arg(ui->spinCache->value())
@@ -828,7 +837,8 @@ void MainWindow::pushApply_clicked()
         QString findCmd = QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -type f "
                                   "-exec du -c '{}' + | awk 'END{print $1}'")
                               .arg(selectedUser, period);
-        total += elevate ? cmdOutAsRoot(findCmd).toULongLong() : cmdOut(findCmd).toULongLong();
+        quint64 cacheKiB = elevate ? cmdOutAsRoot(findCmd).toULongLong() : cmdOut(findCmd).toULongLong();
+        addToTotal("cache", cacheKiB);
 
         cache = QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete 2>/dev/null")
                     .arg(selectedUser, period);
@@ -851,7 +861,9 @@ void MainWindow::pushApply_clicked()
         QString thumbsDeleteCmd = QString("find /home/%1/.cache/thumbnails -type f%2 -delete 2>/dev/null")
                                       .arg(selectedUser, period);
 
-        total += elevate ? cmdOutAsRoot(findThumbsCmd).toULongLong() : cmdOut(findThumbsCmd).toULongLong();
+        quint64 thumbnailsKiB
+            = elevate ? cmdOutAsRoot(findThumbsCmd).toULongLong() : cmdOut(findThumbsCmd).toULongLong();
+        addToTotal("thumbnails", thumbnailsKiB);
         thumbnails = thumbsDeleteCmd;
         if (!ui->radioReboot->isChecked()) {
             if (elevate) {
@@ -868,22 +880,21 @@ void MainWindow::pushApply_clicked()
         const QString userSizeCmd = QString("du -s /home/%1/.local/share/flatpak/ | cut -f1").arg(selectedUser);
         QString system_size = "du -s /var/lib/flatpak/ | cut -f1";
         quint64 userBefore = elevate ? cmdOutAsRoot(userSizeCmd).toULongLong() : cmdOut(userSizeCmd).toULongLong();
-        total += userBefore;
         bool ok {false};
         quint64 system_size_num = cmdOutAsRoot(system_size).toULongLong(&ok);
-        if (ok) {
-            total += system_size_num;
-        }
+        quint64 systemBefore = ok ? system_size_num : 0;
         if (!ui->radioReboot->isChecked()) {
             cmdOut(flatpak);
         }
         quint64 userAfter = elevate ? cmdOutAsRoot(userSizeCmd).toULongLong() : cmdOut(userSizeCmd).toULongLong();
-        total -= userAfter;
         ok = false;
         system_size_num = cmdOutAsRoot(system_size).toULongLong(&ok);
-        if (ok) {
-            total -= system_size_num;
-        }
+        quint64 systemAfter = ok ? system_size_num : 0;
+
+        quint64 userDelta = (userBefore > userAfter) ? userBefore - userAfter : 0;
+        quint64 systemDelta = (systemBefore > systemAfter) ? systemBefore - systemAfter : 0;
+        addToTotal("flatpak-user", userDelta);
+        addToTotal("flatpak-system", systemDelta);
     }
 
     QString apt;
@@ -903,7 +914,7 @@ void MainWindow::pushApply_clicked()
             }
 
             quint64 after_size = cmdOutAsRoot(size_cmd).toULongLong();
-            total += (before_size - after_size);
+            addToTotal("apt-cache", before_size > after_size ? before_size - after_size : 0);
         }
     }
 
@@ -921,7 +932,7 @@ void MainWindow::pushApply_clicked()
         }
 
         quint64 after_size = cmdOutAsRoot(size_cmd).toULongLong();
-        total += (before_size - after_size);
+        addToTotal("apt-purge", before_size > after_size ? before_size - after_size : 0);
     }
 
     QString logs;
@@ -929,19 +940,22 @@ void MainWindow::pushApply_clicked()
         QString time = ui->spinBoxLogs->value() > 0 ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxLogs->value())
                                                     : QString();
         if (ui->radioOldLogs->isChecked()) {
-            total
-                += cmdOutAsRoot(
-                       R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \) -type f)"
-                       + time + " -exec du -sc '{}' + | awk '{field = $1} END {print field}'")
-                       .toULongLong();
+            quint64 logsKiB
+                = cmdOutAsRoot(
+                      R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \) -type f)"
+                      + time + " -exec du -sc '{}' + | awk '{field = $1} END {print field}'")
+                      .toULongLong();
+            addToTotal("logs-old", logsKiB);
             logs = R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \))"
                    + time + " -type f -delete 2>/dev/null";
             cmdOutAsRoot(logs);
         } else if (ui->radioAllLogs->isChecked()) {
-            total += cmdOutAsRoot(
-                         QString("find /var/log -type f%1 -exec du -sc '{}' + | awk '{field = $1} END {print field}'")
-                             .arg(time))
-                         .toULongLong();
+            quint64 logsKiB
+                = cmdOutAsRoot(
+                      QString("find /var/log -type f%1 -exec du -sc '{}' + | awk '{field = $1} END {print field}'")
+                          .arg(time))
+                      .toULongLong();
+            addToTotal("logs-all", logsKiB);
             logs = "find /var/log -type f" + time + R"( -exec sh -c "echo > '{}'" \;)"; // empty the logs
             cmdOutAsRoot(logs);
         }
@@ -958,17 +972,15 @@ void MainWindow::pushApply_clicked()
         QString findDeleteCmd = QString("find /home/%1/.local/share/Trash -mindepth 1%2 -delete")
                                 .arg(user, timeTrash);
 
-        // If cleaning another user, run as root
-        if (user != currentUser) {
-            total += cmdOutAsRoot(findSizeCmd).toULongLong();
-            trash = findDeleteCmd;
-            if (!ui->radioReboot->isChecked()) {
+        quint64 trashKiB = (user != currentUser) ? cmdOutAsRoot(findSizeCmd).toULongLong()
+                                                 : cmdOut(findSizeCmd).toULongLong();
+        addToTotal("trash", trashKiB);
+
+        trash = findDeleteCmd;
+        if (!ui->radioReboot->isChecked()) {
+            if (user != currentUser) {
                 cmdOutAsRoot(trash);
-            }
-        } else {
-            total += cmdOut(findSizeCmd).toULongLong();
-            trash = findDeleteCmd;
-            if (!ui->radioReboot->isChecked()) {
+            } else {
                 cmdOut(trash);
             }
         }
@@ -1029,10 +1041,22 @@ void MainWindow::pushApply_clicked()
     saveSettings();
 
     setCursor(QCursor(Qt::ArrowCursor));
+    const double freedMiB = static_cast<double>(total) / 1024.0;
+    QString freedText;
+    if (freedMiB >= 0.1) {
+        int precision = freedMiB < 10.0 ? 1 : 0;
+        freedText = QLocale().toString(freedMiB, 'f', precision);
+    } else if (total > 0) {
+        freedText = QStringLiteral("<0.1");
+    } else {
+        freedText = QStringLiteral("0");
+    }
+
     QMessageBox::information(this, tr("Done"),
                              ui->radioReboot->isChecked()
                                  ? tr("Cleanup script will run at reboot")
-                                 : tr("Cleanup command done") + '\n' + tr("%1 MiB were freed").arg(total / 1024));
+                                 : tr("Cleanup command done") + '\n'
+                                       + tr("%1 MiB were freed").arg(freedText));
     setEnabled(true);
 }
 
