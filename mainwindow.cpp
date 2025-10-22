@@ -314,21 +314,31 @@ void MainWindow::loadOptions()
 
     // Folders
     QProcess thumbsProc;
-    thumbsProc.start("grep", {"-q", "rm -r.*\\.cache/thumbnails", file_name});
+    thumbsProc.start("grep", {"-qE", R"(find /home/[^/]+/\.cache/thumbnails)", file_name});
     thumbsProc.waitForFinished();
     ui->checkThumbs->setChecked(thumbsProc.exitCode() == 0);
+
     QProcess cacheProc;
-    cacheProc.start("grep", {"-qE", "find /home/.*/\\.cache(\\s|/\\*)", file_name});
+    cacheProc.start("grep", {"-qE", R"(find /home/[^/]+/\.cache(\s|/\*))", file_name});
     cacheProc.waitForFinished();
-    if (cacheProc.exitCode() == 0) {
-        ui->checkCache->setChecked(true);
+    ui->checkCache->setChecked(cacheProc.exitCode() == 0);
+
+    if (cacheProc.exitCode() == 0 || thumbsProc.exitCode() == 0) {
         QProcess atimeProc;
-        atimeProc.start("grep", {"-q", "find.*cache.*-atime", file_name});
+        atimeProc.start("grep", {"-oE", "--", R"(\.cache.*-atime \+[0-9]+)", file_name});
         atimeProc.waitForFinished();
-        ui->radioSaferCache->setChecked(atimeProc.exitCode() == 0);
-        ui->radioAllCache->setChecked(!ui->radioSaferCache->isChecked());
-    } else {
-        ui->checkCache->setChecked(false);
+        QString atimeOutput = atimeProc.readAllStandardOutput();
+        QRegularExpression regex(R"(-atime \+([0-9]+))");
+        QRegularExpressionMatch match = regex.match(atimeOutput);
+        if (match.hasMatch()) {
+            int atimeValue = match.captured(1).toInt();
+            ui->radioSaferCache->setChecked(true);
+            ui->radioAllCache->setChecked(false);
+            ui->spinCache->setValue(atimeValue);
+        } else {
+            ui->radioSaferCache->setChecked(false);
+            ui->radioAllCache->setChecked(true);
+        }
     }
 
     // APT
@@ -528,7 +538,7 @@ void MainWindow::pushApply_clicked()
                              "| awk '{field = $1} END {print field}'")
                          .arg(ui->comboUserClean->currentText(), period))
                   .toULongLong();
-        cache = QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete")
+        cache = QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete 2>/dev/null")
                     .arg(ui->comboUserClean->currentText(), period);
         if (!ui->radioReboot->isChecked()) {
             cmdOut(cache);
