@@ -24,6 +24,7 @@
 #include <QButtonGroup>
 #include <QMessageBox>
 #include <QSettings>
+#include <memory>
 
 namespace Ui
 {
@@ -48,15 +49,18 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QSettings settings;
-    QString current_user;
+    std::unique_ptr<QSettings> settings;
+    QString currentSettingsPath;
+    QString shadowSettingsPath;
+    QString currentUser;
+    bool suppressUserSwitch {false};
     QString cmdOut(const QString &cmd, bool asRoot = false, bool quiet = false);
     QString cmdOutAsRoot(const QString &cmd, bool quiet = false);
 
     static void addGroupCheckbox(QLayout *layout, const QStringList &package, const QString &name, QStringList *list);
     static void selectRadioButton(class QGroupBox *groupbox, const QButtonGroup *group, int id);
-    void loadOptions();
-    void loadSchedule();
+    void loadOptions(bool settingsPreloaded = false);
+    void loadSchedule(bool settingsPreloaded = false);
     void loadSettings();
     void removeKernelPackages(const QStringList &list);
     void removeManuals();
@@ -65,4 +69,14 @@ private:
     void setConnections();
     void setup();
     void startPreferredApp(const QStringList &apps);
+    QString homeDirForUser(const QString &user) const;
+    QString cronEntryBase(const QString &period) const;
+    QString cronEntryPath(const QString &period, bool forWrite) const;
+    QString currentUserSuffix() const;
+    QString scriptFileBase() const;
+    QString scriptFilePath(bool forWrite) const;
+    QString settingsDirForUser(const QString &user) const;
+    QString settingsFileForUser(const QString &user) const;
+    void initializeSettingsForUser(const QString &user);
+    void ensureSettingsOwnership(const QString &user);
 };

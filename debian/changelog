@@ -1,3 +1,10 @@
+mx-cleanup (25.10.4) UNRELEASED; urgency=medium
+
+  * Fix: loading Tumbnails status from the cleanup script
+  * Load atime info from cleanup script into the access time spinbox
+
+ -- Adrian <adrian@mxlinux.org>  Wed, 22 Oct 2025 12:00:05 -0400
+
 mx-cleanup (25.10.3) mx; urgency=medium
 
   * Clean thumbnails respecting the 'not accessed by' specification
