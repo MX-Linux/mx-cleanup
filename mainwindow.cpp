@@ -36,6 +36,7 @@
 #include <QTextEdit>
 
 #include <pwd.h>
+#include <grp.h>
 #include <unistd.h>
 
 #include "about.h"
@@ -212,6 +213,25 @@ QString MainWindow::homeDirForUser(const QString &user) const
     return QString::fromUtf8(pwd->pw_dir);
 }
 
+QString MainWindow::primaryGroupForUser(const QString &user) const
+{
+    if (user.isEmpty()) {
+        return QString();
+    }
+
+    struct passwd *pwd = getpwnam(user.toUtf8().constData());
+    if (!pwd) {
+        return QString();
+    }
+
+    struct group *grp = getgrgid(pwd->pw_gid);
+    if (!grp) {
+        return QString();
+    }
+
+    return QString::fromUtf8(grp->gr_name);
+}
+
 QString MainWindow::currentUserSuffix() const
 {
     const QString user = ui->comboUserClean->currentText();
@@ -267,22 +287,25 @@ void MainWindow::initializeSettingsForUser(const QString &user)
 
     const bool needsRoot = (getuid() != 0 && user != currentUser);
     if (needsRoot) {
-        if (QFile::exists(filePath)) {
-            QTemporaryFile tempFile(QDir::tempPath() + "/mx-cleanup-shadowXXXXXX.conf");
-            tempFile.setAutoRemove(false);
-            if (tempFile.open()) {
-                shadowSettingsPath = tempFile.fileName();
-                tempFile.close();
-                QString owner = currentUser.isEmpty() ? QStringLiteral("root") : currentUser;
-                QString command = QString("install -m 600 -o %1 -g %1 %2 %3")
-                                      .arg(owner, shellQuote(filePath), shellQuote(shadowSettingsPath));
-                qDebug().noquote() << "Loading settings with root privileges:" << command;
-                cmdOutAsRoot(command, true);
+        QTemporaryFile tempFile(QDir::tempPath() + "/mx-cleanup-shadowXXXXXX.conf");
+        tempFile.setAutoRemove(false);
+        if (tempFile.open()) {
+            shadowSettingsPath = tempFile.fileName();
+            tempFile.close();
+            const QString owner = currentUser.isEmpty() ? QStringLiteral("root") : currentUser;
+            const QString ownerGroup = primaryGroupForUser(owner);
+            const QString effectiveGroup = ownerGroup.isEmpty() ? owner : ownerGroup;
+            QString command = QString("if [ -f %1 ]; then install -m 600 -o %2 -g %3 %1 %4; fi")
+                                  .arg(shellQuote(filePath), owner, effectiveGroup, shellQuote(shadowSettingsPath));
+            cmdOutAsRoot(command, true);
+            if (QFile::exists(shadowSettingsPath)) {
                 settings = std::make_unique<QSettings>(shadowSettingsPath, QSettings::IniFormat);
                 settings->setFallbacksEnabled(false);
                 currentSettingsPath = filePath;
                 return;
             }
+            QFile::remove(shadowSettingsPath);
+        } else {
             qWarning().noquote() << "Failed to create temporary file for settings shadow";
         }
         settings = std::make_unique<QSettings>();
@@ -336,7 +359,12 @@ QString MainWindow::cronEntryPath(const QString &period, bool forWrite) const
         return candidate;
     }
 
-    return QFile::exists(candidate) ? candidate : base;
+    if (QFile::exists(candidate)) {
+        return candidate;
+    }
+
+    const bool selectedIsCurrent = (ui->comboUserClean->currentText() == currentUser);
+    return selectedIsCurrent ? base : candidate;
 }
 
 QString MainWindow::scriptFileBase() const
@@ -358,7 +386,12 @@ QString MainWindow::scriptFilePath(bool forWrite) const
         return candidate;
     }
 
-    return QFile::exists(candidate) ? candidate : base;
+    if (QFile::exists(candidate)) {
+        return candidate;
+    }
+
+    const bool selectedIsCurrent = (ui->comboUserClean->currentText() == currentUser);
+    return selectedIsCurrent ? base : candidate;
 }
 
 // Check if the cleanup script exists in the cron directories
@@ -385,8 +418,6 @@ void MainWindow::loadSchedule(bool settingsPreloaded)
 
 void MainWindow::loadSettings()
 {
-    const QString source = currentSettingsPath.isEmpty() ? QStringLiteral("<defaults>") : currentSettingsPath;
-    qDebug().noquote() << "Load settings from" << source;
     auto value = [this](const QString &key, const QVariant &fallback) -> QVariant {
         return settings ? settings->value(key, fallback) : fallback;
     };
@@ -501,18 +532,18 @@ void MainWindow::loadOptions(bool settingsPreloaded)
     } else if (ui->radioReboot->isChecked()) {
         period = "@reboot";
     } else {
-        if (!settingsPreloaded) {
-            loadSettings();
-        }
+        loadSettings();
         return;
     }
 
     QString file_name = (period == "@reboot") ? scriptFilePath(false) : cronEntryPath(period, false);
 
+    if (!settingsPreloaded && !QFile::exists(file_name)) {
+        loadSettings();
+        return;
+    }
+
     if (!QFile::exists(file_name)) {
-        if (!settingsPreloaded) {
-            loadSettings();
-        }
         return;
     }
 
@@ -684,6 +715,7 @@ void MainWindow::saveSettings()
     }
 
     const bool needsRoot = (getuid() != 0 && user != currentUser);
+    const QString targetGroupName = primaryGroupForUser(user);
 
     auto writeValues = [this](QSettings &store) {
         store.setValue("Folders/Thumbnails", ui->checkThumbs->isChecked());
@@ -718,15 +750,13 @@ void MainWindow::saveSettings()
         tempSettings.setFallbacksEnabled(false);
         writeValues(tempSettings);
         tempSettings.sync();
-        qDebug().noquote() << "Temporary settings status:" << tempSettings.status();
-
         tempFile.flush();
         tempFile.close();
 
+        const QString ownerGroup = targetGroupName.isEmpty() ? user : targetGroupName;
         const QString command
-            = QString("install -d -m 755 -o %1 -g %1 %2 && install -m 644 -o %1 -g %1 %3 %4")
-                  .arg(user, shellQuote(dirPath), shellQuote(tempFile.fileName()), shellQuote(targetPath));
-        qDebug().noquote() << "Saving settings with root privileges:" << command;
+            = QString("install -d -m 755 -o %1 -g %2 %3 && install -m 644 -o %1 -g %2 %4 %5")
+                  .arg(user, ownerGroup, shellQuote(dirPath), shellQuote(tempFile.fileName()), shellQuote(targetPath));
         cmdOutAsRoot(command, true);
 
         QFile::remove(tempFile.fileName());

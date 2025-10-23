@@ -1,4 +1,4 @@
-mx-cleanup (25.10.4) mx; urgency=medium
+mx-cleanup (25.10.5) mx; urgency=medium
 
   * Fix: loading Tumbnails status from the cleanup script
   * Load atime info from cleanup script into the access time spinbox

@@ -70,6 +70,7 @@ private:
     void setup();
     void startPreferredApp(const QStringList &apps);
     QString homeDirForUser(const QString &user) const;
+    QString primaryGroupForUser(const QString &user) const;
     QString cronEntryBase(const QString &period) const;
     QString cronEntryPath(const QString &period, bool forWrite) const;
     QString currentUserSuffix() const;
