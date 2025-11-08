@@ -844,6 +844,7 @@ void MainWindow::pushApply_clicked()
         if (proc.exitCode() != 0) {
             QMessageBox::critical(this, tr("Error"), tr("Failed to elevate privileges"));
             setCursor(QCursor(Qt::ArrowCursor));
+            setEnabled(true);
             return;
         }
     }
