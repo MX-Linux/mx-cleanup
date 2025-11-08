@@ -943,41 +943,49 @@ void MainWindow::pushApply_clicked()
     }
 
     QString apt;
+    const auto addCommandToSchedule = [&](const QString &command) {
+        if (command.isEmpty()) {
+            return;
+        }
+        if (!apt.isEmpty()) {
+            apt += '\n';
+        }
+        apt += command;
+    };
     if (ui->groupBoxApt->isChecked()) {
+        QString cleanCmd;
         if (ui->radioAutoClean->isChecked()) {
-            apt = "apt-get autoclean";
+            cleanCmd = "apt-get autoclean";
         } else if (ui->radioClean->isChecked()) {
-            apt = "apt-get clean";
+            cleanCmd = "apt-get clean";
         }
 
-        if (!apt.isEmpty()) {
+        if (!cleanCmd.isEmpty()) {
             const QString size_cmd = "du -s /var/cache/apt/archives/ | cut -f1";
             quint64 before_size = cmdOutAsRoot(size_cmd).toULongLong();
 
             if (!ui->radioReboot->isChecked()) {
-                cmdOutAsRoot(apt);
+                cmdOutAsRoot(cleanCmd);
             }
 
             quint64 after_size = cmdOutAsRoot(size_cmd).toULongLong();
             addToTotal("apt-cache", before_size > after_size ? before_size - after_size : 0);
+            addCommandToSchedule(cleanCmd);
         }
     }
 
     if (ui->checkPurge->isChecked()) {
-        if (!apt.isEmpty()) {
-            apt += '\n';
-        }
-        apt += "dpkg -l | awk '/^rc/ { print $2 }' | xargs -r apt-get purge -y";
-
+        const QString purgeCmd = "dpkg -l | awk '/^rc/ { print $2 }' | xargs -r apt-get purge -y";
         const QString size_cmd = "du -s /var/lib/dpkg/info/ | cut -f1";
         quint64 before_size = cmdOutAsRoot(size_cmd).toULongLong();
 
         if (!ui->radioReboot->isChecked()) {
-            cmdOutAsRoot(apt);
+            cmdOutAsRoot(purgeCmd);
         }
 
         quint64 after_size = cmdOutAsRoot(size_cmd).toULongLong();
         addToTotal("apt-purge", before_size > after_size ? before_size - after_size : 0);
+        addCommandToSchedule(purgeCmd);
     }
 
     QString logs;
