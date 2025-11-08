@@ -1039,21 +1039,44 @@ void MainWindow::pushApply_clicked()
         }
     }
 
-    // Cleanup schedule
-    const QString suffix = currentUserSuffix();
-    cmdOutAsRoot("rm " + cronEntryBase("daily"), true);
-    cmdOutAsRoot("rm " + cronEntryBase("weekly"), true);
-    cmdOutAsRoot("rm " + cronEntryBase("monthly"), true);
-    cmdOutAsRoot("rm " + cronEntryBase("@reboot"), true);
-    cmdOutAsRoot("rm " + scriptFileBase(), true);
+    // Cleanup schedule for the currently selected user only
+    auto removeScheduleFiles = [&](const QString &period) {
+        QStringList targets;
+        const QString writeTarget = cronEntryPath(period, true);
+        if (!writeTarget.isEmpty()) {
+            targets << writeTarget;
+        }
+        const QString existingTarget = cronEntryPath(period, false);
+        const QString baseTarget = cronEntryBase(period);
+        if (!existingTarget.isEmpty() && existingTarget == baseTarget && !targets.contains(baseTarget)) {
+            targets << baseTarget;
+        }
+        for (const auto &path : targets) {
+            cmdOutAsRoot("rm -f " + shellQuote(path), true);
+        }
+    };
 
-    if (!suffix.isEmpty()) {
-        cmdOutAsRoot("rm " + cronEntryBase("daily") + suffix, true);
-        cmdOutAsRoot("rm " + cronEntryBase("weekly") + suffix, true);
-        cmdOutAsRoot("rm " + cronEntryBase("monthly") + suffix, true);
-        cmdOutAsRoot("rm " + cronEntryBase("@reboot") + suffix, true);
-        cmdOutAsRoot("rm " + scriptFileBase() + suffix, true);
-    }
+    auto removeScriptFiles = [&]() {
+        QStringList targets;
+        const QString writeTarget = scriptFilePath(true);
+        if (!writeTarget.isEmpty()) {
+            targets << writeTarget;
+        }
+        const QString existingTarget = scriptFilePath(false);
+        const QString baseTarget = scriptFileBase();
+        if (!existingTarget.isEmpty() && existingTarget == baseTarget && !targets.contains(baseTarget)) {
+            targets << baseTarget;
+        }
+        for (const auto &path : targets) {
+            cmdOutAsRoot("rm -f " + shellQuote(path), true);
+        }
+    };
+
+    removeScheduleFiles("daily");
+    removeScheduleFiles("weekly");
+    removeScheduleFiles("monthly");
+    removeScheduleFiles("@reboot");
+    removeScriptFiles();
 
     // Add schedule file
     if (!ui->radioNone->isChecked()) {
