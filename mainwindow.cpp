@@ -907,25 +907,39 @@ void MainWindow::pushApply_clicked()
 
     QString flatpak;
     if (ui->checkFlatpak->isChecked()) {
-        flatpak = "pgrep -a flatpak | grep -v flatpak-s || flatpak uninstall --unused --delete-data --noninteractive";
+        const QString flatpakAction
+            = "pgrep -a flatpak | grep -v flatpak-s || flatpak uninstall --unused --delete-data --noninteractive";
+        auto scopedCommand = [&](const QString &command) -> QString {
+            if (!elevate || selectedUser.isEmpty()) {
+                return command;
+            }
+            return QString("runuser -u %1 -- /bin/bash -lc %2").arg(selectedUser, shellQuote(command));
+        };
+        auto execScoped = [&](const QString &command) -> QString {
+            const QString scoped = scopedCommand(command);
+            return elevate ? cmdOutAsRoot(scoped) : cmdOut(scoped);
+        };
+
         const QString userSizeCmd = QString("du -s /home/%1/.local/share/flatpak/ | cut -f1").arg(selectedUser);
-        QString system_size = "du -s /var/lib/flatpak/ | cut -f1";
-        quint64 userBefore = elevate ? cmdOutAsRoot(userSizeCmd).toULongLong() : cmdOut(userSizeCmd).toULongLong();
+        const QString systemSizeCmd = "du -s /var/lib/flatpak/ | cut -f1";
+        quint64 userBefore = execScoped(userSizeCmd).toULongLong();
         bool ok {false};
-        quint64 system_size_num = cmdOutAsRoot(system_size).toULongLong(&ok);
+        quint64 system_size_num = cmdOutAsRoot(systemSizeCmd).toULongLong(&ok);
         quint64 systemBefore = ok ? system_size_num : 0;
         if (!ui->radioReboot->isChecked()) {
-            cmdOut(flatpak);
+            execScoped(flatpakAction);
         }
-        quint64 userAfter = elevate ? cmdOutAsRoot(userSizeCmd).toULongLong() : cmdOut(userSizeCmd).toULongLong();
+        quint64 userAfter = execScoped(userSizeCmd).toULongLong();
         ok = false;
-        system_size_num = cmdOutAsRoot(system_size).toULongLong(&ok);
+        system_size_num = cmdOutAsRoot(systemSizeCmd).toULongLong(&ok);
         quint64 systemAfter = ok ? system_size_num : 0;
 
         quint64 userDelta = (userBefore > userAfter) ? userBefore - userAfter : 0;
         quint64 systemDelta = (systemBefore > systemAfter) ? systemBefore - systemAfter : 0;
         addToTotal("flatpak-user", userDelta);
         addToTotal("flatpak-system", systemDelta);
+
+        flatpak = scopedCommand(flatpakAction);
     }
 
     QString apt;
