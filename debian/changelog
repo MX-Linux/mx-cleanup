@@ -1,3 +1,12 @@
+mx-cleanup (25.11) mx; urgency=medium
+
+  * c10568f (HEAD -> master) Fix: schedule cleanup no longer nukes every user’s cron file
+  * 7fddb9f Fix: running purge sepearate from apt autoclean
+  * 41c0659 Fix: flatpak clean the selected user home only
+  * ce5d44c Re-enable UI if failed to elevate
+
+ -- Adrian <adrian@mxlinux.org>  Fri, 07 Nov 2025 20:33:07 -0500
+
 mx-cleanup (25.10.5) mx; urgency=medium
 
   * Fix: loading Tumbnails status from the cleanup script

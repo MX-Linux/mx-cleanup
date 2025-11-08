@@ -130,12 +130,12 @@
     <message>
         <location filename="../mainwindow.ui" line="605"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation>Graafinen työkalu levynkäytön analysointiin</translation>
+        <translation>Katso levykäytön analyysi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="617"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation>Suorita levynkäytön analysointi</translation>
+        <translation>Suorita levykäytön analyysi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="141"/>
@@ -155,22 +155,22 @@
     <message>
         <location filename="../mainwindow.ui" line="167"/>
         <source>Daily</source>
-        <translation>Päivittäinen</translation>
+        <translation>Päivittäin</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="174"/>
         <source>Weekly</source>
-        <translation>Viikottainen</translation>
+        <translation>Viikoittain</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="181"/>
         <source>Monthly</source>
-        <translation>Kuukausittainen</translation>
+        <translation>Kuukausittain</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="467"/>
         <source>Free Disk Space for User</source>
-        <translation>Vapauta levytilaa käyttäjälle</translation>
+        <translation>Vapauta käyttäjälle levytilaa</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="479"/>
@@ -201,7 +201,7 @@
     <message>
         <location filename="../mainwindow.ui" line="326"/>
         <source>Logs older than:</source>
-        <translation>Ylöskirjausmerkinnät jotka ovat vanhempia kuin:</translation>
+        <translation>Lokit, jotka ovat vanhempia kuin:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="551"/>
@@ -231,7 +231,7 @@
     <message>
         <location filename="../mainwindow.ui" line="428"/>
         <source>Not accessed for:</source>
-        <translation>Ei käytössä:</translation>
+        <translation>Ei saatavilla jälkeen:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="376"/>
@@ -272,7 +272,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="477"/>
         <source> day</source>
-        <translation>päivä</translation>
+        <translation> päivää</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="493"/>
