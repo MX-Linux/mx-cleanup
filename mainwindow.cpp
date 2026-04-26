@@ -227,11 +227,13 @@ void MainWindow::setup()
     ui->radioOldLogs->setChecked(true);
     ui->radioSelectedUser->setChecked(true);
 
-    const QString users = cmdOut("lslogins --noheadings -u -o user | grep -vw root", QuietMode::Yes).trimmed();
+    QStringList users = cmdOut("lslogins --noheadings -u -o user", QuietMode::Yes)
+                            .split('\n', Qt::SkipEmptyParts);
+    users.removeAll(QStringLiteral("root"));
 
     {
         QSignalBlocker blocker(ui->comboUserClean);
-        ui->comboUserClean->addItems(users.split('\n'));
+        ui->comboUserClean->addItems(users);
 
         int targetIndex = ui->comboUserClean->findText(currentUser);
         if (targetIndex == -1 && ui->comboUserClean->count() > 0) {
@@ -1494,7 +1496,12 @@ void MainWindow::pushKernel_clicked()
     QString current_kernel = cmdOut("uname -r").trimmed();
     QStringList similar_kernels;
     QStringList other_kernels;
-    QStringList installedKernels = cmdOut("dpkg -l 'linux-image-[0-9]*' | grep ^ii").split('\n', Qt::SkipEmptyParts);
+    QStringList installedKernels;
+    for (const QString &line : cmdOut("dpkg -l 'linux-image-[0-9]*'").split('\n', Qt::SkipEmptyParts)) {
+        if (line.startsWith("ii")) {
+            installedKernels << line;
+        }
+    }
 
     if (!installedKernels.isEmpty()) {
         QRegularExpression regex_version("^[0-9]+[.][0-9]+([.][0-9]+)?");

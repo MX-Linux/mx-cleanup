@@ -84,7 +84,10 @@ int main(int argc, char *argv[])
     }
 
     // Root guard
-    if (QProcess::execute("/bin/bash", {"-c", "logname |grep -q ^root$"}) == 0) {
+    QProcess logname;
+    logname.start("logname", {});
+    logname.waitForFinished();
+    if (logname.exitCode() == 0 && logname.readAllStandardOutput().trimmed() == "root") {
         QMessageBox::critical(
             nullptr, QObject::tr("Error"),
             QObject::tr(
