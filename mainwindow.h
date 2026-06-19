@@ -67,6 +67,7 @@ private:
     bool manualRemovalInProgress {false};
     bool suppressUserSwitch {false};
     QString cmdOut(const QString &cmd, QuietMode quiet = QuietMode::No);
+    QString cmdOut(const QString &program, const QStringList &args, QuietMode quiet = QuietMode::No);
     bool helperProc(const QStringList &helperArgs, QuietMode quiet = QuietMode::No, QString *output = nullptr);
     bool helperExec(const QString &cmd, const QStringList &args = {}, QuietMode quiet = QuietMode::No,
                     QString *output = nullptr);

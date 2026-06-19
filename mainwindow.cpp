@@ -546,16 +546,35 @@ void MainWindow::removeKernelPackages(const QStringList &list)
     QString image_pattern;
 
     for (const auto &item : std::as_const(headers_installed)) {
-        headers_common = cmdOut("env LC_ALL=C.UTF-8 apt-cache depends " + item.toUtf8()
-                                + "| grep 'Depends:' | grep -oE 'linux-headers-[0-9][^[:space:]]+' | sort -u");
+        {
+            QProcess proc;
+            QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+            env.insert("LC_ALL", "C.UTF-8");
+            proc.setProcessEnvironment(env);
+            proc.start("apt-cache", {"depends", item});
+            proc.waitForFinished();
+            QRegularExpression reDepends("Depends:\\s+(linux-headers-\\d\\S+)");
+            auto matches = reDepends.globalMatch(QString::fromUtf8(proc.readAllStandardOutput()));
+            QStringList found;
+            while (matches.hasNext()) {
+                found << matches.next().captured(1);
+            }
+            found.removeDuplicates();
+            found.sort();
+            headers_common = found.join('\n');
+        }
         if (!headers_common.toUtf8().trimmed().isEmpty()) {
             image_pattern = headers_common;
             image_pattern.remove("-common");
             image_pattern.replace("headers", "image");
             QProcess checkProc;
+            QStringList escapedPkgs;
+            escapedPkgs.reserve(list.size());
+            for (const auto &pkg : list)
+                escapedPkgs << QRegularExpression::escape(pkg);
             QString checkCmd
                 = QString("dpkg -l 'linux-image-[0-9]*' | grep ^ii | cut -d ' ' -f3 | grep -v -E '%1' | grep -q %2")
-                      .arg(list.join('|'), image_pattern);
+                      .arg(escapedPkgs.join('|'), image_pattern);
             checkProc.start("/bin/bash", {"-c", checkCmd});
             checkProc.waitForFinished();
             if (checkProc.exitCode() != 0) {
@@ -564,20 +583,35 @@ void MainWindow::removeKernelPackages(const QStringList &list)
         }
     }
 
+    static const QRegularExpression pkgNameRe(R"(^[a-zA-Z0-9][a-zA-Z0-9.+-]*$)");
     QString common;
     if (!headers_depends.isEmpty()) {
-        QString filter = "| grep -oE '" + headers_depends.join('|') + "'";
+        QStringList escapedDepends;
+        escapedDepends.reserve(headers_depends.size());
+        for (const auto &dep : headers_depends)
+            escapedDepends << QRegularExpression::escape(dep);
+        QString filter = "| grep -oE '" + escapedDepends.join('|') + "'";
         common = cmdOut("apt-get remove -s " + headers_installed.join(' ') + " | grep '^  ' " + filter
                         + R"( | tr '\n' ' ')");
     }
 
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal-keep-open"};
     QStringList packages;
-    packages << headers_installed << list;
-    if (!common.isEmpty()) {
-        packages << common.split(' ', Qt::SkipEmptyParts);
+    for (const auto &pkg : headers_installed) {
+        if (pkgNameRe.match(pkg).hasMatch())
+            packages << pkg;
     }
-    
+    for (const auto &pkg : list) {
+        if (pkgNameRe.match(pkg).hasMatch())
+            packages << pkg;
+    }
+    if (!common.isEmpty()) {
+        for (const auto &pkg : common.split(' ', Qt::SkipEmptyParts)) {
+            if (pkgNameRe.match(pkg).hasMatch())
+                packages << pkg;
+        }
+    }
+
     QString terminalCmd
         = QString("%1 apt-get purge %2; apt-get install -f")
               .arg(rmOldVersions, packages.join(' '));
@@ -1398,6 +1432,20 @@ QString MainWindow::cmdOut(const QString &cmd, QuietMode quiet)
     return proc.readAll().trimmed();
 }
 
+QString MainWindow::cmdOut(const QString &program, const QStringList &args, QuietMode quiet)
+{
+    if (quiet == QuietMode::No) {
+        qDebug().noquote() << program << args;
+    }
+    QProcess proc;
+    QEventLoop loop;
+    connect(&proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), &loop, &QEventLoop::quit);
+    proc.setProcessChannelMode(QProcess::MergedChannels);
+    proc.start(program, args);
+    loop.exec();
+    return proc.readAll().trimmed();
+}
+
 bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QString *output)
 {
     if (quiet == QuietMode::No) {
@@ -1593,7 +1641,18 @@ void MainWindow::pushRTLremove_clicked()
     }
 
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal-keep-open"};
-    QString terminalCmd = QString("apt-get purge %1; apt-get install -f").arg(dumpList);
+    QStringList validPkgs;
+    static const QRegularExpression pkgNameRe(R"(^[a-zA-Z0-9][a-zA-Z0-9.+-]*$)");
+    for (const auto &pkg : dumpList.split(' ', Qt::SkipEmptyParts)) {
+        if (pkgNameRe.match(pkg).hasMatch())
+            validPkgs << pkg;
+    }
+    if (validPkgs.isEmpty()) {
+        QMessageBox::information(this, tr("Info"), tr("No valid packages found to remove."));
+        setCursor(QCursor(Qt::ArrowCursor));
+        return;
+    }
+    QString terminalCmd = QString("apt-get purge %1; apt-get install -f").arg(validPkgs.join(' '));
     QProcess terminalProc;
     terminalProc.start("x-terminal-emulator", {"-e", "pkexec", helper, terminalCmd});
     terminalProc.waitForFinished(-1);  // Wait indefinitely for terminal to close
