@@ -5,7 +5,7 @@
 export DEBIAN_FRONTEND=dialog
 
 # Run all arguments as the command (pkexec splits them)
-bash -c "$@"
+bash -c "$*"
 EXIT_CODE=$?
 
 # Always show result and wait for user input
