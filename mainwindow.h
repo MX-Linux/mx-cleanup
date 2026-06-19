@@ -74,12 +74,15 @@ private:
     QString helperOut(const QString &cmd, const QStringList &args = {}, QuietMode quiet = QuietMode::No);
     bool helperFlatpakCleanup(const QString &user, QuietMode quiet = QuietMode::No);
     quint64 helperDuSize(const QString &path, QuietMode quiet = QuietMode::No);
+
+public:
     static quint64 sumKiB(const QString &output);
     static QStringList findCachedAgeArgs(const QString &path, const QString &excludePath,
                                           int ageDays, bool ageEnabled);
-
     static void addGroupCheckbox(QLayout *layout, const QStringList &package, const QString &name, QStringList *list);
     static void selectRadioButton(class QGroupBox *groupbox, const QButtonGroup *group, int id);
+
+private:
     void loadOptions(bool settingsPreloaded = false);
     void loadSchedule(bool settingsPreloaded = false);
     void loadSettings();

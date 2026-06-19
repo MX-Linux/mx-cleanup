@@ -103,6 +103,9 @@ if(USE_CLANG)
     message(STATUS "Using clang compiler")
 endif()
 
+# Option to build tests
+option(BUILD_TESTS "Build tests" OFF)
+
 # Find Qt6 components
 find_package(Qt6 REQUIRED COMPONENTS
     Core
@@ -256,3 +259,25 @@ install(TARGETS mx-cleanup
 install(TARGETS helper
     RUNTIME DESTINATION lib/mx-cleanup
 )
+
+# Tests
+if(BUILD_TESTS)
+    enable_testing()
+
+    find_package(Qt6 REQUIRED COMPONENTS Test)
+
+    add_executable(test_mx-cleanup
+        tests/test_utils.cpp
+        mainwindow.cpp
+        about.cpp
+    )
+
+    target_link_libraries(test_mx-cleanup
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Widgets
+        Qt6::Test
+    )
+
+    add_test(NAME test_utils COMMAND test_mx-cleanup)
+endif()
