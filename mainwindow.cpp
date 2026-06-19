@@ -46,6 +46,25 @@
 
 extern const QString starting_home;
 
+namespace {
+// Settings keys shared between loadSettings and saveSettings
+inline const QString keyThumbnails = QStringLiteral("Folders/Thumbnails");
+inline const QString keyCache = QStringLiteral("Folders/Cache");
+inline const QString keyCacheOlderThan = QStringLiteral("Folders/CacheOlderThan");
+inline const QString keyCacheSafer = QStringLiteral("Folders/CacheSafer");
+inline const QString keyAptCleanup = QStringLiteral("Apt/AptCleanup");
+inline const QString keyAptSelection = QStringLiteral("Apt/AptSelection");
+inline const QString keyAptPurge = QStringLiteral("Apt/AptPurge");
+inline const QString keyLogsCleanup = QStringLiteral("Logs/LogsCleanup");
+inline const QString keyLogsSelection = QStringLiteral("Logs/LogsSelection");
+inline const QString keyLogsOlderThan = QStringLiteral("Logs/LogsOlderThan");
+inline const QString keyTrashCleanup = QStringLiteral("Trash/TrashCleanup");
+inline const QString keyTrashSelection = QStringLiteral("Trash/TrashSelection");
+inline const QString keyTrashOlderThan = QStringLiteral("Trash/TrashOlderThan");
+inline const QString keyFlatpakCleanup = QStringLiteral("Flatpak/FlatpakCleanup");
+inline const QString keyFlatpakUnused = QStringLiteral("Flatpak/UninstallUnusedRuntimes");
+}
+
 namespace
 {
 bool isArchLinuxHost()
@@ -479,31 +498,31 @@ void MainWindow::loadSettings()
         return settings ? settings->value(key, fallback) : fallback;
     };
 
-    ui->checkThumbs->setChecked(value("Folders/Thumbnails", true).toBool());
-    ui->checkCache->setChecked(value("Folders/Cache", true).toBool());
-    ui->spinCache->setValue(value("Folders/CacheOlderThan", 2).toInt());
-    const bool cacheSafer = value("Folders/CacheSafer", true).toBool();
+    ui->checkThumbs->setChecked(value(keyThumbnails, true).toBool());
+    ui->checkCache->setChecked(value(keyCache, true).toBool());
+    ui->spinCache->setValue(value(keyCacheOlderThan, 2).toInt());
+    const bool cacheSafer = value(keyCacheSafer, true).toBool();
     ui->radioSaferCache->setChecked(cacheSafer);
     ui->radioAllCache->setChecked(!cacheSafer);
 
-    const bool aptCleanup = value("Apt/AptCleanup", true).toBool();
+    const bool aptCleanup = value(keyAptCleanup, true).toBool();
     ui->groupBoxApt->setChecked(aptCleanup);
-    const int aptSelection = aptCleanup ? value("Apt/AptSelection", -1).toInt() : -1;
+    const int aptSelection = aptCleanup ? value(keyAptSelection, -1).toInt() : -1;
     selectRadioButton(ui->groupBoxApt, ui->buttonGroupApt, aptSelection);
-    ui->checkPurge->setChecked(value("Apt/AptPurge", false).toBool());
+    ui->checkPurge->setChecked(value(keyAptPurge, false).toBool());
 
-    ui->checkFlatpak->setChecked(value("Flatpak/UninstallUnusedRuntimes", false).toBool());
+    ui->checkFlatpak->setChecked(value(keyFlatpakUnused, false).toBool());
 
-    const bool logsCleanup = value("Logs/LogsCleanup", true).toBool();
+    const bool logsCleanup = value(keyLogsCleanup, true).toBool();
     ui->groupBoxLogs->setChecked(logsCleanup);
-    ui->spinBoxLogs->setValue(value("Logs/LogsOlderThan", 7).toInt());
-    const int logsSelection = logsCleanup ? value("Logs/LogsSelection", -1).toInt() : -1;
+    ui->spinBoxLogs->setValue(value(keyLogsOlderThan, 7).toInt());
+    const int logsSelection = logsCleanup ? value(keyLogsSelection, -1).toInt() : -1;
     selectRadioButton(ui->groupBoxLogs, ui->buttonGroupLogs, logsSelection);
 
-    const bool trashCleanup = value("Trash/TrashCleanup", true).toBool();
+    const bool trashCleanup = value(keyTrashCleanup, true).toBool();
     ui->groupBoxTrash->setChecked(trashCleanup);
-    ui->spinBoxTrash->setValue(value("Trash/TrashOlderThan", 30).toInt());
-    const int trashSelection = trashCleanup ? value("Trash/TrashSelection", -1).toInt() : -1;
+    ui->spinBoxTrash->setValue(value(keyTrashOlderThan, 30).toInt());
+    const int trashSelection = trashCleanup ? value(keyTrashSelection, -1).toInt() : -1;
     selectRadioButton(ui->groupBoxTrash, ui->buttonGroupTrash, trashSelection);
 }
 
@@ -800,28 +819,28 @@ void MainWindow::saveSettings()
     const QString targetGroupName = primaryGroupForUser(user);
 
     auto writeValues = [this](QSettings &store) {
-        store.setValue("Folders/Thumbnails", ui->checkThumbs->isChecked());
-        store.setValue("Folders/Cache", ui->checkCache->isChecked());
-        store.setValue("Folders/CacheOlderThan", ui->spinCache->value());
-        store.setValue("Folders/CacheSafer", ui->radioSaferCache->isChecked());
+        store.setValue(keyThumbnails, ui->checkThumbs->isChecked());
+        store.setValue(keyCache, ui->checkCache->isChecked());
+        store.setValue(keyCacheOlderThan, ui->spinCache->value());
+        store.setValue(keyCacheSafer, ui->radioSaferCache->isChecked());
 
         const bool aptCleanup = ui->groupBoxApt->isChecked();
-        store.setValue("Apt/AptCleanup", aptCleanup);
-        store.setValue("Apt/AptSelection", aptCleanup ? ui->buttonGroupApt->checkedId() : -1);
-        store.setValue("Apt/AptPurge", ui->checkPurge->isChecked());
+        store.setValue(keyAptCleanup, aptCleanup);
+        store.setValue(keyAptSelection, aptCleanup ? ui->buttonGroupApt->checkedId() : -1);
+        store.setValue(keyAptPurge, ui->checkPurge->isChecked());
 
         const bool logsCleanup = ui->groupBoxLogs->isChecked();
-        store.setValue("Logs/LogsSelection", logsCleanup ? ui->buttonGroupLogs->checkedId() : -1);
-        store.setValue("Logs/LogsOlderThan", ui->spinBoxLogs->value());
-        store.setValue("Logs/LogsCleanup", logsCleanup);
+        store.setValue(keyLogsSelection, logsCleanup ? ui->buttonGroupLogs->checkedId() : -1);
+        store.setValue(keyLogsOlderThan, ui->spinBoxLogs->value());
+        store.setValue(keyLogsCleanup, logsCleanup);
 
         const bool trashCleanup = ui->groupBoxTrash->isChecked();
-        store.setValue("Trash/TrashCleanup", trashCleanup);
-        store.setValue("Trash/TrashSelection", trashCleanup ? ui->buttonGroupTrash->checkedId() : -1);
-        store.setValue("Trash/TrashOlderThan", ui->spinBoxTrash->value());
+        store.setValue(keyTrashCleanup, trashCleanup);
+        store.setValue(keyTrashSelection, trashCleanup ? ui->buttonGroupTrash->checkedId() : -1);
+        store.setValue(keyTrashOlderThan, ui->spinBoxTrash->value());
 
-        store.setValue("Flatpak/FlatpakCleanup", ui->groupBoxFlatpak->isChecked());
-        store.setValue("Flatpak/UninstallUnusedRuntimes", ui->checkFlatpak->isChecked());
+        store.setValue(keyFlatpakCleanup, ui->groupBoxFlatpak->isChecked());
+        store.setValue(keyFlatpakUnused, ui->checkFlatpak->isChecked());
     };
 
     if (needsRoot) {
@@ -953,11 +972,8 @@ void MainWindow::pushApply_clicked()
             const QString cachePath = QString("/home/%1/.cache").arg(selectedUser);
             const QString thumbsPath = QString("%1/thumbnails*").arg(cachePath);
             if (QFileInfo::exists(cachePath)) {
-                QStringList args {cachePath, "-mindepth", "1", "!", "-path", thumbsPath};
-                if (ui->radioSaferCache->isChecked()) {
-                    const QString days = QString("+%1").arg(ui->spinCache->value());
-                    args << "-atime" << days << "-mtime" << days;
-                }
+                auto args = findCachedAgeArgs(cachePath, thumbsPath,
+                                              ui->spinCache->value(), ui->radioSaferCache->isChecked());
                 args << "-type" << "f" << "-printf" << "%k\n";
                 cacheKiB = sumKiB(helperOut("find", args, QuietMode::Yes));
             }
@@ -973,11 +989,8 @@ void MainWindow::pushApply_clicked()
                 const QString cachePath = QString("/home/%1/.cache").arg(selectedUser);
                 const QString thumbsPath = QString("%1/thumbnails*").arg(cachePath);
                 if (QFileInfo::exists(cachePath)) {
-                    QStringList args {cachePath, "-mindepth", "1", "!", "-path", thumbsPath};
-                    if (ui->radioSaferCache->isChecked()) {
-                        const QString days = QString("+%1").arg(ui->spinCache->value());
-                        args << "-atime" << days << "-mtime" << days;
-                    }
+                    auto args = findCachedAgeArgs(cachePath, thumbsPath,
+                                                  ui->spinCache->value(), ui->radioSaferCache->isChecked());
                     args << "-delete";
                     helperExec("find", args, QuietMode::Yes);
                 }
@@ -1001,12 +1014,9 @@ void MainWindow::pushApply_clicked()
         if (elevate) {
             const QString thumbsPath = QString("/home/%1/.cache/thumbnails").arg(selectedUser);
             if (QFileInfo::exists(thumbsPath)) {
-                QStringList args {thumbsPath, "-type", "f"};
-                if (ui->radioSaferCache->isChecked()) {
-                    const QString days = QString("+%1").arg(ui->spinCache->value());
-                    args << "-atime" << days << "-mtime" << days;
-                }
-                args << "-printf" << "%k\n";
+                QStringList args = findCachedAgeArgs(thumbsPath, {},
+                                                     ui->spinCache->value(), ui->radioSaferCache->isChecked());
+                args << "-type" << "f" << "-printf" << "%k\n";
                 thumbnailsKiB = sumKiB(helperOut("find", args, QuietMode::Yes));
             }
         } else {
@@ -1018,12 +1028,9 @@ void MainWindow::pushApply_clicked()
             if (elevate) {
                 const QString thumbsPath = QString("/home/%1/.cache/thumbnails").arg(selectedUser);
                 if (QFileInfo::exists(thumbsPath)) {
-                    QStringList args {thumbsPath, "-type", "f"};
-                    if (ui->radioSaferCache->isChecked()) {
-                        const QString days = QString("+%1").arg(ui->spinCache->value());
-                        args << "-atime" << days << "-mtime" << days;
-                    }
-                    args << "-delete";
+                    QStringList args = findCachedAgeArgs(thumbsPath, {},
+                                                         ui->spinCache->value(), ui->radioSaferCache->isChecked());
+                    args << "-type" << "f" << "-delete";
                     helperExec("find", args, QuietMode::Yes);
                 }
             } else {
@@ -1516,6 +1523,17 @@ quint64 MainWindow::sumKiB(const QString &output)
         }
     }
     return total;
+}
+
+QStringList MainWindow::findCachedAgeArgs(const QString &path, const QString &excludePath,
+                                           int ageDays, bool ageEnabled)
+{
+    QStringList args {path, "-mindepth", "1"};
+    if (!excludePath.isEmpty())
+        args << "!" << "-path" << excludePath;
+    if (ageEnabled)
+        args << "-atime" << QString("+%1").arg(ageDays) << "-mtime" << QString("+%1").arg(ageDays);
+    return args;
 }
 
 void MainWindow::pushKernel_clicked()
