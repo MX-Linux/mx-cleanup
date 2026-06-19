@@ -32,10 +32,11 @@
 #include <QProcess>
 #include <QProgressDialog>
 #include <QRegularExpression>
-#include <QStandardPaths>
 #include <QSignalBlocker>
+#include <QStandardPaths>
 #include <QTemporaryFile>
 #include <QTextEdit>
+#include <QTimer>
 
 #include <pwd.h>
 #include <grp.h>
@@ -617,7 +618,7 @@ void MainWindow::removeKernelPackages(const QStringList &list)
               .arg(rmOldVersions, packages.join(' '));
     QProcess terminalProc;
     terminalProc.start("x-terminal-emulator", {"-e", "pkexec", helper, terminalCmd});
-    terminalProc.waitForFinished(-1);  // Wait indefinitely for terminal to close
+    terminalProc.waitForFinished(1800000);  // 30-minute timeout for terminal to close
     if (terminalProc.state() == QProcess::Running) {
         terminalProc.kill();
         terminalProc.waitForFinished();
@@ -653,29 +654,25 @@ void MainWindow::loadOptions(bool settingsPreloaded)
         return;
     }
 
+    QFile file(file_name);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+    QString content = QString::fromUtf8(file.readAll());
+
     // Folders
-    QProcess thumbsProc;
-    thumbsProc.start("grep", {"-qE", R"(find /home/[^/]+/\.cache/thumbnails)", file_name});
-    thumbsProc.waitForFinished();
-    ui->checkThumbs->setChecked(thumbsProc.exitCode() == 0);
+    bool hasThumbs = QRegularExpression(R"(find /home/[^/]+/\.cache/thumbnails)").match(content).hasMatch();
+    ui->checkThumbs->setChecked(hasThumbs);
 
-    QProcess cacheProc;
-    cacheProc.start("grep", {"-qE", R"(find /home/[^/]+/\.cache(\s|/\*))", file_name});
-    cacheProc.waitForFinished();
-    ui->checkCache->setChecked(cacheProc.exitCode() == 0);
+    bool hasCache = QRegularExpression(R"(find /home/[^/]+/\.cache(\s|/\*))").match(content).hasMatch();
+    ui->checkCache->setChecked(hasCache);
 
-    if (cacheProc.exitCode() == 0 || thumbsProc.exitCode() == 0) {
-        QProcess atimeProc;
-        atimeProc.start("grep", {"-oE", "--", R"(\.cache.*-atime \+[0-9]+)", file_name});
-        atimeProc.waitForFinished();
-        QString atimeOutput = atimeProc.readAllStandardOutput();
-        QRegularExpression regex(R"(-atime \+([0-9]+))");
-        QRegularExpressionMatch match = regex.match(atimeOutput);
+    if (hasCache || hasThumbs) {
+        QRegularExpression atimeRe(R"(\.cache.*-atime \+([0-9]+))");
+        QRegularExpressionMatch match = atimeRe.match(content);
         if (match.hasMatch()) {
-            int atimeValue = match.captured(1).toInt();
             ui->radioSaferCache->setChecked(true);
             ui->radioAllCache->setChecked(false);
-            ui->spinCache->setValue(atimeValue);
+            ui->spinCache->setValue(match.captured(1).toInt());
         } else {
             ui->radioSaferCache->setChecked(false);
             ui->radioAllCache->setChecked(true);
@@ -683,78 +680,48 @@ void MainWindow::loadOptions(bool settingsPreloaded)
     }
 
     // APT
-    QProcess autocleanProc;
-    autocleanProc.start("grep", {"-q", "apt-get autoclean", file_name});
-    autocleanProc.waitForFinished();
-    if (autocleanProc.exitCode() == 0) { // detect autoclean
+    if (content.contains("apt-get autoclean")) {
         ui->radioAutoClean->setChecked(true);
+    } else if (content.contains("apt-get clean")) {
+        ui->radioClean->setChecked(true);
     } else {
-        QProcess cleanProc;
-        cleanProc.start("grep", {"-q", "apt-get clean", file_name});
-        cleanProc.waitForFinished();
-        if (cleanProc.exitCode() == 0) { // detect clean
-            ui->radioClean->setChecked(true);
-        } else {
-            ui->groupBoxApt->setChecked(false);
-        }
+        ui->groupBoxApt->setChecked(false);
     }
 
     // APT purge
-    QProcess purgeProc;
-    purgeProc.start("grep", {"-q", "apt-get purge", file_name});
-    purgeProc.waitForFinished();
-    ui->checkPurge->setChecked(purgeProc.exitCode() == 0);
+    ui->checkPurge->setChecked(content.contains("apt-get purge"));
 
     // Flatpak: remove unused runtimes
-    QProcess flatpakProc;
-    flatpakProc.start("grep", {"-q", "flatpak uninstall --unused", file_name});
-    flatpakProc.waitForFinished();
-    ui->checkFlatpak->setChecked(flatpakProc.exitCode() == 0);
+    ui->checkFlatpak->setChecked(content.contains("flatpak uninstall --unused"));
 
     // Logs
-    QProcess allLogsProc;
-    allLogsProc.start("grep", {"-q", "\\-exec sh \\-c \"echo", file_name});
-    allLogsProc.waitForFinished();
-    if (allLogsProc.exitCode() == 0) { // all logs
+    QRegularExpression allLogsRe(R"(\-exec sh \-c "echo)");
+    if (allLogsRe.match(content).hasMatch()) {
         ui->radioAllLogs->setChecked(true);
+    } else if (QRegularExpression(R"(\-type f \-delete)").match(content).hasMatch()) {
+        ui->radioOldLogs->setChecked(true);
     } else {
-        QProcess oldLogsProc;
-        oldLogsProc.start("grep", {"-q", "\\-type f \\-delete", file_name});
-        oldLogsProc.waitForFinished();
-        if (oldLogsProc.exitCode() == 0) { // old logs
-            ui->radioOldLogs->setChecked(true);
-        } else {
-            ui->groupBoxLogs->setChecked(false);
-        }
+        ui->groupBoxLogs->setChecked(false);
     }
 
     // Logs older than...
-    QString ctime = cmdOut(
-        "grep 'find /var/log' " + file_name + R"( | grep -Eo '\-ctime \+[0-9]{1,3}' | cut -f2 -d' ')",
-        QuietMode::Yes);
-    ui->spinBoxLogs->setValue(ctime.toInt());
+    QRegularExpression logCtimeRe(R"(find /var/log.*-ctime \+([0-9]{1,3}))");
+    QRegularExpressionMatch logMatch = logCtimeRe.match(content);
+    ui->spinBoxLogs->setValue(logMatch.hasMatch() ? logMatch.captured(1).toInt() : 0);
 
     // Trash
-    QProcess allUsersProc;
-    allUsersProc.start("grep", {"-q", "/home/\\*/.local/share/Trash", file_name});
-    allUsersProc.waitForFinished();
-    if (allUsersProc.exitCode() == 0) { // all user trash
+    if (content.contains("/home/*/.local/share/Trash")) {
         ui->radioAllUsers->setChecked(true);
+    } else if (content.contains("/.local/share/Trash")) {
+        ui->radioSelectedUser->setChecked(true);
     } else {
-        QProcess selectedUserProc;
-        selectedUserProc.start("grep", {"-q", "/.local/share/Trash", file_name});
-        selectedUserProc.waitForFinished();
-        if (selectedUserProc.exitCode() == 0) { // selected user trash
-            ui->radioSelectedUser->setChecked(true);
-        } else {
-            ui->groupBoxTrash->setChecked(false);
-        }
+        ui->groupBoxTrash->setChecked(false);
     }
 
     // Trash older than...
-    ctime = cmdOut("grep 'find /home/' " + file_name + R"( | grep -Eo '\-ctime \+[0-9]{1,3}' | cut -f2 -d' ')",
-                   QuietMode::Yes);
-    ui->spinBoxTrash->setValue(ctime.toInt());
+    QRegularExpression trashCtimeRe(R"(find /home/.*-ctime \+([0-9]{1,3}))");
+    QRegularExpressionMatch trashMatch = trashCtimeRe.match(content);
+    ui->spinBoxTrash->setValue(trashMatch.hasMatch() ? trashMatch.captured(1).toInt() : 0);
 }
 
 // Save cleanup commands to a /etc/cron.daily|weekly|monthly/mx-cleanup script
@@ -1426,6 +1393,7 @@ QString MainWindow::cmdOut(const QString &cmd, QuietMode quiet)
     QProcess proc;
     QEventLoop loop;
     connect(&proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), &loop, &QEventLoop::quit);
+    QTimer::singleShot(30000, &loop, &QEventLoop::quit);
     proc.setProcessChannelMode(QProcess::MergedChannels);
     proc.start("/bin/bash", {"-c", cmd});
     loop.exec();
@@ -1440,6 +1408,7 @@ QString MainWindow::cmdOut(const QString &program, const QStringList &args, Quie
     QProcess proc;
     QEventLoop loop;
     connect(&proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), &loop, &QEventLoop::quit);
+    QTimer::singleShot(30000, &loop, &QEventLoop::quit);
     proc.setProcessChannelMode(QProcess::MergedChannels);
     proc.start(program, args);
     loop.exec();
@@ -1486,7 +1455,17 @@ bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QStr
 
     QEventLoop loop;
     connect(&proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), &loop, &QEventLoop::quit);
+    QTimer::singleShot(30000, &loop, &QEventLoop::quit);
     loop.exec();
+
+    if (proc.state() != QProcess::NotRunning) {
+        proc.kill();
+        proc.waitForFinished();
+        if (output) {
+            *output = QString();
+        }
+        return false;
+    }
 
     const QString standardOutput = QString::fromLocal8Bit(proc.readAllStandardOutput()).trimmed();
     const QString standardError = QString::fromLocal8Bit(proc.readAllStandardError()).trimmed();
@@ -1655,7 +1634,7 @@ void MainWindow::pushRTLremove_clicked()
     QString terminalCmd = QString("apt-get purge %1; apt-get install -f").arg(validPkgs.join(' '));
     QProcess terminalProc;
     terminalProc.start("x-terminal-emulator", {"-e", "pkexec", helper, terminalCmd});
-    terminalProc.waitForFinished(-1);  // Wait indefinitely for terminal to close
+    terminalProc.waitForFinished(1800000);  // 30-minute timeout for terminal to close
     if (terminalProc.state() == QProcess::Running) {
         terminalProc.kill();
         terminalProc.waitForFinished();
