@@ -169,8 +169,9 @@ target_link_libraries(helper
 
 # Set compiler flags
 target_compile_options(mx-cleanup PRIVATE
+    -Wall
+    -Wextra
     -Wpedantic
-    -pedantic
     -Werror=return-type
     -Werror=switch
     -Werror=uninitialized
@@ -178,8 +179,9 @@ target_compile_options(mx-cleanup PRIVATE
 )
 
 target_compile_options(helper PRIVATE
+    -Wall
+    -Wextra
     -Wpedantic
-    -pedantic
     -Werror=return-type
     -Werror=switch
     -Werror=uninitialized
