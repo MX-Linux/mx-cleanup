@@ -21,13 +21,14 @@
  * along with this package. If not, see <http://www.gnu.org/licenses/>.
  **********************************************************************/
 
+#include <cstdio>
+
 #include <QCoreApplication>
 #include <QFileInfo>
 #include <QHash>
 #include <QProcess>
 #include <QRegularExpression>
 
-#include <cstdio>
 
 namespace
 {

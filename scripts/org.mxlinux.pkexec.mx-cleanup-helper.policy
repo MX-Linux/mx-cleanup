@@ -7,7 +7,7 @@
   <vendor>MX Linux</vendor>
   <vendor_url>https://mxlinux.org</vendor_url>
   <action id="org.mxlinux.pkexec.mx-cleanup.helper">
-  <message gettext-domain="mx-launcher-l10n">MX Cleanup</message>
+  <message gettext-domain="mx-cleanup">MX Cleanup</message>
     <description>Run MX Cleanup</description>
     <icon_name>mx-cleanup</icon_name>
     <defaults>
@@ -18,7 +18,7 @@
     <annotate key="org.freedesktop.policykit.exec.path">/usr/lib/mx-cleanup/helper</annotate>
   </action>
   <action id="org.mxlinux.pkexec.mx-cleanup.helper-terminal-keep-open">
-  <message gettext-domain="mx-launcher-l10n">MX Cleanup</message>
+  <message gettext-domain="mx-cleanup">MX Cleanup</message>
     <description>Run MX Cleanup</description>
     <icon_name>mx-cleanup</icon_name>
     <defaults>

@@ -1316,7 +1316,7 @@ void MainWindow::pushApply_clicked()
             parts << flatpak;
         }
         QString cmd_str = parts.join('\n');
-        qDebug() << "CMD STR" << cmd_str;
+        // qDebug() << "CMD STR" << cmd_str;
         QString schedule;
         if (ui->radioDaily->isChecked()) {
             schedule = "daily";
