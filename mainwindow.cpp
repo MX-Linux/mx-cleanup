@@ -535,21 +535,13 @@ void MainWindow::removeKernelPackages(const QStringList &list)
     QStringList headers;
     headers.reserve(list.size());
     QStringList headers_installed;
-    QString rmOldVersions;
 
     for (const auto &item : list) {
         const QString version
             = item.section(QRegularExpression("linux-image-"), 1).remove(QRegularExpression("-unsigned$"));
         if (!version.isEmpty()) {
             headers << "linux-headers-" + version;
-            if (QFile::exists("/boot/initrd.img-" + version + ".old-dkms")) {
-                rmOldVersions.append("/boot/initrd.img-" + version + ".old-dkms ");
-            }
         }
-    }
-
-    if (!rmOldVersions.isEmpty()) {
-        rmOldVersions = rmOldVersions.trimmed().prepend("rm ").append(";");
     }
 
     for (const auto &item : std::as_const(headers)) {
@@ -632,11 +624,10 @@ void MainWindow::removeKernelPackages(const QStringList &list)
         }
     }
 
-    QString terminalCmd
-        = QString("%1 apt-get purge %2; apt-get install -f")
-              .arg(rmOldVersions, packages.join(' '));
+    QStringList terminalArgs {"-e", "pkexec", helper, "purge-packages"};
+    terminalArgs += packages;
     QProcess terminalProc;
-    terminalProc.start("x-terminal-emulator", {"-e", "pkexec", helper, terminalCmd});
+    terminalProc.start("x-terminal-emulator", terminalArgs);
     terminalProc.waitForFinished(1800000);  // 30-minute timeout for terminal to close
     if (terminalProc.state() == QProcess::Running) {
         terminalProc.kill();
@@ -1649,9 +1640,10 @@ void MainWindow::pushRTLremove_clicked()
         setCursor(QCursor(Qt::ArrowCursor));
         return;
     }
-    QString terminalCmd = QString("apt-get purge %1; apt-get install -f").arg(validPkgs.join(' '));
+    QStringList terminalArgs {"-e", "pkexec", helper, "purge-packages"};
+    terminalArgs += validPkgs;
     QProcess terminalProc;
-    terminalProc.start("x-terminal-emulator", {"-e", "pkexec", helper, terminalCmd});
+    terminalProc.start("x-terminal-emulator", terminalArgs);
     terminalProc.waitForFinished(1800000);  // 30-minute timeout for terminal to close
     if (terminalProc.state() == QProcess::Running) {
         terminalProc.kill();

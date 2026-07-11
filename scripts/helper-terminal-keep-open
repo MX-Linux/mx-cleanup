@@ -1,25 +1,63 @@
 #!/bin/bash
 # Helper script for terminal operations that ensures terminal stays open
-# and user can see results before closing
+# and user can see results before closing.
+#
+# Accepts only a fixed action with validated package names, never an
+# arbitrary command string, so a cached polkit authorization
+# (auth_admin_keep) cannot be abused to run arbitrary commands as root.
 
 export DEBIAN_FRONTEND=dialog
 
-# Run all arguments as the command (pkexec splits them)
-bash -c "$*"
-EXIT_CODE=$?
+finish() {
+    local exit_code=$1
+    echo ""
+    echo "========================================"
+    if [ "$exit_code" -eq 0 ]; then
+        echo "Operation completed successfully."
+    else
+        echo "Operation completed with errors (exit code: $exit_code)."
+        echo "Please review the output above."
+    fi
+    echo "========================================"
+    echo ""
+    # Wait for user to acknowledge - this ensures terminal stays open
+    read -n1 -srp "Press any key to close..."
+    echo ""
+    exit "$exit_code"
+}
 
-# Always show result and wait for user input
-echo ""
-echo "========================================"
-if [ $EXIT_CODE -eq 0 ]; then
-    echo "Operation completed successfully."
-else
-    echo "Operation completed with errors (exit code: $EXIT_CODE)."
-    echo "Please review the output above."
+action=$1
+shift 2>/dev/null
+
+if [ "$action" != "purge-packages" ]; then
+    echo "Unsupported action: $action" >&2
+    finish 1
 fi
-echo "========================================"
-echo ""
 
-# Wait for user to acknowledge - this ensures terminal stays open
-read -n1 -srp "Press any key to close..."
-echo ""
+if [ $# -eq 0 ]; then
+    echo "No packages specified." >&2
+    finish 1
+fi
+
+for pkg in "$@"; do
+    if [[ ! "$pkg" =~ ^[a-zA-Z0-9][a-zA-Z0-9.+-]*$ ]]; then
+        echo "Invalid package name: $pkg" >&2
+        finish 1
+    fi
+done
+
+# Remove leftover .old-dkms initrd images for kernels being purged
+for pkg in "$@"; do
+    if [[ "$pkg" == linux-image-* ]]; then
+        version=${pkg#linux-image-}
+        version=${version%-unsigned}
+        initrd="/boot/initrd.img-${version}.old-dkms"
+        if [ -n "$version" ] && [ -f "$initrd" ]; then
+            rm -f -- "$initrd"
+        fi
+    fi
+done
+
+apt-get purge -- "$@"
+apt-get install -f
+finish $?
