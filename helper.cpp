@@ -36,7 +36,6 @@
 #include <unistd.h>
 
 #include <QCoreApplication>
-#include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QProcess>
@@ -192,19 +191,66 @@ void printError(const QString &message)
     return packagePattern.match(package).hasMatch();
 }
 
-[[nodiscard]] QString settingsDirForUser(const QString &user)
+[[nodiscard]] QString homeDirForUser(const QString &user)
 {
     const struct passwd *pwd = getpwnam(user.toUtf8().constData());
     if (!pwd || pwd->pw_dir == nullptr || pwd->pw_dir[0] == '\0') {
         return {};
     }
-    return QString::fromLocal8Bit(pwd->pw_dir) + "/.config/MX-Linux";
+    return QString::fromLocal8Bit(pwd->pw_dir);
 }
 
-[[nodiscard]] QString settingsFileForUser(const QString &user)
+[[nodiscard]] int openHomeDir(const QString &homeDir)
 {
-    const QString dir = settingsDirForUser(user);
-    return dir.isEmpty() ? QString() : dir + "/mx-cleanup.conf";
+    return ::open(QFile::encodeName(homeDir).constData(), O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
+}
+
+// Open (optionally creating) ~/.config relative to a verified home directory
+// fd, refusing to follow a symlink at this component. The whole chain down
+// to the settings file is writable by the (untrusted) settings owner, so
+// every component must be traversed this way -- a symlink anywhere in it
+// must never let a root file operation land on another user's files.
+[[nodiscard]] int openConfigDir(int homeFd, bool create)
+{
+    if (create && ::mkdirat(homeFd, ".config", 0755) < 0 && errno != EEXIST) {
+        return -1;
+    }
+    return ::openat(homeFd, ".config", O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
+}
+
+// Open (optionally creating) ~/.config/MX-Linux relative to a verified
+// .config fd, refusing to follow a symlink at this component. When create is
+// set, ownership is (re)applied so the directory is always user-owned.
+[[nodiscard]] int openMxLinuxDir(int configFd, bool create, uid_t uid, gid_t gid)
+{
+    if (create && ::mkdirat(configFd, "MX-Linux", 0755) < 0 && errno != EEXIST) {
+        return -1;
+    }
+    const int fd = ::openat(configFd, "MX-Linux", O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
+    if (fd >= 0 && create) {
+        ::fchown(fd, uid, gid);
+        ::fchmod(fd, 0755);
+    }
+    return fd;
+}
+
+// Traverse home -> .config -> .config/MX-Linux using directory fds with
+// O_NOFOLLOW at every component. Returns -1 if any component is missing
+// (when create is false) or turns out to be a symlink.
+[[nodiscard]] int openSettingsDirFd(const QString &homeDir, bool create, uid_t uid, gid_t gid)
+{
+    const int homeFd = openHomeDir(homeDir);
+    if (homeFd < 0) {
+        return -1;
+    }
+    const int configFd = openConfigDir(homeFd, create);
+    ::close(homeFd);
+    if (configFd < 0) {
+        return -1;
+    }
+    const int mxFd = openMxLinuxDir(configFd, create, uid, gid);
+    ::close(configFd);
+    return mxFd;
 }
 
 [[nodiscard]] ProcessResult runProcess(const QString &program, const QStringList &args)
@@ -295,14 +341,20 @@ void printError(const QString &message)
 // read-settings <user>: print the user's mx-cleanup settings file to stdout
 [[nodiscard]] int cmdReadSettings(const QString &user)
 {
-    if (!lookupUser(user)) {
+    UserInfo info;
+    if (!lookupUser(user, &info)) {
         return 1;
     }
-    const QString path = settingsFileForUser(user);
-    if (path.isEmpty()) {
+    const QString homeDir = homeDirForUser(user);
+    if (homeDir.isEmpty()) {
         return 1;
     }
-    const int fd = ::open(QFile::encodeName(path).constData(), O_RDONLY | O_NOFOLLOW | O_NOCTTY);
+    const int dirFd = openSettingsDirFd(homeDir, false, info.uid, info.gid);
+    if (dirFd < 0) {
+        return 0; // no settings yet
+    }
+    const int fd = ::openat(dirFd, "mx-cleanup.conf", O_RDONLY | O_NOFOLLOW | O_NOCTTY);
+    ::close(dirFd);
     if (fd < 0) {
         return 0; // no settings yet
     }
@@ -324,9 +376,8 @@ void printError(const QString &message)
     if (!lookupUser(user, &info)) {
         return 1;
     }
-    const QString dir = settingsDirForUser(user);
-    const QString path = settingsFileForUser(user);
-    if (dir.isEmpty() || path.isEmpty()) {
+    const QString homeDir = homeDirForUser(user);
+    if (homeDir.isEmpty()) {
         return 1;
     }
 
@@ -337,24 +388,23 @@ void printError(const QString &message)
     }
     const QByteArray content = input.read(1024 * 1024);
 
-    if (!QDir().mkpath(dir)) {
-        printError(QString("Failed to create %1").arg(dir));
+    const int dirFd = openSettingsDirFd(homeDir, true, info.uid, info.gid);
+    if (dirFd < 0) {
+        printError(QString("Failed to create settings directory for %1").arg(user));
         return 1;
     }
-    const QByteArray dirPath = QFile::encodeName(dir);
-    ::chmod(dirPath.constData(), 0755);
-    ::chown(dirPath.constData(), info.uid, info.gid);
 
-    const int fd = ::open(QFile::encodeName(path).constData(), O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW, 0644);
+    const int fd = ::openat(dirFd, "mx-cleanup.conf", O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW, 0644);
+    ::close(dirFd);
     if (fd < 0) {
-        printError(QString("Failed to create %1").arg(path));
+        printError(QString("Failed to create settings file for %1").arg(user));
         return 1;
     }
     qint64 offset = 0;
     while (offset < content.size()) {
         const ssize_t written = ::write(fd, content.constData() + offset, static_cast<size_t>(content.size() - offset));
         if (written < 0) {
-            printError(QString("Failed to write %1").arg(path));
+            printError(QString("Failed to write settings file for %1").arg(user));
             ::close(fd);
             return 1;
         }
@@ -373,16 +423,20 @@ void printError(const QString &message)
     if (!lookupUser(user, &info)) {
         return 1;
     }
-    const QString dir = settingsDirForUser(user);
-    const QString file = settingsFileForUser(user);
-    if (dir.isEmpty()) {
+    const QString homeDir = homeDirForUser(user);
+    if (homeDir.isEmpty()) {
         return 1;
     }
-    if (QFileInfo::exists(dir)) {
-        ::chown(QFile::encodeName(dir).constData(), info.uid, info.gid);
+    const int dirFd = openSettingsDirFd(homeDir, false, info.uid, info.gid);
+    if (dirFd < 0) {
+        return 0; // no settings yet
     }
-    if (!file.isEmpty() && QFileInfo::exists(file)) {
-        ::chown(QFile::encodeName(file).constData(), info.uid, info.gid);
+    ::fchown(dirFd, info.uid, info.gid);
+    const int fileFd = ::openat(dirFd, "mx-cleanup.conf", O_RDONLY | O_NOFOLLOW | O_NOCTTY);
+    ::close(dirFd);
+    if (fileFd >= 0) {
+        ::fchown(fileFd, info.uid, info.gid);
+        ::close(fileFd);
     }
     return 0;
 }
