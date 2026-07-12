@@ -26,6 +26,7 @@
 // commands, so a cached polkit authorization (auth_admin_keep) cannot
 // be abused to run arbitrary code as root.
 
+#include <cerrno>
 #include <cstdio>
 #include <cstdlib>
 
@@ -44,6 +45,11 @@
 
 namespace
 {
+// Settings content is a small user config file; reject anything larger
+// rather than silently truncating it (which would then get saved back,
+// permanently losing whatever was beyond the limit).
+constexpr qint64 kMaxSettingsBytes = 1024 * 1024;
+
 struct ProcessResult
 {
     bool started = false;
@@ -387,14 +393,31 @@ void printError(const QString &message)
     if (fd < 0) {
         return 0; // no settings yet
     }
+
+    QByteArray content;
     char buffer[8192];
-    ssize_t bytes = 0;
-    qint64 total = 0;
-    while ((bytes = ::read(fd, buffer, sizeof(buffer))) > 0 && total < 1024 * 1024) {
-        writeAndFlush(stdout, QByteArray(buffer, static_cast<int>(bytes)));
-        total += bytes;
+    for (;;) {
+        const ssize_t bytes = ::read(fd, buffer, sizeof(buffer));
+        if (bytes == 0) {
+            break; // EOF
+        }
+        if (bytes < 0) {
+            if (errno == EINTR) {
+                continue;
+            }
+            printError(QString("Failed to read settings file for %1").arg(user));
+            ::close(fd);
+            return 1;
+        }
+        if (content.size() + bytes > kMaxSettingsBytes) {
+            printError(QString("Settings file for %1 exceeds the %2 byte limit").arg(user).arg(kMaxSettingsBytes));
+            ::close(fd);
+            return 1;
+        }
+        content.append(buffer, static_cast<int>(bytes));
     }
     ::close(fd);
+    writeAndFlush(stdout, content);
     return 0;
 }
 
@@ -415,7 +438,20 @@ void printError(const QString &message)
         printError(QStringLiteral("Failed to read settings content"));
         return 1;
     }
-    const QByteArray content = input.read(1024 * 1024);
+    QByteArray content;
+    char buffer[8192];
+    qint64 bytesRead = 0;
+    while ((bytesRead = input.read(buffer, sizeof(buffer))) > 0) {
+        if (content.size() + bytesRead > kMaxSettingsBytes) {
+            printError(QString("Settings content for %1 exceeds the %2 byte limit").arg(user).arg(kMaxSettingsBytes));
+            return 1;
+        }
+        content.append(buffer, static_cast<int>(bytesRead));
+    }
+    if (bytesRead < 0) {
+        printError(QStringLiteral("Failed to read settings content"));
+        return 1;
+    }
 
     const int dirFd = openSettingsDirFd(homeDir, true, info.uid, info.gid);
     if (dirFd < 0) {
