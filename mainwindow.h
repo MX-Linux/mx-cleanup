@@ -38,6 +38,15 @@ enum class QuietMode
     Yes,
 };
 
+// Timeout tiers for helperProc()/cmdOut(): quick metadata/settings operations
+// keep a short timeout, disk-scanning cleanup operations get a generous one
+// (slow disks, huge caches), and package-manager mutations get none at all --
+// killing apt-get/pacman/flatpak mid-operation can corrupt their state, so
+// those must be allowed to run to completion.
+constexpr int kQuickTimeoutMs = 30000;
+constexpr int kDiskScanTimeoutMs = 600000;
+constexpr int kNoTimeoutMs = 0;
+
 class MainWindow : public QDialog
 {
     Q_OBJECT
@@ -66,13 +75,17 @@ private:
     bool isArchLinux {false};
     bool manualRemovalInProgress {false};
     bool suppressUserSwitch {false};
-    QString cmdOut(const QString &cmd, QuietMode quiet = QuietMode::No, bool *ok = nullptr);
+    QString cmdOut(const QString &cmd, QuietMode quiet = QuietMode::No, bool *ok = nullptr,
+                   int timeoutMs = kQuickTimeoutMs);
     QString cmdOut(const QString &program, const QStringList &args, QuietMode quiet = QuietMode::No,
-                   bool *ok = nullptr);
+                   bool *ok = nullptr, int timeoutMs = kQuickTimeoutMs);
     bool helperProc(const QStringList &helperArgs, QuietMode quiet = QuietMode::No, QString *output = nullptr,
-                    const QByteArray &input = {}, QString *errorOutput = nullptr);
-    QString helperOut(const QStringList &helperArgs, QuietMode quiet = QuietMode::No);
-    quint64 helperDuSize(const QString &sizeKey, const QString &user = {}, QuietMode quiet = QuietMode::No);
+                    const QByteArray &input = {}, QString *errorOutput = nullptr, bool *timedOut = nullptr,
+                    int timeoutMs = kQuickTimeoutMs);
+    QString helperOut(const QStringList &helperArgs, QuietMode quiet = QuietMode::No,
+                      int timeoutMs = kQuickTimeoutMs);
+    quint64 helperDuSize(const QString &sizeKey, const QString &user = {}, QuietMode quiet = QuietMode::No,
+                        int timeoutMs = kDiskScanTimeoutMs);
 
 public:
     static quint64 sumKiB(const QString &output);
