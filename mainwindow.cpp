@@ -45,6 +45,7 @@
 #include <unistd.h>
 
 #include "about.h"
+#include "packagemanager.h"
 
 extern const QString starting_home;
 
@@ -81,43 +82,6 @@ void killProcessGroup(QProcess &proc)
     }
     proc.kill();
     proc.waitForFinished();
-}
-}
-
-namespace
-{
-bool isArchLinuxHost()
-{
-    if (QFile::exists("/etc/arch-release")) {
-        return true;
-    }
-
-    QFile osRelease("/etc/os-release");
-    if (!osRelease.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        return false;
-    }
-
-    const QString data = QString::fromUtf8(osRelease.readAll());
-    QString id;
-    QString idLike;
-    const auto lines = data.split('\n');
-    for (const auto &line : lines) {
-        if (line.startsWith("ID=")) {
-            id = line.mid(3).trimmed();
-        } else if (line.startsWith("ID_LIKE=")) {
-            idLike = line.mid(8).trimmed();
-        }
-    }
-
-    auto normalize = [](QString value) {
-        value.remove('"');
-        return value.toLower();
-    };
-
-    id = normalize(id);
-    idLike = normalize(idLike);
-
-    return id == "arch" || idLike.split(' ').contains("arch");
 }
 }
 

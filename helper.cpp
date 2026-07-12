@@ -43,6 +43,8 @@
 #include <QProcess>
 #include <QRegularExpression>
 
+#include "packagemanager.h"
+
 namespace
 {
 // Settings content is a small user config file; reject anything larger
@@ -123,41 +125,6 @@ void printError(const QString &message)
 [[nodiscard]] QString flatpakBinary()
 {
     return resolveBinary({"/usr/bin/flatpak", "/bin/flatpak"});
-}
-
-// Same OS detection as the GUI, so both pick the same package manager
-[[nodiscard]] bool isArchLinuxHost()
-{
-    if (QFile::exists("/etc/arch-release")) {
-        return true;
-    }
-
-    QFile osRelease("/etc/os-release");
-    if (!osRelease.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        return false;
-    }
-
-    const QString data = QString::fromUtf8(osRelease.readAll());
-    QString id;
-    QString idLike;
-    const auto lines = data.split('\n');
-    for (const auto &line : lines) {
-        if (line.startsWith("ID=")) {
-            id = line.mid(3).trimmed();
-        } else if (line.startsWith("ID_LIKE=")) {
-            idLike = line.mid(8).trimmed();
-        }
-    }
-
-    auto normalize = [](QString value) {
-        value.remove('"');
-        return value.toLower();
-    };
-
-    id = normalize(id);
-    idLike = normalize(idLike);
-
-    return id == "arch" || idLike.split(' ').contains("arch");
 }
 
 [[nodiscard]] bool lookupUser(const QString &user, UserInfo *info = nullptr)
