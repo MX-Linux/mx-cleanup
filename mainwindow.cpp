@@ -835,14 +835,15 @@ void MainWindow::setConnections()
 
 void MainWindow::pushApply_clicked()
 {
-    setCursor(QCursor(Qt::BusyCursor));
+    QApplication::setOverrideCursor(Qt::BusyCursor);
+    QApplication::processEvents();
     setEnabled(false);
 
     // Try to elevate privileges if needed
     if (getuid() != 0) {
         if (!helperProc({"check"}, QuietMode::Yes, nullptr, {}, nullptr, nullptr, kDiskScanTimeoutMs)) {
             QMessageBox::critical(this, tr("Error"), tr("Failed to elevate privileges"));
-            setCursor(QCursor(Qt::ArrowCursor));
+            QApplication::restoreOverrideCursor();
             setEnabled(true);
             return;
         }
@@ -873,6 +874,7 @@ void MainWindow::pushApply_clicked()
     if (ui->checkCache->isChecked()) {
         const int cacheDays = ui->radioSaferCache->isChecked() ? ui->spinCache->value() : 0;
         const QString cacheDaysArg = QString::number(cacheDays);
+        const QString cachePath = QString("/home/%1/.cache").arg(selectedUser);
         QString period = cacheDays > 0 ? QString(" -atime +%1 -mtime +%1").arg(cacheDays) : QString();
         QString findCmd = QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -type f "
                                   "-exec du -c '{}' + | awk 'END{print $1}'")
@@ -891,10 +893,25 @@ void MainWindow::pushApply_clicked()
             if (elevate) {
                 cacheOk = runOp(tr("Cache cleanup"), {"clean-cache", "delete", selectedUser, cacheDaysArg});
             } else {
-                cmdOut(QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete "
-                               "2>/dev/null")
-                           .arg(selectedUser, period),
-                       QuietMode::No, &cacheOk, kDiskScanTimeoutMs);
+                const QString output = cmdOut(QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete")
+                                                   .arg(selectedUser, period),
+                                               QuietMode::No, &cacheOk, kDiskScanTimeoutMs);
+                // Flatpak may leave a directory owned by its sandbox helper in
+                // the user's cache.  It cannot be traversed by the user, but
+                // must not make unrelated cache cleanup appear to have failed.
+                if (!cacheOk && !output.isEmpty()) {
+                    const QString ignoredPath = cachePath + "/.flatpak-helper";
+                    bool onlyIgnoredErrors = true;
+                    for (const QString &line : output.split('\n', Qt::SkipEmptyParts)) {
+                        if (!line.contains(ignoredPath)) {
+                            onlyIgnoredErrors = false;
+                            break;
+                        }
+                    }
+                    if (onlyIgnoredErrors) {
+                        cacheOk = true;
+                    }
+                }
                 if (!cacheOk) {
                     failures << tr("Cache cleanup");
                 }
@@ -1066,6 +1083,7 @@ void MainWindow::pushApply_clicked()
         QString user = allUsers ? "*" : ui->comboUserClean->currentText();
         const QString trashUserArg = allUsers ? QStringLiteral("@all") : user;
         const QString trashDaysArg = QString::number(ui->spinBoxTrash->value());
+        const QString trashPath = QString("/home/%1/.local/share/Trash").arg(user);
         QString timeTrash = ui->spinBoxTrash->value() > 0
                                 ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxTrash->value())
                                 : QString();
@@ -1078,7 +1096,7 @@ void MainWindow::pushApply_clicked()
         if (user != currentUser) {
             trashKiB = sumKiB(
                 helperOut({"clean-trash", "size", trashUserArg, trashDaysArg}, QuietMode::Yes, kDiskScanTimeoutMs));
-        } else {
+        } else if (QFileInfo::exists(trashPath)) {
             trashKiB = cmdOut(findSizeCmd, QuietMode::No, nullptr, kDiskScanTimeoutMs).toULongLong();
         }
 
@@ -1087,7 +1105,7 @@ void MainWindow::pushApply_clicked()
         if (!ui->radioReboot->isChecked()) {
             if (user != currentUser) {
                 trashOk = runOp(tr("Trash cleanup"), {"clean-trash", "delete", trashUserArg, trashDaysArg});
-            } else {
+            } else if (QFileInfo::exists(trashPath)) {
                 cmdOut(findDeleteCmd, QuietMode::No, &trashOk, kDiskScanTimeoutMs);
                 if (!trashOk) {
                     failures << tr("Trash cleanup");
@@ -1141,7 +1159,7 @@ void MainWindow::pushApply_clicked()
 
     saveSettings();
 
-    setCursor(QCursor(Qt::ArrowCursor));
+    QApplication::restoreOverrideCursor();
     const double freedMiB = static_cast<double>(total) / 1024.0;
     QString freedText;
     if (freedMiB >= 0.1) {
