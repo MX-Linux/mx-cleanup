@@ -99,7 +99,7 @@ private:
     void removeKernelPackages(const QStringList &list);
     void removeManuals();
     [[nodiscard]] bool saveSchedule(const QStringList &scheduleOpts, const QString &period);
-    void saveSettings();
+    [[nodiscard]] bool saveSettings();
     void setConnections();
     void setup();
     void startPreferredApp(const QStringList &apps);

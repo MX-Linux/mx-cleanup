@@ -699,22 +699,18 @@ bool MainWindow::saveSchedule(const QStringList &scheduleOpts, const QString &pe
         args << "--user" << user;
     }
     args += scheduleOpts;
-    if (!helperProc(args, QuietMode::Yes)) {
-        QMessageBox::critical(this, tr("Error"), tr("Failed to save the cleanup schedule"));
-        return false;
-    }
-    return true;
+    return helperProc(args, QuietMode::Yes);
 }
 
-void MainWindow::saveSettings()
+bool MainWindow::saveSettings()
 {
     if (!settings) {
-        return;
+        return true;
     }
 
     const QString user = ui->comboUserClean->currentText();
     if (user.isEmpty()) {
-        return;
+        return true;
     }
 
     const QString dirPath = settingsDirForUser(user);
@@ -722,7 +718,7 @@ void MainWindow::saveSettings()
 
     if (dirPath.isEmpty() || targetPath.isEmpty()) {
         qWarning().noquote() << "Missing settings path for user" << user;
-        return;
+        return false;
     }
 
     const bool needsRoot = (getuid() != 0 && user != currentUser);
@@ -756,25 +752,32 @@ void MainWindow::saveSettings()
         QTemporaryFile tempFile;
         if (!tempFile.open()) {
             qWarning().noquote() << "Failed to open temporary settings file for user" << user;
-            return;
+            return false;
         }
 
         QSettings tempSettings(tempFile.fileName(), QSettings::IniFormat);
         tempSettings.setFallbacksEnabled(false);
         writeValues(tempSettings);
         tempSettings.sync();
-
-        QByteArray content;
-        QFile contentFile(tempFile.fileName());
-        if (contentFile.open(QIODevice::ReadOnly)) {
-            content = contentFile.readAll();
-            contentFile.close();
+        if (tempSettings.status() != QSettings::NoError) {
+            qWarning().noquote() << "Failed to write temporary settings file for user" << user;
+            return false;
         }
-        helperProc({"write-settings", user}, QuietMode::Yes, nullptr, content);
+
+        QFile contentFile(tempFile.fileName());
+        if (!contentFile.open(QIODevice::ReadOnly)) {
+            qWarning().noquote() << "Failed to read temporary settings file for user" << user;
+            return false;
+        }
+        const QByteArray content = contentFile.readAll();
+        contentFile.close();
+        if (!helperProc({"write-settings", user}, QuietMode::Yes, nullptr, content)) {
+            return false;
+        }
 
         currentSettingsPath = targetPath;
         initializeSettingsForUser(user);
-        return;
+        return true;
     }
 
     QDir dir;
@@ -792,6 +795,7 @@ void MainWindow::saveSettings()
     }
 
     currentSettingsPath = targetPath;
+    return settings->status() == QSettings::NoError;
 }
 
 void MainWindow::selectRadioButton(QGroupBox *groupbox, const QButtonGroup *group, int id)
@@ -1121,21 +1125,30 @@ void MainWindow::pushApply_clicked()
     }
 
     // Cleanup schedule for the currently selected user only
+    bool scheduleCleanupFailed = false;
     auto removeScheduleFiles = [&](const QString &period) {
         if (!selectedUser.isEmpty()) {
-            helperProc({"remove-schedule", "cron", period, selectedUser}, QuietMode::Yes);
+            if (!helperProc({"remove-schedule", "cron", period, selectedUser}, QuietMode::Yes)) {
+                scheduleCleanupFailed = true;
+            }
         }
         if (cronEntryPath(period, false) == cronEntryBase(period)) {
-            helperProc({"remove-schedule", "cron", period}, QuietMode::Yes);
+            if (!helperProc({"remove-schedule", "cron", period}, QuietMode::Yes)) {
+                scheduleCleanupFailed = true;
+            }
         }
     };
 
     auto removeScriptFiles = [&]() {
         if (!selectedUser.isEmpty()) {
-            helperProc({"remove-schedule", "script", selectedUser}, QuietMode::Yes);
+            if (!helperProc({"remove-schedule", "script", selectedUser}, QuietMode::Yes)) {
+                scheduleCleanupFailed = true;
+            }
         }
         if (scriptFilePath(false) == scriptFileBase()) {
-            helperProc({"remove-schedule", "script"}, QuietMode::Yes);
+            if (!helperProc({"remove-schedule", "script"}, QuietMode::Yes)) {
+                scheduleCleanupFailed = true;
+            }
         }
     };
 
@@ -1161,8 +1174,9 @@ void MainWindow::pushApply_clicked()
     } else {
         // The new schedule is always written to the per-user suffixed path. If the
         // selected period is presently served by the pre-per-user legacy unsuffixed
-        // file, remember that now -- once the suffixed write succeeds, that legacy
-        // file must be retired too, or both would run.
+        // file, remember that now, before the write below changes what these resolve
+        // to -- once the suffixed write succeeds, that legacy file must be retired
+        // too, or both would run.
         const bool legacyCronActive = cronEntryPath(schedule, false) == cronEntryBase(schedule);
         const bool legacyScriptActive = schedule == "@reboot" && scriptFilePath(false) == scriptFileBase();
 
@@ -1177,16 +1191,23 @@ void MainWindow::pushApply_clicked()
             if (schedule != "@reboot") {
                 removeScriptFiles();
             }
-            if (legacyCronActive) {
-                helperProc({"remove-schedule", "cron", schedule}, QuietMode::Yes);
+            if (legacyCronActive && !helperProc({"remove-schedule", "cron", schedule}, QuietMode::Yes)) {
+                scheduleCleanupFailed = true;
             }
-            if (legacyScriptActive) {
-                helperProc({"remove-schedule", "script"}, QuietMode::Yes);
+            if (legacyScriptActive && !helperProc({"remove-schedule", "script"}, QuietMode::Yes)) {
+                scheduleCleanupFailed = true;
             }
+        } else {
+            failures << tr("Save cleanup schedule");
         }
     }
+    if (scheduleCleanupFailed) {
+        failures << tr("Remove previous cleanup schedule");
+    }
 
-    saveSettings();
+    if (!saveSettings()) {
+        failures << tr("Save settings");
+    }
 
     QApplication::restoreOverrideCursor();
     const double freedMiB = static_cast<double>(total) / 1024.0;
@@ -1200,12 +1221,12 @@ void MainWindow::pushApply_clicked()
         freedText = QStringLiteral("0");
     }
 
-    if (ui->radioReboot->isChecked()) {
-        QMessageBox::information(this, tr("Done"), tr("Cleanup script will run at reboot"));
-    } else if (!failures.isEmpty()) {
+    if (!failures.isEmpty()) {
         QMessageBox::warning(this, tr("Some cleanup steps failed"),
                              tr("%1 MiB were freed, but the following steps failed:").arg(freedText) + "\n\n"
                                  + failures.join('\n'));
+    } else if (ui->radioReboot->isChecked()) {
+        QMessageBox::information(this, tr("Done"), tr("Cleanup script will run at reboot"));
     } else {
         QMessageBox::information(this, tr("Done"),
                                  tr("Cleanup command done") + '\n' + tr("%1 MiB were freed").arg(freedText));

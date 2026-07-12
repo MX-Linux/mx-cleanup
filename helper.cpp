@@ -305,6 +305,20 @@ struct ProcessResult
     return 0;
 }
 
+// Removing a file that is already absent is a no-op, not a failure; only report
+// an error when the file exists but ::remove() genuinely fails (e.g. permissions).
+[[nodiscard]] bool removeScheduleFileIfPresent(const QString &path)
+{
+    if (!QFile::exists(path)) {
+        return true;
+    }
+    if (!QFile::remove(path)) {
+        printError(QString("Failed to remove %1").arg(path));
+        return false;
+    }
+    return true;
+}
+
 // remove-schedule cron <period> [user] | remove-schedule script [user]
 [[nodiscard]] int cmdRemoveSchedule(const QStringList &args)
 {
@@ -338,14 +352,12 @@ struct ProcessResult
     }
 
     if (user.isEmpty()) {
-        QFile::remove(base);
-        return 0;
+        return removeScheduleFileIfPresent(base) ? 0 : 1;
     }
     if (!lookupUser(user)) {
         return 1;
     }
-    QFile::remove(base + '.' + user);
-    return 0;
+    return removeScheduleFileIfPresent(base + '.' + user) ? 0 : 1;
 }
 
 // write-schedule <period> [--user U] [--cache N] [--thumbs N] [--logs old|all N]
