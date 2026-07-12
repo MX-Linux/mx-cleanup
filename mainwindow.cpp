@@ -691,7 +691,7 @@ void MainWindow::loadOptions(bool settingsPreloaded)
 
 // Save cleanup commands to a /etc/cron.daily|weekly|monthly/mx-cleanup script.
 // The helper composes and writes the script itself from the validated options.
-void MainWindow::saveSchedule(const QStringList &scheduleOpts, const QString &period)
+bool MainWindow::saveSchedule(const QStringList &scheduleOpts, const QString &period)
 {
     QStringList args {"write-schedule", period};
     const QString user = ui->comboUserClean->currentText();
@@ -701,7 +701,9 @@ void MainWindow::saveSchedule(const QStringList &scheduleOpts, const QString &pe
     args += scheduleOpts;
     if (!helperProc(args, QuietMode::Yes)) {
         QMessageBox::critical(this, tr("Error"), tr("Failed to save the cleanup schedule"));
+        return false;
     }
+    return true;
 }
 
 void MainWindow::saveSettings()
@@ -1137,25 +1139,51 @@ void MainWindow::pushApply_clicked()
         }
     };
 
-    removeScheduleFiles("daily");
-    removeScheduleFiles("weekly");
-    removeScheduleFiles("monthly");
-    removeScheduleFiles("@reboot");
-    removeScriptFiles();
+    static const QStringList allPeriods {"daily", "weekly", "monthly", "@reboot"};
 
-    // Add schedule file
-    if (!ui->radioNone->isChecked()) {
-        QString schedule;
-        if (ui->radioDaily->isChecked()) {
-            schedule = "daily";
-        } else if (ui->radioWeekly->isChecked()) {
-            schedule = "weekly";
-        } else if (ui->radioMonthly->isChecked()) {
-            schedule = "monthly";
-        } else if (ui->radioReboot->isChecked()) {
-            schedule = "@reboot";
+    QString schedule;
+    if (ui->radioDaily->isChecked()) {
+        schedule = "daily";
+    } else if (ui->radioWeekly->isChecked()) {
+        schedule = "weekly";
+    } else if (ui->radioMonthly->isChecked()) {
+        schedule = "monthly";
+    } else if (ui->radioReboot->isChecked()) {
+        schedule = "@reboot";
+    }
+
+    if (schedule.isEmpty()) {
+        // Scheduling disabled: drop any existing schedule outright.
+        for (const auto &period : allPeriods) {
+            removeScheduleFiles(period);
         }
-        saveSchedule(scheduleOpts, schedule);
+        removeScriptFiles();
+    } else {
+        // The new schedule is always written to the per-user suffixed path. If the
+        // selected period is presently served by the pre-per-user legacy unsuffixed
+        // file, remember that now -- once the suffixed write succeeds, that legacy
+        // file must be retired too, or both would run.
+        const bool legacyCronActive = cronEntryPath(schedule, false) == cronEntryBase(schedule);
+        const bool legacyScriptActive = schedule == "@reboot" && scriptFilePath(false) == scriptFileBase();
+
+        if (saveSchedule(scheduleOpts, schedule)) {
+            // Only drop schedules for the other periods once the new one is safely
+            // written, so a failed write above leaves the prior schedule intact.
+            for (const auto &period : allPeriods) {
+                if (period != schedule) {
+                    removeScheduleFiles(period);
+                }
+            }
+            if (schedule != "@reboot") {
+                removeScriptFiles();
+            }
+            if (legacyCronActive) {
+                helperProc({"remove-schedule", "cron", schedule}, QuietMode::Yes);
+            }
+            if (legacyScriptActive) {
+                helperProc({"remove-schedule", "script"}, QuietMode::Yes);
+            }
+        }
     }
 
     saveSettings();

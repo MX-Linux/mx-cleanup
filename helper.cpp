@@ -367,28 +367,28 @@ struct ProcessResult
     }
 
     const QString suffix = opts.user.isEmpty() ? QString() : '.' + opts.user;
-    const QString cronBase = cronEntryBase(period);
-    const QString cronTarget = cronBase + suffix;
+    const QString cronTarget = cronEntryBase(period) + suffix;
 
-    QFile::remove(cronBase);
-    if (cronTarget != cronBase) {
-        QFile::remove(cronTarget);
-    }
-
+    // writeFileAsRoot() writes to a temp file and renames it over the target, so it
+    // already replaces cronTarget/scriptTarget atomically. Removing them beforehand
+    // would only risk losing the previous schedule if the write below then fails, and
+    // could delete an unrelated (e.g. unsuffixed) schedule file. Superseded schedule
+    // files for other periods/users are cleaned up explicitly via remove-schedule.
     QString scriptTarget = cronTarget;
     if (period == "@reboot") {
-        const QString scriptBase = scriptFileBase();
-        scriptTarget = scriptBase + suffix;
-        QFile::remove(scriptBase);
-        if (scriptTarget != scriptBase) {
-            QFile::remove(scriptTarget);
-        }
-        if (!writeFileAsRoot(cronTarget, QString("@reboot root %1\n").arg(scriptTarget).toUtf8(), 0644)) {
-            return 1;
-        }
+        scriptTarget = scriptFileBase() + suffix;
     }
 
-    return writeFileAsRoot(scriptTarget, generateScheduleScript(opts).toUtf8(), 0755) ? 0 : 1;
+    // Write the script before the cron entry that references it, so a failure here
+    // never leaves cron pointing at a script that doesn't exist yet.
+    if (!writeFileAsRoot(scriptTarget, generateScheduleScript(opts).toUtf8(), 0755)) {
+        return 1;
+    }
+
+    if (period == "@reboot") {
+        return writeFileAsRoot(cronTarget, QString("@reboot root %1\n").arg(scriptTarget).toUtf8(), 0644) ? 0 : 1;
+    }
+    return 0;
 }
 
 [[nodiscard]] bool parseSizeOrDelete(const QString &mode, bool *isDelete)
