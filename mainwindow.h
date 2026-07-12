@@ -98,7 +98,7 @@ private:
     void loadSettings();
     void removeKernelPackages(const QStringList &list);
     void removeManuals();
-    [[nodiscard]] bool saveSchedule(const QStringList &scheduleOpts, const QString &period);
+    [[nodiscard]] bool saveSchedule(const QStringList &scheduleOpts, const QString &period, bool includeUser = true);
     [[nodiscard]] bool saveSettings();
     void setConnections();
     void setup();
