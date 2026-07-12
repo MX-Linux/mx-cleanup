@@ -3,8 +3,8 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../mainwindow.cpp" line="184"/>
-        <location filename="../mainwindow.cpp" line="1234"/>
+        <location filename="../mainwindow.cpp" line="196"/>
+        <location filename="../mainwindow.cpp" line="1349"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="565"/>
         <source>MX Cleanup</source>
         <translation>MX Limpar</translation>
@@ -83,7 +83,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="784"/>
-        <location filename="../mainwindow.cpp" line="1335"/>
+        <location filename="../mainwindow.cpp" line="1532"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="633"/>
         <source>Close</source>
         <translation>Fechar</translation>
@@ -116,7 +116,7 @@
         <location filename="../mainwindow.ui" line="103"/>
         <location filename="../mainwindow.ui" line="294"/>
         <location filename="../mainwindow.ui" line="438"/>
-        <location filename="../mainwindow.cpp" line="903"/>
+        <location filename="../mainwindow.cpp" line="910"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="570"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="584"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="592"/>
@@ -300,158 +300,172 @@
         <translation>Miniaturas de imagens</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="135"/>
+        <location filename="../mainwindow.cpp" line="139"/>
         <source>Remove Manuals</source>
         <translation>Remover Manuais</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="135"/>
+        <location filename="../mainwindow.cpp" line="139"/>
         <source>No manuals to remove.</source>
         <translation>Sem manuais a remover.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="142"/>
+        <location filename="../mainwindow.cpp" line="151"/>
+        <location filename="../mainwindow.cpp" line="158"/>
         <source>Removing packages, please wait</source>
         <translation>A remover pacotes, por favor aguarde</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="903"/>
+        <location filename="../mainwindow.cpp" line="910"/>
         <source> day</source>
         <translation> dia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="740"/>
-        <location filename="../mainwindow.cpp" line="753"/>
-        <location filename="../mainwindow.cpp" line="920"/>
+        <location filename="../mainwindow.cpp" line="144"/>
+        <location filename="../mainwindow.cpp" line="748"/>
+        <location filename="../mainwindow.cpp" line="761"/>
+        <location filename="../mainwindow.cpp" line="922"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="204"/>
+        <location filename="../mainwindow.cpp" line="216"/>
         <source>Clean pacman cache</source>
-        <translation type="unfinished"/>
+        <translation>Limpar cache do gestor de pacotes pacman</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="741"/>
+        <location filename="../mainwindow.cpp" line="749"/>
         <source>Failed to create temporary cron file: %1</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao criar o ficheiro temporário cron: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="754"/>
+        <location filename="../mainwindow.cpp" line="762"/>
         <source>Failed to create temporary script file: %1</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao criar o ficheiro temporário de script: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="920"/>
+        <location filename="../mainwindow.cpp" line="144"/>
+        <location filename="../mainwindow.cpp" line="922"/>
         <source>Failed to elevate privileges</source>
         <translation>Ocorreu uma falha ao elevar os privilégios</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1222"/>
+        <location filename="../mainwindow.cpp" line="1337"/>
         <source>Done</source>
         <translation>Concluído</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1224"/>
+        <location filename="../mainwindow.cpp" line="1339"/>
         <source>Cleanup script will run at reboot</source>
         <translation>A limpeza será feita ao reiniciar o computador</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1225"/>
+        <location filename="../mainwindow.cpp" line="1340"/>
         <source>Cleanup command done</source>
         <translation>Comando de limpeza efetuado</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1226"/>
+        <location filename="../mainwindow.cpp" line="1341"/>
         <source>%1 MiB were freed</source>
         <translation>Foram libertados %1 MiB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1234"/>
+        <location filename="../mainwindow.cpp" line="1349"/>
         <source>About</source>
         <translation>Sobre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1235"/>
+        <location filename="../mainwindow.cpp" line="1350"/>
         <source>Version: </source>
         <translation>Versão:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1237"/>
+        <location filename="../mainwindow.cpp" line="1352"/>
         <source>Quick and safe removal of old files</source>
         <translation>Remoção rápida e segura de ficheiros antigos já desnecessários</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1239"/>
+        <location filename="../mainwindow.cpp" line="1354"/>
         <source>Copyright (c) MX Linux</source>
         <translation>Direitos de Autor (c) MX Linux</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1240"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>%1 License</source>
         <translation>Licença do %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1247"/>
+        <location filename="../mainwindow.cpp" line="1362"/>
         <source>%1 Help</source>
         <translation>Ajuda do %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1330"/>
+        <location filename="../mainwindow.cpp" line="1527"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Núcleo (kernel) atualmente em utilização: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1333"/>
+        <location filename="../mainwindow.cpp" line="1530"/>
         <source>Remove selected</source>
         <translation>Remover selecionados</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1338"/>
+        <location filename="../mainwindow.cpp" line="1535"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Núcleos (kernels) semelhantes que podem ser removidos:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1339"/>
+        <location filename="../mainwindow.cpp" line="1536"/>
         <source>Other kernels that can be removed:</source>
         <translation>Outros núcleos (kernels) que podem ser removidos:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1342"/>
+        <location filename="../mainwindow.cpp" line="1539"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation>&lt;b&gt;Nada a remover.&lt;/b&gt; Não é possível remover o núcleo (kernel) em utilização.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1386"/>
+        <location filename="../mainwindow.cpp" line="1583"/>
         <source>Info</source>
         <translation>Informação</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1386"/>
+        <location filename="../mainwindow.cpp" line="1583"/>
         <source>No unused network drivers found to remove.</source>
-        <translation type="unfinished"/>
+        <translation>Foi foi encontrado nenhum driver de rede inútil  para ser removido.</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../about.cpp" line="70"/>
+        <location filename="../about.cpp" line="71"/>
+        <source>Could not load %1</source>
+        <translation>Foi impossível carregar %1</translation>
+    </message>
+    <message>
+        <location filename="../about.cpp" line="94"/>
         <source>License</source>
         <translation>Licença</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="71"/>
-        <location filename="../about.cpp" line="81"/>
+        <location filename="../about.cpp" line="95"/>
+        <location filename="../about.cpp" line="105"/>
         <source>Changelog</source>
         <translation>Registo de alterações</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="72"/>
+        <location filename="../about.cpp" line="96"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="94"/>
+        <location filename="../about.cpp" line="117"/>
+        <source>Could not load changelog.</source>
+        <translation>Falha ao carregar registo de alterações.</translation>
+    </message>
+    <message>
+        <location filename="../about.cpp" line="51"/>
+        <location filename="../about.cpp" line="120"/>
         <source>&amp;Close</source>
         <translation>&amp;Fechar</translation>
     </message>

@@ -3,8 +3,8 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../mainwindow.cpp" line="184"/>
-        <location filename="../mainwindow.cpp" line="1234"/>
+        <location filename="../mainwindow.cpp" line="196"/>
+        <location filename="../mainwindow.cpp" line="1349"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="565"/>
         <source>MX Cleanup</source>
         <translation>MX Cleanup</translation>
@@ -83,7 +83,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="784"/>
-        <location filename="../mainwindow.cpp" line="1335"/>
+        <location filename="../mainwindow.cpp" line="1532"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="633"/>
         <source>Close</source>
         <translation>Tanca</translation>
@@ -116,7 +116,7 @@
         <location filename="../mainwindow.ui" line="103"/>
         <location filename="../mainwindow.ui" line="294"/>
         <location filename="../mainwindow.ui" line="438"/>
-        <location filename="../mainwindow.cpp" line="903"/>
+        <location filename="../mainwindow.cpp" line="910"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="570"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="584"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="592"/>
@@ -300,134 +300,137 @@
         <translation>Miniatures</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="135"/>
+        <location filename="../mainwindow.cpp" line="139"/>
         <source>Remove Manuals</source>
         <translation>Elimina Manuals</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="135"/>
+        <location filename="../mainwindow.cpp" line="139"/>
         <source>No manuals to remove.</source>
         <translation>No hi ha manuals per eliminar.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="142"/>
+        <location filename="../mainwindow.cpp" line="151"/>
+        <location filename="../mainwindow.cpp" line="158"/>
         <source>Removing packages, please wait</source>
         <translation>Eliminant paquets, espereu si us plau</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="903"/>
+        <location filename="../mainwindow.cpp" line="910"/>
         <source> day</source>
         <translation>dia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="740"/>
-        <location filename="../mainwindow.cpp" line="753"/>
-        <location filename="../mainwindow.cpp" line="920"/>
+        <location filename="../mainwindow.cpp" line="144"/>
+        <location filename="../mainwindow.cpp" line="748"/>
+        <location filename="../mainwindow.cpp" line="761"/>
+        <location filename="../mainwindow.cpp" line="922"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="204"/>
+        <location filename="../mainwindow.cpp" line="216"/>
         <source>Clean pacman cache</source>
         <translation>Neteja la memòria cau de Pacman</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="741"/>
+        <location filename="../mainwindow.cpp" line="749"/>
         <source>Failed to create temporary cron file: %1</source>
         <translation>No s&apos;ha pogut crear el fitxer cron temporal: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="754"/>
+        <location filename="../mainwindow.cpp" line="762"/>
         <source>Failed to create temporary script file: %1</source>
         <translation>No s&apos;ha pogut crear el fitxer de script temporal: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="920"/>
+        <location filename="../mainwindow.cpp" line="144"/>
+        <location filename="../mainwindow.cpp" line="922"/>
         <source>Failed to elevate privileges</source>
         <translation>Ha fallat en elevar privilegis</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1222"/>
+        <location filename="../mainwindow.cpp" line="1337"/>
         <source>Done</source>
         <translation>Fet </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1224"/>
+        <location filename="../mainwindow.cpp" line="1339"/>
         <source>Cleanup script will run at reboot</source>
         <translation>L&apos;script Cleanup s&apos;executarà en reiniciar</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1225"/>
+        <location filename="../mainwindow.cpp" line="1340"/>
         <source>Cleanup command done</source>
         <translation>Feta l&apos;ordre de neteja</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1226"/>
+        <location filename="../mainwindow.cpp" line="1341"/>
         <source>%1 MiB were freed</source>
         <translation>S&apos;ha alliberat %1 MiB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1234"/>
+        <location filename="../mainwindow.cpp" line="1349"/>
         <source>About</source>
         <translation>Quant a </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1235"/>
+        <location filename="../mainwindow.cpp" line="1350"/>
         <source>Version: </source>
         <translation>Versió: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1237"/>
+        <location filename="../mainwindow.cpp" line="1352"/>
         <source>Quick and safe removal of old files</source>
         <translation>Eliminació ràpida i segura de fitxers antics</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1239"/>
+        <location filename="../mainwindow.cpp" line="1354"/>
         <source>Copyright (c) MX Linux</source>
         <translation>Copyright (c) MX Linux</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1240"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>%1 License</source>
         <translation>Llicència de %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1247"/>
+        <location filename="../mainwindow.cpp" line="1362"/>
         <source>%1 Help</source>
         <translation>Ajuda de %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1330"/>
+        <location filename="../mainwindow.cpp" line="1527"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Kernel actualment en ús: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1333"/>
+        <location filename="../mainwindow.cpp" line="1530"/>
         <source>Remove selected</source>
         <translation>Elimina els seleccionats</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1338"/>
+        <location filename="../mainwindow.cpp" line="1535"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Es poden eliminar kernels semblants</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1339"/>
+        <location filename="../mainwindow.cpp" line="1536"/>
         <source>Other kernels that can be removed:</source>
         <translation>Altres kernels que es poden eliminar: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1342"/>
+        <location filename="../mainwindow.cpp" line="1539"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation>&lt;b&gt;Res a eliminar.&lt;/b&gt; No es pot eliminar el kernel en ús.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1386"/>
+        <location filename="../mainwindow.cpp" line="1583"/>
         <source>Info</source>
         <translation>Informació</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1386"/>
+        <location filename="../mainwindow.cpp" line="1583"/>
         <source>No unused network drivers found to remove.</source>
         <translation>No s&apos;ha trobat cap controlador de xarxa no usat per suprimir.</translation>
     </message>
@@ -435,23 +438,34 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../about.cpp" line="70"/>
+        <location filename="../about.cpp" line="71"/>
+        <source>Could not load %1</source>
+        <translation>No s&apos;ha pogut carregar %1</translation>
+    </message>
+    <message>
+        <location filename="../about.cpp" line="94"/>
         <source>License</source>
         <translation>Llicència</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="71"/>
-        <location filename="../about.cpp" line="81"/>
+        <location filename="../about.cpp" line="95"/>
+        <location filename="../about.cpp" line="105"/>
         <source>Changelog</source>
         <translation>Registre de canvis</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="72"/>
+        <location filename="../about.cpp" line="96"/>
         <source>Cancel</source>
         <translation>Cancel·la</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="94"/>
+        <location filename="../about.cpp" line="117"/>
+        <source>Could not load changelog.</source>
+        <translation>No s&apos;ha pogut carregar el registre de canvis.</translation>
+    </message>
+    <message>
+        <location filename="../about.cpp" line="51"/>
+        <location filename="../about.cpp" line="120"/>
         <source>&amp;Close</source>
         <translation>Tan&amp;ca </translation>
     </message>

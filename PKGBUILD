@@ -8,6 +8,7 @@ url="https://github.com/mxlinux/mx-cleanup"
 license=('GPL3')
 depends=('qt6-base' 'polkit')
 makedepends=('cmake' 'ninja' 'qt6-tools')
+install=mx-cleanup.install
 source=()
 sha256sums=()
 

@@ -9,6 +9,10 @@ mx-cleanup (26.07) mx; urgency=medium
   * Warn when individual cleanup steps fail, and count only successfully
     completed cleanup in the freed-space total
   * Keep scheduled cleanup files intact if writing their replacement fails
+  * Split execution script into user specific and system scoped items (like
+    apt-get stuff)
+  * Remove generated cleanup scripts and cron entries when the package is
+    removed, so scheduled cleanup does not keep running afterwards
 
  -- Adrian <adrian@mxlinux.org>  Fri, 19 Jun 2026 09:59:59 -0400
 

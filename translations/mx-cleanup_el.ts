@@ -3,8 +3,8 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../mainwindow.cpp" line="184"/>
-        <location filename="../mainwindow.cpp" line="1234"/>
+        <location filename="../mainwindow.cpp" line="196"/>
+        <location filename="../mainwindow.cpp" line="1349"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="565"/>
         <source>MX Cleanup</source>
         <translation>MX Καθαρισμός</translation>
@@ -37,13 +37,13 @@
         <location filename="../mainwindow.ui" line="24"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="603"/>
         <source>Main</source>
-        <translation>Βασικό</translation>
+        <translation>Βασικά</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="602"/>
         <source>Purge residual configurations from removed packages</source>
-        <translation>Καθαρισμός ρυθμίσεων από πακέτα που έχουν αφαιρεθεί και παραμένουν</translation>
+        <translation>Εκκαθάριση υπολειπόμενων ρυθμίσεων από πακέτα που έχουν αφαιρεθεί</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
@@ -83,7 +83,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="784"/>
-        <location filename="../mainwindow.cpp" line="1335"/>
+        <location filename="../mainwindow.cpp" line="1532"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="633"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
@@ -116,7 +116,7 @@
         <location filename="../mainwindow.ui" line="103"/>
         <location filename="../mainwindow.ui" line="294"/>
         <location filename="../mainwindow.ui" line="438"/>
-        <location filename="../mainwindow.cpp" line="903"/>
+        <location filename="../mainwindow.cpp" line="910"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="570"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="584"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="592"/>
@@ -139,7 +139,7 @@
         <location filename="../mainwindow.ui" line="210"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="579"/>
         <source>Clear APT Cache</source>
-        <translation>Καθαρισμός προσωρινής μνήμης πακέτων</translation>
+        <translation>Εκκαθάριση προσωρινής μνήμης πακέτων</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="225"/>
@@ -205,7 +205,7 @@
         <location filename="../mainwindow.ui" line="467"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="594"/>
         <source>Free Disk Space for User</source>
-        <translation>Απελευθέρωση χώρου</translation>
+        <translation>Απελευθέρωση χώρου του χρήστη</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="479"/>
@@ -249,7 +249,7 @@
         <location filename="../mainwindow.ui" line="551"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="605"/>
         <source>Remove unused WiFi drivers</source>
-        <translation>Αφαίρεση οδηγών WiFi που δεν χρησιμοποιούνται</translation>
+        <translation>Αφαίρεση προγραμμάτων οδήγησης WiFi που δεν χρησιμοποιούνται</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="570"/>
@@ -261,19 +261,19 @@
         <location filename="../mainwindow.ui" line="125"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="571"/>
         <source>Clean Flatpak</source>
-        <translation>Καθαρισμός Flatpak</translation>
+        <translation>Εκκαθάριση Flatpak</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="131"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="572"/>
         <source>Remove unused runtimes</source>
-        <translation>Αφαίρεση προγραμμάτων που δεν χρησιμοποιούνται</translation>
+        <translation>Αφαίρεση runtimes που δεν χρησιμοποιούνται</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="364"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="588"/>
         <source>Clean Folders</source>
-        <translation>Καθαρισμός φακέλων</translation>
+        <translation>Εκκαθάριση φακέλων</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="428"/>
@@ -300,158 +300,172 @@
         <translation>Μικρογραφίες &quot;Thumbnails&quot;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="135"/>
+        <location filename="../mainwindow.cpp" line="139"/>
         <source>Remove Manuals</source>
         <translation>Αφαίρεση εγχειριδίων χρήσης</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="135"/>
+        <location filename="../mainwindow.cpp" line="139"/>
         <source>No manuals to remove.</source>
         <translation>Δεν υπάρχουν εγχειρίδια χρήσης για αφαίρεση.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="142"/>
+        <location filename="../mainwindow.cpp" line="151"/>
+        <location filename="../mainwindow.cpp" line="158"/>
         <source>Removing packages, please wait</source>
         <translation>Αφαίρεση πακέτων, παρακαλώ περιμένετε</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="903"/>
+        <location filename="../mainwindow.cpp" line="910"/>
         <source> day</source>
         <translation> ημέρα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="740"/>
-        <location filename="../mainwindow.cpp" line="753"/>
-        <location filename="../mainwindow.cpp" line="920"/>
+        <location filename="../mainwindow.cpp" line="144"/>
+        <location filename="../mainwindow.cpp" line="748"/>
+        <location filename="../mainwindow.cpp" line="761"/>
+        <location filename="../mainwindow.cpp" line="922"/>
         <source>Error</source>
         <translation>Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="204"/>
+        <location filename="../mainwindow.cpp" line="216"/>
         <source>Clean pacman cache</source>
-        <translation type="unfinished"/>
+        <translation>Εκκαθάριση προσωρινής μνήμης pacman</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="741"/>
+        <location filename="../mainwindow.cpp" line="749"/>
         <source>Failed to create temporary cron file: %1</source>
-        <translation type="unfinished"/>
+        <translation>Απέτυχε η δημιουργία του προσωρινού προγραμματισμένου αρχείου: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="754"/>
+        <location filename="../mainwindow.cpp" line="762"/>
         <source>Failed to create temporary script file: %1</source>
-        <translation type="unfinished"/>
+        <translation>Απέτυχε η δημιουργία του προσωρινού αρχείου εκκαθάρισης: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="920"/>
+        <location filename="../mainwindow.cpp" line="144"/>
+        <location filename="../mainwindow.cpp" line="922"/>
         <source>Failed to elevate privileges</source>
         <translation>Απέτυχε η εκχώρηση δικαιωμάτων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1222"/>
+        <location filename="../mainwindow.cpp" line="1337"/>
         <source>Done</source>
         <translation>Ολοκληρώθηκε</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1224"/>
+        <location filename="../mainwindow.cpp" line="1339"/>
         <source>Cleanup script will run at reboot</source>
-        <translation>Οι εντολές καθαρισμού θα εκτελεστούν στην επανεκκίνηση</translation>
+        <translation>Οι εντολές εκκαθάρισης θα εκτελεστούν στην επανεκκίνηση</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1225"/>
+        <location filename="../mainwindow.cpp" line="1340"/>
         <source>Cleanup command done</source>
         <translation>Ο καθαρισμός ολοκληρώθηκε</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1226"/>
+        <location filename="../mainwindow.cpp" line="1341"/>
         <source>%1 MiB were freed</source>
         <translation>Απελευθερώθηκαν %1 MiB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1234"/>
+        <location filename="../mainwindow.cpp" line="1349"/>
         <source>About</source>
         <translation>Περί</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1235"/>
+        <location filename="../mainwindow.cpp" line="1350"/>
         <source>Version: </source>
         <translation>Έκδοση: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1237"/>
+        <location filename="../mainwindow.cpp" line="1352"/>
         <source>Quick and safe removal of old files</source>
         <translation>Γρήγορη και ασφαλής αφαίρεση παλαιών αρχείων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1239"/>
+        <location filename="../mainwindow.cpp" line="1354"/>
         <source>Copyright (c) MX Linux</source>
         <translation>Πνευματικά δικαιώματα (c) MX Linux</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1240"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>%1 License</source>
         <translation>Άδεια %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1247"/>
+        <location filename="../mainwindow.cpp" line="1362"/>
         <source>%1 Help</source>
         <translation>Βοήθεια %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1330"/>
+        <location filename="../mainwindow.cpp" line="1527"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Πυρήνας σε χρήση: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1333"/>
+        <location filename="../mainwindow.cpp" line="1530"/>
         <source>Remove selected</source>
         <translation>Αφαίρεση επιλεγμένων</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1338"/>
+        <location filename="../mainwindow.cpp" line="1535"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Παρόμοιοι πυρήνες που μπορούν να αφαιρεθούν:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1339"/>
+        <location filename="../mainwindow.cpp" line="1536"/>
         <source>Other kernels that can be removed:</source>
         <translation>Άλλοι πυρήνες που μπορούν να αφαιρεθούν:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1342"/>
+        <location filename="../mainwindow.cpp" line="1539"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation>&lt;b&gt;Καμία αφαίρεση.&lt;/b&gt; Δεν μπορεί να αφαιρεθεί πυρήνας σε χρήση.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1386"/>
+        <location filename="../mainwindow.cpp" line="1583"/>
         <source>Info</source>
         <translation>Πληροφορίες</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1386"/>
+        <location filename="../mainwindow.cpp" line="1583"/>
         <source>No unused network drivers found to remove.</source>
-        <translation type="unfinished"/>
+        <translation>Δεν εντοπίστηκαν προγράμματα οδήγησης δικτύου που δεν χρησιμοποιούνται και μπορούν να καταργηθούν.</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../about.cpp" line="70"/>
+        <location filename="../about.cpp" line="71"/>
+        <source>Could not load %1</source>
+        <translation>Δεν ήταν δυνατή η φόρτωση του %1</translation>
+    </message>
+    <message>
+        <location filename="../about.cpp" line="94"/>
         <source>License</source>
         <translation>Άδεια</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="71"/>
-        <location filename="../about.cpp" line="81"/>
+        <location filename="../about.cpp" line="95"/>
+        <location filename="../about.cpp" line="105"/>
         <source>Changelog</source>
         <translation>Αρχείο αλλαγών</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="72"/>
+        <location filename="../about.cpp" line="96"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="94"/>
+        <location filename="../about.cpp" line="117"/>
+        <source>Could not load changelog.</source>
+        <translation>Δεν ήταν δυνατή η φόρτωση του αρχείου αλλαγών.</translation>
+    </message>
+    <message>
+        <location filename="../about.cpp" line="51"/>
+        <location filename="../about.cpp" line="120"/>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
     </message>

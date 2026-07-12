@@ -3,8 +3,8 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../mainwindow.cpp" line="184"/>
-        <location filename="../mainwindow.cpp" line="1234"/>
+        <location filename="../mainwindow.cpp" line="196"/>
+        <location filename="../mainwindow.cpp" line="1349"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="565"/>
         <source>MX Cleanup</source>
         <translation>Pastrim MX</translation>
@@ -83,7 +83,7 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="784"/>
-        <location filename="../mainwindow.cpp" line="1335"/>
+        <location filename="../mainwindow.cpp" line="1532"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="633"/>
         <source>Close</source>
         <translation>Mbylle</translation>
@@ -116,7 +116,7 @@
         <location filename="../mainwindow.ui" line="103"/>
         <location filename="../mainwindow.ui" line="294"/>
         <location filename="../mainwindow.ui" line="438"/>
-        <location filename="../mainwindow.cpp" line="903"/>
+        <location filename="../mainwindow.cpp" line="910"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="570"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="584"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="592"/>
@@ -300,134 +300,137 @@
         <translation>Miniatura</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="135"/>
+        <location filename="../mainwindow.cpp" line="139"/>
         <source>Remove Manuals</source>
         <translation>Hiqi Doracakët</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="135"/>
+        <location filename="../mainwindow.cpp" line="139"/>
         <source>No manuals to remove.</source>
         <translation>S’ka doracakë për heqje.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="142"/>
+        <location filename="../mainwindow.cpp" line="151"/>
+        <location filename="../mainwindow.cpp" line="158"/>
         <source>Removing packages, please wait</source>
         <translation>Po hiqen paketa, ju lutemi, prisni</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="903"/>
+        <location filename="../mainwindow.cpp" line="910"/>
         <source> day</source>
         <translation>ditë</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="740"/>
-        <location filename="../mainwindow.cpp" line="753"/>
-        <location filename="../mainwindow.cpp" line="920"/>
+        <location filename="../mainwindow.cpp" line="144"/>
+        <location filename="../mainwindow.cpp" line="748"/>
+        <location filename="../mainwindow.cpp" line="761"/>
+        <location filename="../mainwindow.cpp" line="922"/>
         <source>Error</source>
         <translation>Gabim</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="204"/>
+        <location filename="../mainwindow.cpp" line="216"/>
         <source>Clean pacman cache</source>
         <translation>Pastro fshehtinë pacman-i</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="741"/>
+        <location filename="../mainwindow.cpp" line="749"/>
         <source>Failed to create temporary cron file: %1</source>
         <translation>S’u arrit të krijohej kartelë e përkohshme cron: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="754"/>
+        <location filename="../mainwindow.cpp" line="762"/>
         <source>Failed to create temporary script file: %1</source>
         <translation>S’u arrit të krijohej kartelë e përkohshme programth: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="920"/>
+        <location filename="../mainwindow.cpp" line="144"/>
+        <location filename="../mainwindow.cpp" line="922"/>
         <source>Failed to elevate privileges</source>
         <translation>S’u arrit të ngrihen më lart privilegje</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1222"/>
+        <location filename="../mainwindow.cpp" line="1337"/>
         <source>Done</source>
         <translation>U bë</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1224"/>
+        <location filename="../mainwindow.cpp" line="1339"/>
         <source>Cleanup script will run at reboot</source>
         <translation>Programthi i spastrimit do të xhirojë gjatë rinisjes</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1225"/>
+        <location filename="../mainwindow.cpp" line="1340"/>
         <source>Cleanup command done</source>
         <translation>Urdhri i pastrimit u përmbush</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1226"/>
+        <location filename="../mainwindow.cpp" line="1341"/>
         <source>%1 MiB were freed</source>
         <translation>U liruan %1 MB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1234"/>
+        <location filename="../mainwindow.cpp" line="1349"/>
         <source>About</source>
         <translation>Mbi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1235"/>
+        <location filename="../mainwindow.cpp" line="1350"/>
         <source>Version: </source>
         <translation>Version: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1237"/>
+        <location filename="../mainwindow.cpp" line="1352"/>
         <source>Quick and safe removal of old files</source>
         <translation>Heqje e shpejtë dhe e parrezik kartelash të vjetra</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1239"/>
+        <location filename="../mainwindow.cpp" line="1354"/>
         <source>Copyright (c) MX Linux</source>
         <translation>Të drejta kopjimi (c) MX Linux</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1240"/>
+        <location filename="../mainwindow.cpp" line="1355"/>
         <source>%1 License</source>
         <translation>Licencë %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1247"/>
+        <location filename="../mainwindow.cpp" line="1362"/>
         <source>%1 Help</source>
         <translation>Ndihmë për %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1330"/>
+        <location filename="../mainwindow.cpp" line="1527"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Kernel në përdorim tani: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1333"/>
+        <location filename="../mainwindow.cpp" line="1530"/>
         <source>Remove selected</source>
         <translation>Hiq të përzgjedhurin</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1338"/>
+        <location filename="../mainwindow.cpp" line="1535"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Kernela të ngjashëm që mund të hiqen:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1339"/>
+        <location filename="../mainwindow.cpp" line="1536"/>
         <source>Other kernels that can be removed:</source>
         <translation>Kernela të tjerë që mund të hiqen:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1342"/>
+        <location filename="../mainwindow.cpp" line="1539"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation>&lt;b&gt;Asgjë për heqje.&lt;/b&gt; S’mund të hiqet kerneli që është në përdorim.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1386"/>
+        <location filename="../mainwindow.cpp" line="1583"/>
         <source>Info</source>
         <translation>Hollësi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1386"/>
+        <location filename="../mainwindow.cpp" line="1583"/>
         <source>No unused network drivers found to remove.</source>
         <translation>S’u gjetën përudhës rrjeti të papërdorur për t’u hequr. </translation>
     </message>
@@ -435,23 +438,34 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../about.cpp" line="70"/>
+        <location filename="../about.cpp" line="71"/>
+        <source>Could not load %1</source>
+        <translation>S’u ngarkua dot %1</translation>
+    </message>
+    <message>
+        <location filename="../about.cpp" line="94"/>
         <source>License</source>
         <translation>Licencë</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="71"/>
-        <location filename="../about.cpp" line="81"/>
+        <location filename="../about.cpp" line="95"/>
+        <location filename="../about.cpp" line="105"/>
         <source>Changelog</source>
         <translation>Regjistër ndryshimesh</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="72"/>
+        <location filename="../about.cpp" line="96"/>
         <source>Cancel</source>
         <translation>Anuloje</translation>
     </message>
     <message>
-        <location filename="../about.cpp" line="94"/>
+        <location filename="../about.cpp" line="117"/>
+        <source>Could not load changelog.</source>
+        <translation>S’u ngarkua dot regjistër ndryshimesh.</translation>
+    </message>
+    <message>
+        <location filename="../about.cpp" line="51"/>
+        <location filename="../about.cpp" line="120"/>
         <source>&amp;Close</source>
         <translation>&amp;Mbylle</translation>
     </message>

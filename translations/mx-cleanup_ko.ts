@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="th">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ko">
 <context>
     <name>MainWindow</name>
     <message>
@@ -7,19 +7,19 @@
         <location filename="../mainwindow.cpp" line="1349"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="565"/>
         <source>MX Cleanup</source>
-        <translation>MX Cleanup</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="683"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="619"/>
         <source>Display help </source>
-        <translation>แสดงหน้าช่วยเหลือ</translation>
+        <translation>도움말 표시</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="686"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="621"/>
         <source>Help</source>
-        <translation>ช่วยเหลือ</translation>
+        <translation>도움말</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="692"/>
@@ -31,7 +31,7 @@
         <location filename="../mainwindow.ui" line="658"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="612"/>
         <source>About this application</source>
-        <translation>เกี่ยวกับแอปพลิเคชันนี้</translation>
+        <translation>이 애플리케이션 정보</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="24"/>
@@ -49,7 +49,7 @@
         <location filename="../mainwindow.ui" line="539"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="610"/>
         <source>Tools</source>
-        <translation>เครื่องมือ</translation>
+        <translation>도구</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="545"/>
@@ -67,7 +67,7 @@
         <location filename="../mainwindow.ui" line="661"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="614"/>
         <source>About...</source>
-        <translation>เกี่ยวกับ...</translation>
+        <translation>About...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="667"/>
@@ -79,38 +79,38 @@
         <location filename="../mainwindow.ui" line="781"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="631"/>
         <source>Quit application</source>
-        <translation>ออกจากแอปพลิเคชัน</translation>
+        <translation>종료</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="784"/>
         <location filename="../mainwindow.cpp" line="1532"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="633"/>
         <source>Close</source>
-        <translation>ปิด</translation>
+        <translation>닫기</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="790"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="635"/>
         <source>Alt+N</source>
-        <translation>Alt+N</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="756"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="626"/>
         <source>Apply</source>
-        <translation>นำไปใช้</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="36"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="566"/>
         <source>Empty Trash</source>
-        <translation>ล้างถังขยะ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="45"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="567"/>
         <source>Trash older than:</source>
-        <translation>ขยะที่เก่ากว่า:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="103"/>
@@ -121,37 +121,37 @@
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="584"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="592"/>
         <source> days</source>
-        <translation>วัน</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="58"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="568"/>
         <source>All users</source>
-        <translation>ผู้ใช้ทั้งหมด</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="90"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="569"/>
         <source>Selected user</source>
-        <translation>ผู้ใช้ที่เลือก</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="210"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="579"/>
         <source>Clear APT Cache</source>
-        <translation>ล้างแคช APT</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="225"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="580"/>
         <source>Old files</source>
-        <translation>ไฟล์เก่า</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="244"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="581"/>
         <source>All files</source>
-        <translation>ไฟล์ทั้งหมด</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="605"/>
@@ -175,7 +175,7 @@
         <location filename="../mainwindow.ui" line="153"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="574"/>
         <source>No automatic clean</source>
-        <translation>ไม่มีการทำความสะอาดอัตโนมัติ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="160"/>
@@ -187,25 +187,25 @@
         <location filename="../mainwindow.ui" line="167"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="576"/>
         <source>Daily</source>
-        <translation>ทุกวัน</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="174"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="577"/>
         <source>Weekly</source>
-        <translation>ทุกสัปดาห์</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="181"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="578"/>
         <source>Monthly</source>
-        <translation>ทุกเดือน</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="467"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="594"/>
         <source>Free Disk Space for User</source>
-        <translation>ทำความสะอาดพื้นที่ดิสก์สำหรับผู้ใช้</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="479"/>
@@ -213,37 +213,37 @@
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="596"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="600"/>
         <source>Select user to repair</source>
-        <translation>เลือกผู้ใช้ที่ต้องการซ่อมแซม</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="482"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="598"/>
         <source>Select user:</source>
-        <translation>เลือกผู้ใช้:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="263"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="582"/>
         <source>Delete Logs</source>
-        <translation>ลบ Logs</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="278"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="583"/>
         <source>All logs</source>
-        <translation>Logs ทั้งหมด</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="339"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="587"/>
         <source>Old logs</source>
-        <translation>Logs เก่า</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="326"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="586"/>
         <source>Logs older than:</source>
-        <translation>Logs ที่เก่ากว่า:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="551"/>
@@ -267,13 +267,13 @@
         <location filename="../mainwindow.ui" line="131"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="572"/>
         <source>Remove unused runtimes</source>
-        <translation type="unfinished"/>
+        <translation>사용되지 않는 런타임 제거</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="364"/>
         <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="588"/>
         <source>Clean Folders</source>
-        <translation>ทำความสะอาดโฟลเดอร์</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="428"/>
@@ -326,7 +326,7 @@
         <location filename="../mainwindow.cpp" line="761"/>
         <location filename="../mainwindow.cpp" line="922"/>
         <source>Error</source>
-        <translation>ข้อผิดพลาด</translation>
+        <translation>에러</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="216"/>
@@ -352,7 +352,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="1337"/>
         <source>Done</source>
-        <translation>เสร็จสิ้น</translation>
+        <translation>완료</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1339"/>
@@ -362,37 +362,37 @@
     <message>
         <location filename="../mainwindow.cpp" line="1340"/>
         <source>Cleanup command done</source>
-        <translation>คำสั่งการทำความสะอาดเสร็จสิ้น</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1341"/>
         <source>%1 MiB were freed</source>
-        <translation>ทำความสะอาดแล้ว %1 MiB</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1349"/>
         <source>About</source>
-        <translation>เกี่ยวกับ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1350"/>
         <source>Version: </source>
-        <translation>เวอร์ชัน:</translation>
+        <translation>버전:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1352"/>
         <source>Quick and safe removal of old files</source>
-        <translation>ลบไฟล์เก่าอย่างรวดเร็วและปลอดภัย</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1354"/>
         <source>Copyright (c) MX Linux</source>
-        <translation>สงวนลิขสิทธิ์ (c) MX Linux</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1355"/>
         <source>%1 License</source>
-        <translation type="unfinished"/>
+        <translation>%1 라이센스</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1362"/>
@@ -427,7 +427,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="1583"/>
         <source>Info</source>
-        <translation>ข้อมูล</translation>
+        <translation>정보</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1583"/>
@@ -440,34 +440,34 @@
     <message>
         <location filename="../about.cpp" line="71"/>
         <source>Could not load %1</source>
-        <translation type="unfinished"/>
+        <translation>로드 불가 %1</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="94"/>
         <source>License</source>
-        <translation>สัญญาอนุญาต</translation>
+        <translation>라이센스</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="95"/>
         <location filename="../about.cpp" line="105"/>
         <source>Changelog</source>
-        <translation>Changelog</translation>
+        <translation>변경 로그</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="96"/>
         <source>Cancel</source>
-        <translation>ยกเลิก</translation>
+        <translation>취소</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="117"/>
         <source>Could not load changelog.</source>
-        <translation type="unfinished"/>
+        <translation>변경 로그를 불러올 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="51"/>
         <location filename="../about.cpp" line="120"/>
         <source>&amp;Close</source>
-        <translation>&amp;ปิด</translation>
+        <translation>닫기(&amp;C)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="63"/>
@@ -478,17 +478,17 @@
         <location filename="../main.cpp" line="89"/>
         <location filename="../main.cpp" line="97"/>
         <source>Error</source>
-        <translation>ข้อผิดพลาด</translation>
+        <translation>에러</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="90"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation type="unfinished"/>
+        <translation>루트 권한으로 로그인한 상태로 보입니다. 이 프로그램을 사용하시려면 로그아웃 후 일반 사용자로 로그인해 주세요.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="98"/>
         <source>You must run this program with admin access.</source>
-        <translation type="unfinished"/>
+        <translation>어드민 권한으로 이 프로그램을 실행해야 합니다.</translation>
     </message>
 </context>
 </TS>
