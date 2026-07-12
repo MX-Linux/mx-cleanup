@@ -527,17 +527,20 @@ void MainWindow::removeKernelPackages(const QStringList &list)
             image_pattern = headers_common;
             image_pattern.remove("-common");
             image_pattern.replace("headers", "image");
-            QProcess checkProc;
             QStringList escapedPkgs;
             escapedPkgs.reserve(list.size());
             for (const auto &pkg : list)
                 escapedPkgs << QRegularExpression::escape(pkg);
-            QString checkCmd
-                = QString("dpkg -l 'linux-image-[0-9]*' | grep ^ii | cut -d ' ' -f3 | grep -v -E '%1' | grep -q %2")
-                      .arg(escapedPkgs.join('|'), image_pattern);
-            checkProc.start("/bin/bash", {"-c", checkCmd});
-            checkProc.waitForFinished();
-            if (checkProc.exitCode() != 0) {
+            // Package/pattern data is passed as bash positional parameters
+            // ($1, $2) rather than interpolated into the script text, so
+            // none of it is ever parsed as shell syntax.
+            bool patternStillInstalled = false;
+            cmdOut("/bin/bash",
+                   {"-c",
+                    "dpkg -l 'linux-image-[0-9]*' | grep ^ii | cut -d ' ' -f3 | grep -v -E \"$1\" | grep -q -- \"$2\"",
+                    "bash", escapedPkgs.join('|'), image_pattern},
+                   QuietMode::No, &patternStillInstalled);
+            if (!patternStillInstalled) {
                 headers_depends << headers_common;
             }
         }
@@ -550,9 +553,13 @@ void MainWindow::removeKernelPackages(const QStringList &list)
         escapedDepends.reserve(headers_depends.size());
         for (const auto &dep : headers_depends)
             escapedDepends << QRegularExpression::escape(dep);
-        QString filter = "| grep -oE '" + escapedDepends.join('|') + "'";
-        common = cmdOut("apt-get remove -s " + headers_installed.join(' ') + " | grep '^  ' " + filter
-                        + R"( | tr '\n' ' ')");
+        // As above: the grep pattern and package list are passed as bash
+        // positional parameters, not interpolated into the script text.
+        QStringList commonArgs {
+            "-c", R"(pattern="$1"; shift; apt-get remove -s "$@" | grep '^  ' | grep -oE "$pattern" | tr '\n' ' ')",
+            "bash", escapedDepends.join('|')};
+        commonArgs += headers_installed;
+        common = cmdOut("/bin/bash", commonArgs);
     }
 
     QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal-keep-open"};
