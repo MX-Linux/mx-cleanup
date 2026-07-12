@@ -66,12 +66,12 @@ private:
     bool isArchLinux {false};
     bool manualRemovalInProgress {false};
     bool suppressUserSwitch {false};
-    QString cmdOut(const QString &cmd, QuietMode quiet = QuietMode::No);
-    QString cmdOut(const QString &program, const QStringList &args, QuietMode quiet = QuietMode::No);
+    QString cmdOut(const QString &cmd, QuietMode quiet = QuietMode::No, bool *ok = nullptr);
+    QString cmdOut(const QString &program, const QStringList &args, QuietMode quiet = QuietMode::No,
+                   bool *ok = nullptr);
     bool helperProc(const QStringList &helperArgs, QuietMode quiet = QuietMode::No, QString *output = nullptr,
-                    const QByteArray &input = {});
+                    const QByteArray &input = {}, QString *errorOutput = nullptr);
     QString helperOut(const QStringList &helperArgs, QuietMode quiet = QuietMode::No);
-    bool helperFlatpakCleanup(const QString &user, QuietMode quiet = QuietMode::No);
     quint64 helperDuSize(const QString &sizeKey, const QString &user = {}, QuietMode quiet = QuietMode::No);
 
 public:

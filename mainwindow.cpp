@@ -867,6 +867,16 @@ void MainWindow::pushApply_clicked()
         total += amount;
         qDebug().noquote() << "Freed" << label << amount << "KiB";
     };
+
+    QStringList failures;
+    auto runOp = [&](const QString &label, const QStringList &args) -> bool {
+        QString errorOutput;
+        if (helperProc(args, QuietMode::Yes, nullptr, {}, &errorOutput)) {
+            return true;
+        }
+        failures << (errorOutput.isEmpty() ? label : label + ": " + errorOutput);
+        return false;
+    };
     if (ui->checkCache->isChecked()) {
         const int cacheDays = ui->radioSaferCache->isChecked() ? ui->spinCache->value() : 0;
         const QString cacheDaysArg = QString::number(cacheDays);
@@ -880,17 +890,24 @@ void MainWindow::pushApply_clicked()
         } else {
             cacheKiB = cmdOut(findCmd).toULongLong();
         }
-        addToTotal("cache", cacheKiB);
 
         scheduleOpts << "--cache" << cacheDaysArg;
+        bool cacheOk = true;
         if (!ui->radioReboot->isChecked()) {
             if (elevate) {
-                helperProc({"clean-cache", "delete", selectedUser, cacheDaysArg}, QuietMode::Yes);
+                cacheOk = runOp(tr("Cache cleanup"), {"clean-cache", "delete", selectedUser, cacheDaysArg});
             } else {
                 cmdOut(QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete "
                                "2>/dev/null")
-                           .arg(selectedUser, period));
+                           .arg(selectedUser, period),
+                       QuietMode::No, &cacheOk);
+                if (!cacheOk) {
+                    failures << tr("Cache cleanup");
+                }
             }
+        }
+        if (cacheOk) {
+            addToTotal("cache", cacheKiB);
         }
     }
 
@@ -910,14 +927,20 @@ void MainWindow::pushApply_clicked()
         } else {
             thumbnailsKiB = cmdOut(findThumbsCmd).toULongLong();
         }
-        addToTotal("thumbnails", thumbnailsKiB);
         scheduleOpts << "--thumbs" << thumbsDaysArg;
+        bool thumbsOk = true;
         if (!ui->radioReboot->isChecked()) {
             if (elevate) {
-                helperProc({"clean-thumbnails", "delete", selectedUser, thumbsDaysArg}, QuietMode::Yes);
+                thumbsOk = runOp(tr("Thumbnail cleanup"), {"clean-thumbnails", "delete", selectedUser, thumbsDaysArg});
             } else {
-                cmdOut(thumbsDeleteCmd);
+                cmdOut(thumbsDeleteCmd, QuietMode::No, &thumbsOk);
+                if (!thumbsOk) {
+                    failures << tr("Thumbnail cleanup");
+                }
             }
+        }
+        if (thumbsOk) {
+            addToTotal("thumbnails", thumbnailsKiB);
         }
     }
 
@@ -925,8 +948,18 @@ void MainWindow::pushApply_clicked()
         const QString flatpakCleanupCmd = "flatpak uninstall --unused --delete-data --noninteractive";
         const QString flatpakCleanupCheckCmd = "pgrep -a flatpak | grep -v flatpak-s || " + flatpakCleanupCmd;
         const QString userSizeCmd = QString("du -s /home/%1/.local/share/flatpak/ | cut -f1").arg(selectedUser);
+        bool flatpakOk = true;
         auto execFlatpakScoped = [&](const QString &command) -> QString {
             if (!elevate) {
+                if (command == flatpakCleanupCheckCmd) {
+                    bool ok = true;
+                    const QString result = cmdOut(command, QuietMode::No, &ok);
+                    if (!ok) {
+                        flatpakOk = false;
+                        failures << tr("Flatpak cleanup");
+                    }
+                    return result;
+                }
                 return cmdOut(command);
             }
 
@@ -941,7 +974,7 @@ void MainWindow::pushApply_clicked()
                 return output.trimmed();
             }
 
-            helperFlatpakCleanup(selectedUser, QuietMode::Yes);
+            flatpakOk = runOp(tr("Flatpak cleanup"), {"flatpak-cleanup-user", selectedUser});
             return QString();
         };
 
@@ -955,8 +988,10 @@ void MainWindow::pushApply_clicked()
 
         quint64 userDelta = (userBefore > userAfter) ? userBefore - userAfter : 0;
         quint64 systemDelta = (systemBefore > systemAfter) ? systemBefore - systemAfter : 0;
-        addToTotal("flatpak-user", userDelta);
-        addToTotal("flatpak-system", systemDelta);
+        if (flatpakOk) {
+            addToTotal("flatpak-user", userDelta);
+            addToTotal("flatpak-system", systemDelta);
+        }
 
         scheduleOpts << "--flatpak";
     }
@@ -973,12 +1008,15 @@ void MainWindow::pushApply_clicked()
             const QString cacheLabel = isArchLinux ? "pacman-cache" : "apt-cache";
             quint64 before_size = helperDuSize(cacheLabel, {}, QuietMode::Yes);
 
+            bool packageCacheOk = true;
             if (!ui->radioReboot->isChecked()) {
-                helperProc({"clean-package-cache", cleanMode}, QuietMode::Yes);
+                packageCacheOk = runOp(tr("Package cache cleanup"), {"clean-package-cache", cleanMode});
             }
 
             quint64 after_size = helperDuSize(cacheLabel, {}, QuietMode::Yes);
-            addToTotal(cacheLabel, before_size > after_size ? before_size - after_size : 0);
+            if (packageCacheOk) {
+                addToTotal(cacheLabel, before_size > after_size ? before_size - after_size : 0);
+            }
             scheduleOpts << "--apt" << cleanMode;
         }
     }
@@ -995,12 +1033,15 @@ void MainWindow::pushApply_clicked()
             }
         }
 
+        bool purgeOk = true;
         if (!ui->radioReboot->isChecked() && !packagesToPurge.isEmpty()) {
-            helperProc(QStringList {"purge-packages"} + packagesToPurge, QuietMode::Yes);
+            purgeOk = runOp(tr("Package purge"), QStringList {"purge-packages"} + packagesToPurge);
         }
 
         quint64 after_size = helperDuSize("dpkg-info", {}, QuietMode::Yes);
-        addToTotal("apt-purge", before_size > after_size ? before_size - after_size : 0);
+        if (purgeOk) {
+            addToTotal("apt-purge", before_size > after_size ? before_size - after_size : 0);
+        }
         scheduleOpts << "--purge";
     }
 
@@ -1014,10 +1055,13 @@ void MainWindow::pushApply_clicked()
         }
         if (!logsMode.isEmpty()) {
             quint64 logsKiB = sumKiB(helperOut({"clean-logs", logsMode, "size", logsDaysArg}, QuietMode::Yes));
-            addToTotal("logs-" + logsMode, logsKiB);
             scheduleOpts << "--logs" << logsMode << logsDaysArg;
+            bool logsOk = true;
             if (!ui->radioReboot->isChecked()) {
-                helperProc({"clean-logs", logsMode, "delete", logsDaysArg}, QuietMode::Yes);
+                logsOk = runOp(tr("Log cleanup"), {"clean-logs", logsMode, "delete", logsDaysArg});
+            }
+            if (logsOk) {
+                addToTotal("logs-" + logsMode, logsKiB);
             }
         }
     }
@@ -1041,15 +1085,21 @@ void MainWindow::pushApply_clicked()
         } else {
             trashKiB = cmdOut(findSizeCmd).toULongLong();
         }
-        addToTotal("trash", trashKiB);
 
         scheduleOpts << "--trash" << (allUsers ? "all" : "user") << trashDaysArg;
+        bool trashOk = true;
         if (!ui->radioReboot->isChecked()) {
             if (user != currentUser) {
-                helperProc({"clean-trash", "delete", trashUserArg, trashDaysArg}, QuietMode::Yes);
+                trashOk = runOp(tr("Trash cleanup"), {"clean-trash", "delete", trashUserArg, trashDaysArg});
             } else {
-                cmdOut(findDeleteCmd);
+                cmdOut(findDeleteCmd, QuietMode::No, &trashOk);
+                if (!trashOk) {
+                    failures << tr("Trash cleanup");
+                }
             }
+        }
+        if (trashOk) {
+            addToTotal("trash", trashKiB);
         }
     }
 
@@ -1107,11 +1157,16 @@ void MainWindow::pushApply_clicked()
         freedText = QStringLiteral("0");
     }
 
-    QMessageBox::information(this, tr("Done"),
-                             ui->radioReboot->isChecked()
-                                 ? tr("Cleanup script will run at reboot")
-                                 : tr("Cleanup command done") + '\n'
-                                       + tr("%1 MiB were freed").arg(freedText));
+    if (ui->radioReboot->isChecked()) {
+        QMessageBox::information(this, tr("Done"), tr("Cleanup script will run at reboot"));
+    } else if (!failures.isEmpty()) {
+        QMessageBox::warning(this, tr("Some cleanup steps failed"),
+                             tr("%1 MiB were freed, but the following steps failed:").arg(freedText) + "\n\n"
+                                 + failures.join('\n'));
+    } else {
+        QMessageBox::information(this, tr("Done"),
+                                 tr("Cleanup command done") + '\n' + tr("%1 MiB were freed").arg(freedText));
+    }
     setEnabled(true);
 }
 
@@ -1155,7 +1210,7 @@ void MainWindow::startPreferredApp(const QStringList &apps)
     }
 }
 
-QString MainWindow::cmdOut(const QString &cmd, QuietMode quiet)
+QString MainWindow::cmdOut(const QString &cmd, QuietMode quiet, bool *ok)
 {
     if (quiet == QuietMode::No) {
         qDebug().noquote() << cmd;
@@ -1167,10 +1222,22 @@ QString MainWindow::cmdOut(const QString &cmd, QuietMode quiet)
     proc.setProcessChannelMode(QProcess::MergedChannels);
     proc.start("/bin/bash", {"-c", cmd});
     loop.exec();
+
+    if (proc.state() != QProcess::NotRunning) {
+        proc.kill();
+        proc.waitForFinished();
+        if (ok) {
+            *ok = false;
+        }
+        return proc.readAll().trimmed();
+    }
+    if (ok) {
+        *ok = proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0;
+    }
     return proc.readAll().trimmed();
 }
 
-QString MainWindow::cmdOut(const QString &program, const QStringList &args, QuietMode quiet)
+QString MainWindow::cmdOut(const QString &program, const QStringList &args, QuietMode quiet, bool *ok)
 {
     if (quiet == QuietMode::No) {
         qDebug().noquote() << program << args;
@@ -1182,10 +1249,23 @@ QString MainWindow::cmdOut(const QString &program, const QStringList &args, Quie
     proc.setProcessChannelMode(QProcess::MergedChannels);
     proc.start(program, args);
     loop.exec();
+
+    if (proc.state() != QProcess::NotRunning) {
+        proc.kill();
+        proc.waitForFinished();
+        if (ok) {
+            *ok = false;
+        }
+        return proc.readAll().trimmed();
+    }
+    if (ok) {
+        *ok = proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0;
+    }
     return proc.readAll().trimmed();
 }
 
-bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QString *output, const QByteArray &input)
+bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QString *output, const QByteArray &input,
+                            QString *errorOutput)
 {
     if (quiet == QuietMode::No) {
         qDebug().noquote() << "helper" << helperArgs;
@@ -1210,6 +1290,9 @@ bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QStr
             if (output) {
                 *output = QString();
             }
+            if (errorOutput) {
+                *errorOutput = tr("No privilege elevation tool is available");
+            }
             return false;
         }
         programArgs.prepend(helper);
@@ -1219,6 +1302,9 @@ bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QStr
     if (!proc.waitForStarted()) {
         if (output) {
             *output = QString();
+        }
+        if (errorOutput) {
+            *errorOutput = tr("Failed to start the helper process");
         }
         return false;
     }
@@ -1239,6 +1325,9 @@ bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QStr
         if (output) {
             *output = QString();
         }
+        if (errorOutput) {
+            *errorOutput = tr("Operation timed out");
+        }
         return false;
     }
 
@@ -1250,7 +1339,11 @@ bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QStr
     if (quiet == QuietMode::No && !standardError.isEmpty()) {
         qWarning().noquote() << standardError;
     }
-    return proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0;
+    const bool ok = proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0;
+    if (!ok && errorOutput) {
+        *errorOutput = standardError;
+    }
+    return ok;
 }
 
 QString MainWindow::helperOut(const QStringList &helperArgs, QuietMode quiet)
@@ -1258,11 +1351,6 @@ QString MainWindow::helperOut(const QStringList &helperArgs, QuietMode quiet)
     QString output;
     helperProc(helperArgs, quiet, &output);
     return output;
-}
-
-bool MainWindow::helperFlatpakCleanup(const QString &user, QuietMode quiet)
-{
-    return helperProc({"flatpak-cleanup-user", user}, quiet);
 }
 
 quint64 MainWindow::helperDuSize(const QString &sizeKey, const QString &user, QuietMode quiet)
