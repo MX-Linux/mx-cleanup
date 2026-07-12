@@ -247,28 +247,47 @@ struct ProcessResult
         return 1;
     }
 
-    const int fd = ::openat(dirFd, "mx-cleanup.conf", O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW, 0644);
-    ::close(dirFd);
+    // Write to a temp name first and rename over the real file, both relative to
+    // the already-verified dirFd, so a crash or interrupted write can never leave
+    // mx-cleanup.conf truncated or partially written.
+    const QByteArray tmpName = QString(".mx-cleanup.%1.tmp").arg(::getpid()).toUtf8();
+    ::unlinkat(dirFd, tmpName.constData(), 0);
+    const int fd = ::openat(dirFd, tmpName.constData(), O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0644);
     if (fd < 0) {
-        printError(QString("Failed to create settings file for %1").arg(user));
+        printError(QString("Failed to create a temporary settings file for %1").arg(user));
+        ::close(dirFd);
         return 1;
     }
+
     qint64 offset = 0;
     while (offset < content.size()) {
         const ssize_t written = ::write(fd, content.constData() + offset, static_cast<size_t>(content.size() - offset));
         if (written < 0) {
             printError(QString("Failed to write settings file for %1").arg(user));
             ::close(fd);
+            ::unlinkat(dirFd, tmpName.constData(), 0);
+            ::close(dirFd);
             return 1;
         }
         offset += written;
     }
-    if (::fchmod(fd, 0644) < 0 || ::fchown(fd, info.uid, info.gid) < 0) {
-        printError(QString("Failed to set ownership or permissions for settings file for %1").arg(user));
+    if (::fchmod(fd, 0644) < 0 || ::fchown(fd, info.uid, info.gid) < 0 || ::fsync(fd) < 0) {
+        printError(QString("Failed to finalize settings file for %1").arg(user));
         ::close(fd);
+        ::unlinkat(dirFd, tmpName.constData(), 0);
+        ::close(dirFd);
         return 1;
     }
     ::close(fd);
+
+    if (::renameat(dirFd, tmpName.constData(), dirFd, "mx-cleanup.conf") < 0) {
+        printError(QString("Failed to replace settings file for %1").arg(user));
+        ::unlinkat(dirFd, tmpName.constData(), 0);
+        ::close(dirFd);
+        return 1;
+    }
+    ::fsync(dirFd);
+    ::close(dirFd);
     return 0;
 }
 
