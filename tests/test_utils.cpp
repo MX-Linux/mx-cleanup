@@ -79,6 +79,7 @@ private slots:
 
     void testGenerateScheduleScript_Cache();
     void testGenerateScheduleScript_NoAgeFilter();
+    void testGenerateScheduleScript_AllLogsUsesTruncate();
     void testGenerateScheduleScript_Purge();
     void testGenerateScheduleScript_Trash();
 
@@ -395,6 +396,17 @@ void TestUtils::testGenerateScheduleScript_NoAgeFilter()
     const QString script = generateScheduleScript(opts);
     QVERIFY(script.contains("find /home/alice/.cache -mindepth 1"));
     QVERIFY(!script.contains("-atime"));
+}
+
+void TestUtils::testGenerateScheduleScript_AllLogsUsesTruncate()
+{
+    ScheduleOptions opts;
+    opts.logsMode = QStringLiteral("all");
+    opts.logsDays = 7;
+
+    const QString script = generateScheduleScript(opts);
+    QVERIFY(script.contains("find /var/log -type f -ctime +7 -atime +7 -exec truncate -s 0 {} +"));
+    QVERIFY(!script.contains("sh -c"));
 }
 
 void TestUtils::testGenerateScheduleScript_Purge()

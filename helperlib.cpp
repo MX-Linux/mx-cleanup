@@ -287,7 +287,7 @@ QString generateScheduleScript(const ScheduleOptions &opts)
         parts << R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \))"
                      + trashAge(opts.logsDays) + " -type f -delete 2>/dev/null";
     } else if (opts.logsMode == "all") {
-        parts << "find /var/log -type f" + trashAge(opts.logsDays) + R"( -exec sh -c "echo > '{}'" \;)";
+        parts << "find /var/log -type f" + trashAge(opts.logsDays) + " -exec truncate -s 0 {} + 2>/dev/null";
     }
     QString apt;
     if (!opts.aptMode.isEmpty()) {
