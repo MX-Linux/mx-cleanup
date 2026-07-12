@@ -20,11 +20,17 @@
  * along with this package. If not, see <http://www.gnu.org/licenses/>.
  **********************************************************************/
 
+#include <pwd.h>
+#include <unistd.h>
+
+#include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QObject>
 #include <QString>
 #include <QTemporaryDir>
 #include <QTest>
+#include "../helperlib.h"
 #include "../mainwindow.h"
 #include "../packagemanager.h"
 
@@ -44,6 +50,47 @@ private slots:
     void testIsArchLinuxHost_Debian();
     void testIsArchLinuxHost_MissingOsRelease();
     void testIsArchLinuxHost_DebianWithPacmanInstalled();
+
+    void testValidPackageName_data();
+    void testValidPackageName();
+
+    void testParseDays_data();
+    void testParseDays();
+
+    void testValidPeriod_data();
+    void testValidPeriod();
+    void testCronEntryBase();
+
+    void testLookupUser_Valid();
+    void testLookupUser_InvalidChars();
+    void testLookupUser_Unknown();
+    void testLookupUser_Empty();
+
+    void testHomeDirForUser_Valid();
+    void testHomeDirForUser_Unknown();
+
+    void testParseScheduleOptions_MissingUserForPerUserOption();
+    void testParseScheduleOptions_UnknownUser();
+    void testParseScheduleOptions_InvalidLogsMode();
+    void testParseScheduleOptions_InvalidAptMode();
+    void testParseScheduleOptions_InvalidTrashMode();
+    void testParseScheduleOptions_UnknownOption();
+    void testParseScheduleOptions_ValidCombination();
+
+    void testGenerateScheduleScript_Cache();
+    void testGenerateScheduleScript_NoAgeFilter();
+    void testGenerateScheduleScript_Purge();
+    void testGenerateScheduleScript_Trash();
+
+    void testOpenSettingsDirFd_NoSettingsYet();
+    void testOpenSettingsDirFd_CreatesWithCorrectOwnership();
+    void testOpenSettingsDirFd_RefusesConfigSymlink();
+    void testOpenSettingsDirFd_RefusesMxLinuxSymlink();
+
+    void testWriteFileAsRoot_WritesContentAndMode();
+    void testWriteFileAsRoot_ReplacesExistingContentAtomically();
+    void testWriteFileAsRoot_NoLeftoverTempFiles();
+    void testWriteFileAsRoot_FailsInMissingDirectory();
 };
 
 void TestUtils::testSumKiB_data()
@@ -152,6 +199,334 @@ void TestUtils::testIsArchLinuxHost_DebianWithPacmanInstalled()
     // Whether pacman happens to be installed on the machine running this
     // test is irrelevant: isArchLinuxHost() never inspects PATH/binaries.
     QVERIFY(!isArchLinuxHost(missingArchRelease, osRelease));
+}
+
+void TestUtils::testValidPackageName_data()
+{
+    QTest::addColumn<QString>("package");
+    QTest::addColumn<bool>("expected");
+
+    QTest::newRow("simple")          << QStringLiteral("bash") << true;
+    QTest::newRow("kernel image")    << QStringLiteral("linux-image-6.1.0-13-amd64") << true;
+    QTest::newRow("digits+dots")     << QStringLiteral("lib32z1") << true;
+    QTest::newRow("plus sign")       << QStringLiteral("g++-12") << true;
+    QTest::newRow("empty")          << QString() << false;
+    QTest::newRow("leading dash")    << QStringLiteral("-bash") << false;
+    QTest::newRow("space")          << QStringLiteral("bash extra") << false;
+    QTest::newRow("semicolon")       << QStringLiteral("bash;rm") << false;
+    QTest::newRow("shell metachar") << QStringLiteral("$(bash)") << false;
+}
+
+void TestUtils::testValidPackageName()
+{
+    QFETCH(QString, package);
+    QFETCH(bool, expected);
+
+    QCOMPARE(validPackageName(package), expected);
+}
+
+void TestUtils::testParseDays_data()
+{
+    QTest::addColumn<QString>("value");
+    QTest::addColumn<bool>("expectedOk");
+    QTest::addColumn<int>("expectedDays");
+
+    QTest::newRow("zero")           << QStringLiteral("0") << true << 0;
+    QTest::newRow("typical")        << QStringLiteral("30") << true << 30;
+    QTest::newRow("max allowed")    << QStringLiteral("36500") << true << 36500;
+    QTest::newRow("over max")       << QStringLiteral("36501") << false << 0;
+    QTest::newRow("negative")       << QStringLiteral("-1") << false << 0;
+    QTest::newRow("not a number")   << QStringLiteral("abc") << false << 0;
+    QTest::newRow("empty")         << QString() << false << 0;
+}
+
+void TestUtils::testParseDays()
+{
+    QFETCH(QString, value);
+    QFETCH(bool, expectedOk);
+    QFETCH(int, expectedDays);
+
+    int days = -1;
+    QCOMPARE(parseDays(value, &days), expectedOk);
+    if (expectedOk) {
+        QCOMPARE(days, expectedDays);
+    }
+}
+
+void TestUtils::testValidPeriod_data()
+{
+    QTest::addColumn<QString>("period");
+    QTest::addColumn<bool>("expected");
+
+    QTest::newRow("daily")    << QStringLiteral("daily") << true;
+    QTest::newRow("weekly")   << QStringLiteral("weekly") << true;
+    QTest::newRow("monthly")  << QStringLiteral("monthly") << true;
+    QTest::newRow("reboot")   << QStringLiteral("@reboot") << true;
+    QTest::newRow("yearly")   << QStringLiteral("yearly") << false;
+    QTest::newRow("empty")   << QString() << false;
+}
+
+void TestUtils::testValidPeriod()
+{
+    QFETCH(QString, period);
+    QFETCH(bool, expected);
+
+    QCOMPARE(validPeriod(period), expected);
+}
+
+void TestUtils::testCronEntryBase()
+{
+    QCOMPARE(cronEntryBase("daily"), QStringLiteral("/etc/cron.daily/mx-cleanup"));
+    QCOMPARE(cronEntryBase("weekly"), QStringLiteral("/etc/cron.weekly/mx-cleanup"));
+    QCOMPARE(cronEntryBase("@reboot"), QStringLiteral("/etc/cron.d/mx-cleanup"));
+}
+
+void TestUtils::testLookupUser_Valid()
+{
+    // root always exists and looking it up needs no privilege of our own.
+    UserInfo info;
+    QVERIFY(lookupUser(QStringLiteral("root"), &info));
+    QCOMPARE(info.uid, static_cast<uid_t>(0));
+}
+
+void TestUtils::testLookupUser_InvalidChars()
+{
+    QVERIFY(!lookupUser(QStringLiteral("../etc/passwd")));
+    QVERIFY(!lookupUser(QStringLiteral("user name")));
+    QVERIFY(!lookupUser(QStringLiteral("$(whoami)")));
+}
+
+void TestUtils::testLookupUser_Unknown()
+{
+    QVERIFY(!lookupUser(QStringLiteral("no-such-user-zzz-1234")));
+}
+
+void TestUtils::testLookupUser_Empty()
+{
+    QVERIFY(!lookupUser(QString()));
+}
+
+void TestUtils::testHomeDirForUser_Valid()
+{
+    const struct passwd *pwd = getpwnam("root");
+    QVERIFY(pwd != nullptr);
+    QCOMPARE(homeDirForUser(QStringLiteral("root")), QString::fromLocal8Bit(pwd->pw_dir));
+}
+
+void TestUtils::testHomeDirForUser_Unknown()
+{
+    QVERIFY(homeDirForUser(QStringLiteral("no-such-user-zzz-1234")).isEmpty());
+}
+
+void TestUtils::testParseScheduleOptions_MissingUserForPerUserOption()
+{
+    ScheduleOptions opts;
+    QVERIFY(!parseScheduleOptions({"--cache", "5"}, &opts));
+}
+
+void TestUtils::testParseScheduleOptions_UnknownUser()
+{
+    ScheduleOptions opts;
+    QVERIFY(!parseScheduleOptions({"--user", "no-such-user-zzz-1234", "--cache", "5"}, &opts));
+}
+
+void TestUtils::testParseScheduleOptions_InvalidLogsMode()
+{
+    ScheduleOptions opts;
+    QVERIFY(!parseScheduleOptions({"--logs", "ancient", "5"}, &opts));
+}
+
+void TestUtils::testParseScheduleOptions_InvalidAptMode()
+{
+    ScheduleOptions opts;
+    QVERIFY(!parseScheduleOptions({"--apt", "thorough"}, &opts));
+}
+
+void TestUtils::testParseScheduleOptions_InvalidTrashMode()
+{
+    ScheduleOptions opts;
+    QVERIFY(!parseScheduleOptions({"--trash", "everyone", "5"}, &opts));
+}
+
+void TestUtils::testParseScheduleOptions_UnknownOption()
+{
+    ScheduleOptions opts;
+    QVERIFY(!parseScheduleOptions({"--bogus"}, &opts));
+}
+
+void TestUtils::testParseScheduleOptions_ValidCombination()
+{
+    ScheduleOptions opts;
+    QVERIFY(parseScheduleOptions(
+        {"--user", "root", "--cache", "5", "--thumbs", "0", "--logs", "old", "7", "--apt", "auto", "--purge",
+         "--trash", "user", "30", "--flatpak"},
+        &opts));
+    QCOMPARE(opts.user, QStringLiteral("root"));
+    QCOMPARE(opts.cacheDays, 5);
+    QCOMPARE(opts.thumbsDays, 0);
+    QCOMPARE(opts.logsMode, QStringLiteral("old"));
+    QCOMPARE(opts.logsDays, 7);
+    QCOMPARE(opts.aptMode, QStringLiteral("auto"));
+    QVERIFY(opts.purge);
+    QCOMPARE(opts.trashMode, QStringLiteral("user"));
+    QCOMPARE(opts.trashDays, 30);
+    QVERIFY(opts.flatpak);
+}
+
+void TestUtils::testGenerateScheduleScript_Cache()
+{
+    ScheduleOptions opts;
+    opts.user = QStringLiteral("alice");
+    opts.cacheDays = 5;
+
+    const QString script = generateScheduleScript(opts);
+    QVERIFY(script.startsWith("#!/bin/sh\n"));
+    QVERIFY(script.contains("find /home/alice/.cache -mindepth 1"));
+    QVERIFY(script.contains("-atime +5 -mtime +5"));
+    QVERIFY(script.contains("-delete"));
+}
+
+void TestUtils::testGenerateScheduleScript_NoAgeFilter()
+{
+    ScheduleOptions opts;
+    opts.user = QStringLiteral("alice");
+    opts.cacheDays = 0;
+
+    const QString script = generateScheduleScript(opts);
+    QVERIFY(script.contains("find /home/alice/.cache -mindepth 1"));
+    QVERIFY(!script.contains("-atime"));
+}
+
+void TestUtils::testGenerateScheduleScript_Purge()
+{
+    ScheduleOptions opts;
+    opts.purge = true;
+
+    const QString script = generateScheduleScript(opts);
+    QVERIFY(script.contains("dpkg -l | awk '/^rc/ { print $2 }' | xargs -r apt-get purge -y"));
+}
+
+void TestUtils::testGenerateScheduleScript_Trash()
+{
+    ScheduleOptions opts;
+    opts.trashMode = QStringLiteral("all");
+    opts.trashDays = 30;
+
+    const QString script = generateScheduleScript(opts);
+    QVERIFY(script.contains("find /home/*/.local/share/Trash -mindepth 1"));
+    QVERIFY(script.contains("-ctime +30 -atime +30"));
+}
+
+namespace {
+// A fresh QTemporaryDir used as a fake $HOME, so these filesystem tests
+// never touch a real user's actual settings.
+QString makeHomeDir(QTemporaryDir &dir)
+{
+    return dir.path();
+}
+}
+
+void TestUtils::testOpenSettingsDirFd_NoSettingsYet()
+{
+    QTemporaryDir home;
+    QVERIFY(home.isValid());
+
+    const int fd = openSettingsDirFd(makeHomeDir(home), false, getuid(), getgid());
+    QCOMPARE(fd, -1);
+}
+
+void TestUtils::testOpenSettingsDirFd_CreatesWithCorrectOwnership()
+{
+    QTemporaryDir home;
+    QVERIFY(home.isValid());
+
+    const int fd = openSettingsDirFd(makeHomeDir(home), true, getuid(), getgid());
+    QVERIFY(fd >= 0);
+    ::close(fd);
+
+    const QString mxDir = home.filePath(".config/MX-Linux");
+    QVERIFY(QFileInfo::exists(mxDir));
+    const QFileInfo info(mxDir);
+    QCOMPARE(info.ownerId(), getuid());
+    QCOMPARE(info.groupId(), getgid());
+}
+
+void TestUtils::testOpenSettingsDirFd_RefusesConfigSymlink()
+{
+    QTemporaryDir home;
+    QTemporaryDir elsewhere;
+    QVERIFY(home.isValid());
+    QVERIFY(elsewhere.isValid());
+
+    QVERIFY(QFile::link(elsewhere.path(), home.filePath(".config")));
+
+    const int fd = openSettingsDirFd(makeHomeDir(home), false, getuid(), getgid());
+    QCOMPARE(fd, -1);
+    // Must not have followed the symlink and created anything under it.
+    QVERIFY(!QFileInfo::exists(elsewhere.filePath("MX-Linux")));
+}
+
+void TestUtils::testOpenSettingsDirFd_RefusesMxLinuxSymlink()
+{
+    QTemporaryDir home;
+    QTemporaryDir elsewhere;
+    QVERIFY(home.isValid());
+    QVERIFY(elsewhere.isValid());
+
+    QVERIFY(QDir().mkpath(home.filePath(".config")));
+    QVERIFY(QFile::link(elsewhere.path(), home.filePath(".config/MX-Linux")));
+
+    const int fd = openSettingsDirFd(makeHomeDir(home), false, getuid(), getgid());
+    QCOMPARE(fd, -1);
+}
+
+void TestUtils::testWriteFileAsRoot_WritesContentAndMode()
+{
+    QTemporaryDir dir;
+    QVERIFY(dir.isValid());
+    const QString path = dir.filePath("script.sh");
+
+    QVERIFY(writeFileAsRoot(path, "#!/bin/sh\necho hi\n", 0755));
+
+    QFile file(path);
+    QVERIFY(file.open(QIODevice::ReadOnly));
+    QCOMPARE(file.readAll(), QByteArray("#!/bin/sh\necho hi\n"));
+    QCOMPARE(QFileInfo(path).permissions() & QFileDevice::ExeOwner, QFileDevice::ExeOwner);
+}
+
+void TestUtils::testWriteFileAsRoot_ReplacesExistingContentAtomically()
+{
+    QTemporaryDir dir;
+    QVERIFY(dir.isValid());
+    const QString path = dir.filePath("mx-cleanup");
+
+    QVERIFY(writeFileAsRoot(path, "first version, much longer than the second\n", 0644));
+    QVERIFY(writeFileAsRoot(path, "second\n", 0644));
+
+    QFile file(path);
+    QVERIFY(file.open(QIODevice::ReadOnly));
+    QCOMPARE(file.readAll(), QByteArray("second\n"));
+}
+
+void TestUtils::testWriteFileAsRoot_NoLeftoverTempFiles()
+{
+    QTemporaryDir dir;
+    QVERIFY(dir.isValid());
+    const QString path = dir.filePath("mx-cleanup");
+
+    QVERIFY(writeFileAsRoot(path, "content\n", 0644));
+
+    const QStringList entries = QDir(dir.path()).entryList(QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
+    QCOMPARE(entries, QStringList {"mx-cleanup"});
+}
+
+void TestUtils::testWriteFileAsRoot_FailsInMissingDirectory()
+{
+    QTemporaryDir dir;
+    QVERIFY(dir.isValid());
+    const QString path = dir.filePath("no-such-subdir/mx-cleanup");
+
+    QVERIFY(!writeFileAsRoot(path, "content\n", 0644));
 }
 
 QTEST_MAIN(TestUtils)

@@ -129,6 +129,7 @@ set(SOURCES
 
 set(HELPER_SOURCES
     helper.cpp
+    helperlib.cpp
     packagemanager.cpp
 )
 
@@ -137,6 +138,7 @@ set(HEADERS
     about.h
     common.h
     packagemanager.h
+    helperlib.h
 )
 
 set(UI_FILES
@@ -274,6 +276,7 @@ if(BUILD_TESTS)
         mainwindow.cpp
         about.cpp
         packagemanager.cpp
+        helperlib.cpp
     )
 
     target_link_libraries(test_mx-cleanup

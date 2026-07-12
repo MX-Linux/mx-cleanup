@@ -28,11 +28,8 @@
 
 #include <cerrno>
 #include <cstdio>
-#include <cstdlib>
 
 #include <fcntl.h>
-#include <grp.h>
-#include <pwd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -41,17 +38,12 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QProcess>
-#include <QRegularExpression>
 
+#include "helperlib.h"
 #include "packagemanager.h"
 
 namespace
 {
-// Settings content is a small user config file; reject anything larger
-// rather than silently truncating it (which would then get saved back,
-// permanently losing whatever was beyond the limit).
-constexpr qint64 kMaxSettingsBytes = 1024 * 1024;
-
 struct ProcessResult
 {
     bool started = false;
@@ -60,26 +52,6 @@ struct ProcessResult
     QByteArray standardOutput;
     QByteArray standardError;
 };
-
-struct UserInfo
-{
-    QString name;
-    uid_t uid = 0;
-    gid_t gid = 0;
-};
-
-void writeAndFlush(FILE *stream, const QByteArray &data)
-{
-    if (!data.isEmpty()) {
-        std::fwrite(data.constData(), 1, static_cast<size_t>(data.size()), stream);
-        std::fflush(stream);
-    }
-}
-
-void printError(const QString &message)
-{
-    writeAndFlush(stderr, message.toUtf8() + '\n');
-}
 
 [[nodiscard]] QString resolveBinary(const QStringList &candidates)
 {
@@ -127,106 +99,6 @@ void printError(const QString &message)
     return resolveBinary({"/usr/bin/flatpak", "/bin/flatpak"});
 }
 
-[[nodiscard]] bool lookupUser(const QString &user, UserInfo *info = nullptr)
-{
-    static const QRegularExpression safeUserPattern(QStringLiteral("^[A-Za-z0-9][A-Za-z0-9._-]*$"));
-    if (user.isEmpty() || !safeUserPattern.match(user).hasMatch()) {
-        printError(QString("Invalid username: %1").arg(user));
-        return false;
-    }
-    const struct passwd *pwd = getpwnam(user.toUtf8().constData());
-    if (!pwd) {
-        printError(QString("Unknown user: %1").arg(user));
-        return false;
-    }
-    if (info) {
-        info->name = user;
-        info->uid = pwd->pw_uid;
-        info->gid = pwd->pw_gid;
-    }
-    return true;
-}
-
-[[nodiscard]] bool parseDays(const QString &value, int *days)
-{
-    bool ok = false;
-    const int parsed = value.toInt(&ok);
-    if (!ok || parsed < 0 || parsed > 36500) {
-        printError(QString("Invalid number of days: %1").arg(value));
-        return false;
-    }
-    *days = parsed;
-    return true;
-}
-
-[[nodiscard]] bool validPackageName(const QString &package)
-{
-    static const QRegularExpression packagePattern(QStringLiteral("^[a-zA-Z0-9][a-zA-Z0-9.+-]*$"));
-    return packagePattern.match(package).hasMatch();
-}
-
-[[nodiscard]] QString homeDirForUser(const QString &user)
-{
-    const struct passwd *pwd = getpwnam(user.toUtf8().constData());
-    if (!pwd || pwd->pw_dir == nullptr || pwd->pw_dir[0] == '\0') {
-        return {};
-    }
-    return QString::fromLocal8Bit(pwd->pw_dir);
-}
-
-[[nodiscard]] int openHomeDir(const QString &homeDir)
-{
-    return ::open(QFile::encodeName(homeDir).constData(), O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
-}
-
-// Open (optionally creating) ~/.config relative to a verified home directory
-// fd, refusing to follow a symlink at this component. The whole chain down
-// to the settings file is writable by the (untrusted) settings owner, so
-// every component must be traversed this way -- a symlink anywhere in it
-// must never let a root file operation land on another user's files.
-[[nodiscard]] int openConfigDir(int homeFd, bool create)
-{
-    if (create && ::mkdirat(homeFd, ".config", 0755) < 0 && errno != EEXIST) {
-        return -1;
-    }
-    return ::openat(homeFd, ".config", O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
-}
-
-// Open (optionally creating) ~/.config/MX-Linux relative to a verified
-// .config fd, refusing to follow a symlink at this component. When create is
-// set, ownership is (re)applied so the directory is always user-owned.
-[[nodiscard]] int openMxLinuxDir(int configFd, bool create, uid_t uid, gid_t gid)
-{
-    if (create && ::mkdirat(configFd, "MX-Linux", 0755) < 0 && errno != EEXIST) {
-        return -1;
-    }
-    const int fd = ::openat(configFd, "MX-Linux", O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
-    if (fd >= 0 && create) {
-        ::fchown(fd, uid, gid);
-        ::fchmod(fd, 0755);
-    }
-    return fd;
-}
-
-// Traverse home -> .config -> .config/MX-Linux using directory fds with
-// O_NOFOLLOW at every component. Returns -1 if any component is missing
-// (when create is false) or turns out to be a symlink.
-[[nodiscard]] int openSettingsDirFd(const QString &homeDir, bool create, uid_t uid, gid_t gid)
-{
-    const int homeFd = openHomeDir(homeDir);
-    if (homeFd < 0) {
-        return -1;
-    }
-    const int configFd = openConfigDir(homeFd, create);
-    ::close(homeFd);
-    if (configFd < 0) {
-        return -1;
-    }
-    const int mxFd = openMxLinuxDir(configFd, create, uid, gid);
-    ::close(configFd);
-    return mxFd;
-}
-
 [[nodiscard]] ProcessResult runProcess(const QString &program, const QStringList &args)
 {
     ProcessResult result;
@@ -265,57 +137,6 @@ void printError(const QString &message)
         return 127;
     }
     return relayResult(runProcess(binary, args));
-}
-
-// Write content to a temp file in the same directory as path, set its mode,
-// fsync it, then atomically rename it over path (best-effort fsync of the
-// directory afterwards). This ensures a full filesystem, permissions error,
-// or interrupted write can never leave a scheduled cron job or reboot script
-// partially written or missing.
-[[nodiscard]] bool writeFileAsRoot(const QString &path, const QByteArray &content, mode_t mode)
-{
-    const QString dir = QFileInfo(path).path();
-    QByteArray tmpPath = QFile::encodeName(dir + "/.mx-cleanup.XXXXXX");
-    const int fd = ::mkstemp(tmpPath.data());
-    if (fd < 0) {
-        printError(QString("Failed to create a temporary file in %1").arg(dir));
-        return false;
-    }
-
-    qint64 offset = 0;
-    while (offset < content.size()) {
-        const ssize_t written = ::write(fd, content.constData() + offset, static_cast<size_t>(content.size() - offset));
-        if (written < 0) {
-            printError(QString("Failed to write %1").arg(path));
-            ::close(fd);
-            ::unlink(tmpPath.constData());
-            return false;
-        }
-        offset += written;
-    }
-    if (::fchmod(fd, mode) < 0 || ::fsync(fd) < 0) {
-        printError(QString("Failed to finalize %1").arg(path));
-        ::close(fd);
-        ::unlink(tmpPath.constData());
-        return false;
-    }
-    ::close(fd);
-
-    if (::rename(tmpPath.constData(), QFile::encodeName(path).constData()) < 0) {
-        printError(QString("Failed to replace %1").arg(path));
-        ::unlink(tmpPath.constData());
-        return false;
-    }
-
-    // Also fsync the directory so the renamed entry survives a crash --
-    // otherwise the rename above is not crash-durable even though the file
-    // content and mode are.
-    const int dirFd = ::open(QFile::encodeName(dir).constData(), O_DIRECTORY | O_RDONLY);
-    if (dirFd >= 0) {
-        ::fsync(dirFd);
-        ::close(dirFd);
-    }
-    return true;
 }
 
 // check
@@ -473,29 +294,6 @@ void printError(const QString &message)
     return 0;
 }
 
-[[nodiscard]] bool validPeriod(const QString &period)
-{
-    static const QStringList periods {"daily", "weekly", "monthly", "@reboot"};
-    if (!periods.contains(period)) {
-        printError(QString("Invalid period: %1").arg(period));
-        return false;
-    }
-    return true;
-}
-
-[[nodiscard]] QString cronEntryBase(const QString &period)
-{
-    if (period == "@reboot") {
-        return QStringLiteral("/etc/cron.d/mx-cleanup");
-    }
-    return "/etc/cron." + period + "/mx-cleanup";
-}
-
-[[nodiscard]] QString scriptFileBase()
-{
-    return QStringLiteral("/usr/bin/mx-cleanup-script");
-}
-
 // remove-schedule cron <period> [user] | remove-schedule script [user]
 [[nodiscard]] int cmdRemoveSchedule(const QStringList &args)
 {
@@ -537,136 +335,6 @@ void printError(const QString &message)
     }
     QFile::remove(base + '.' + user);
     return 0;
-}
-
-struct ScheduleOptions
-{
-    QString user;
-    int cacheDays = -1;
-    int thumbsDays = -1;
-    QString logsMode;
-    int logsDays = 0;
-    QString aptMode;
-    bool purge = false;
-    QString trashMode;
-    int trashDays = 0;
-    bool flatpak = false;
-};
-
-[[nodiscard]] bool parseScheduleOptions(const QStringList &args, ScheduleOptions *opts)
-{
-    for (int i = 0; i < args.size(); ++i) {
-        const QString &arg = args.at(i);
-        if (arg == "--user" && i + 1 < args.size()) {
-            opts->user = args.at(++i);
-            if (!lookupUser(opts->user)) {
-                return false;
-            }
-        } else if (arg == "--cache" && i + 1 < args.size()) {
-            if (!parseDays(args.at(++i), &opts->cacheDays)) {
-                return false;
-            }
-        } else if (arg == "--thumbs" && i + 1 < args.size()) {
-            if (!parseDays(args.at(++i), &opts->thumbsDays)) {
-                return false;
-            }
-        } else if (arg == "--logs" && i + 2 < args.size()) {
-            opts->logsMode = args.at(++i);
-            if (opts->logsMode != "old" && opts->logsMode != "all") {
-                printError(QString("Invalid logs mode: %1").arg(opts->logsMode));
-                return false;
-            }
-            if (!parseDays(args.at(++i), &opts->logsDays)) {
-                return false;
-            }
-        } else if (arg == "--apt" && i + 1 < args.size()) {
-            opts->aptMode = args.at(++i);
-            if (opts->aptMode != "auto" && opts->aptMode != "full") {
-                printError(QString("Invalid apt mode: %1").arg(opts->aptMode));
-                return false;
-            }
-        } else if (arg == "--purge") {
-            opts->purge = true;
-        } else if (arg == "--trash" && i + 2 < args.size()) {
-            opts->trashMode = args.at(++i);
-            if (opts->trashMode != "user" && opts->trashMode != "all") {
-                printError(QString("Invalid trash mode: %1").arg(opts->trashMode));
-                return false;
-            }
-            if (!parseDays(args.at(++i), &opts->trashDays)) {
-                return false;
-            }
-        } else if (arg == "--flatpak") {
-            opts->flatpak = true;
-        } else {
-            printError(QString("Invalid schedule option: %1").arg(arg));
-            return false;
-        }
-    }
-    if (opts->user.isEmpty() && (opts->cacheDays >= 0 || opts->thumbsDays >= 0 || opts->trashMode == "user")) {
-        printError(QStringLiteral("Missing --user for per-user cleanup options"));
-        return false;
-    }
-    return true;
-}
-
-[[nodiscard]] QString generateScheduleScript(const ScheduleOptions &opts)
-{
-    auto cacheAge = [](int days) {
-        return days > 0 ? QString(" -atime +%1 -mtime +%1").arg(days) : QString();
-    };
-    auto trashAge = [](int days) {
-        return days > 0 ? QString(" -ctime +%1 -atime +%1").arg(days) : QString();
-    };
-
-    QStringList parts;
-    if (opts.cacheDays >= 0) {
-        parts << QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete 2>/dev/null")
-                     .arg(opts.user, cacheAge(opts.cacheDays));
-    }
-    if (opts.thumbsDays >= 0) {
-        parts << QString("find /home/%1/.cache/thumbnails -type f%2 -delete 2>/dev/null")
-                     .arg(opts.user, cacheAge(opts.thumbsDays));
-    }
-    if (opts.logsMode == "old") {
-        parts << R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \))"
-                     + trashAge(opts.logsDays) + " -type f -delete 2>/dev/null";
-    } else if (opts.logsMode == "all") {
-        parts << "find /var/log -type f" + trashAge(opts.logsDays) + R"( -exec sh -c "echo > '{}'" \;)";
-    }
-    QString apt;
-    if (!opts.aptMode.isEmpty()) {
-        if (isArchLinuxHost()) {
-            apt = opts.aptMode == "auto" ? QStringLiteral("pacman -Sc --noconfirm")
-                                         : QStringLiteral("pacman -Scc --noconfirm");
-        } else {
-            apt = opts.aptMode == "auto" ? QStringLiteral("apt-get autoclean") : QStringLiteral("apt-get clean");
-        }
-    }
-    if (opts.purge) {
-        if (!apt.isEmpty()) {
-            apt += '\n';
-        }
-        apt += QStringLiteral("dpkg -l | awk '/^rc/ { print $2 }' | xargs -r apt-get purge -y");
-    }
-    if (!apt.isEmpty()) {
-        parts << apt;
-    }
-    if (opts.trashMode == "all") {
-        parts << QString("find /home/*/.local/share/Trash -mindepth 1%1 -delete").arg(trashAge(opts.trashDays));
-    } else if (opts.trashMode == "user") {
-        parts << QString("find /home/%1/.local/share/Trash -mindepth 1%2 -delete")
-                     .arg(opts.user, trashAge(opts.trashDays));
-    }
-    if (opts.flatpak) {
-        const QString cleanupCmd
-            = QStringLiteral("pgrep -a flatpak | grep -v flatpak-s || flatpak uninstall --unused "
-                             "--delete-data --noninteractive");
-        parts << (opts.user.isEmpty() ? cleanupCmd
-                                      : QString("runuser -u %1 -- /bin/bash -lc \"%2\"").arg(opts.user, cleanupCmd));
-    }
-
-    return "#!/bin/sh\n#\n# This file was created by MX Cleanup\n#\n\n" + parts.join('\n');
 }
 
 // write-schedule <period> [--user U] [--cache N] [--thumbs N] [--logs old|all N]
