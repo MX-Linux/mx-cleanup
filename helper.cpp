@@ -422,10 +422,11 @@ struct ProcessResult
     if (days > 0) {
         findArgs << "-atime" << QString("+%1").arg(days) << "-mtime" << QString("+%1").arg(days);
     }
+    findArgs << "-type" << "f";
     if (isDelete) {
         findArgs << "-delete";
     } else {
-        findArgs << "-type" << "f" << "-printf" << "%k\n";
+        findArgs << "-printf" << "%k\n";
     }
     return runRequiredBinary(findBinary(), "find", findArgs);
 }

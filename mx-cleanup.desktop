@@ -75,5 +75,5 @@ Exec=mx-cleanup
 Terminal=false
 Type=Application
 Icon=mx-cleanup
-Categories=System;MX-Maintenance
+Categories=System;X-MX-Maintenance
 NoDisplay=false

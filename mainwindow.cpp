@@ -893,7 +893,7 @@ void MainWindow::pushApply_clicked()
             if (elevate) {
                 cacheOk = runOp(tr("Cache cleanup"), {"clean-cache", "delete", selectedUser, cacheDaysArg});
             } else {
-                const QString output = cmdOut(QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete")
+                const QString output = cmdOut(QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -type f -delete")
                                                    .arg(selectedUser, period),
                                                QuietMode::No, &cacheOk, kDiskScanTimeoutMs);
                 // Flatpak may leave a directory owned by its sandbox helper in

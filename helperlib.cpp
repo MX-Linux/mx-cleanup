@@ -276,7 +276,7 @@ QString generateScheduleScript(const ScheduleOptions &opts)
 
     QStringList parts;
     if (opts.cacheDays >= 0) {
-        parts << QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete 2>/dev/null")
+        parts << QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -type f -delete 2>/dev/null")
                      .arg(opts.user, cacheAge(opts.cacheDays));
     }
     if (opts.thumbsDays >= 0) {
