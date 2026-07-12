@@ -23,10 +23,12 @@
 #include <pwd.h>
 #include <unistd.h>
 
+#include <QCoreApplication>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QObject>
+#include <QProcess>
 #include <QString>
 #include <QTemporaryDir>
 #include <QTest>
@@ -96,6 +98,11 @@ private slots:
 
     void testStagedFile_NothingVisibleUntilCommit();
     void testStagedFile_DiscardLeavesTargetAndDirUntouched();
+
+    void testGenerateSystemScript_HostileLogFilenamesAreSafe();
+    void testWriteFileAsRoot_FailedWritePreservesExistingTarget();
+    void testGenerateScripts_ScopeIsolation();
+    void testHelperBinary_ReportsFailureExitCodes();
 };
 
 void TestUtils::testSumKiB_data()
@@ -596,6 +603,117 @@ void TestUtils::testStagedFile_DiscardLeavesTargetAndDirUntouched()
     discardStagedFile(&staged);
     StagedFile neverStaged;
     discardStagedFile(&neverStaged);
+}
+
+// Regression test for the "all logs" shell-injection fix: actually run the
+// generated cleanup command against files whose names contain shell syntax,
+// and verify they are truncated without any of it ever being executed.
+void TestUtils::testGenerateSystemScript_HostileLogFilenamesAreSafe()
+{
+    QTemporaryDir logDir;
+    QVERIFY(logDir.isValid());
+
+    const QStringList hostileNames {
+        QStringLiteral("normal.log"),
+        QStringLiteral("evil'; touch injected;'.log"),
+        QStringLiteral("$(touch injected).log"),
+        QStringLiteral("`touch injected`.log"),
+    };
+    for (const QString &name : hostileNames) {
+        QFile file(logDir.filePath(name));
+        QVERIFY(file.open(QIODevice::WriteOnly));
+        file.write("log content\n");
+    }
+
+    ScheduleOptions opts;
+    opts.logsMode = QStringLiteral("all");
+    opts.logsDays = 0;
+    QString script = generateSystemScript(opts);
+    script.replace(QLatin1String("/var/log"), logDir.path());
+
+    QProcess sh;
+    sh.setWorkingDirectory(logDir.path());
+    sh.start("/bin/sh", {"-c", script});
+    QVERIFY(sh.waitForFinished(10000));
+
+    QVERIFY(!QFile::exists(logDir.filePath("injected")));
+    for (const QString &name : hostileNames) {
+        QCOMPARE(QFileInfo(logDir.filePath(name)).size(), qint64(0));
+    }
+}
+
+// A failed schedule write must leave the previously working file untouched.
+void TestUtils::testWriteFileAsRoot_FailedWritePreservesExistingTarget()
+{
+    if (getuid() == 0) {
+        QSKIP("A read-only directory does not block root");
+    }
+    QTemporaryDir dir;
+    QVERIFY(dir.isValid());
+    const QString path = dir.filePath("mx-cleanup");
+    QVERIFY(writeFileAsRoot(path, "original schedule\n", 0644));
+
+    QVERIFY(QFile::setPermissions(dir.path(), QFileDevice::ReadOwner | QFileDevice::ExeOwner));
+    const bool wrote = writeFileAsRoot(path, "replacement\n", 0644);
+    QVERIFY(QFile::setPermissions(dir.path(),
+                                  QFileDevice::ReadOwner | QFileDevice::WriteOwner | QFileDevice::ExeOwner));
+    QVERIFY(!wrote);
+
+    QFile file(path);
+    QVERIFY(file.open(QIODevice::ReadOnly));
+    QCOMPARE(file.readAll(), QByteArray("original schedule\n"));
+}
+
+// The per-user script must stay confined to the submitting user's own files,
+// and the shared system script must never be tied to any particular user.
+void TestUtils::testGenerateScripts_ScopeIsolation()
+{
+    ScheduleOptions opts;
+    opts.user = QStringLiteral("alice");
+    opts.cacheDays = 3;
+    opts.thumbsDays = 3;
+    opts.flatpak = true;
+    opts.aptMode = QStringLiteral("auto");
+    opts.purge = true;
+    opts.logsMode = QStringLiteral("all");
+    opts.logsDays = 2;
+    opts.trashMode = QStringLiteral("all");
+    opts.trashDays = 5;
+
+    const QString userScript = generateUserScript(opts);
+    QVERIFY(!userScript.contains("/home/*"));
+    QVERIFY(!userScript.contains("/var/log"));
+    QVERIFY(!userScript.contains("apt-get"));
+    QVERIFY(!userScript.contains("pacman"));
+
+    const QString systemScript = generateSystemScript(opts);
+    QVERIFY(!systemScript.contains("alice"));
+}
+
+// The UI treats a non-zero helper exit code as failure (item 3); verify the
+// helper binary actually reports its argument-validation failures that way.
+void TestUtils::testHelperBinary_ReportsFailureExitCodes()
+{
+    const QString helper = QCoreApplication::applicationDirPath() + "/helper";
+    if (!QFile::exists(helper)) {
+        QSKIP("helper binary not found next to the test binary");
+    }
+
+    auto helperFails = [&helper](const QStringList &args) {
+        QProcess proc;
+        proc.start(helper, args);
+        if (!proc.waitForFinished(10000)) {
+            return false;
+        }
+        return proc.exitStatus() == QProcess::NormalExit && proc.exitCode() != 0;
+    };
+
+    QVERIFY(helperFails({}));
+    QVERIFY(helperFails({"not-a-verb"}));
+    QVERIFY(helperFails({"write-settings", "no.such.user.xyz"}));
+    QVERIFY(helperFails({"write-schedule", "hourly"}));
+    QVERIFY(helperFails({"write-schedule", "daily", "--cache", "5"})); // per-user option without --user
+    QVERIFY(helperFails({"remove-schedule", "cron", "daily", "no.such.user.xyz"}));
 }
 
 QTEST_MAIN(TestUtils)
