@@ -68,17 +68,14 @@ private:
     bool suppressUserSwitch {false};
     QString cmdOut(const QString &cmd, QuietMode quiet = QuietMode::No);
     QString cmdOut(const QString &program, const QStringList &args, QuietMode quiet = QuietMode::No);
-    bool helperProc(const QStringList &helperArgs, QuietMode quiet = QuietMode::No, QString *output = nullptr);
-    bool helperExec(const QString &cmd, const QStringList &args = {}, QuietMode quiet = QuietMode::No,
-                    QString *output = nullptr);
-    QString helperOut(const QString &cmd, const QStringList &args = {}, QuietMode quiet = QuietMode::No);
+    bool helperProc(const QStringList &helperArgs, QuietMode quiet = QuietMode::No, QString *output = nullptr,
+                    const QByteArray &input = {});
+    QString helperOut(const QStringList &helperArgs, QuietMode quiet = QuietMode::No);
     bool helperFlatpakCleanup(const QString &user, QuietMode quiet = QuietMode::No);
-    quint64 helperDuSize(const QString &path, QuietMode quiet = QuietMode::No);
+    quint64 helperDuSize(const QString &sizeKey, const QString &user = {}, QuietMode quiet = QuietMode::No);
 
 public:
     static quint64 sumKiB(const QString &output);
-    static QStringList findCachedAgeArgs(const QString &path, const QString &excludePath,
-                                          int ageDays, bool ageEnabled);
     static void addGroupCheckbox(QLayout *layout, const QStringList &package, const QString &name, QStringList *list);
     static void selectRadioButton(class QGroupBox *groupbox, const QButtonGroup *group, int id);
 
@@ -88,13 +85,12 @@ private:
     void loadSettings();
     void removeKernelPackages(const QStringList &list);
     void removeManuals();
-    void saveSchedule(const QString &cmd_str, const QString &period);
+    void saveSchedule(const QStringList &scheduleOpts, const QString &period);
     void saveSettings();
     void setConnections();
     void setup();
     void startPreferredApp(const QStringList &apps);
     [[nodiscard]] QString homeDirForUser(const QString &user) const;
-    [[nodiscard]] QString primaryGroupForUser(const QString &user) const;
     [[nodiscard]] QString cronEntryBase(const QString &period) const;
     [[nodiscard]] QString cronEntryPath(const QString &period, bool forWrite) const;
     [[nodiscard]] QString currentUserSuffix() const;
@@ -103,5 +99,5 @@ private:
     [[nodiscard]] QString settingsDirForUser(const QString &user) const;
     [[nodiscard]] QString settingsFileForUser(const QString &user) const;
     void initializeSettingsForUser(const QString &user);
-    void ensureSettingsOwnership(const QString &user, const QString &targetPath);
+    void ensureSettingsOwnership(const QString &user);
 };

@@ -39,7 +39,6 @@
 #include <QTimer>
 
 #include <pwd.h>
-#include <grp.h>
 #include <unistd.h>
 
 #include "about.h"
@@ -160,7 +159,7 @@ void MainWindow::removeManuals()
         return;
     }
 
-    if (getuid() != 0 && !helperExec("true", {}, QuietMode::Yes)) {
+    if (getuid() != 0 && !helperProc({"check"}, QuietMode::Yes)) {
         QMessageBox::critical(this, tr("Error"), tr("Failed to elevate privileges"));
         return;
     }
@@ -176,7 +175,7 @@ void MainWindow::removeManuals()
 
     for (int index = 0; index < packageList.size(); ++index) {
         prog.setLabelText(tr("Removing packages, please wait"));
-        helperExec("apt-get", {"purge", "-y", packageList.at(index)}, QuietMode::Yes);
+        helperProc({"purge-packages", packageList.at(index)}, QuietMode::Yes);
         prog.setValue(index + 1);
         QApplication::processEvents();
     }
@@ -287,25 +286,6 @@ QString MainWindow::homeDirForUser(const QString &user) const
     return QString::fromUtf8(pwd->pw_dir);
 }
 
-QString MainWindow::primaryGroupForUser(const QString &user) const
-{
-    if (user.isEmpty()) {
-        return QString();
-    }
-
-    struct passwd *pwd = getpwnam(user.toUtf8().constData());
-    if (!pwd) {
-        return QString();
-    }
-
-    struct group *grp = getgrgid(pwd->pw_gid);
-    if (!grp) {
-        return QString();
-    }
-
-    return QString::fromUtf8(grp->gr_name);
-}
-
 QString MainWindow::currentUserSuffix() const
 {
     const QString user = ui->comboUserClean->currentText();
@@ -365,25 +345,18 @@ void MainWindow::initializeSettingsForUser(const QString &user)
         tempFile.setAutoRemove(false);
         if (tempFile.open()) {
             shadowSettingsPath = tempFile.fileName();
+            QString content;
+            helperProc({"read-settings", user}, QuietMode::Yes, &content);
+            if (!content.isEmpty()) {
+                tempFile.write(content.toUtf8() + '\n');
+            }
             tempFile.close();
-            const QString owner = currentUser.isEmpty() ? QStringLiteral("root") : currentUser;
-            const QString ownerGroup = primaryGroupForUser(owner);
-            const QString effectiveGroup = ownerGroup.isEmpty() ? owner : ownerGroup;
-            if (QFile::exists(filePath)) {
-                helperExec("install",
-                           {"-m", "600", "-o", owner, "-g", effectiveGroup, filePath, shadowSettingsPath},
-                           QuietMode::Yes);
-            }
-            if (QFile::exists(shadowSettingsPath)) {
-                settings = std::make_unique<QSettings>(shadowSettingsPath, QSettings::IniFormat);
-                settings->setFallbacksEnabled(false);
-                currentSettingsPath = filePath;
-                return;
-            }
-            QFile::remove(shadowSettingsPath);
-        } else {
-            qWarning().noquote() << "Failed to create temporary file for settings shadow";
+            settings = std::make_unique<QSettings>(shadowSettingsPath, QSettings::IniFormat);
+            settings->setFallbacksEnabled(false);
+            currentSettingsPath = filePath;
+            return;
         }
+        qWarning().noquote() << "Failed to create temporary file for settings shadow";
         settings = std::make_unique<QSettings>();
         currentSettingsPath = filePath;
         return;
@@ -394,23 +367,12 @@ void MainWindow::initializeSettingsForUser(const QString &user)
     currentSettingsPath = filePath;
 }
 
-void MainWindow::ensureSettingsOwnership(const QString &user, const QString &targetPath)
+void MainWindow::ensureSettingsOwnership(const QString &user)
 {
     if (user.isEmpty()) {
         return;
     }
-
-    const QString settingsDir = settingsDirForUser(user);
-    if (settingsDir.isEmpty() || !QFile::exists(settingsDir)) {
-        return;
-    }
-
-    const QString primaryGroup = primaryGroupForUser(user);
-    const QString ownerGroup = primaryGroup.isEmpty() ? user : primaryGroup;
-    helperExec("chown", {user + ":" + ownerGroup, settingsDir}, QuietMode::Yes);
-    if (!targetPath.isEmpty() && QFile::exists(targetPath)) {
-        helperExec("chown", {user + ":" + ownerGroup, targetPath}, QuietMode::Yes);
-    }
+    helperProc({"chown-settings", user}, QuietMode::Yes);
 }
 
 QString MainWindow::cronEntryBase(const QString &period) const
@@ -734,57 +696,19 @@ void MainWindow::loadOptions(bool settingsPreloaded)
     ui->spinBoxTrash->setValue(trashMatch.hasMatch() ? trashMatch.captured(1).toInt() : 0);
 }
 
-// Save cleanup commands to a /etc/cron.daily|weekly|monthly/mx-cleanup script
-void MainWindow::saveSchedule(const QString &cmd_str, const QString &period)
+// Save cleanup commands to a /etc/cron.daily|weekly|monthly/mx-cleanup script.
+// The helper composes and writes the script itself from the validated options.
+void MainWindow::saveSchedule(const QStringList &scheduleOpts, const QString &period)
 {
-    const QString cronBase = cronEntryBase(period);
-    const QString cronTarget = cronEntryPath(period, true);
-
-    helperExec("rm", {"-f", cronBase}, QuietMode::Yes);
-    if (cronTarget != cronBase) {
-        helperExec("rm", {"-f", cronTarget}, QuietMode::Yes);
+    QStringList args {"write-schedule", period};
+    const QString user = ui->comboUserClean->currentText();
+    if (!user.isEmpty()) {
+        args << "--user" << user;
     }
-
-    QString scriptTarget = cronTarget;
-
-    if (period == "@reboot") {
-        scriptTarget = scriptFilePath(true);
-        const QString scriptBase = scriptFileBase();
-
-        helperExec("rm", {"-f", scriptBase}, QuietMode::Yes);
-        if (scriptTarget != scriptBase) {
-            helperExec("rm", {"-f", scriptTarget}, QuietMode::Yes);
-        }
-
-        QTemporaryFile tempCron;
-        if (!tempCron.open()) {
-            QMessageBox::critical(this, tr("Error"),
-                                  tr("Failed to create temporary cron file: %1").arg(tempCron.errorString()));
-            return;
-        }
-        tempCron.write(QString("@reboot root %1\n").arg(scriptTarget).toUtf8());
-        tempCron.close();
-        helperExec("mv", {tempCron.fileName(), cronTarget}, QuietMode::Yes);
-        helperExec("chown", {"root:root", cronTarget}, QuietMode::Yes);
-        helperExec("chmod", {"0644", cronTarget}, QuietMode::Yes);
+    args += scheduleOpts;
+    if (!helperProc(args, QuietMode::Yes)) {
+        QMessageBox::critical(this, tr("Error"), tr("Failed to save the cleanup schedule"));
     }
-
-    QTemporaryFile tempFile;
-    if (!tempFile.open()) {
-        QMessageBox::critical(this, tr("Error"),
-                              tr("Failed to create temporary script file: %1").arg(tempFile.errorString()));
-        return;
-    }
-    QTextStream out(&tempFile);
-    out << "#!/bin/sh\n";
-    out << "#\n";
-    out << "# This file was created by MX Cleanup\n";
-    out << "#\n\n";
-    out << cmd_str;
-    tempFile.close();
-    helperExec("mv", {tempFile.fileName(), scriptTarget}, QuietMode::Yes);
-    helperExec("chmod", {"0755", scriptTarget}, QuietMode::Yes);
-    helperExec("chown", {"root:root", scriptTarget}, QuietMode::Yes);
 }
 
 void MainWindow::saveSettings()
@@ -807,7 +731,6 @@ void MainWindow::saveSettings()
     }
 
     const bool needsRoot = (getuid() != 0 && user != currentUser);
-    const QString targetGroupName = primaryGroupForUser(user);
 
     auto writeValues = [this](QSettings &store) {
         store.setValue(keyThumbnails, ui->checkThumbs->isChecked());
@@ -845,15 +768,14 @@ void MainWindow::saveSettings()
         tempSettings.setFallbacksEnabled(false);
         writeValues(tempSettings);
         tempSettings.sync();
-        tempFile.flush();
-        tempFile.close();
 
-        const QString ownerGroup = targetGroupName.isEmpty() ? user : targetGroupName;
-        helperExec("install", {"-d", "-m", "755", "-o", user, "-g", ownerGroup, dirPath}, QuietMode::Yes);
-        helperExec("install", {"-m", "644", "-o", user, "-g", ownerGroup, tempFile.fileName(), targetPath},
-                   QuietMode::Yes);
-
-        QFile::remove(tempFile.fileName());
+        QByteArray content;
+        QFile contentFile(tempFile.fileName());
+        if (contentFile.open(QIODevice::ReadOnly)) {
+            content = contentFile.readAll();
+            contentFile.close();
+        }
+        helperProc({"write-settings", user}, QuietMode::Yes, nullptr, content);
 
         currentSettingsPath = targetPath;
         initializeSettingsForUser(user);
@@ -862,14 +784,8 @@ void MainWindow::saveSettings()
 
     QDir dir;
     if (!dir.exists(dirPath)) {
-        if (getuid() == 0) {
-            qDebug().noquote() << "Creating settings directory as root:" << dirPath;
-            const QString ownerGroup = targetGroupName.isEmpty() ? user : targetGroupName;
-            helperExec("install", {"-d", "-m", "755", "-o", user, "-g", ownerGroup, dirPath}, QuietMode::Yes);
-        } else {
-            qDebug().noquote() << "Creating settings directory:" << dirPath;
-            dir.mkpath(dirPath);
-        }
+        qDebug().noquote() << "Creating settings directory:" << dirPath;
+        dir.mkpath(dirPath);
     }
 
     qDebug().noquote() << "Save settings to" << targetPath;
@@ -877,7 +793,7 @@ void MainWindow::saveSettings()
     settings->sync();
     qDebug().noquote() << "Settings sync status:" << settings->status();
     if (getuid() == 0 && user != currentUser) {
-        ensureSettingsOwnership(user, targetPath);
+        ensureSettingsOwnership(user);
     }
 
     currentSettingsPath = targetPath;
@@ -931,7 +847,7 @@ void MainWindow::pushApply_clicked()
 
     // Try to elevate privileges if needed
     if (getuid() != 0) {
-        if (!helperExec("true", {}, QuietMode::Yes)) {
+        if (!helperProc({"check"}, QuietMode::Yes)) {
             QMessageBox::critical(this, tr("Error"), tr("Failed to elevate privileges"));
             setCursor(QCursor(Qt::ArrowCursor));
             setEnabled(true);
@@ -940,7 +856,7 @@ void MainWindow::pushApply_clicked()
     }
 
     quint64 total {};
-    QString cache;
+    QStringList scheduleOpts;
     const QString selectedUser = ui->comboUserClean->currentText();
     const bool elevate = (selectedUser != currentUser);
 
@@ -952,50 +868,36 @@ void MainWindow::pushApply_clicked()
         qDebug().noquote() << "Freed" << label << amount << "KiB";
     };
     if (ui->checkCache->isChecked()) {
-        QString period = ui->radioSaferCache->isChecked()
-                             ? QString(" -atime +%1 -mtime +%1").arg(ui->spinCache->value())
-                             : QString();
+        const int cacheDays = ui->radioSaferCache->isChecked() ? ui->spinCache->value() : 0;
+        const QString cacheDaysArg = QString::number(cacheDays);
+        QString period = cacheDays > 0 ? QString(" -atime +%1 -mtime +%1").arg(cacheDays) : QString();
         QString findCmd = QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -type f "
                                   "-exec du -c '{}' + | awk 'END{print $1}'")
                               .arg(selectedUser, period);
         quint64 cacheKiB {};
         if (elevate) {
-            const QString cachePath = QString("/home/%1/.cache").arg(selectedUser);
-            const QString thumbsPath = QString("%1/thumbnails*").arg(cachePath);
-            if (QFileInfo::exists(cachePath)) {
-                auto args = findCachedAgeArgs(cachePath, thumbsPath,
-                                              ui->spinCache->value(), ui->radioSaferCache->isChecked());
-                args << "-type" << "f" << "-printf" << "%k\n";
-                cacheKiB = sumKiB(helperOut("find", args, QuietMode::Yes));
-            }
+            cacheKiB = sumKiB(helperOut({"clean-cache", "size", selectedUser, cacheDaysArg}, QuietMode::Yes));
         } else {
             cacheKiB = cmdOut(findCmd).toULongLong();
         }
         addToTotal("cache", cacheKiB);
 
-        cache = QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete 2>/dev/null")
-                    .arg(selectedUser, period);
+        scheduleOpts << "--cache" << cacheDaysArg;
         if (!ui->radioReboot->isChecked()) {
             if (elevate) {
-                const QString cachePath = QString("/home/%1/.cache").arg(selectedUser);
-                const QString thumbsPath = QString("%1/thumbnails*").arg(cachePath);
-                if (QFileInfo::exists(cachePath)) {
-                    auto args = findCachedAgeArgs(cachePath, thumbsPath,
-                                                  ui->spinCache->value(), ui->radioSaferCache->isChecked());
-                    args << "-delete";
-                    helperExec("find", args, QuietMode::Yes);
-                }
+                helperProc({"clean-cache", "delete", selectedUser, cacheDaysArg}, QuietMode::Yes);
             } else {
-                cmdOut(cache);
+                cmdOut(QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -delete "
+                               "2>/dev/null")
+                           .arg(selectedUser, period));
             }
         }
     }
 
-    QString thumbnails;
     if (ui->checkThumbs->isChecked()) {
-        QString period = ui->radioSaferCache->isChecked()
-                             ? QString(" -atime +%1 -mtime +%1").arg(ui->spinCache->value())
-                             : QString();
+        const int thumbsDays = ui->radioSaferCache->isChecked() ? ui->spinCache->value() : 0;
+        const QString thumbsDaysArg = QString::number(thumbsDays);
+        QString period = thumbsDays > 0 ? QString(" -atime +%1 -mtime +%1").arg(thumbsDays) : QString();
         QString findThumbsCmd = QString("find /home/%1/.cache/thumbnails -type f%2 -exec du -c '{}' + | awk '{field = $1} END {print field}'")
                                     .arg(selectedUser, period);
         QString thumbsDeleteCmd = QString("find /home/%1/.cache/thumbnails -type f%2 -delete 2>/dev/null")
@@ -1003,61 +905,36 @@ void MainWindow::pushApply_clicked()
 
         quint64 thumbnailsKiB {};
         if (elevate) {
-            const QString thumbsPath = QString("/home/%1/.cache/thumbnails").arg(selectedUser);
-            if (QFileInfo::exists(thumbsPath)) {
-                QStringList args = findCachedAgeArgs(thumbsPath, {},
-                                                     ui->spinCache->value(), ui->radioSaferCache->isChecked());
-                args << "-type" << "f" << "-printf" << "%k\n";
-                thumbnailsKiB = sumKiB(helperOut("find", args, QuietMode::Yes));
-            }
+            thumbnailsKiB = sumKiB(helperOut({"clean-thumbnails", "size", selectedUser, thumbsDaysArg},
+                                             QuietMode::Yes));
         } else {
             thumbnailsKiB = cmdOut(findThumbsCmd).toULongLong();
         }
         addToTotal("thumbnails", thumbnailsKiB);
-        thumbnails = thumbsDeleteCmd;
+        scheduleOpts << "--thumbs" << thumbsDaysArg;
         if (!ui->radioReboot->isChecked()) {
             if (elevate) {
-                const QString thumbsPath = QString("/home/%1/.cache/thumbnails").arg(selectedUser);
-                if (QFileInfo::exists(thumbsPath)) {
-                    QStringList args = findCachedAgeArgs(thumbsPath, {},
-                                                         ui->spinCache->value(), ui->radioSaferCache->isChecked());
-                    args << "-type" << "f" << "-delete";
-                    helperExec("find", args, QuietMode::Yes);
-                }
+                helperProc({"clean-thumbnails", "delete", selectedUser, thumbsDaysArg}, QuietMode::Yes);
             } else {
-                cmdOut(thumbnails);
+                cmdOut(thumbsDeleteCmd);
             }
         }
     }
 
-    QString flatpak;
     if (ui->checkFlatpak->isChecked()) {
         const QString flatpakCleanupCmd = "flatpak uninstall --unused --delete-data --noninteractive";
         const QString flatpakCleanupCheckCmd = "pgrep -a flatpak | grep -v flatpak-s || " + flatpakCleanupCmd;
         const QString userSizeCmd = QString("du -s /home/%1/.local/share/flatpak/ | cut -f1").arg(selectedUser);
-        auto scheduleUserShellCommand = [&](const QString &command) -> QString {
-            auto quoteShellArg = [](QString value) {
-                value.replace('\\', "\\\\");
-                value.replace('"', "\\\"");
-                return '"' + value + '"';
-            };
-
-            if (selectedUser.isEmpty()) {
-                return command;
-            }
-            return QString("runuser -u %1 -- /bin/bash -lc %2").arg(selectedUser, quoteShellArg(command));
-        };
         auto execFlatpakScoped = [&](const QString &command) -> QString {
             if (!elevate) {
                 return cmdOut(command);
             }
 
             if (command == userSizeCmd) {
-                const QString path = QString("/home/%1/.local/share/flatpak/").arg(selectedUser);
-                return QString::number(helperDuSize(path, QuietMode::Yes));
+                return QString::number(helperDuSize("flatpak-user", selectedUser, QuietMode::Yes));
             }
 
-            QString output = helperOut("pgrep", {"-a", "flatpak"}, QuietMode::Yes);
+            QString output = helperOut({"list-flatpak-procs"}, QuietMode::Yes);
             const QStringList activeFlatpak
                 = output.split('\n', Qt::SkipEmptyParts).filter(QRegularExpression("^(?!.*flatpak-s).*$"));
             if (!activeFlatpak.isEmpty()) {
@@ -1069,73 +946,45 @@ void MainWindow::pushApply_clicked()
         };
 
         quint64 userBefore = execFlatpakScoped(userSizeCmd).toULongLong();
-        quint64 systemBefore = helperDuSize("/var/lib/flatpak/", QuietMode::Yes);
+        quint64 systemBefore = helperDuSize("flatpak-system", {}, QuietMode::Yes);
         if (!ui->radioReboot->isChecked()) {
             execFlatpakScoped(flatpakCleanupCheckCmd);
         }
         quint64 userAfter = execFlatpakScoped(userSizeCmd).toULongLong();
-        quint64 systemAfter = helperDuSize("/var/lib/flatpak/", QuietMode::Yes);
+        quint64 systemAfter = helperDuSize("flatpak-system", {}, QuietMode::Yes);
 
         quint64 userDelta = (userBefore > userAfter) ? userBefore - userAfter : 0;
         quint64 systemDelta = (systemBefore > systemAfter) ? systemBefore - systemAfter : 0;
         addToTotal("flatpak-user", userDelta);
         addToTotal("flatpak-system", systemDelta);
 
-        flatpak = scheduleUserShellCommand(flatpakCleanupCheckCmd);
+        scheduleOpts << "--flatpak";
     }
 
-    QString apt;
-    const auto addCommandToSchedule = [&](const QString &command) {
-        if (command.isEmpty()) {
-            return;
-        }
-        if (!apt.isEmpty()) {
-            apt += '\n';
-        }
-        apt += command;
-    };
     if (ui->groupBoxApt->isChecked()) {
-        QString cleanCmd;
-        QString cacheLabel = "apt-cache";
-        if (isArchLinux) {
-            cacheLabel = "pacman-cache";
-            if (ui->radioAutoClean->isChecked()) {
-                cleanCmd = "pacman -Sc --noconfirm";
-            } else if (ui->radioClean->isChecked()) {
-                cleanCmd = "pacman -Scc --noconfirm";
-            }
-        } else {
-            if (ui->radioAutoClean->isChecked()) {
-                cleanCmd = "apt-get autoclean";
-            } else if (ui->radioClean->isChecked()) {
-                cleanCmd = "apt-get clean";
-            }
+        QString cleanMode;
+        if (ui->radioAutoClean->isChecked()) {
+            cleanMode = "auto";
+        } else if (ui->radioClean->isChecked()) {
+            cleanMode = "full";
         }
 
-        if (!cleanCmd.isEmpty()) {
-            const QString cacheDir = isArchLinux ? "/var/cache/pacman/pkg/" : "/var/cache/apt/archives/";
-            quint64 before_size = helperDuSize(cacheDir, QuietMode::Yes);
+        if (!cleanMode.isEmpty()) {
+            const QString cacheLabel = isArchLinux ? "pacman-cache" : "apt-cache";
+            quint64 before_size = helperDuSize(cacheLabel, {}, QuietMode::Yes);
 
             if (!ui->radioReboot->isChecked()) {
-                if (isArchLinux) {
-                    helperExec("pacman", ui->radioAutoClean->isChecked() ? QStringList {"-Sc", "--noconfirm"}
-                                                                          : QStringList {"-Scc", "--noconfirm"},
-                               QuietMode::Yes);
-                } else {
-                    helperExec("apt-get", {ui->radioAutoClean->isChecked() ? "autoclean" : "clean"},
-                               QuietMode::Yes);
-                }
+                helperProc({"clean-package-cache", cleanMode}, QuietMode::Yes);
             }
 
-            quint64 after_size = helperDuSize(cacheDir, QuietMode::Yes);
+            quint64 after_size = helperDuSize(cacheLabel, {}, QuietMode::Yes);
             addToTotal(cacheLabel, before_size > after_size ? before_size - after_size : 0);
-            addCommandToSchedule(cleanCmd);
+            scheduleOpts << "--apt" << cleanMode;
         }
     }
 
     if (ui->checkPurge->isChecked()) {
-        const QString purgeCmd = "dpkg -l | awk '/^rc/ { print $2 }' | xargs -r apt-get purge -y";
-        quint64 before_size = helperDuSize("/var/lib/dpkg/info/", QuietMode::Yes);
+        quint64 before_size = helperDuSize("dpkg-info", {}, QuietMode::Yes);
         const QStringList residualPackages
             = cmdOut("dpkg-query -W -f='${db:Status-Abbrev}\t${Package}\n'", QuietMode::Yes)
                                                  .split('\n', Qt::SkipEmptyParts);
@@ -1147,57 +996,37 @@ void MainWindow::pushApply_clicked()
         }
 
         if (!ui->radioReboot->isChecked() && !packagesToPurge.isEmpty()) {
-            helperExec("apt-get", QStringList {"purge", "-y"} + packagesToPurge, QuietMode::Yes);
+            helperProc(QStringList {"purge-packages"} + packagesToPurge, QuietMode::Yes);
         }
 
-        quint64 after_size = helperDuSize("/var/lib/dpkg/info/", QuietMode::Yes);
+        quint64 after_size = helperDuSize("dpkg-info", {}, QuietMode::Yes);
         addToTotal("apt-purge", before_size > after_size ? before_size - after_size : 0);
-        addCommandToSchedule(purgeCmd);
+        scheduleOpts << "--purge";
     }
 
-    QString logs;
     if (ui->groupBoxLogs->isChecked()) {
-        QString time = ui->spinBoxLogs->value() > 0 ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxLogs->value())
-                                                    : QString();
+        const QString logsDaysArg = QString::number(ui->spinBoxLogs->value());
+        QString logsMode;
         if (ui->radioOldLogs->isChecked()) {
-            QStringList args {"/var/log", "(",
-                              "-name", "*.gz", "-o", "-name", "*.old", "-o", "-name", "*.[0-9]", "-o", "-name",
-                              "*.[0-9].log", ")"};
-            if (ui->spinBoxLogs->value() > 0) {
-                const QString days = QString("+%1").arg(ui->spinBoxLogs->value());
-                args << "-ctime" << days << "-atime" << days;
-            }
-            QStringList sizeArgs = args;
-            sizeArgs << "-type" << "f" << "-printf" << "%k\n";
-            quint64 logsKiB = sumKiB(helperOut("find", sizeArgs, QuietMode::Yes));
-            addToTotal("logs-old", logsKiB);
-            logs = R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \))"
-                   + time + " -type f -delete 2>/dev/null";
-            if (!ui->radioReboot->isChecked()) {
-                args << "-type" << "f" << "-delete";
-                helperExec("find", args, QuietMode::Yes);
-            }
+            logsMode = "old";
         } else if (ui->radioAllLogs->isChecked()) {
-            QStringList args {"/var/log", "-type", "f"};
-            if (ui->spinBoxLogs->value() > 0) {
-                const QString days = QString("+%1").arg(ui->spinBoxLogs->value());
-                args << "-ctime" << days << "-atime" << days;
-            }
-            QStringList sizeArgs = args;
-            sizeArgs << "-printf" << "%k\n";
-            quint64 logsKiB = sumKiB(helperOut("find", sizeArgs, QuietMode::Yes));
-            addToTotal("logs-all", logsKiB);
-            logs = "find /var/log -type f" + time + R"( -exec sh -c "echo > '{}'" \;)"; // empty the logs
+            logsMode = "all";
+        }
+        if (!logsMode.isEmpty()) {
+            quint64 logsKiB = sumKiB(helperOut({"clean-logs", logsMode, "size", logsDaysArg}, QuietMode::Yes));
+            addToTotal("logs-" + logsMode, logsKiB);
+            scheduleOpts << "--logs" << logsMode << logsDaysArg;
             if (!ui->radioReboot->isChecked()) {
-                args << "-exec" << "truncate" << "-s" << "0" << "{}" << "+";
-                helperExec("find", args, QuietMode::Yes);
+                helperProc({"clean-logs", logsMode, "delete", logsDaysArg}, QuietMode::Yes);
             }
         }
     }
 
-    QString trash;
     if (ui->groupBoxTrash->isChecked()) {
-        QString user = ui->radioAllUsers->isChecked() ? "*" : ui->comboUserClean->currentText();
+        const bool allUsers = ui->radioAllUsers->isChecked();
+        QString user = allUsers ? "*" : ui->comboUserClean->currentText();
+        const QString trashUserArg = allUsers ? QStringLiteral("@all") : user;
+        const QString trashDaysArg = QString::number(ui->spinBoxTrash->value());
         QString timeTrash = ui->spinBoxTrash->value() > 0
                                 ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxTrash->value())
                                 : QString();
@@ -1208,74 +1037,38 @@ void MainWindow::pushApply_clicked()
 
         quint64 trashKiB {};
         if (user != currentUser) {
-            QStringList args;
-            if (user == "*") {
-                args << "/home" << "-path" << "/home/*/.local/share/Trash/*";
-            } else {
-                args << QString("/home/%1/.local/share/Trash").arg(user) << "-mindepth" << "1";
-            }
-            if (ui->spinBoxTrash->value() > 0) {
-                const QString days = QString("+%1").arg(ui->spinBoxTrash->value());
-                args << "-ctime" << days << "-atime" << days;
-            }
-            args << "-printf" << "%k\n";
-            trashKiB = sumKiB(helperOut("find", args, QuietMode::Yes));
+            trashKiB = sumKiB(helperOut({"clean-trash", "size", trashUserArg, trashDaysArg}, QuietMode::Yes));
         } else {
             trashKiB = cmdOut(findSizeCmd).toULongLong();
         }
         addToTotal("trash", trashKiB);
 
-        trash = findDeleteCmd;
+        scheduleOpts << "--trash" << (allUsers ? "all" : "user") << trashDaysArg;
         if (!ui->radioReboot->isChecked()) {
             if (user != currentUser) {
-                QStringList args;
-                if (user == "*") {
-                    args << "/home" << "-path" << "/home/*/.local/share/Trash/*";
-                } else {
-                    args << QString("/home/%1/.local/share/Trash").arg(user) << "-mindepth" << "1";
-                }
-                if (ui->spinBoxTrash->value() > 0) {
-                    const QString days = QString("+%1").arg(ui->spinBoxTrash->value());
-                    args << "-ctime" << days << "-atime" << days;
-                }
-                args << "-delete";
-                helperExec("find", args, QuietMode::Yes);
+                helperProc({"clean-trash", "delete", trashUserArg, trashDaysArg}, QuietMode::Yes);
             } else {
-                cmdOut(trash);
+                cmdOut(findDeleteCmd);
             }
         }
     }
 
     // Cleanup schedule for the currently selected user only
     auto removeScheduleFiles = [&](const QString &period) {
-        QStringList targets;
-        const QString writeTarget = cronEntryPath(period, true);
-        if (!writeTarget.isEmpty()) {
-            targets << writeTarget;
+        if (!selectedUser.isEmpty()) {
+            helperProc({"remove-schedule", "cron", period, selectedUser}, QuietMode::Yes);
         }
-        const QString existingTarget = cronEntryPath(period, false);
-        const QString baseTarget = cronEntryBase(period);
-        if (!existingTarget.isEmpty() && existingTarget == baseTarget && !targets.contains(baseTarget)) {
-            targets << baseTarget;
-        }
-        for (const auto &path : targets) {
-            helperExec("rm", {"-f", path}, QuietMode::Yes);
+        if (cronEntryPath(period, false) == cronEntryBase(period)) {
+            helperProc({"remove-schedule", "cron", period}, QuietMode::Yes);
         }
     };
 
     auto removeScriptFiles = [&]() {
-        QStringList targets;
-        const QString writeTarget = scriptFilePath(true);
-        if (!writeTarget.isEmpty()) {
-            targets << writeTarget;
+        if (!selectedUser.isEmpty()) {
+            helperProc({"remove-schedule", "script", selectedUser}, QuietMode::Yes);
         }
-        const QString existingTarget = scriptFilePath(false);
-        const QString baseTarget = scriptFileBase();
-        if (!existingTarget.isEmpty() && existingTarget == baseTarget && !targets.contains(baseTarget)) {
-            targets << baseTarget;
-        }
-        for (const auto &path : targets) {
-            helperExec("rm", {"-f", path}, QuietMode::Yes);
+        if (scriptFilePath(false) == scriptFileBase()) {
+            helperProc({"remove-schedule", "script"}, QuietMode::Yes);
         }
     };
 
@@ -1287,27 +1080,6 @@ void MainWindow::pushApply_clicked()
 
     // Add schedule file
     if (!ui->radioNone->isChecked()) {
-        QStringList parts;
-        if (!cache.isEmpty()) {
-            parts << cache;
-        }
-        if (!thumbnails.isEmpty()) {
-            parts << thumbnails;
-        }
-        if (!logs.isEmpty()) {
-            parts << logs;
-        }
-        if (!apt.isEmpty()) {
-            parts << apt;
-        }
-        if (!trash.isEmpty()) {
-            parts << trash;
-        }
-        if (!flatpak.isEmpty()) {
-            parts << flatpak;
-        }
-        QString cmd_str = parts.join('\n');
-        // qDebug() << "CMD STR" << cmd_str;
         QString schedule;
         if (ui->radioDaily->isChecked()) {
             schedule = "daily";
@@ -1318,7 +1090,7 @@ void MainWindow::pushApply_clicked()
         } else if (ui->radioReboot->isChecked()) {
             schedule = "@reboot";
         }
-        saveSchedule(cmd_str, schedule);
+        saveSchedule(scheduleOpts, schedule);
     }
 
     saveSettings();
@@ -1413,7 +1185,7 @@ QString MainWindow::cmdOut(const QString &program, const QStringList &args, Quie
     return proc.readAll().trimmed();
 }
 
-bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QString *output)
+bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QString *output, const QByteArray &input)
 {
     if (quiet == QuietMode::No) {
         qDebug().noquote() << "helper" << helperArgs;
@@ -1451,6 +1223,11 @@ bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QStr
         return false;
     }
 
+    if (!input.isEmpty()) {
+        proc.write(input);
+    }
+    proc.closeWriteChannel();
+
     QEventLoop loop;
     connect(&proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), &loop, &QEventLoop::quit);
     QTimer::singleShot(30000, &loop, &QEventLoop::quit);
@@ -1476,17 +1253,10 @@ bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QStr
     return proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0;
 }
 
-bool MainWindow::helperExec(const QString &cmd, const QStringList &args, QuietMode quiet, QString *output)
-{
-    QStringList helperArgs {"exec", cmd};
-    helperArgs += args;
-    return helperProc(helperArgs, quiet, output);
-}
-
-QString MainWindow::helperOut(const QString &cmd, const QStringList &args, QuietMode quiet)
+QString MainWindow::helperOut(const QStringList &helperArgs, QuietMode quiet)
 {
     QString output;
-    helperExec(cmd, args, quiet, &output);
+    helperProc(helperArgs, quiet, &output);
     return output;
 }
 
@@ -1495,10 +1265,14 @@ bool MainWindow::helperFlatpakCleanup(const QString &user, QuietMode quiet)
     return helperProc({"flatpak-cleanup-user", user}, quiet);
 }
 
-quint64 MainWindow::helperDuSize(const QString &path, QuietMode quiet)
+quint64 MainWindow::helperDuSize(const QString &sizeKey, const QString &user, QuietMode quiet)
 {
+    QStringList args {"dir-size", sizeKey};
+    if (!user.isEmpty()) {
+        args << user;
+    }
     bool ok {false};
-    const quint64 size = helperOut("du", {"-s", path}, quiet).section('\t', 0, 0).trimmed().toULongLong(&ok);
+    const quint64 size = helperOut(args, quiet).section('\t', 0, 0).trimmed().toULongLong(&ok);
     return ok ? size : 0;
 }
 
@@ -1514,17 +1288,6 @@ quint64 MainWindow::sumKiB(const QString &output)
         }
     }
     return total;
-}
-
-QStringList MainWindow::findCachedAgeArgs(const QString &path, const QString &excludePath,
-                                           int ageDays, bool ageEnabled)
-{
-    QStringList args {path, "-mindepth", "1"};
-    if (!excludePath.isEmpty())
-        args << "!" << "-path" << excludePath;
-    if (ageEnabled)
-        args << "-atime" << QString("+%1").arg(ageDays) << "-mtime" << QString("+%1").arg(ageDays);
-    return args;
 }
 
 void MainWindow::pushKernel_clicked()
