@@ -76,15 +76,42 @@ void printError(const QString &message);
 [[nodiscard]] int openMxLinuxDir(int configFd, bool create, uid_t uid, gid_t gid);
 [[nodiscard]] int openSettingsDirFd(const QString &homeDir, bool create, uid_t uid, gid_t gid);
 
+// Two-phase atomic file replacement, so multi-file updates (user script +
+// cron entry + shared system script) can stage every file first and only
+// start renaming once all content is safely on disk: any write/space failure
+// then aborts before a single target has changed. stageFileAsRoot() writes
+// content to a temp file next to path, sets its mode and fsyncs it;
+// commitStagedFile() renames it over path (best-effort fsync of the
+// directory afterwards); discardStagedFile() deletes an uncommitted temp
+// file and is safe to call on a never-staged or already-committed handle.
+struct StagedFile
+{
+    QByteArray tmpPath;
+    QString finalPath;
+};
+[[nodiscard]] bool stageFileAsRoot(const QString &path, const QByteArray &content, mode_t mode, StagedFile *staged);
+[[nodiscard]] bool commitStagedFile(StagedFile *staged);
+void discardStagedFile(StagedFile *staged);
+
 // Write content to a temp file in the same directory as path, set its mode,
 // fsync it, then atomically rename it over path (best-effort fsync of the
 // directory afterwards), so an interrupted write can never leave a
 // scheduled cron job or reboot script partially written or missing.
+// Equivalent to stageFileAsRoot() + commitStagedFile().
 [[nodiscard]] bool writeFileAsRoot(const QString &path, const QByteArray &content, mode_t mode);
 
 [[nodiscard]] bool validPeriod(const QString &period);
 [[nodiscard]] QString cronEntryBase(const QString &period);
 [[nodiscard]] QString scriptFileBase();
 
+// Shared system-wide script (apt/pacman cache, package purge, logs, all-users
+// trash): a single file with no cron entry of its own, invoked at the end of
+// every per-user script (see generateUserScript()). Different users can
+// schedule their own cron entry at different periods, all calling this same
+// script, instead of duplicating these system-wide commands into every
+// user's own schedule.
+[[nodiscard]] QString systemScriptPath();
+
 [[nodiscard]] bool parseScheduleOptions(const QStringList &args, ScheduleOptions *opts);
-[[nodiscard]] QString generateScheduleScript(const ScheduleOptions &opts);
+[[nodiscard]] QString generateUserScript(const ScheduleOptions &opts);
+[[nodiscard]] QString generateSystemScript(const ScheduleOptions &opts);

@@ -400,26 +400,52 @@ struct ProcessResult
     const QString suffix = opts.user.isEmpty() ? QString() : '.' + opts.user;
     const QString cronTarget = cronEntryBase(period) + suffix;
 
-    // writeFileAsRoot() writes to a temp file and renames it over the target, so it
-    // already replaces cronTarget/scriptTarget atomically. Removing them beforehand
-    // would only risk losing the previous schedule if the write below then fails, and
-    // could delete an unrelated (e.g. unsuffixed) schedule file. Superseded schedule
-    // files for other periods/users are cleaned up explicitly via remove-schedule.
+    // Staged renames replace each target atomically. Removing targets
+    // beforehand would only risk losing the previous schedule if a write
+    // fails, and could delete an unrelated (e.g. unsuffixed) schedule file.
+    // Superseded schedule files for other periods/users are cleaned up
+    // explicitly via remove-schedule.
     QString scriptTarget = cronTarget;
     if (period == "@reboot") {
         scriptTarget = scriptFileBase() + suffix;
     }
 
-    // Write the script before the cron entry that references it, so a failure here
-    // never leaves cron pointing at a script that doesn't exist yet.
-    if (!writeFileAsRoot(scriptTarget, generateScheduleScript(opts).toUtf8(), 0755)) {
+    // Three files change together: this user's own script, its @reboot cron
+    // entry (when applicable), and the shared system-wide script
+    // (apt/purge/logs/trash-all -- "last write wins", the rule any single
+    // shared setting follows). Stage all of them before committing any, so
+    // every write/space failure aborts with every target untouched -- a
+    // failed Apply can neither leave this user's schedule pointing at a
+    // stale shared script nor change the shared script other users' schedules
+    // invoke. Only a failure of a commit rename itself (exotic: target
+    // directory removed mid-operation) can still end partially applied.
+    StagedFile userScript;
+    StagedFile cronEntry;
+    StagedFile systemScript;
+    const bool stagedAll
+        = stageFileAsRoot(scriptTarget, generateUserScript(opts).toUtf8(), 0755, &userScript)
+          && (period != "@reboot"
+              || stageFileAsRoot(cronTarget, QString("@reboot root %1\n").arg(scriptTarget).toUtf8(), 0644,
+                                 &cronEntry))
+          && stageFileAsRoot(systemScriptPath(), generateSystemScript(opts).toUtf8(), 0755, &systemScript);
+    if (!stagedAll) {
+        discardStagedFile(&userScript);
+        discardStagedFile(&cronEntry);
+        discardStagedFile(&systemScript);
         return 1;
     }
 
-    if (period == "@reboot") {
-        return writeFileAsRoot(cronTarget, QString("@reboot root %1\n").arg(scriptTarget).toUtf8(), 0644) ? 0 : 1;
+    // Commit the user script before the cron entry that references it.
+    if (!commitStagedFile(&userScript)) {
+        discardStagedFile(&cronEntry);
+        discardStagedFile(&systemScript);
+        return 1;
     }
-    return 0;
+    if (period == "@reboot" && !commitStagedFile(&cronEntry)) {
+        discardStagedFile(&systemScript);
+        return 1;
+    }
+    return commitStagedFile(&systemScript) ? 0 : 1;
 }
 
 [[nodiscard]] bool parseSizeOrDelete(const QString &mode, bool *isDelete)

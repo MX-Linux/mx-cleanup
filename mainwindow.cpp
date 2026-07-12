@@ -418,17 +418,17 @@ QString MainWindow::scriptFilePath(bool forWrite) const
     return selectedIsCurrent ? base : candidate;
 }
 
-// Check if the cleanup script exists in the cron directories. A period counts
-// as active if either the selected user's own schedule or the shared
-// system-wide schedule (apt/purge/logs/trash-all) uses it, so a user with no
-// per-user schedule of their own still sees an active shared schedule instead
-// of a misleading "None".
+QString MainWindow::systemScriptPath() const
+{
+    return "/usr/bin/mx-cleanup-system-script";
+}
+
+// Check if the cleanup script exists in the cron directories.
 void MainWindow::loadSchedule(bool settingsPreloaded)
 {
     auto periodActive = [this](const QString &period) {
         const QString userPath = (period == "@reboot") ? scriptFilePath(false) : cronEntryPath(period, false);
-        const QString systemPath = (period == "@reboot") ? scriptFileBase() : cronEntryBase(period);
-        return QFile::exists(userPath) || QFile::exists(systemPath);
+        return QFile::exists(userPath);
     };
 
     if (periodActive("daily")) {
@@ -445,6 +445,57 @@ void MainWindow::loadSchedule(bool settingsPreloaded)
     loadOptions(settingsPreloaded);
 }
 
+bool MainWindow::loadSystemScriptOptions(const QString &legacyFallbackContent)
+{
+    QString content;
+    if (QFile::exists(systemScriptPath())) {
+        QFile file(systemScriptPath());
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            content = QString::fromUtf8(file.readAll());
+        }
+    } else {
+        // Upgrade path: no shared script yet, so any apt/purge/logs/trash-all
+        // commands still live inline in the pre-split user script. Parse them
+        // from there so they display checked and the next Apply migrates them
+        // into the shared script instead of silently dropping them.
+        content = legacyFallbackContent;
+    }
+
+    if (content.contains("apt-get autoclean")) {
+        ui->groupBoxApt->setChecked(true);
+        ui->radioAutoClean->setChecked(true);
+    } else if (content.contains("apt-get clean")) {
+        ui->groupBoxApt->setChecked(true);
+        ui->radioClean->setChecked(true);
+    } else {
+        ui->groupBoxApt->setChecked(false);
+    }
+    ui->checkPurge->setChecked(content.contains("apt-get purge"));
+
+    if (QRegularExpression(R"(\-exec truncate \-s 0)").match(content).hasMatch()) {
+        ui->groupBoxLogs->setChecked(true);
+        ui->radioAllLogs->setChecked(true);
+    } else if (QRegularExpression(R"(\-type f \-delete)").match(content).hasMatch()) {
+        ui->groupBoxLogs->setChecked(true);
+        ui->radioOldLogs->setChecked(true);
+    } else {
+        ui->groupBoxLogs->setChecked(false);
+    }
+    QRegularExpression logCtimeRe(R"(find /var/log.*-ctime \+([0-9]{1,3}))");
+    QRegularExpressionMatch logMatch = logCtimeRe.match(content);
+    ui->spinBoxLogs->setValue(logMatch.hasMatch() ? logMatch.captured(1).toInt() : 0);
+
+    const bool trashAllActive = content.contains("/home/*/.local/share/Trash");
+    if (trashAllActive) {
+        ui->groupBoxTrash->setChecked(true);
+        ui->radioAllUsers->setChecked(true);
+        QRegularExpression trashCtimeRe(R"(find /home/.*-ctime \+([0-9]{1,3}))");
+        QRegularExpressionMatch trashMatch = trashCtimeRe.match(content);
+        ui->spinBoxTrash->setValue(trashMatch.hasMatch() ? trashMatch.captured(1).toInt() : 0);
+    }
+    return trashAllActive;
+}
+
 void MainWindow::loadSettings()
 {
     auto value = [this](const QString &key, const QVariant &fallback) -> QVariant {
@@ -458,25 +509,22 @@ void MainWindow::loadSettings()
     ui->radioSaferCache->setChecked(cacheSafer);
     ui->radioAllCache->setChecked(!cacheSafer);
 
-    const bool aptCleanup = value(keyAptCleanup, true).toBool();
-    ui->groupBoxApt->setChecked(aptCleanup);
-    const int aptSelection = aptCleanup ? value(keyAptSelection, -1).toInt() : -1;
-    selectRadioButton(ui->groupBoxApt, ui->buttonGroupApt, aptSelection);
-    ui->checkPurge->setChecked(value(keyAptPurge, false).toBool());
-
     ui->checkFlatpak->setChecked(value(keyFlatpakUnused, false).toBool());
 
-    const bool logsCleanup = value(keyLogsCleanup, true).toBool();
-    ui->groupBoxLogs->setChecked(logsCleanup);
-    ui->spinBoxLogs->setValue(value(keyLogsOlderThan, 7).toInt());
-    const int logsSelection = logsCleanup ? value(keyLogsSelection, -1).toInt() : -1;
-    selectRadioButton(ui->groupBoxLogs, ui->buttonGroupLogs, logsSelection);
-
-    const bool trashCleanup = value(keyTrashCleanup, true).toBool();
-    ui->groupBoxTrash->setChecked(trashCleanup);
-    ui->spinBoxTrash->setValue(value(keyTrashOlderThan, 30).toInt());
-    const int trashSelection = trashCleanup ? value(keyTrashSelection, -1).toInt() : -1;
-    selectRadioButton(ui->groupBoxTrash, ui->buttonGroupTrash, trashSelection);
+    // apt/purge/logs/trash-all are shared, system-wide settings now (see
+    // pushApply_clicked()/helper.cpp) -- always read from the real shared
+    // script, never from this user's own saved preference. Otherwise a user
+    // with no schedule of their own could apply and silently overwrite the
+    // real shared script with their own stale/default preference.
+    const bool trashAllActive = loadSystemScriptOptions();
+    if (!trashAllActive) {
+        const bool trashCleanup = value(keyTrashCleanup, true).toBool();
+        ui->groupBoxTrash->setChecked(trashCleanup);
+        ui->spinBoxTrash->setValue(value(keyTrashOlderThan, 30).toInt());
+        if (trashCleanup) {
+            ui->radioSelectedUser->setChecked(true);
+        }
+    }
 }
 
 void MainWindow::removeKernelPackages(const QStringList &list)
@@ -613,31 +661,30 @@ void MainWindow::loadOptions(bool settingsPreloaded)
         return;
     }
 
-    // Cache/thumbs/trash/flatpak live in the selected user's own schedule file;
-    // apt/purge/logs live in the separate shared system-wide file (see
-    // pushApply_clicked()), regardless of which user is selected.
     const QString userFileName = (period == "@reboot") ? scriptFilePath(false) : cronEntryPath(period, false);
-    const QString systemFileName = (period == "@reboot") ? scriptFileBase() : cronEntryBase(period);
-
-    auto readFile = [](const QString &fileName) -> QString {
-        QFile file(fileName);
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            return {};
+    QString userContent;
+    if (QFile::exists(userFileName)) {
+        QFile file(userFileName);
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            userContent = QString::fromUtf8(file.readAll());
         }
-        return QString::fromUtf8(file.readAll());
-    };
-
-    const bool userFileExists = QFile::exists(userFileName);
-    const QString userContent = userFileExists ? readFile(userFileName) : QString();
-    const QString systemContent = (systemFileName == userFileName) ? userContent
-                                   : QFile::exists(systemFileName)  ? readFile(systemFileName)
-                                                                     : QString();
-
-    if (!settingsPreloaded && !userFileExists && systemContent.isEmpty()) {
-        loadSettings();
-        return;
     }
-    if (userContent.isEmpty() && systemContent.isEmpty()) {
+
+    // Cache/thumbs/trash-user/flatpak live in the selected user's own schedule
+    // file; apt/purge/logs/trash-all live in the separate shared system-wide
+    // script that file calls (see pushApply_clicked()/helper.cpp). The shared
+    // script is read unconditionally, regardless of whether this user has a
+    // schedule of their own at this (or any) period -- never falling back to
+    // this user's own saved preference, which could then overwrite the real
+    // shared script the next time they apply. The user script content is
+    // passed along for the pre-split upgrade path, where the global commands
+    // still live inline in it.
+    const bool trashAllActive = loadSystemScriptOptions(userContent);
+
+    if (userContent.isEmpty()) {
+        if (!settingsPreloaded) {
+            loadSettings();
+        }
         return;
     }
 
@@ -661,62 +708,33 @@ void MainWindow::loadOptions(bool settingsPreloaded)
         }
     }
 
-    // APT
-    if (systemContent.contains("apt-get autoclean")) {
-        ui->radioAutoClean->setChecked(true);
-    } else if (systemContent.contains("apt-get clean")) {
-        ui->radioClean->setChecked(true);
-    } else {
-        ui->groupBoxApt->setChecked(false);
-    }
-
-    // APT purge
-    ui->checkPurge->setChecked(systemContent.contains("apt-get purge"));
-
     // Flatpak: remove unused runtimes
     ui->checkFlatpak->setChecked(userContent.contains("flatpak uninstall --unused"));
 
-    // Logs
-    QRegularExpression allLogsRe(R"(\-exec truncate \-s 0)");
-    if (allLogsRe.match(systemContent).hasMatch()) {
-        ui->radioAllLogs->setChecked(true);
-    } else if (QRegularExpression(R"(\-type f \-delete)").match(systemContent).hasMatch()) {
-        ui->radioOldLogs->setChecked(true);
-    } else {
-        ui->groupBoxLogs->setChecked(false);
+    // Trash: "all users" (from the shared system script, via
+    // loadSystemScriptOptions() above) always takes priority for display --
+    // "selected user" is read here only when the shared script isn't already
+    // scheduling "all users".
+    if (!trashAllActive) {
+        if (userContent.contains("/.local/share/Trash")) {
+            ui->groupBoxTrash->setChecked(true);
+            ui->radioSelectedUser->setChecked(true);
+            QRegularExpression trashCtimeRe(R"(find /home/.*-ctime \+([0-9]{1,3}))");
+            QRegularExpressionMatch trashMatch = trashCtimeRe.match(userContent);
+            ui->spinBoxTrash->setValue(trashMatch.hasMatch() ? trashMatch.captured(1).toInt() : 0);
+        } else {
+            ui->groupBoxTrash->setChecked(false);
+        }
     }
-
-    // Logs older than...
-    QRegularExpression logCtimeRe(R"(find /var/log.*-ctime \+([0-9]{1,3}))");
-    QRegularExpressionMatch logMatch = logCtimeRe.match(systemContent);
-    ui->spinBoxLogs->setValue(logMatch.hasMatch() ? logMatch.captured(1).toInt() : 0);
-
-    // Trash: "all users" lives in the shared system file, "selected user" in
-    // the per-user file (see the --trash split in pushApply_clicked()).
-    QString trashContent;
-    if (systemContent.contains("/home/*/.local/share/Trash")) {
-        ui->radioAllUsers->setChecked(true);
-        trashContent = systemContent;
-    } else if (userContent.contains("/.local/share/Trash")) {
-        ui->radioSelectedUser->setChecked(true);
-        trashContent = userContent;
-    } else {
-        ui->groupBoxTrash->setChecked(false);
-    }
-
-    // Trash older than...
-    QRegularExpression trashCtimeRe(R"(find /home/.*-ctime \+([0-9]{1,3}))");
-    QRegularExpressionMatch trashMatch = trashCtimeRe.match(trashContent);
-    ui->spinBoxTrash->setValue(trashMatch.hasMatch() ? trashMatch.captured(1).toInt() : 0);
 }
 
 // Save cleanup commands to a /etc/cron.daily|weekly|monthly/mx-cleanup script.
 // The helper composes and writes the script itself from the validated options.
-bool MainWindow::saveSchedule(const QStringList &scheduleOpts, const QString &period, bool includeUser)
+bool MainWindow::saveSchedule(const QStringList &scheduleOpts, const QString &period)
 {
     QStringList args {"write-schedule", period};
     const QString user = ui->comboUserClean->currentText();
-    if (includeUser && !user.isEmpty()) {
+    if (!user.isEmpty()) {
         args << "--user" << user;
     }
     args += scheduleOpts;
@@ -878,12 +896,6 @@ void MainWindow::pushApply_clicked()
 
     quint64 total {};
     QStringList scheduleOpts;
-    // apt/purge/logs act on shared system state (package cache, dpkg, /var/log),
-    // not on the selected user, so they are scheduled separately from the
-    // per-user options above: one shared system-wide schedule, instead of a
-    // copy embedded in every user's own schedule that would duplicate the work
-    // and contend for package-manager locks.
-    QStringList systemScheduleOpts;
     const QString selectedUser = ui->comboUserClean->currentText();
     const bool elevate = (selectedUser != currentUser);
 
@@ -1062,7 +1074,7 @@ void MainWindow::pushApply_clicked()
             if (packageCacheOk) {
                 addToTotal(cacheLabel, before_size > after_size ? before_size - after_size : 0);
             }
-            systemScheduleOpts << "--apt" << cleanMode;
+            scheduleOpts << "--apt" << cleanMode;
         }
     }
 
@@ -1087,7 +1099,7 @@ void MainWindow::pushApply_clicked()
         if (purgeOk) {
             addToTotal("apt-purge", before_size > after_size ? before_size - after_size : 0);
         }
-        systemScheduleOpts << "--purge";
+        scheduleOpts << "--purge";
     }
 
     if (ui->groupBoxLogs->isChecked()) {
@@ -1101,7 +1113,7 @@ void MainWindow::pushApply_clicked()
         if (!logsMode.isEmpty()) {
             quint64 logsKiB = sumKiB(
                 helperOut({"clean-logs", logsMode, "size", logsDaysArg}, QuietMode::Yes, kDiskScanTimeoutMs));
-            systemScheduleOpts << "--logs" << logsMode << logsDaysArg;
+            scheduleOpts << "--logs" << logsMode << logsDaysArg;
             bool logsOk = true;
             if (!ui->radioReboot->isChecked()) {
                 logsOk = runOp(tr("Log cleanup"), {"clean-logs", logsMode, "delete", logsDaysArg});
@@ -1134,14 +1146,7 @@ void MainWindow::pushApply_clicked()
             trashKiB = cmdOut(findSizeCmd, QuietMode::No, nullptr, kDiskScanTimeoutMs).toULongLong();
         }
 
-        // "All users" trash cleanup sweeps every home directory, not just the
-        // selected one, so like apt/purge/logs it belongs in the shared
-        // system-wide schedule rather than duplicated per user.
-        if (allUsers) {
-            systemScheduleOpts << "--trash" << "all" << trashDaysArg;
-        } else {
-            scheduleOpts << "--trash" << "user" << trashDaysArg;
-        }
+        scheduleOpts << "--trash" << (allUsers ? "all" : "user") << trashDaysArg;
         bool trashOk = true;
         if (!ui->radioReboot->isChecked()) {
             if (user != currentUser) {
@@ -1158,57 +1163,22 @@ void MainWindow::pushApply_clicked()
         }
     }
 
-    // Two logically separate schedule slots share the same selected period:
-    //  - the current user's own cron entry (--user), for cache/thumbs/trash/flatpak
-    //  - a single shared system-wide cron entry (no --user), for apt/purge/logs/
-    //    trash-all, so scheduling those from more than one user's session
-    //    doesn't duplicate the work or contend for package-manager locks.
-    // The UI has only one period control, shared by both slots, so a user with
-    // no interest in the system-wide options must never have their own period
-    // choice silently move or clear someone else's system-wide schedule. See
-    // systemManaged below.
+    // apt/purge/logs/trash-all above went into the same scheduleOpts as
+    // cache/thumbs/trash-user/flatpak; the helper splits them into this
+    // user's own cron-triggered script and the shared system-wide script it
+    // calls (see helperlib.cpp's generateUserScript()/generateSystemScript()),
+    // so multiple users can each schedule their own cadence without
+    // duplicating the apt/purge/logs/trash-all commands themselves.
     static const QStringList allPeriods {"daily", "weekly", "monthly", "@reboot"};
     bool scheduleCleanupFailed = false;
-    auto clearCron = [&](const QString &period, bool userScoped) {
-        const bool removed = userScoped
-            ? helperProc({"remove-schedule", "cron", period, selectedUser}, QuietMode::Yes)
-            : helperProc({"remove-schedule", "cron", period}, QuietMode::Yes);
-        if (!removed) {
+    auto clearCron = [&](const QString &period) {
+        if (!helperProc({"remove-schedule", "cron", period, selectedUser}, QuietMode::Yes)) {
             scheduleCleanupFailed = true;
         }
     };
-    auto clearScript = [&](bool userScoped) {
-        const bool removed = userScoped ? helperProc({"remove-schedule", "script", selectedUser}, QuietMode::Yes)
-                                         : helperProc({"remove-schedule", "script"}, QuietMode::Yes);
-        if (!removed) {
+    auto clearScript = [&] {
+        if (!helperProc({"remove-schedule", "script", selectedUser}, QuietMode::Yes)) {
             scheduleCleanupFailed = true;
-        }
-    };
-    // Writes opts for period in the given scope, or clears any existing entry
-    // for that period/scope if opts is empty. Returns false only on a genuine
-    // helper failure -- an intentionally-empty scope still returns true.
-    auto writeOrClearCron = [&](const QString &period, const QStringList &opts, bool userScoped) -> bool {
-        if (opts.isEmpty()) {
-            clearCron(period, userScoped);
-            return true;
-        }
-        return saveSchedule(opts, period, userScoped);
-    };
-    // Fully manages one scope for `period`: writes/clears it, then -- only once
-    // that succeeds -- clears any other period's entry in the same scope and
-    // its @reboot script if this scope isn't the one actively using it.
-    auto manageScope = [&](const QString &period, const QStringList &opts, bool userScoped) {
-        if (!writeOrClearCron(period, opts, userScoped)) {
-            failures << (userScoped ? tr("Save cleanup schedule") : tr("Save system cleanup schedule"));
-            return;
-        }
-        for (const auto &p : std::as_const(allPeriods)) {
-            if (p != period) {
-                clearCron(p, userScoped);
-            }
-        }
-        if (period != "@reboot" || opts.isEmpty()) {
-            clearScript(userScoped);
         }
     };
 
@@ -1224,31 +1194,24 @@ void MainWindow::pushApply_clicked()
     }
 
     if (schedule.isEmpty()) {
-        // Scheduling disabled: drop the current user's own schedule outright.
-        // The shared system-wide schedule is deliberately left untouched here --
-        // otherwise a user who has no per-user schedule of their own could wipe
-        // out someone else's apt/purge/logs/trash-all schedule just by picking
-        // "None" for themselves. Disabling it requires visiting the period it
-        // actually uses (loadSchedule/loadOptions show it there for any user)
-        // and clearing its options specifically.
+        // Scheduling disabled: drop this user's own schedule outright.
         for (const auto &period : allPeriods) {
-            clearCron(period, true);
+            clearCron(period);
         }
-        clearScript(true);
+        clearScript();
+    } else if (saveSchedule(scheduleOpts, schedule)) {
+        // Only drop schedules for the other periods once the new one is safely
+        // written, so a failed write above leaves the prior schedule intact.
+        for (const auto &period : allPeriods) {
+            if (period != schedule) {
+                clearCron(period);
+            }
+        }
+        if (schedule != "@reboot") {
+            clearScript();
+        }
     } else {
-        manageScope(schedule, scheduleOpts, true);
-
-        // Only touch the system-wide scope if this Apply is actually managing
-        // it: either it has global options checked now, or an entry already
-        // exists at the selected period (so the user is looking at and
-        // editing it, not blindly moving it from an unrelated period they
-        // picked for their own cache/thumbs/trash needs).
-        const QString systemPath
-            = (schedule == "@reboot") ? scriptFileBase() : cronEntryBase(schedule);
-        const bool systemManaged = !systemScheduleOpts.isEmpty() || QFile::exists(systemPath);
-        if (systemManaged) {
-            manageScope(schedule, systemScheduleOpts, false);
-        }
+        failures << tr("Save cleanup schedule");
     }
     if (scheduleCleanupFailed) {
         failures << tr("Remove previous cleanup schedule");

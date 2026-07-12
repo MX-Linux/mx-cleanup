@@ -96,9 +96,22 @@ private:
     void loadOptions(bool settingsPreloaded = false);
     void loadSchedule(bool settingsPreloaded = false);
     void loadSettings();
+    // Populates groupBoxApt/checkPurge/groupBoxLogs and the "all users" side
+    // of groupBoxTrash from the shared system-wide script -- always, so a
+    // user with no per-user schedule of their own still sees the true shared
+    // state instead of falling back to their own unrelated saved preference
+    // (which could then overwrite the real shared script on their next
+    // Apply). When the shared script doesn't exist yet (upgrade from a
+    // pre-split release, where these commands lived inline in the user
+    // script), legacyFallbackContent is parsed instead, so the old global
+    // options show up checked and the next Apply migrates them into the
+    // shared script rather than silently dropping them. Returns whether
+    // "all users" trash is scheduled, so callers don't also apply a
+    // conflicting "selected user" state on top of it.
+    bool loadSystemScriptOptions(const QString &legacyFallbackContent = {});
     void removeKernelPackages(const QStringList &list);
     void removeManuals();
-    [[nodiscard]] bool saveSchedule(const QStringList &scheduleOpts, const QString &period, bool includeUser = true);
+    [[nodiscard]] bool saveSchedule(const QStringList &scheduleOpts, const QString &period);
     [[nodiscard]] bool saveSettings();
     void setConnections();
     void setup();
@@ -109,6 +122,9 @@ private:
     [[nodiscard]] QString currentUserSuffix() const;
     [[nodiscard]] QString scriptFileBase() const;
     [[nodiscard]] QString scriptFilePath(bool forWrite) const;
+    // Shared system-wide script (apt/purge/logs/trash-all); see helperlib.h's
+    // systemScriptPath() for why it has no cron entry of its own.
+    [[nodiscard]] QString systemScriptPath() const;
     [[nodiscard]] QString settingsDirForUser(const QString &user) const;
     [[nodiscard]] QString settingsFileForUser(const QString &user) const;
     void initializeSettingsForUser(const QString &user);

@@ -139,7 +139,7 @@ int openSettingsDirFd(const QString &homeDir, bool create, uid_t uid, gid_t gid)
     return mxFd;
 }
 
-bool writeFileAsRoot(const QString &path, const QByteArray &content, mode_t mode)
+bool stageFileAsRoot(const QString &path, const QByteArray &content, mode_t mode, StagedFile *staged)
 {
     const QString dir = QFileInfo(path).path();
     QByteArray tmpPath = QFile::encodeName(dir + "/.mx-cleanup.XXXXXX");
@@ -168,21 +168,48 @@ bool writeFileAsRoot(const QString &path, const QByteArray &content, mode_t mode
     }
     ::close(fd);
 
-    if (::rename(tmpPath.constData(), QFile::encodeName(path).constData()) < 0) {
-        printError(QString("Failed to replace %1").arg(path));
-        ::unlink(tmpPath.constData());
+    staged->tmpPath = tmpPath;
+    staged->finalPath = path;
+    return true;
+}
+
+bool commitStagedFile(StagedFile *staged)
+{
+    if (::rename(staged->tmpPath.constData(), QFile::encodeName(staged->finalPath).constData()) < 0) {
+        printError(QString("Failed to replace %1").arg(staged->finalPath));
+        ::unlink(staged->tmpPath.constData());
+        staged->tmpPath.clear();
         return false;
     }
+    staged->tmpPath.clear();
 
     // Also fsync the directory so the renamed entry survives a crash --
     // otherwise the rename above is not crash-durable even though the file
     // content and mode are.
+    const QString dir = QFileInfo(staged->finalPath).path();
     const int dirFd = ::open(QFile::encodeName(dir).constData(), O_DIRECTORY | O_RDONLY);
     if (dirFd >= 0) {
         ::fsync(dirFd);
         ::close(dirFd);
     }
     return true;
+}
+
+void discardStagedFile(StagedFile *staged)
+{
+    if (!staged->tmpPath.isEmpty()) {
+        ::unlink(staged->tmpPath.constData());
+        staged->tmpPath.clear();
+    }
+}
+
+bool writeFileAsRoot(const QString &path, const QByteArray &content, mode_t mode)
+{
+    StagedFile staged;
+    if (!stageFileAsRoot(path, content, mode, &staged)) {
+        return false;
+    }
+    return commitStagedFile(&staged);
 }
 
 bool validPeriod(const QString &period)
@@ -206,6 +233,11 @@ QString cronEntryBase(const QString &period)
 QString scriptFileBase()
 {
     return QStringLiteral("/usr/bin/mx-cleanup-script");
+}
+
+QString systemScriptPath()
+{
+    return QStringLiteral("/usr/bin/mx-cleanup-system-script");
 }
 
 bool parseScheduleOptions(const QStringList &args, ScheduleOptions *opts)
@@ -265,13 +297,18 @@ bool parseScheduleOptions(const QStringList &args, ScheduleOptions *opts)
     return true;
 }
 
-QString generateScheduleScript(const ScheduleOptions &opts)
+namespace
+{
+QString scheduleAge(int days)
+{
+    return days > 0 ? QString(" -ctime +%1 -atime +%1").arg(days) : QString();
+}
+} // namespace
+
+QString generateUserScript(const ScheduleOptions &opts)
 {
     auto cacheAge = [](int days) {
         return days > 0 ? QString(" -atime +%1 -mtime +%1").arg(days) : QString();
-    };
-    auto trashAge = [](int days) {
-        return days > 0 ? QString(" -ctime +%1 -atime +%1").arg(days) : QString();
     };
 
     QStringList parts;
@@ -283,11 +320,33 @@ QString generateScheduleScript(const ScheduleOptions &opts)
         parts << QString("find /home/%1/.cache/thumbnails -type f%2 -delete 2>/dev/null")
                      .arg(opts.user, cacheAge(opts.thumbsDays));
     }
+    if (opts.trashMode == "user") {
+        parts << QString("find /home/%1/.local/share/Trash -mindepth 1%2 -delete")
+                     .arg(opts.user, scheduleAge(opts.trashDays));
+    }
+    if (opts.flatpak) {
+        const QString cleanupCmd
+            = QStringLiteral("pgrep -a flatpak | grep -v flatpak-s || flatpak uninstall --unused "
+                             "--delete-data --noninteractive");
+        parts << (opts.user.isEmpty() ? cleanupCmd
+                                      : QString("runuser -u %1 -- /bin/bash -lc \"%2\"").arg(opts.user, cleanupCmd));
+    }
+    // Different users can schedule their own cron entry at different periods,
+    // all invoking this same shared system-wide script, rather than
+    // duplicating apt/purge/logs/trash-all commands into every user's file.
+    parts << QString("[ -x %1 ] && %1").arg(systemScriptPath());
+
+    return "#!/bin/sh\n#\n# This file was created by MX Cleanup\n#\n\n" + parts.join('\n');
+}
+
+QString generateSystemScript(const ScheduleOptions &opts)
+{
+    QStringList parts;
     if (opts.logsMode == "old") {
         parts << R"(find /var/log \( -name "*.gz" -o -name "*.old" -o -name "*.[0-9]" -o -name "*.[0-9].log" \))"
-                     + trashAge(opts.logsDays) + " -type f -delete 2>/dev/null";
+                     + scheduleAge(opts.logsDays) + " -type f -delete 2>/dev/null";
     } else if (opts.logsMode == "all") {
-        parts << "find /var/log -type f" + trashAge(opts.logsDays) + " -exec truncate -s 0 {} + 2>/dev/null";
+        parts << "find /var/log -type f" + scheduleAge(opts.logsDays) + " -exec truncate -s 0 {} + 2>/dev/null";
     }
     QString apt;
     if (!opts.aptMode.isEmpty()) {
@@ -308,17 +367,7 @@ QString generateScheduleScript(const ScheduleOptions &opts)
         parts << apt;
     }
     if (opts.trashMode == "all") {
-        parts << QString("find /home/*/.local/share/Trash -mindepth 1%1 -delete").arg(trashAge(opts.trashDays));
-    } else if (opts.trashMode == "user") {
-        parts << QString("find /home/%1/.local/share/Trash -mindepth 1%2 -delete")
-                     .arg(opts.user, trashAge(opts.trashDays));
-    }
-    if (opts.flatpak) {
-        const QString cleanupCmd
-            = QStringLiteral("pgrep -a flatpak | grep -v flatpak-s || flatpak uninstall --unused "
-                             "--delete-data --noninteractive");
-        parts << (opts.user.isEmpty() ? cleanupCmd
-                                      : QString("runuser -u %1 -- /bin/bash -lc \"%2\"").arg(opts.user, cleanupCmd));
+        parts << QString("find /home/*/.local/share/Trash -mindepth 1%1 -delete").arg(scheduleAge(opts.trashDays));
     }
 
     return "#!/bin/sh\n#\n# This file was created by MX Cleanup\n#\n\n" + parts.join('\n');

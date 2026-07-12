@@ -77,11 +77,12 @@ private slots:
     void testParseScheduleOptions_UnknownOption();
     void testParseScheduleOptions_ValidCombination();
 
-    void testGenerateScheduleScript_Cache();
-    void testGenerateScheduleScript_NoAgeFilter();
-    void testGenerateScheduleScript_AllLogsUsesTruncate();
-    void testGenerateScheduleScript_Purge();
-    void testGenerateScheduleScript_Trash();
+    void testGenerateUserScript_Cache();
+    void testGenerateUserScript_NoAgeFilter();
+    void testGenerateUserScript_CallsSystemScript();
+    void testGenerateSystemScript_AllLogsUsesTruncate();
+    void testGenerateSystemScript_Purge();
+    void testGenerateSystemScript_TrashAll();
 
     void testOpenSettingsDirFd_NoSettingsYet();
     void testOpenSettingsDirFd_CreatesWithCorrectOwnership();
@@ -92,6 +93,9 @@ private slots:
     void testWriteFileAsRoot_ReplacesExistingContentAtomically();
     void testWriteFileAsRoot_NoLeftoverTempFiles();
     void testWriteFileAsRoot_FailsInMissingDirectory();
+
+    void testStagedFile_NothingVisibleUntilCommit();
+    void testStagedFile_DiscardLeavesTargetAndDirUntouched();
 };
 
 void TestUtils::testSumKiB_data()
@@ -374,57 +378,71 @@ void TestUtils::testParseScheduleOptions_ValidCombination()
     QVERIFY(opts.flatpak);
 }
 
-void TestUtils::testGenerateScheduleScript_Cache()
+void TestUtils::testGenerateUserScript_Cache()
 {
     ScheduleOptions opts;
     opts.user = QStringLiteral("alice");
     opts.cacheDays = 5;
 
-    const QString script = generateScheduleScript(opts);
+    const QString script = generateUserScript(opts);
     QVERIFY(script.startsWith("#!/bin/sh\n"));
     QVERIFY(script.contains("find /home/alice/.cache -mindepth 1"));
     QVERIFY(script.contains("-atime +5 -mtime +5"));
     QVERIFY(script.contains("-delete"));
 }
 
-void TestUtils::testGenerateScheduleScript_NoAgeFilter()
+void TestUtils::testGenerateUserScript_NoAgeFilter()
 {
     ScheduleOptions opts;
     opts.user = QStringLiteral("alice");
     opts.cacheDays = 0;
 
-    const QString script = generateScheduleScript(opts);
+    const QString script = generateUserScript(opts);
     QVERIFY(script.contains("find /home/alice/.cache -mindepth 1"));
     QVERIFY(!script.contains("-atime"));
 }
 
-void TestUtils::testGenerateScheduleScript_AllLogsUsesTruncate()
+void TestUtils::testGenerateUserScript_CallsSystemScript()
+{
+    ScheduleOptions opts;
+    opts.user = QStringLiteral("alice");
+    opts.cacheDays = 5;
+
+    const QString script = generateUserScript(opts);
+    QVERIFY(script.contains(systemScriptPath()));
+    // apt/purge/logs/trash-all must never be embedded directly in the
+    // per-user script -- they belong solely in the shared system script.
+    QVERIFY(!script.contains("apt-get"));
+    QVERIFY(!script.contains("/var/log"));
+}
+
+void TestUtils::testGenerateSystemScript_AllLogsUsesTruncate()
 {
     ScheduleOptions opts;
     opts.logsMode = QStringLiteral("all");
     opts.logsDays = 7;
 
-    const QString script = generateScheduleScript(opts);
+    const QString script = generateSystemScript(opts);
     QVERIFY(script.contains("find /var/log -type f -ctime +7 -atime +7 -exec truncate -s 0 {} +"));
     QVERIFY(!script.contains("sh -c"));
 }
 
-void TestUtils::testGenerateScheduleScript_Purge()
+void TestUtils::testGenerateSystemScript_Purge()
 {
     ScheduleOptions opts;
     opts.purge = true;
 
-    const QString script = generateScheduleScript(opts);
+    const QString script = generateSystemScript(opts);
     QVERIFY(script.contains("dpkg -l | awk '/^rc/ { print $2 }' | xargs -r apt-get purge -y"));
 }
 
-void TestUtils::testGenerateScheduleScript_Trash()
+void TestUtils::testGenerateSystemScript_TrashAll()
 {
     ScheduleOptions opts;
     opts.trashMode = QStringLiteral("all");
     opts.trashDays = 30;
 
-    const QString script = generateScheduleScript(opts);
+    const QString script = generateSystemScript(opts);
     QVERIFY(script.contains("find /home/*/.local/share/Trash -mindepth 1"));
     QVERIFY(script.contains("-ctime +30 -atime +30"));
 }
@@ -539,6 +557,45 @@ void TestUtils::testWriteFileAsRoot_FailsInMissingDirectory()
     const QString path = dir.filePath("no-such-subdir/mx-cleanup");
 
     QVERIFY(!writeFileAsRoot(path, "content\n", 0644));
+}
+
+void TestUtils::testStagedFile_NothingVisibleUntilCommit()
+{
+    QTemporaryDir dir;
+    QVERIFY(dir.isValid());
+    const QString path = dir.filePath("mx-cleanup");
+
+    StagedFile staged;
+    QVERIFY(stageFileAsRoot(path, "content\n", 0644, &staged));
+    QVERIFY(!QFile::exists(path));
+
+    QVERIFY(commitStagedFile(&staged));
+    QFile file(path);
+    QVERIFY(file.open(QIODevice::ReadOnly));
+    QCOMPARE(file.readAll(), QByteArray("content\n"));
+}
+
+void TestUtils::testStagedFile_DiscardLeavesTargetAndDirUntouched()
+{
+    QTemporaryDir dir;
+    QVERIFY(dir.isValid());
+    const QString path = dir.filePath("mx-cleanup");
+    QVERIFY(writeFileAsRoot(path, "original\n", 0644));
+
+    StagedFile staged;
+    QVERIFY(stageFileAsRoot(path, "replacement\n", 0644, &staged));
+    discardStagedFile(&staged);
+
+    QFile file(path);
+    QVERIFY(file.open(QIODevice::ReadOnly));
+    QCOMPARE(file.readAll(), QByteArray("original\n"));
+    const QStringList entries = QDir(dir.path()).entryList(QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
+    QCOMPARE(entries, QStringList {"mx-cleanup"});
+
+    // Discarding again (or a never-staged handle) must be harmless.
+    discardStagedFile(&staged);
+    StagedFile neverStaged;
+    discardStagedFile(&neverStaged);
 }
 
 QTEST_MAIN(TestUtils)
