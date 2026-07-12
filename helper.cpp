@@ -27,6 +27,7 @@
 // be abused to run arbitrary code as root.
 
 #include <cstdio>
+#include <cstdlib>
 
 #include <fcntl.h>
 #include <grp.h>
@@ -293,26 +294,54 @@ void printError(const QString &message)
     return relayResult(runProcess(binary, args));
 }
 
+// Write content to a temp file in the same directory as path, set its mode,
+// fsync it, then atomically rename it over path (best-effort fsync of the
+// directory afterwards). This ensures a full filesystem, permissions error,
+// or interrupted write can never leave a scheduled cron job or reboot script
+// partially written or missing.
 [[nodiscard]] bool writeFileAsRoot(const QString &path, const QByteArray &content, mode_t mode)
 {
-    QFile::remove(path);
-    const int fd = ::open(QFile::encodeName(path).constData(), O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, mode);
+    const QString dir = QFileInfo(path).path();
+    QByteArray tmpPath = QFile::encodeName(dir + "/.mx-cleanup.XXXXXX");
+    const int fd = ::mkstemp(tmpPath.data());
     if (fd < 0) {
-        printError(QString("Failed to create %1").arg(path));
+        printError(QString("Failed to create a temporary file in %1").arg(dir));
         return false;
     }
+
     qint64 offset = 0;
     while (offset < content.size()) {
         const ssize_t written = ::write(fd, content.constData() + offset, static_cast<size_t>(content.size() - offset));
         if (written < 0) {
             printError(QString("Failed to write %1").arg(path));
             ::close(fd);
+            ::unlink(tmpPath.constData());
             return false;
         }
         offset += written;
     }
-    ::fchmod(fd, mode);
+    if (::fchmod(fd, mode) < 0 || ::fsync(fd) < 0) {
+        printError(QString("Failed to finalize %1").arg(path));
+        ::close(fd);
+        ::unlink(tmpPath.constData());
+        return false;
+    }
     ::close(fd);
+
+    if (::rename(tmpPath.constData(), QFile::encodeName(path).constData()) < 0) {
+        printError(QString("Failed to replace %1").arg(path));
+        ::unlink(tmpPath.constData());
+        return false;
+    }
+
+    // Also fsync the directory so the renamed entry survives a crash --
+    // otherwise the rename above is not crash-durable even though the file
+    // content and mode are.
+    const int dirFd = ::open(QFile::encodeName(dir).constData(), O_DIRECTORY | O_RDONLY);
+    if (dirFd >= 0) {
+        ::fsync(dirFd);
+        ::close(dirFd);
+    }
     return true;
 }
 
