@@ -925,6 +925,7 @@ void MainWindow::pushApply_clicked()
     if (ui->checkThumbs->isChecked()) {
         const int thumbsDays = ui->radioSaferCache->isChecked() ? ui->spinCache->value() : 0;
         const QString thumbsDaysArg = QString::number(thumbsDays);
+        const QString thumbsPath = QString("/home/%1/.cache/thumbnails").arg(selectedUser);
         QString period = thumbsDays > 0 ? QString(" -atime +%1 -mtime +%1").arg(thumbsDays) : QString();
         QString findThumbsCmd = QString("find /home/%1/.cache/thumbnails -type f%2 -exec du -c '{}' + | awk '{field = $1} END {print field}'")
                                     .arg(selectedUser, period);
@@ -935,7 +936,7 @@ void MainWindow::pushApply_clicked()
         if (elevate) {
             thumbnailsKiB = sumKiB(helperOut({"clean-thumbnails", "size", selectedUser, thumbsDaysArg},
                                              QuietMode::Yes, kDiskScanTimeoutMs));
-        } else {
+        } else if (QFileInfo::exists(thumbsPath)) {
             thumbnailsKiB = cmdOut(findThumbsCmd, QuietMode::No, nullptr, kDiskScanTimeoutMs).toULongLong();
         }
         scheduleOpts << "--thumbs" << thumbsDaysArg;
@@ -943,7 +944,7 @@ void MainWindow::pushApply_clicked()
         if (!ui->radioReboot->isChecked()) {
             if (elevate) {
                 thumbsOk = runOp(tr("Thumbnail cleanup"), {"clean-thumbnails", "delete", selectedUser, thumbsDaysArg});
-            } else {
+            } else if (QFileInfo::exists(thumbsPath)) {
                 cmdOut(thumbsDeleteCmd, QuietMode::No, &thumbsOk, kDiskScanTimeoutMs);
                 if (!thumbsOk) {
                     failures << tr("Thumbnail cleanup");
