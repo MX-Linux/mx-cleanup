@@ -263,8 +263,11 @@ struct ProcessResult
         }
         offset += written;
     }
-    ::fchmod(fd, 0644);
-    ::fchown(fd, info.uid, info.gid);
+    if (::fchmod(fd, 0644) < 0 || ::fchown(fd, info.uid, info.gid) < 0) {
+        printError(QString("Failed to set ownership or permissions for settings file for %1").arg(user));
+        ::close(fd);
+        return 1;
+    }
     ::close(fd);
     return 0;
 }
@@ -284,11 +287,19 @@ struct ProcessResult
     if (dirFd < 0) {
         return 0; // no settings yet
     }
-    ::fchown(dirFd, info.uid, info.gid);
+    if (::fchown(dirFd, info.uid, info.gid) < 0) {
+        printError(QString("Failed to set ownership for settings directory for %1").arg(user));
+        ::close(dirFd);
+        return 1;
+    }
     const int fileFd = ::openat(dirFd, "mx-cleanup.conf", O_RDONLY | O_NOFOLLOW | O_NOCTTY);
     ::close(dirFd);
     if (fileFd >= 0) {
-        ::fchown(fileFd, info.uid, info.gid);
+        if (::fchown(fileFd, info.uid, info.gid) < 0) {
+            printError(QString("Failed to set ownership for settings file for %1").arg(user));
+            ::close(fileFd);
+            return 1;
+        }
         ::close(fileFd);
     }
     return 0;

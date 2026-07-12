@@ -1,3 +1,17 @@
+mx-cleanup (26.07) mx; urgency=medium
+
+  * Stop the app from hanging if a command or the authentication prompt
+    stops responding
+  * Remember authentication between operations (auth_admin_keep)
+  * Restrict the privileged helpers to a fixed set of validated actions,
+    so the cached authorization cannot be abused to run arbitrary
+    commands as root
+  * Warn when individual cleanup steps fail, and count only successfully
+    completed cleanup in the freed-space total
+  * Keep scheduled cleanup files intact if writing their replacement fails
+
+ -- Adrian <adrian@mxlinux.org>  Fri, 19 Jun 2026 09:59:59 -0400
+
 mx-cleanup (26.03.1) mx; urgency=medium
 
   * Show Help and License in an internal Qt window

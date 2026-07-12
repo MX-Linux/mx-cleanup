@@ -115,8 +115,10 @@ int openMxLinuxDir(int configFd, bool create, uid_t uid, gid_t gid)
     }
     const int fd = ::openat(configFd, "MX-Linux", O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
     if (fd >= 0 && create) {
-        ::fchown(fd, uid, gid);
-        ::fchmod(fd, 0755);
+        if (::fchown(fd, uid, gid) < 0 || ::fchmod(fd, 0755) < 0) {
+            ::close(fd);
+            return -1;
+        }
     }
     return fd;
 }
