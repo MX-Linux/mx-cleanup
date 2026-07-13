@@ -235,6 +235,10 @@ void MainWindow::setup()
     QStringList users = cmdOut("lslogins --noheadings -u -o user", QuietMode::Yes)
                             .split('\n', Qt::SkipEmptyParts);
     users.removeAll(QStringLiteral("root"));
+    // Some lslogins versions/environments can emit unexpected output (e.g. a
+    // header row) despite --noheadings; drop anything that isn't a real user
+    // so it can't end up selected and passed to the helper as --user.
+    users.removeIf([](const QString &user) { return getpwnam(user.toUtf8().constData()) == nullptr; });
 
     {
         QSignalBlocker blocker(ui->comboUserClean);
@@ -787,7 +791,7 @@ bool MainWindow::saveSettings()
         store.setValue(keyFlatpakUnused, ui->checkFlatpak->isChecked());
     };
 
-    if (needsRoot) {
+    auto writeWithHelper = [&]() {
         QTemporaryFile tempFile;
         if (!tempFile.open()) {
             qWarning().noquote() << "Failed to open temporary settings file for user" << user;
@@ -817,18 +821,56 @@ bool MainWindow::saveSettings()
         currentSettingsPath = targetPath;
         initializeSettingsForUser(user);
         return true;
+    };
+
+    if (needsRoot) {
+        return writeWithHelper();
     }
 
     QDir dir;
     if (!dir.exists(dirPath)) {
         qDebug().noquote() << "Creating settings directory:" << dirPath;
-        dir.mkpath(dirPath);
+        if (!dir.mkpath(dirPath)) {
+            qWarning().noquote() << "Failed to create settings directory:" << dirPath;
+            if (getuid() != 0) {
+                return writeWithHelper();
+            }
+            return false;
+        }
     }
 
     qDebug().noquote() << "Save settings to" << targetPath;
     writeValues(*settings);
     settings->sync();
     qDebug().noquote() << "Settings sync status:" << settings->status();
+
+    auto rewriteFresh = [&]() {
+        settings = std::make_unique<QSettings>(targetPath, QSettings::IniFormat);
+        settings->setFallbacksEnabled(false);
+        writeValues(*settings);
+        settings->sync();
+        qDebug().noquote() << "Settings retry sync status:" << settings->status();
+    };
+    if (settings->status() == QSettings::FormatError) {
+        // QSettings cannot cleanly rewrite a file it failed to parse, so a
+        // corrupt file blocks every future save. Move it aside and start over.
+        const QString backupPath = targetPath + ".bak";
+        QFile::remove(backupPath);
+        if (QFile::rename(targetPath, backupPath)) {
+            qWarning().noquote() << "Corrupt settings file moved to" << backupPath;
+            rewriteFresh();
+        } else if (getuid() != 0) {
+            // Corrupt file in a directory we cannot write to (e.g. left owned
+            // by root): let the helper replace it.
+            return writeWithHelper();
+        }
+    } else if (settings->status() == QSettings::AccessError && getuid() != 0) {
+        // A past run as root can leave the file or directory owned by root.
+        // Privileges are already cached at this point in the apply flow, so
+        // use the helper to replace the file atomically with correct ownership.
+        return writeWithHelper();
+    }
+
     if (getuid() == 0 && user != currentUser) {
         ensureSettingsOwnership(user);
     }
