@@ -1,3 +1,11 @@
+mx-cleanup (26.07.1) mx; urgency=medium
+
+  * Recover when settings cannot be saved because the settings file is corrupt,
+    inaccessible, or left owned by root
+  * Ignore invalid account entries when choosing a user for cleanup
+
+ -- Adrian <adrian@mxlinux.org>  Mon, 13 Jul 2026 08:13:18 -0400
+
 mx-cleanup (26.07) mx; urgency=medium
 
   * Stop the app from hanging if a command or the authentication prompt

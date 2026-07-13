@@ -3,112 +3,94 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../mainwindow.cpp" line="196"/>
-        <location filename="../mainwindow.cpp" line="1349"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="565"/>
+        <location filename="../mainwindow.cpp" line="201"/>
+        <location filename="../mainwindow.cpp" line="1253"/>
         <source>MX Cleanup</source>
         <translation>MX Очистка</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="683"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="619"/>
         <source>Display help </source>
         <translation>Показать справку</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="686"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="621"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="692"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="623"/>
         <source>Alt+H</source>
         <translation>Alt+H</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="658"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="612"/>
         <source>About this application</source>
         <translation>Об этом приложении</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="24"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="603"/>
         <source>Main</source>
         <translation>Основные</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="531"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="602"/>
         <source>Purge residual configurations from removed packages</source>
         <translation>Полное удаление остаточных конфигураций от удалённых пакетов</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="610"/>
         <source>Tools</source>
         <translation>Инструменты</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="545"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="604"/>
         <source>Removal Tools</source>
         <translation>Инструмент для удаления</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="583"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="607"/>
         <source>Remove MX manuals for languages other than system default</source>
         <translation>Удалить руководства MX для языков, отличных от системных по умолчанию.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="661"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="614"/>
         <source>About...</source>
         <translation>О программе...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="667"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="616"/>
         <source>Alt+B</source>
         <translation>Alt+B</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="781"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="631"/>
         <source>Quit application</source>
         <translation>Выйти из приложения</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="784"/>
-        <location filename="../mainwindow.cpp" line="1532"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="633"/>
+        <location filename="../mainwindow.cpp" line="1514"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="790"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="635"/>
         <source>Alt+N</source>
         <translation>Alt+N</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="756"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="626"/>
         <source>Apply</source>
         <translation>Применить</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="36"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="566"/>
         <source>Empty Trash</source>
         <translation>Очистить корзину</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="45"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="567"/>
         <source>Trash older than:</source>
         <translation>Мусор старше, чем:</translation>
     </message>
@@ -116,323 +98,364 @@
         <location filename="../mainwindow.ui" line="103"/>
         <location filename="../mainwindow.ui" line="294"/>
         <location filename="../mainwindow.ui" line="438"/>
-        <location filename="../mainwindow.cpp" line="910"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="570"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="584"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="592"/>
+        <location filename="../mainwindow.cpp" line="877"/>
         <source> days</source>
         <translation> дни</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="58"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="568"/>
         <source>All users</source>
         <translation>Все пользователи</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="90"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="569"/>
         <source>Selected user</source>
         <translation>Выбранный пользователь</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="210"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="579"/>
         <source>Clear APT Cache</source>
         <translation>Очистить кэш APT</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="225"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="580"/>
         <source>Old files</source>
         <translation>Старые файлы</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="244"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="581"/>
         <source>All files</source>
         <translation>Все файлы</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="605"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="608"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
         <translation>Графический анализатор использования дисков</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="617"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="609"/>
         <source>Run Disk Usage Analyzer</source>
         <translation>Запустить анализатор использования дисков</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="141"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="573"/>
         <source>Schedule</source>
         <translation>Расписание</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="153"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="574"/>
         <source>No automatic clean</source>
         <translation>Без автоматической очистки</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="160"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="575"/>
         <source>At reboot</source>
         <translation>При перезагрузке</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="167"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="576"/>
         <source>Daily</source>
         <translation>Ежедневно</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="174"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="577"/>
         <source>Weekly</source>
         <translation>Еженедельно</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="181"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="578"/>
         <source>Monthly</source>
         <translation>Ежемесячно</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="467"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="594"/>
         <source>Free Disk Space for User</source>
         <translation>Свободное дисковое пространство для пользователя</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="479"/>
         <location filename="../mainwindow.ui" line="495"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="596"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="600"/>
         <source>Select user to repair</source>
         <translation>Выберите пользователя для восстановления</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="482"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="598"/>
         <source>Select user:</source>
         <translation>Выбор пользователя:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="263"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="582"/>
         <source>Delete Logs</source>
         <translation>Удаление журналов</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="278"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="583"/>
         <source>All logs</source>
         <translation>Все журналы</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="339"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="587"/>
         <source>Old logs</source>
         <translation>Старые журналы</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="326"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="586"/>
         <source>Logs older than:</source>
         <translation>Журналы старше чем:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="551"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="605"/>
         <source>Remove unused WiFi drivers</source>
         <translation>Удалить неиспользуемые драйверы WiFi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="570"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="606"/>
         <source>List and select kernels to remove</source>
         <translation>Список и выбор ядер для удаления</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="125"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="571"/>
         <source>Clean Flatpak</source>
         <translation>Очистить Flatpak</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="131"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="572"/>
         <source>Remove unused runtimes</source>
         <translation>Удалить неиспользуемые среды выполнения</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="364"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="588"/>
         <source>Clean Folders</source>
         <translation>Очистить папки</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="428"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="591"/>
         <source>Not accessed for:</source>
         <translation>Не использовалось в течение:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="376"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="589"/>
         <source>Cache</source>
         <translation>Кэш</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="451"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="593"/>
         <source>All (potentially dangerous)</source>
         <translation>Все (потенциально опасно)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="405"/>
-        <location filename="../build/mx-cleanup_autogen/include/ui_mainwindow.h" line="590"/>
         <source>Thumbnails</source>
         <translation>Миниатюры</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="139"/>
+        <location filename="../mainwindow.cpp" line="142"/>
         <source>Remove Manuals</source>
         <translation>Удалить руководства</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="139"/>
+        <location filename="../mainwindow.cpp" line="142"/>
         <source>No manuals to remove.</source>
         <translation>Нет руководств для удаления.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="151"/>
-        <location filename="../mainwindow.cpp" line="158"/>
+        <location filename="../mainwindow.cpp" line="155"/>
+        <location filename="../mainwindow.cpp" line="162"/>
         <source>Removing packages, please wait</source>
         <translation>Удаление пакетов, пожалуйста, подождите</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="910"/>
+        <location filename="../mainwindow.cpp" line="877"/>
         <source> day</source>
         <translation>день</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="144"/>
-        <location filename="../mainwindow.cpp" line="748"/>
-        <location filename="../mainwindow.cpp" line="761"/>
-        <location filename="../mainwindow.cpp" line="922"/>
+        <location filename="../mainwindow.cpp" line="148"/>
+        <location filename="../mainwindow.cpp" line="890"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="216"/>
+        <location filename="../mainwindow.cpp" line="221"/>
         <source>Clean pacman cache</source>
         <translation>Очистить кэш Pacman</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="749"/>
-        <source>Failed to create temporary cron file: %1</source>
-        <translation>Не удалось создать временный файл cron: %1</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="762"/>
-        <source>Failed to create temporary script file: %1</source>
-        <translation>Не удалось создать временный файл скрипта: %1</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="144"/>
-        <location filename="../mainwindow.cpp" line="922"/>
+        <location filename="../mainwindow.cpp" line="148"/>
+        <location filename="../mainwindow.cpp" line="890"/>
         <source>Failed to elevate privileges</source>
         <translation>Не удалось повысить привилегии</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1337"/>
+        <location filename="../mainwindow.cpp" line="939"/>
+        <location filename="../mainwindow.cpp" line="961"/>
+        <source>Cache cleanup</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="991"/>
+        <location filename="../mainwindow.cpp" line="995"/>
+        <source>Thumbnail cleanup</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1016"/>
+        <location filename="../mainwindow.cpp" line="1034"/>
+        <source>Flatpak cleanup</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1070"/>
+        <source>Package cache cleanup</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1095"/>
+        <source>Package purge</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1119"/>
+        <source>Log cleanup</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1153"/>
+        <location filename="../mainwindow.cpp" line="1157"/>
+        <source>Trash cleanup</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1214"/>
+        <source>Save cleanup schedule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1217"/>
+        <source>Remove previous cleanup schedule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1221"/>
+        <source>Save settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1237"/>
+        <source>Some cleanup steps failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1238"/>
+        <source>%1 MiB were freed, but the following steps failed:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1241"/>
+        <location filename="../mainwindow.cpp" line="1243"/>
         <source>Done</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1339"/>
+        <location filename="../mainwindow.cpp" line="1241"/>
         <source>Cleanup script will run at reboot</source>
         <translation>Скрипт очистки запустится при перезагрузке</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1340"/>
+        <location filename="../mainwindow.cpp" line="1244"/>
         <source>Cleanup command done</source>
         <translation>Команда очистки завершена</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1341"/>
+        <location filename="../mainwindow.cpp" line="1244"/>
         <source>%1 MiB were freed</source>
         <translation>%1 МБ было освобождено</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1349"/>
+        <location filename="../mainwindow.cpp" line="1253"/>
         <source>About</source>
         <translation>О</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1350"/>
+        <location filename="../mainwindow.cpp" line="1254"/>
         <source>Version: </source>
         <translation>Версия: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1352"/>
+        <location filename="../mainwindow.cpp" line="1256"/>
         <source>Quick and safe removal of old files</source>
         <translation>Быстрое и безопасное удаление старых файлов</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1354"/>
+        <location filename="../mainwindow.cpp" line="1258"/>
         <source>Copyright (c) MX Linux</source>
         <translation>Copyright (c) MX Linux</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1355"/>
+        <location filename="../mainwindow.cpp" line="1259"/>
         <source>%1 License</source>
         <translation>%1 Лицензия</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1362"/>
+        <location filename="../mainwindow.cpp" line="1266"/>
         <source>%1 Help</source>
         <translation>%1 Справка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1527"/>
+        <location filename="../mainwindow.cpp" line="1378"/>
+        <source>No privilege elevation tool is available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1391"/>
+        <source>Failed to start the helper process</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1414"/>
+        <source>Operation timed out</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1509"/>
         <source>Kernel currently in use: &lt;b&gt;%1&lt;/b&gt;</source>
         <translation>Используемое ядро: &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1530"/>
+        <location filename="../mainwindow.cpp" line="1512"/>
         <source>Remove selected</source>
         <translation>Удалить выделенные</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1535"/>
+        <location filename="../mainwindow.cpp" line="1517"/>
         <source>Similar kernels that can be removed:</source>
         <translation>Похожие ядра, которые можно удалить.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1536"/>
+        <location filename="../mainwindow.cpp" line="1518"/>
         <source>Other kernels that can be removed:</source>
         <translation>Другие ядра, которые можно удалить:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1539"/>
+        <location filename="../mainwindow.cpp" line="1521"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
         <translation>&lt;b&gt;Нечего удалить.&lt;/b&gt; Не удаётся удалить используемое ядро.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1583"/>
+        <location filename="../mainwindow.cpp" line="1565"/>
+        <location filename="../mainwindow.cpp" line="1578"/>
         <source>Info</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1583"/>
+        <location filename="../mainwindow.cpp" line="1565"/>
         <source>No unused network drivers found to remove.</source>
         <translation>Не найдено неиспользуемых сетевых драйверов для удаления.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1578"/>
+        <source>No valid packages found to remove.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -475,18 +498,18 @@
         <translation>Быстрое безопасное удаление старых файлов</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
-        <location filename="../main.cpp" line="97"/>
+        <location filename="../main.cpp" line="92"/>
+        <location filename="../main.cpp" line="100"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="90"/>
+        <location filename="../main.cpp" line="93"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
         <translation>Программа запущена суперпользователем. Для использования программы войдите в систему как обычный пользователь.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="98"/>
+        <location filename="../main.cpp" line="101"/>
         <source>You must run this program with admin access.</source>
         <translation>Вы должны запустить эту программу с правами администратора.</translation>
     </message>
