@@ -46,6 +46,7 @@
 
 #include "about.h"
 #include "packagemanager.h"
+#include "usernameutils.h"
 
 extern const QString starting_home;
 
@@ -232,13 +233,23 @@ void MainWindow::setup()
     ui->radioOldLogs->setChecked(true);
     ui->radioSelectedUser->setChecked(true);
 
-    QStringList users = cmdOut("lslogins --noheadings -u -o user", QuietMode::Yes)
+    QStringList users = cmdOut("lslogins", {"--noheadings", "--raw", "-u", "-o", "user"}, QuietMode::Yes)
                             .split('\n', Qt::SkipEmptyParts);
+    for (QString &user : users) {
+        user = user.trimmed();
+    }
+    users.removeAll(QString());
     users.removeAll(QStringLiteral("root"));
-    // Some lslogins versions/environments can emit unexpected output (e.g. a
-    // header row) despite --noheadings; drop anything that isn't a real user
-    // so it can't end up selected and passed to the helper as --user.
-    users.removeIf([](const QString &user) { return getpwnam(user.toUtf8().constData()) == nullptr; });
+    users.removeIf([](const QString &user) {
+        return !validUserNameSyntax(user) || passwdForUser(user) == nullptr;
+    });
+    users.removeDuplicates();
+
+    // Keep the active account usable even if lslogins fails or omits it.
+    if (currentUser != QStringLiteral("root") && validUserNameSyntax(currentUser)
+        && passwdForUser(currentUser) != nullptr && !users.contains(currentUser)) {
+        users.prepend(currentUser);
+    }
 
     {
         QSignalBlocker blocker(ui->comboUserClean);
@@ -268,18 +279,19 @@ QString MainWindow::homeDirForUser(const QString &user) const
         return QString();
     }
 
-    struct passwd *pwd = getpwnam(user.toUtf8().constData());
+    const struct passwd *pwd = passwdForUser(user);
     if (!pwd) {
         return QString();
     }
 
-    return QString::fromUtf8(pwd->pw_dir);
+    return QString::fromLocal8Bit(pwd->pw_dir);
 }
 
 QString MainWindow::currentUserSuffix() const
 {
     const QString user = ui->comboUserClean->currentText();
-    return user.isEmpty() ? QString() : '.' + user;
+    const QString fileId = userScheduleFileId(user);
+    return fileId.isEmpty() ? QString() : '.' + fileId;
 }
 
 QString MainWindow::settingsDirForUser(const QString &user) const
@@ -648,6 +660,32 @@ void MainWindow::removeKernelPackages(const QStringList &list)
     setCursor(QCursor(Qt::ArrowCursor));
 }
 
+bool MainWindow::scriptCleansThumbnails(const QString &content)
+{
+    static const QRegularExpression re(R"(find '?/home/[^/]+/\.cache/thumbnails)");
+    return re.match(content).hasMatch();
+}
+
+bool MainWindow::scriptCleansCache(const QString &content)
+{
+    static const QRegularExpression re(R"(find '?/home/[^/]+/\.cache('|\s|/\*))");
+    return re.match(content).hasMatch();
+}
+
+int MainWindow::scriptCacheAgeDays(const QString &content)
+{
+    static const QRegularExpression re(R"(\.cache.*-atime \+([0-9]+))");
+    const QRegularExpressionMatch match = re.match(content);
+    return match.hasMatch() ? match.captured(1).toInt() : -1;
+}
+
+int MainWindow::scriptTrashAgeDays(const QString &content)
+{
+    static const QRegularExpression re(R"(find '?/home/.*-ctime \+([0-9]{1,3}))");
+    const QRegularExpressionMatch match = re.match(content);
+    return match.hasMatch() ? match.captured(1).toInt() : 0;
+}
+
 // Load saved options to GUI
 void MainWindow::loadOptions(bool settingsPreloaded)
 {
@@ -670,7 +708,7 @@ void MainWindow::loadOptions(bool settingsPreloaded)
     if (QFile::exists(userFileName)) {
         QFile file(userFileName);
         if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            userContent = QString::fromUtf8(file.readAll());
+            userContent = QString::fromLocal8Bit(file.readAll());
         }
     }
 
@@ -693,19 +731,18 @@ void MainWindow::loadOptions(bool settingsPreloaded)
     }
 
     // Folders
-    bool hasThumbs = QRegularExpression(R"(find /home/[^/]+/\.cache/thumbnails)").match(userContent).hasMatch();
+    const bool hasThumbs = scriptCleansThumbnails(userContent);
     ui->checkThumbs->setChecked(hasThumbs);
 
-    bool hasCache = QRegularExpression(R"(find /home/[^/]+/\.cache(\s|/\*))").match(userContent).hasMatch();
+    const bool hasCache = scriptCleansCache(userContent);
     ui->checkCache->setChecked(hasCache);
 
     if (hasCache || hasThumbs) {
-        QRegularExpression atimeRe(R"(\.cache.*-atime \+([0-9]+))");
-        QRegularExpressionMatch match = atimeRe.match(userContent);
-        if (match.hasMatch()) {
+        const int cacheDays = scriptCacheAgeDays(userContent);
+        if (cacheDays >= 0) {
             ui->radioSaferCache->setChecked(true);
             ui->radioAllCache->setChecked(false);
-            ui->spinCache->setValue(match.captured(1).toInt());
+            ui->spinCache->setValue(cacheDays);
         } else {
             ui->radioSaferCache->setChecked(false);
             ui->radioAllCache->setChecked(true);
@@ -723,9 +760,7 @@ void MainWindow::loadOptions(bool settingsPreloaded)
         if (userContent.contains("/.local/share/Trash")) {
             ui->groupBoxTrash->setChecked(true);
             ui->radioSelectedUser->setChecked(true);
-            QRegularExpression trashCtimeRe(R"(find /home/.*-ctime \+([0-9]{1,3}))");
-            QRegularExpressionMatch trashMatch = trashCtimeRe.match(userContent);
-            ui->spinBoxTrash->setValue(trashMatch.hasMatch() ? trashMatch.captured(1).toInt() : 0);
+            ui->spinBoxTrash->setValue(scriptTrashAgeDays(userContent));
         } else {
             ui->groupBoxTrash->setChecked(false);
         }
@@ -902,13 +937,14 @@ void MainWindow::setConnections()
     connect(ui->pushRemoveManuals, &QPushButton::clicked, this, &MainWindow::removeManuals);
     connect(ui->pushRTLremove, &QPushButton::clicked, this, &MainWindow::pushRTLremove_clicked);
     connect(ui->pushUsageAnalyzer, &QPushButton::clicked, this, &MainWindow::pushUsageAnalyzer_clicked);
-    connect(ui->tabWidget, &QTabWidget::currentChanged, this,
-            [this](int index) { ui->pushApply->setDisabled(index == 1); });
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, [this](int index) {
+        ui->pushApply->setEnabled(index != 1 && !ui->comboUserClean->currentText().isEmpty());
+    });
     connect(ui->comboUserClean, &QComboBox::currentTextChanged, this, [this](const QString &text) {
         if (suppressUserSwitch) {
             return;
         }
-        ui->pushApply->setEnabled(!text.isEmpty());
+        ui->pushApply->setEnabled(ui->tabWidget->currentIndex() != 1 && !text.isEmpty());
         initializeSettingsForUser(text);
         loadSettings();
         loadSchedule(true);
@@ -922,6 +958,12 @@ void MainWindow::setConnections()
 
 void MainWindow::pushApply_clicked()
 {
+    const QString selectedUser = ui->comboUserClean->currentText();
+    if (selectedUser.isEmpty()) {
+        qWarning() << "Ignoring cleanup request without a selected user";
+        return;
+    }
+
     QApplication::setOverrideCursor(Qt::BusyCursor);
     QApplication::processEvents();
     setEnabled(false);
@@ -938,7 +980,6 @@ void MainWindow::pushApply_clicked()
 
     quint64 total {};
     QStringList scheduleOpts;
-    const QString selectedUser = ui->comboUserClean->currentText();
     const bool elevate = (selectedUser != currentUser);
 
     auto addToTotal = [&](const QString &label, quint64 amount) {
@@ -1349,12 +1390,12 @@ QString MainWindow::cmdOut(const QString &cmd, QuietMode quiet, bool *ok, int ti
         if (ok) {
             *ok = false;
         }
-        return proc.readAll().trimmed();
+        return QString::fromLocal8Bit(proc.readAll()).trimmed();
     }
     if (ok) {
         *ok = proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0;
     }
-    return proc.readAll().trimmed();
+    return QString::fromLocal8Bit(proc.readAll()).trimmed();
 }
 
 QString MainWindow::cmdOut(const QString &program, const QStringList &args, QuietMode quiet, bool *ok, int timeoutMs)
@@ -1378,12 +1419,12 @@ QString MainWindow::cmdOut(const QString &program, const QStringList &args, Quie
         if (ok) {
             *ok = false;
         }
-        return proc.readAll().trimmed();
+        return QString::fromLocal8Bit(proc.readAll()).trimmed();
     }
     if (ok) {
         *ok = proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0;
     }
-    return proc.readAll().trimmed();
+    return QString::fromLocal8Bit(proc.readAll()).trimmed();
 }
 
 bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QString *output, const QByteArray &input,
@@ -1461,8 +1502,8 @@ bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QStr
         return false;
     }
 
-    const QString standardOutput = QString::fromLocal8Bit(proc.readAllStandardOutput()).trimmed();
-    const QString standardError = QString::fromLocal8Bit(proc.readAllStandardError()).trimmed();
+    const QString standardOutput = QString::fromUtf8(proc.readAllStandardOutput()).trimmed();
+    const QString standardError = QString::fromUtf8(proc.readAllStandardError()).trimmed();
     if (output) {
         *output = standardOutput;
     }

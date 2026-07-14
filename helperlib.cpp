@@ -34,6 +34,7 @@
 #include <QRegularExpression>
 
 #include "packagemanager.h"
+#include "usernameutils.h"
 
 void writeAndFlush(FILE *stream, const QByteArray &data)
 {
@@ -50,12 +51,11 @@ void printError(const QString &message)
 
 bool lookupUser(const QString &user, UserInfo *info)
 {
-    static const QRegularExpression safeUserPattern(QStringLiteral("^[A-Za-z0-9][A-Za-z0-9._-]*$"));
-    if (user.isEmpty() || !safeUserPattern.match(user).hasMatch()) {
+    if (!validUserNameSyntax(user)) {
         printError(QString("Invalid username: %1").arg(user));
         return false;
     }
-    const struct passwd *pwd = getpwnam(user.toUtf8().constData());
+    const struct passwd *pwd = passwdForUser(user);
     if (!pwd) {
         printError(QString("Unknown user: %1").arg(user));
         return false;
@@ -88,7 +88,7 @@ bool validPackageName(const QString &package)
 
 QString homeDirForUser(const QString &user)
 {
-    const struct passwd *pwd = getpwnam(user.toUtf8().constData());
+    const struct passwd *pwd = passwdForUser(user);
     if (!pwd || pwd->pw_dir == nullptr || pwd->pw_dir[0] == '\0') {
         return {};
     }
@@ -299,6 +299,13 @@ bool parseScheduleOptions(const QStringList &args, ScheduleOptions *opts)
 
 namespace
 {
+QString shellQuote(const QString &value)
+{
+    QString quoted = value;
+    quoted.replace('\'', QStringLiteral("'\\''"));
+    return '\'' + quoted + '\'';
+}
+
 QString scheduleAge(int days)
 {
     return days > 0 ? QString(" -ctime +%1 -atime +%1").arg(days) : QString();
@@ -313,23 +320,29 @@ QString generateUserScript(const ScheduleOptions &opts)
 
     QStringList parts;
     if (opts.cacheDays >= 0) {
-        parts << QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -type f -delete 2>/dev/null")
-                     .arg(opts.user, cacheAge(opts.cacheDays));
+        const QString cachePath = "/home/" + opts.user + "/.cache";
+        parts << QString("find %1 -mindepth 1 ! -path %2%3 -type f -delete 2>/dev/null")
+                     .arg(shellQuote(cachePath), shellQuote(cachePath + "/thumbnails*"),
+                          cacheAge(opts.cacheDays));
     }
     if (opts.thumbsDays >= 0) {
-        parts << QString("find /home/%1/.cache/thumbnails -type f%2 -delete 2>/dev/null")
-                     .arg(opts.user, cacheAge(opts.thumbsDays));
+        const QString thumbsPath = "/home/" + opts.user + "/.cache/thumbnails";
+        parts << QString("find %1 -type f%2 -delete 2>/dev/null")
+                     .arg(shellQuote(thumbsPath), cacheAge(opts.thumbsDays));
     }
     if (opts.trashMode == "user") {
-        parts << QString("find /home/%1/.local/share/Trash -mindepth 1%2 -delete")
-                     .arg(opts.user, scheduleAge(opts.trashDays));
+        const QString trashPath = "/home/" + opts.user + "/.local/share/Trash";
+        parts << QString("find %1 -mindepth 1%2 -delete")
+                     .arg(shellQuote(trashPath), scheduleAge(opts.trashDays));
     }
     if (opts.flatpak) {
         const QString cleanupCmd
             = QStringLiteral("pgrep -a flatpak | grep -v flatpak-s || flatpak uninstall --unused "
                              "--delete-data --noninteractive");
-        parts << (opts.user.isEmpty() ? cleanupCmd
-                                      : QString("runuser -u %1 -- /bin/bash -lc \"%2\"").arg(opts.user, cleanupCmd));
+        parts << (opts.user.isEmpty()
+                      ? cleanupCmd
+                      : QString("runuser -u %1 -- /bin/bash -lc %2")
+                            .arg(shellQuote(opts.user), shellQuote(cleanupCmd)));
     }
     // Different users can schedule their own cron entry at different periods,
     // all invoking this same shared system-wide script, rather than

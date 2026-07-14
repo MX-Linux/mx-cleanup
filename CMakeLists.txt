@@ -137,6 +137,7 @@ set(HEADERS
     mainwindow.h
     about.h
     common.h
+    usernameutils.h
     packagemanager.h
     helperlib.h
 )

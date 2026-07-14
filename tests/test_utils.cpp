@@ -35,6 +35,7 @@
 #include "../helperlib.h"
 #include "../mainwindow.h"
 #include "../packagemanager.h"
+#include "../usernameutils.h"
 
 class TestUtils : public QObject
 {
@@ -67,6 +68,9 @@ private slots:
     void testLookupUser_InvalidChars();
     void testLookupUser_Unknown();
     void testLookupUser_Empty();
+    void testValidUserNameSyntax_data();
+    void testValidUserNameSyntax();
+    void testUserScheduleFileId();
 
     void testHomeDirForUser_Valid();
     void testHomeDirForUser_Unknown();
@@ -82,6 +86,9 @@ private slots:
     void testGenerateUserScript_Cache();
     void testGenerateUserScript_NoAgeFilter();
     void testGenerateUserScript_CallsSystemScript();
+    void testGenerateUserScript_UnicodeUser();
+    void testScriptOptions_RoundTrip();
+    void testScriptOptions_LegacyUnquoted();
     void testGenerateSystemScript_AllLogsUsesTruncate();
     void testGenerateSystemScript_Purge();
     void testGenerateSystemScript_TrashAll();
@@ -318,6 +325,44 @@ void TestUtils::testLookupUser_Empty()
     QVERIFY(!lookupUser(QString()));
 }
 
+void TestUtils::testValidUserNameSyntax_data()
+{
+    QTest::addColumn<QString>("user");
+    QTest::addColumn<bool>("expected");
+
+    QTest::newRow("ascii") << QStringLiteral("adrian") << true;
+    QTest::newRow("cyrillic") << QStringLiteral("иван") << true;
+    QTest::newRow("greek") << QStringLiteral("δοκιμή") << true;
+    QTest::newRow("arabic") << QStringLiteral("مستخدم") << true;
+    QTest::newRow("cjk") << QStringLiteral("使用者") << true;
+    QTest::newRow("accented") << QStringLiteral("josé") << true;
+    QTest::newRow("decomposed") << QString::fromUtf8("Jose\xCC\x81") << true;
+    QTest::newRow("empty") << QString() << false;
+    QTest::newRow("leading dash") << QStringLiteral("-user") << false;
+    QTest::newRow("space") << QStringLiteral("user name") << false;
+    QTest::newRow("slash") << QStringLiteral("user/name") << false;
+    QTest::newRow("shell metachar") << QStringLiteral("$(whoami)") << false;
+}
+
+void TestUtils::testValidUserNameSyntax()
+{
+    QFETCH(QString, user);
+    QFETCH(bool, expected);
+    QCOMPARE(validUserNameSyntax(user), expected);
+}
+
+void TestUtils::testUserScheduleFileId()
+{
+    QCOMPARE(userScheduleFileId(QStringLiteral("adrian")), QStringLiteral("adrian"));
+
+    const QString cyrillicId = userScheduleFileId(QStringLiteral("иван"));
+    QCOMPARE(QString::fromLocal8Bit(encodedUserName(QStringLiteral("иван"))), QStringLiteral("иван"));
+    QVERIFY(cyrillicId.startsWith(QStringLiteral("u-")));
+    QCOMPARE(cyrillicId, userScheduleFileId(QStringLiteral("иван")));
+    QVERIFY(QRegularExpression(QStringLiteral("^[A-Za-z0-9_-]+$")).match(cyrillicId).hasMatch());
+    QVERIFY(userScheduleFileId(QString()).isEmpty());
+}
+
 void TestUtils::testHomeDirForUser_Valid()
 {
     const struct passwd *pwd = getpwnam("root");
@@ -393,7 +438,7 @@ void TestUtils::testGenerateUserScript_Cache()
 
     const QString script = generateUserScript(opts);
     QVERIFY(script.startsWith("#!/bin/sh\n"));
-    QVERIFY(script.contains("find /home/alice/.cache -mindepth 1"));
+    QVERIFY(script.contains("find '/home/alice/.cache' -mindepth 1"));
     QVERIFY(script.contains("-atime +5 -mtime +5"));
     QVERIFY(script.contains("-delete"));
 }
@@ -405,7 +450,7 @@ void TestUtils::testGenerateUserScript_NoAgeFilter()
     opts.cacheDays = 0;
 
     const QString script = generateUserScript(opts);
-    QVERIFY(script.contains("find /home/alice/.cache -mindepth 1"));
+    QVERIFY(script.contains("find '/home/alice/.cache' -mindepth 1"));
     QVERIFY(!script.contains("-atime"));
 }
 
@@ -421,6 +466,77 @@ void TestUtils::testGenerateUserScript_CallsSystemScript()
     // per-user script -- they belong solely in the shared system script.
     QVERIFY(!script.contains("apt-get"));
     QVERIFY(!script.contains("/var/log"));
+}
+
+void TestUtils::testGenerateUserScript_UnicodeUser()
+{
+    ScheduleOptions opts;
+    opts.user = QStringLiteral("иван");
+    opts.cacheDays = 5;
+    opts.thumbsDays = 2;
+    opts.trashMode = QStringLiteral("user");
+    opts.trashDays = 3;
+    opts.flatpak = true;
+
+    const QString script = generateUserScript(opts);
+    QVERIFY(script.contains(QStringLiteral("'/home/иван/.cache'")));
+    QVERIFY(script.contains(QStringLiteral("'/home/иван/.cache/thumbnails'")));
+    QVERIFY(script.contains(QStringLiteral("'/home/иван/.local/share/Trash'")));
+    QVERIFY(script.contains(QStringLiteral("runuser -u 'иван'")));
+
+    QProcess shell;
+    shell.start(QStringLiteral("/bin/sh"), {QStringLiteral("-n")});
+    QVERIFY(shell.waitForStarted());
+    shell.write(script.toLocal8Bit());
+    shell.closeWriteChannel();
+    QVERIFY(shell.waitForFinished());
+    QCOMPARE(shell.exitCode(), 0);
+}
+
+// The GUI re-reads the generated script on startup to restore checkbox and
+// spinbox state; parsing must keep up with generateUserScript()'s quoting.
+void TestUtils::testScriptOptions_RoundTrip()
+{
+    ScheduleOptions opts;
+    opts.user = QStringLiteral("иван");
+    opts.cacheDays = 5;
+    opts.thumbsDays = 2;
+    opts.trashMode = QStringLiteral("user");
+    opts.trashDays = 3;
+
+    const QString script = generateUserScript(opts);
+    QVERIFY(MainWindow::scriptCleansCache(script));
+    QVERIFY(MainWindow::scriptCleansThumbnails(script));
+    QCOMPARE(MainWindow::scriptCacheAgeDays(script), 5);
+    QCOMPARE(MainWindow::scriptTrashAgeDays(script), 3);
+
+    ScheduleOptions allCache;
+    allCache.user = QStringLiteral("alice");
+    allCache.cacheDays = 0;
+    allCache.trashMode = QStringLiteral("user");
+    allCache.trashDays = 0;
+
+    const QString allCacheScript = generateUserScript(allCache);
+    QVERIFY(MainWindow::scriptCleansCache(allCacheScript));
+    QVERIFY(!MainWindow::scriptCleansThumbnails(allCacheScript));
+    QCOMPARE(MainWindow::scriptCacheAgeDays(allCacheScript), -1);
+    QCOMPARE(MainWindow::scriptTrashAgeDays(allCacheScript), 0);
+}
+
+// Scripts written by releases that predate shell quoting must keep parsing.
+void TestUtils::testScriptOptions_LegacyUnquoted()
+{
+    const QString script = QStringLiteral(
+        "#!/bin/sh\n"
+        "find /home/alice/.cache -mindepth 1 ! -path '/home/alice/.cache/thumbnails*' -atime +7 -mtime +7 -type f "
+        "-delete 2>/dev/null\n"
+        "find /home/alice/.cache/thumbnails -type f -delete 2>/dev/null\n"
+        "find /home/alice/.local/share/Trash -mindepth 1 -ctime +14 -atime +14 -delete\n");
+
+    QVERIFY(MainWindow::scriptCleansCache(script));
+    QVERIFY(MainWindow::scriptCleansThumbnails(script));
+    QCOMPARE(MainWindow::scriptCacheAgeDays(script), 7);
+    QCOMPARE(MainWindow::scriptTrashAgeDays(script), 14);
 }
 
 void TestUtils::testGenerateSystemScript_AllLogsUsesTruncate()

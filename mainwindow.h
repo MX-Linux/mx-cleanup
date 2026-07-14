@@ -92,6 +92,13 @@ public:
     static void addGroupCheckbox(QLayout *layout, const QStringList &package, const QString &name, QStringList *list);
     static void selectRadioButton(class QGroupBox *groupbox, const QButtonGroup *group, int id);
 
+    // Parsers for the schedule scripts the helper generates; they accept both
+    // the current shell-quoted paths and unquoted paths from older releases.
+    static bool scriptCleansThumbnails(const QString &content);
+    static bool scriptCleansCache(const QString &content);
+    static int scriptCacheAgeDays(const QString &content);  // -1 when no age filter
+    static int scriptTrashAgeDays(const QString &content);  // 0 when no age filter
+
 private:
     void loadOptions(bool settingsPreloaded = false);
     void loadSchedule(bool settingsPreloaded = false);

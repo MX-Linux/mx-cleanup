@@ -41,6 +41,7 @@
 
 #include "helperlib.h"
 #include "packagemanager.h"
+#include "usernameutils.h"
 
 namespace
 {
@@ -376,7 +377,7 @@ struct ProcessResult
     if (!lookupUser(user)) {
         return 1;
     }
-    return removeScheduleFileIfPresent(base + '.' + user) ? 0 : 1;
+    return removeScheduleFileIfPresent(base + '.' + userScheduleFileId(user)) ? 0 : 1;
 }
 
 // write-schedule <period> [--user U] [--cache N] [--thumbs N] [--logs old|all N]
@@ -397,7 +398,12 @@ struct ProcessResult
         return 1;
     }
 
-    const QString suffix = opts.user.isEmpty() ? QString() : '.' + opts.user;
+    const QString fileId = userScheduleFileId(opts.user);
+    if (!opts.user.isEmpty() && fileId.isEmpty()) {
+        printError(QString("Cannot create a schedule filename for user: %1").arg(opts.user));
+        return 1;
+    }
+    const QString suffix = fileId.isEmpty() ? QString() : '.' + fileId;
     const QString cronTarget = cronEntryBase(period) + suffix;
 
     // Staged renames replace each target atomically. Removing targets
@@ -423,11 +429,11 @@ struct ProcessResult
     StagedFile cronEntry;
     StagedFile systemScript;
     const bool stagedAll
-        = stageFileAsRoot(scriptTarget, generateUserScript(opts).toUtf8(), 0755, &userScript)
+        = stageFileAsRoot(scriptTarget, generateUserScript(opts).toLocal8Bit(), 0755, &userScript)
           && (period != "@reboot"
-              || stageFileAsRoot(cronTarget, QString("@reboot root %1\n").arg(scriptTarget).toUtf8(), 0644,
+              || stageFileAsRoot(cronTarget, QString("@reboot root %1\n").arg(scriptTarget).toLocal8Bit(), 0644,
                                  &cronEntry))
-          && stageFileAsRoot(systemScriptPath(), generateSystemScript(opts).toUtf8(), 0755, &systemScript);
+          && stageFileAsRoot(systemScriptPath(), generateSystemScript(opts).toLocal8Bit(), 0755, &systemScript);
     if (!stagedAll) {
         discardStagedFile(&userScript);
         discardStagedFile(&cronEntry);
