@@ -186,22 +186,22 @@
     <message>
         <location filename="../mainwindow.ui" line="263"/>
         <source>Delete Logs</source>
-        <translation>Supprimer les journaux - logs</translation>
+        <translation>Supprimer les journaux (= logs)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="278"/>
         <source>All logs</source>
-        <translation>Tous les journaux - logs</translation>
+        <translation>Tous les journaux (= logs)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="339"/>
         <source>Old logs</source>
-        <translation>Anciens journaux - logs</translation>
+        <translation>Anciens journaux (= logs)</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="326"/>
         <source>Logs older than:</source>
-        <translation>Journaux - logs plus vieux que:</translation>
+        <translation>Journaux (= logs) plus vieux que:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="551"/>
