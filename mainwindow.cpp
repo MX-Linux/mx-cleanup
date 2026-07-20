@@ -780,6 +780,11 @@ bool MainWindow::saveSchedule(const QStringList &scheduleOpts, const QString &pe
     return helperProc(args, QuietMode::Yes);
 }
 
+bool MainWindow::saveSystemScript(const QStringList &systemScriptOpts)
+{
+    return helperProc(QStringList {"write-system-script"} + systemScriptOpts, QuietMode::Yes);
+}
+
 bool MainWindow::saveSettings()
 {
     if (!settings) {
@@ -980,6 +985,10 @@ void MainWindow::pushApply_clicked()
 
     quint64 total {};
     QStringList scheduleOpts;
+    // Subset of scheduleOpts that's shared/system-wide (apt/purge/logs/
+    // trash-all) rather than tied to this user's own cron schedule, so it can
+    // still be persisted via saveSystemScript() below when no schedule is set.
+    QStringList systemScriptOpts;
     const bool elevate = (selectedUser != currentUser);
 
     auto addToTotal = [&](const QString &label, quint64 amount) {
@@ -1158,6 +1167,7 @@ void MainWindow::pushApply_clicked()
                 addToTotal(cacheLabel, before_size > after_size ? before_size - after_size : 0);
             }
             scheduleOpts << "--apt" << cleanMode;
+            systemScriptOpts << "--apt" << cleanMode;
         }
     }
 
@@ -1183,6 +1193,7 @@ void MainWindow::pushApply_clicked()
             addToTotal("apt-purge", before_size > after_size ? before_size - after_size : 0);
         }
         scheduleOpts << "--purge";
+        systemScriptOpts << "--purge";
     }
 
     if (ui->groupBoxLogs->isChecked()) {
@@ -1197,6 +1208,7 @@ void MainWindow::pushApply_clicked()
             quint64 logsKiB = sumKiB(
                 helperOut({"clean-logs", logsMode, "size", logsDaysArg}, QuietMode::Yes, kDiskScanTimeoutMs));
             scheduleOpts << "--logs" << logsMode << logsDaysArg;
+            systemScriptOpts << "--logs" << logsMode << logsDaysArg;
             bool logsOk = true;
             if (!ui->radioReboot->isChecked()) {
                 logsOk = runOp(tr("Log cleanup"), {"clean-logs", logsMode, "delete", logsDaysArg});
@@ -1230,6 +1242,9 @@ void MainWindow::pushApply_clicked()
         }
 
         scheduleOpts << "--trash" << (allUsers ? "all" : "user") << trashDaysArg;
+        if (allUsers) {
+            systemScriptOpts << "--trash" << "all" << trashDaysArg;
+        }
         bool trashOk = true;
         if (!ui->radioReboot->isChecked()) {
             if (user != currentUser) {
@@ -1277,11 +1292,18 @@ void MainWindow::pushApply_clicked()
     }
 
     if (schedule.isEmpty()) {
-        // Scheduling disabled: drop this user's own schedule outright.
+        // Scheduling disabled: drop this user's own schedule outright. The
+        // shared system-wide script has no cron entry left to invoke it, but
+        // apt/purge/logs/trash-all are still persisted into it directly, so
+        // they reload correctly next launch instead of only ever reaching
+        // the (no longer authoritative) per-user QSettings file.
         for (const auto &period : allPeriods) {
             clearCron(period);
         }
         clearScript();
+        if (!saveSystemScript(systemScriptOpts)) {
+            failures << tr("Save cleanup schedule");
+        }
     } else if (saveSchedule(scheduleOpts, schedule)) {
         // Only drop schedules for the other periods once the new one is safely
         // written, so a failed write above leaves the prior schedule intact.

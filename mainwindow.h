@@ -119,6 +119,11 @@ private:
     void removeKernelPackages(const QStringList &list);
     void removeManuals();
     [[nodiscard]] bool saveSchedule(const QStringList &scheduleOpts, const QString &period);
+    // Writes just the shared system-wide script (apt/purge/logs/trash-all)
+    // when this user has no cron schedule of their own to carry it via
+    // saveSchedule(), so those settings persist for the next launch instead
+    // of only reaching the (no longer authoritative) per-user QSettings file.
+    [[nodiscard]] bool saveSystemScript(const QStringList &systemScriptOpts);
     [[nodiscard]] bool saveSettings();
     void setConnections();
     void setup();

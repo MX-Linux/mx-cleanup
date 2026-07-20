@@ -830,6 +830,8 @@ void TestUtils::testHelperBinary_ReportsFailureExitCodes()
     QVERIFY(helperFails({"write-schedule", "hourly"}));
     QVERIFY(helperFails({"write-schedule", "daily", "--cache", "5"})); // per-user option without --user
     QVERIFY(helperFails({"remove-schedule", "cron", "daily", "no.such.user.xyz"}));
+    QVERIFY(helperFails({"write-system-script", "--cache", "5"})); // per-user option not allowed for this verb
+    QVERIFY(helperFails({"write-system-script", "--user", "root", "--purge"})); // --user not allowed either
 }
 
 QTEST_MAIN(TestUtils)

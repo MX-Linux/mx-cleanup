@@ -380,6 +380,26 @@ struct ProcessResult
     return removeScheduleFileIfPresent(base + '.' + userScheduleFileId(user)) ? 0 : 1;
 }
 
+// write-system-script [--logs old|all N] [--apt auto|full] [--purge] [--trash all N]
+// Writes just the shared system-wide script (apt/purge/logs/trash-all). Used
+// when the caller has no cron schedule of their own to carry it via
+// write-schedule below, so those settings still persist for next launch
+// instead of only ever reaching the (no longer authoritative) per-user
+// QSettings file.
+[[nodiscard]] int cmdWriteSystemScript(const QStringList &args)
+{
+    ScheduleOptions opts;
+    if (!parseScheduleOptions(args, &opts)) {
+        return 1;
+    }
+    if (!opts.user.isEmpty() || opts.cacheDays >= 0 || opts.thumbsDays >= 0 || opts.trashMode == "user"
+        || opts.flatpak) {
+        printError(QStringLiteral("write-system-script only accepts --logs, --apt, --purge, --trash all"));
+        return 1;
+    }
+    return writeFileAsRoot(systemScriptPath(), generateSystemScript(opts).toLocal8Bit(), 0755) ? 0 : 1;
+}
+
 // write-schedule <period> [--user U] [--cache N] [--thumbs N] [--logs old|all N]
 //                [--apt auto|full] [--purge] [--trash user|all N] [--flatpak]
 // The helper composes the cleanup script itself from the validated options.
@@ -677,6 +697,9 @@ int main(int argc, char *argv[])
     }
     if (action == "write-schedule") {
         return cmdWriteSchedule(args);
+    }
+    if (action == "write-system-script") {
+        return cmdWriteSystemScript(args);
     }
     if (action == "clean-cache") {
         return cmdCleanCache(args);
