@@ -1,3 +1,10 @@
+mx-cleanup (26.07.3) mx; urgency=medium
+
+  * Remember system-wide cleanup choices even when scheduled cleanup is disabled
+  * Install privileged cleanup helpers in the correct system helper directory
+
+ -- Adrian <adrian@mxlinux.org>  Mon, 20 Jul 2026 08:23:59 -0400
+
 mx-cleanup (26.07.2) mx; urgency=medium
 
   * Support selecting localized user accounts for cleanup and scheduled cleanup
