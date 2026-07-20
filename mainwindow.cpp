@@ -631,7 +631,7 @@ void MainWindow::removeKernelPackages(const QStringList &list)
         common = cmdOut("/bin/bash", commonArgs);
     }
 
-    QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal-keep-open"};
+    QString helper {QStringLiteral(HELPER_TERMINAL_PATH)};
     QStringList packages;
     for (const auto &pkg : headers_installed) {
         if (pkgNameRe.match(pkg).hasMatch())
@@ -1441,7 +1441,7 @@ bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QStr
     makeNewProcessGroup(proc);
     proc.setProcessChannelMode(QProcess::SeparateChannels);
 
-    const QString helper = "/usr/lib/" + QApplication::applicationName() + "/helper";
+    const QString helper {QStringLiteral(HELPER_PATH)};
     QStringList programArgs = helperArgs;
 
     if (getuid() == 0) {
@@ -1650,7 +1650,7 @@ void MainWindow::pushRTLremove_clicked()
         return;
     }
 
-    QString helper {"/usr/lib/" + QApplication::applicationName() + "/helper-terminal-keep-open"};
+    QString helper {QStringLiteral(HELPER_TERMINAL_PATH)};
     QStringList validPkgs;
     static const QRegularExpression pkgNameRe(R"(^[a-zA-Z0-9][a-zA-Z0-9.+-]*$)");
     for (const auto &pkg : dumpList.split(' ', Qt::SkipEmptyParts)) {

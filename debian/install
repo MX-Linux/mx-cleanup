@@ -1,8 +1,8 @@
 help/*			usr/share/doc/mx-cleanup
 images/mx-cleanup.png	usr/share/icons/hicolor/256x256/apps
 mx-cleanup.desktop	usr/share/applications
-scripts/*.policy	usr/share/polkit-1/actions
-scripts/helper-terminal-keep-open	usr/lib/mx-cleanup
+obj-*/*.policy	usr/share/polkit-1/actions
+scripts/helper-terminal-keep-open	usr/libexec/mx-cleanup
 obj-*/*.qm 		usr/share/mx-cleanup/locale
 obj-*/mx-cleanup 	usr/bin
-obj-*/helper		usr/lib/mx-cleanup
+obj-*/helper		usr/libexec/mx-cleanup
