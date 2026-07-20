@@ -45,10 +45,12 @@ package() {
 
     install -Dm644 mx-cleanup.desktop "${pkgdir}/usr/share/applications/mx-cleanup.desktop"
 
+    install -Dm644 help/mx-cleanup.1 "${pkgdir}/usr/share/man/man1/mx-cleanup.1"
+
     install -Dm644 images/mx-cleanup.png "${pkgdir}/usr/share/icons/hicolor/256x256/apps/mx-cleanup.png"
 
     install -dm755 "${pkgdir}/usr/share/doc/mx-cleanup"
     if [ -d help ]; then
-        cp -r help/* "${pkgdir}/usr/share/doc/mx-cleanup/" 2>/dev/null || true
+        cp help/*.html help/*.png "${pkgdir}/usr/share/doc/mx-cleanup/" 2>/dev/null || true
     fi
 }

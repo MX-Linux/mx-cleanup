@@ -1,0 +1,89 @@
+.TH MX-CLEANUP 1 "July 2026" "mx-cleanup 26.07.3" "User Commands"
+.SH NAME
+mx-cleanup \- GUI for disk cleanup and system maintenance on MX Linux
+.SH SYNOPSIS
+.B mx-cleanup
+.RI [ options ]
+.SH DESCRIPTION
+.B mx-cleanup
+is a graphical application that offers several easy actions to check
+and increase hard drive space. It can safely remove old and unnecessary
+files and clear logs through a user-friendly interface.
+.PP
+Available cleanup categories include:
+.TP
+.B Folders
+User cache and thumbnail cache.
+.TP
+.B Apt (Installation)
+Package cache cleanup and purging of residual configuration left behind
+by removed packages. "Old files" removes package archives that can no
+longer be downloaded again; "All files" empties the cache completely.
+.TP
+.B Logs
+System logs under
+.IR /var/log .
+"Old logs" removes rotated logs ending in
+.IR .gz ", " .old ", and " .1 ;
+"All logs" truncates every log file to empty instead.
+.TP
+.B Trash
+The desktop trash can, for the selected user or for all users.
+.TP
+.B Flatpak
+Unused Flatpak runtimes.
+.PP
+Cleanup can be run once immediately, or scheduled to run automatically
+daily, weekly, monthly, or at every reboot, via
+.BR cron (8).
+.PP
+Actions that require administrator privileges are carried out by a
+separate, verb-based privileged helper, invoked through
+.BR pkexec (1).
+.B mx-cleanup
+itself must be started as a normal (non-root) user; it refuses to run
+when invoked as root.
+.SH OPTIONS
+.TP
+.BR \-h ", " \-\-help
+Display help on command line options and exit.
+.TP
+.B \-\-help\-all
+Display help on command line options, including generic Qt/QPA options
+such as
+.BR \-\-platform ", " \-\-session ", and " \-\-reverse ,
+and exit.
+.TP
+.BR \-v ", " \-\-version
+Display version information and exit.
+.SH FILES
+.TP
+.I ~/.config/MX-Linux/mx-cleanup.conf
+Per-user preferences (cache/thumbnail cleanup, flatpak, trash).
+.TP
+.I /usr/bin/mx-cleanup-script
+Generated cron/@reboot script for a user's own scheduled cleanup.
+.TP
+.I /usr/bin/mx-cleanup-system-script
+Shared, system-wide script (package cache, purge, logs, all-users trash)
+invoked by every user's scheduled cleanup script.
+.TP
+.I /etc/cron.daily/mx-cleanup
+.TQ
+.I /etc/cron.weekly/mx-cleanup
+.TQ
+.I /etc/cron.monthly/mx-cleanup
+.TQ
+.I /etc/cron.d/mx-cleanup
+Cron entries installed for the selected schedule.
+.SH SEE ALSO
+.BR baobab (1),
+.BR pkexec (1),
+.BR cron (8)
+.SH AUTHOR
+Written by Adrian and the MX Linux team.
+.SH COPYRIGHT
+Copyright \(co 2018\-2026 MX Authors.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
