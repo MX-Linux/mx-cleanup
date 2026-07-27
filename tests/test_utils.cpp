@@ -1,7 +1,7 @@
 /**********************************************************************
  *  test_utils.cpp
  **********************************************************************
- * Copyright (C) 2025 MX Authors
+ * Copyright (C) 2025-2026 MX Authors
  *
  * Authors: Adrian
  *          MX Linux <http://mxlinux.org>
