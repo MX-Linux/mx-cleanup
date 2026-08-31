@@ -65,7 +65,10 @@ tag_exists() {
 
 # Get latest numeric release tag for comparison
 get_latest_tag() {
-    git tag -l | while read -r tag; do
+    {
+        git tag -l
+        git ls-remote --tags origin 2>/dev/null | awk '{sub("refs/tags/", "", $2); sub(/\^\{\}$/, "", $2); print $2}'
+    } | sort -u | while read -r tag; do
         local clean_tag=${tag#v}
         if [[ $clean_tag =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?[a-zA-Z0-9]*$ ]]; then printf '%s
 ' "$tag"; fi
