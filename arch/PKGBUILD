@@ -56,8 +56,11 @@ package() {
 
     install -Dm755 build/mx-cleanup "${pkgdir}/usr/bin/mx-cleanup"
 
-    install -dm755 "${pkgdir}/usr/share/mx-cleanup/locale"
-    install -Dm644 build/*.qm "${pkgdir}/usr/share/mx-cleanup/locale/" 2>/dev/null || true
+    # "install -D" with several sources needs -t, and then creates the
+    # destination directory itself, so the separate install -dm755 is gone. No
+    # error suppression either: the old "2>/dev/null || true" swallowed a glob
+    # that matched nothing, shipping the package with no translations at all.
+    install -Dm644 -t "${pkgdir}/usr/share/mx-cleanup/locale/" build/*.qm
 
     install -dm755 "${pkgdir}/usr/lib/mx-cleanup"
     install -Dm755 build/helper "${pkgdir}/usr/lib/mx-cleanup/helper"
