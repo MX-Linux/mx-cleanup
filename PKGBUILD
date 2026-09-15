@@ -1,6 +1,6 @@
 # Maintainer: Adrian <adrian@mxlinux.org>
 pkgname=mx-cleanup
-pkgver=${PKGVER:-25.12}
+pkgver=${PKGVER:-26.09}
 pkgrel=1
 pkgdesc="GUI for system cleanup and maintenance"
 arch=('x86_64' 'i686')
