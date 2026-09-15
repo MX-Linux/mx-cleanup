@@ -77,4 +77,8 @@ package() {
     if [ -d help ]; then
         cp -r help/* "${pkgdir}/usr/share/doc/mx-cleanup/" 2>/dev/null || true
     fi
+    # namcap flags a declared license= with nothing under
+    # /usr/share/licenses. The file is in the source; it was simply never
+    # installed.
+    install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
