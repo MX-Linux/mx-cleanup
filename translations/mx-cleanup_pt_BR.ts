@@ -290,65 +290,65 @@
         <location filename="../mainwindow.cpp" line="939"/>
         <location filename="../mainwindow.cpp" line="961"/>
         <source>Cache cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Limpeza automática da memória temporária</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="991"/>
         <location filename="../mainwindow.cpp" line="995"/>
         <source>Thumbnail cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Limpeza automática das miniaturas</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1016"/>
         <location filename="../mainwindow.cpp" line="1034"/>
         <source>Flatpak cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Limpeza automática dos flatpaks</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1070"/>
         <source>Package cache cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Limpeza automática da memória temporária dos pacotes</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1095"/>
         <source>Package purge</source>
-        <translation type="unfinished"/>
+        <translation>Exclusão de pacotes</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1119"/>
         <source>Log cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Limpeza automática de relatórios</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1153"/>
         <location filename="../mainwindow.cpp" line="1157"/>
         <source>Trash cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Limpeza automática da lixeira</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1214"/>
         <source>Save cleanup schedule</source>
-        <translation type="unfinished"/>
+        <translation>Salvar a programação da limpeza automática </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1217"/>
         <source>Remove previous cleanup schedule</source>
-        <translation type="unfinished"/>
+        <translation>Excluir a antiga programação da limpeza automática</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1221"/>
         <source>Save settings</source>
-        <translation type="unfinished"/>
+        <translation>Salvar configurações</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1237"/>
         <source>Some cleanup steps failed</source>
-        <translation type="unfinished"/>
+        <translation>Ocorreu um erro em alguns passos da limpeza automática</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1238"/>
         <source>%1 MiB were freed, but the following steps failed:</source>
-        <translation type="unfinished"/>
+        <translation>Foram liberados %1 MB, mas erros ocorreram nas seguintes etapas:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1241"/>
@@ -404,17 +404,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="1378"/>
         <source>No privilege elevation tool is available</source>
-        <translation type="unfinished"/>
+        <translation>Nenhuma ferramenta de aumento de privilégios está disponível</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1391"/>
         <source>Failed to start the helper process</source>
-        <translation type="unfinished"/>
+        <translation>Ocorreu um erro ao iniciar o auxiliador do processo</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1414"/>
         <source>Operation timed out</source>
-        <translation type="unfinished"/>
+        <translation>Operação encerrada pelo tempo limite</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1509"/>
@@ -455,7 +455,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="1578"/>
         <source>No valid packages found to remove.</source>
-        <translation type="unfinished"/>
+        <translation>Não foram encontrados pacotes para excluir.</translation>
     </message>
 </context>
 <context>

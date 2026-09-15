@@ -463,7 +463,7 @@
     <message>
         <location filename="../about.cpp" line="71"/>
         <source>Could not load %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 を読み込めませんでした</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="94"/>
@@ -484,7 +484,7 @@
     <message>
         <location filename="../about.cpp" line="117"/>
         <source>Could not load changelog.</source>
-        <translation type="unfinished"/>
+        <translation>更新履歴を読み込めませんでした。</translation>
     </message>
     <message>
         <location filename="../about.cpp" line="51"/>

@@ -1,3 +1,10 @@
+mx-cleanup (26.09) mx; urgency=medium
+
+  * Exit with a clear message instead of crashing when started without a
+    graphical desktop session
+
+ -- Adrian <adrian@mxlinux.org>  Tue, 15 Sep 2026 02:31:47 -0400
+
 mx-cleanup (26.07.3) mx; urgency=medium
 
   * Remember system-wide cleanup choices even when scheduled cleanup is disabled

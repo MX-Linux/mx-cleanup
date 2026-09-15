@@ -389,7 +389,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="1258"/>
         <source>Copyright (c) MX Linux</source>
-        <translation>Copyright (c) MX Linux</translation>
+        <translation>Авторское право (c) MX Linux</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1259"/>

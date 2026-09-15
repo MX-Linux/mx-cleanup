@@ -12,7 +12,7 @@
 # suffix and may run ahead of the Debian version.
 
 pkgname=mx-cleanup
-pkgver=26.07.3
+pkgver=26.09
 pkgrel=1
 pkgdesc="GUI for system cleanup and maintenance"
 arch=('x86_64' 'i686')

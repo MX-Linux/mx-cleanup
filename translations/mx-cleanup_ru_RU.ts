@@ -16,7 +16,7 @@
     <message>
         <location filename="../mainwindow.ui" line="686"/>
         <source>Help</source>
-        <translation>Помощь</translation>
+        <translation>Справка</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="692"/>
@@ -36,7 +36,7 @@
     <message>
         <location filename="../mainwindow.ui" line="531"/>
         <source>Purge residual configurations from removed packages</source>
-        <translation>Полное удаление остаточных конфигураций от удалённых пакетов</translation>
+        <translation>Очистить остаточные конфигурации удалённых пакетов</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
@@ -46,12 +46,12 @@
     <message>
         <location filename="../mainwindow.ui" line="545"/>
         <source>Removal Tools</source>
-        <translation>Инструмент для удаления</translation>
+        <translation>Инструменты удаления</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="583"/>
         <source>Remove MX manuals for languages other than system default</source>
-        <translation>Удалить руководства MX для языков, отличных от системных по умолчанию.</translation>
+        <translation>Удалить руководства MX для языков, отличных от системного</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="661"/>
@@ -92,7 +92,7 @@
     <message>
         <location filename="../mainwindow.ui" line="45"/>
         <source>Trash older than:</source>
-        <translation>Мусор старше, чем:</translation>
+        <translation>Корзина старше чем:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="103"/>
@@ -100,7 +100,7 @@
         <location filename="../mainwindow.ui" line="438"/>
         <location filename="../mainwindow.cpp" line="877"/>
         <source> days</source>
-        <translation> дни</translation>
+        <translation> дн.</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="58"/>
@@ -130,12 +130,12 @@
     <message>
         <location filename="../mainwindow.ui" line="605"/>
         <source>Graphical Tool for Analyzing Disk Usage</source>
-        <translation>Графический анализатор использования дисков</translation>
+        <translation>Графический инструмент анализа дискового пространства</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="617"/>
         <source>Run Disk Usage Analyzer</source>
-        <translation>Запустить анализатор использования дисков</translation>
+        <translation>Запустить анализатор дискового пространства</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="141"/>
@@ -170,7 +170,7 @@
     <message>
         <location filename="../mainwindow.ui" line="467"/>
         <source>Free Disk Space for User</source>
-        <translation>Свободное дисковое пространство для пользователя</translation>
+        <translation>Освободить дисковое пространство для пользователя</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="479"/>
@@ -181,12 +181,12 @@
     <message>
         <location filename="../mainwindow.ui" line="482"/>
         <source>Select user:</source>
-        <translation>Выбор пользователя:</translation>
+        <translation>Выберите пользователя:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="263"/>
         <source>Delete Logs</source>
-        <translation>Удаление журналов</translation>
+        <translation>Удалить журналы</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="278"/>
@@ -206,7 +206,7 @@
     <message>
         <location filename="../mainwindow.ui" line="551"/>
         <source>Remove unused WiFi drivers</source>
-        <translation>Удалить неиспользуемые драйверы WiFi</translation>
+        <translation>Удалить неиспользуемые драйверы Wi-Fi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="570"/>
@@ -231,7 +231,7 @@
     <message>
         <location filename="../mainwindow.ui" line="428"/>
         <source>Not accessed for:</source>
-        <translation>Не использовалось в течение:</translation>
+        <translation>Не использовались в течение:</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="376"/>
@@ -246,7 +246,7 @@
     <message>
         <location filename="../mainwindow.ui" line="405"/>
         <source>Thumbnails</source>
-        <translation>Миниатюры</translation>
+        <translation>Эскизы</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="142"/>
@@ -267,7 +267,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="877"/>
         <source> day</source>
-        <translation>день</translation>
+        <translation> дн.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="148"/>
@@ -290,65 +290,65 @@
         <location filename="../mainwindow.cpp" line="939"/>
         <location filename="../mainwindow.cpp" line="961"/>
         <source>Cache cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Очистка кэша</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="991"/>
         <location filename="../mainwindow.cpp" line="995"/>
         <source>Thumbnail cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Очистка эскизов</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1016"/>
         <location filename="../mainwindow.cpp" line="1034"/>
         <source>Flatpak cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Очистка Flatpak</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1070"/>
         <source>Package cache cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Очистка кэша пакетов</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1095"/>
         <source>Package purge</source>
-        <translation type="unfinished"/>
+        <translation>Очистка пакетов</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1119"/>
         <source>Log cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Очистка журналов</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1153"/>
         <location filename="../mainwindow.cpp" line="1157"/>
         <source>Trash cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Очистка корзины</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1214"/>
         <source>Save cleanup schedule</source>
-        <translation type="unfinished"/>
+        <translation>Сохранить расписание очистки</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1217"/>
         <source>Remove previous cleanup schedule</source>
-        <translation type="unfinished"/>
+        <translation>Удалить предыдущее расписание очистки</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1221"/>
         <source>Save settings</source>
-        <translation type="unfinished"/>
+        <translation>Сохранить настройки</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1237"/>
         <source>Some cleanup steps failed</source>
-        <translation type="unfinished"/>
+        <translation>Некоторые шаги очистки завершились ошибкой</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1238"/>
         <source>%1 MiB were freed, but the following steps failed:</source>
-        <translation type="unfinished"/>
+        <translation>Освобождено %1 МиБ, но следующие шаги завершились ошибкой:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1241"/>
@@ -359,22 +359,22 @@
     <message>
         <location filename="../mainwindow.cpp" line="1241"/>
         <source>Cleanup script will run at reboot</source>
-        <translation>Скрипт очистки запустится при перезагрузке</translation>
+        <translation>Скрипт очистки будет запущен при перезагрузке</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1244"/>
         <source>Cleanup command done</source>
-        <translation>Команда очистки завершена</translation>
+        <translation>Команда очистки выполнена</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1244"/>
         <source>%1 MiB were freed</source>
-        <translation>%1 МБ было освобождено</translation>
+        <translation>Освобождено %1 МиБ</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1253"/>
         <source>About</source>
-        <translation>О</translation>
+        <translation>О программе</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1254"/>
@@ -389,32 +389,32 @@
     <message>
         <location filename="../mainwindow.cpp" line="1258"/>
         <source>Copyright (c) MX Linux</source>
-        <translation>Copyright (c) MX Linux</translation>
+        <translation>Авторское право (c) MX Linux</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1259"/>
         <source>%1 License</source>
-        <translation>%1 Лицензия</translation>
+        <translation>Лицензия %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1266"/>
         <source>%1 Help</source>
-        <translation>%1 Справка</translation>
+        <translation>Справка %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1378"/>
         <source>No privilege elevation tool is available</source>
-        <translation type="unfinished"/>
+        <translation>Нет доступного средства повышения привилегий</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1391"/>
         <source>Failed to start the helper process</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось запустить вспомогательный процесс</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1414"/>
         <source>Operation timed out</source>
-        <translation type="unfinished"/>
+        <translation>Время операции истекло</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1509"/>
@@ -424,12 +424,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="1512"/>
         <source>Remove selected</source>
-        <translation>Удалить выделенные</translation>
+        <translation>Удалить выбранное</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1517"/>
         <source>Similar kernels that can be removed:</source>
-        <translation>Похожие ядра, которые можно удалить.</translation>
+        <translation>Похожие ядра, которые можно удалить:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1518"/>
@@ -439,7 +439,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="1521"/>
         <source>&lt;b&gt;Nothing to remove.&lt;/b&gt; Cannot remove kernel in use.</source>
-        <translation>&lt;b&gt;Нечего удалить.&lt;/b&gt; Не удаётся удалить используемое ядро.</translation>
+        <translation>&lt;b&gt;Нечего удалять.&lt;/b&gt; Нельзя удалить используемое ядро.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1565"/>
@@ -450,12 +450,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="1565"/>
         <source>No unused network drivers found to remove.</source>
-        <translation>Не найдено неиспользуемых сетевых драйверов для удаления.</translation>
+        <translation>Неиспользуемых сетевых драйверов для удаления не найдено.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1578"/>
         <source>No valid packages found to remove.</source>
-        <translation type="unfinished"/>
+        <translation>Подходящих пакетов для удаления не найдено.</translation>
     </message>
 </context>
 <context>
@@ -506,7 +506,7 @@
     <message>
         <location filename="../main.cpp" line="93"/>
         <source>You seem to be logged in as root, please log out and log in as normal user to use this program.</source>
-        <translation>Программа запущена суперпользователем. Для использования программы войдите в систему как обычный пользователь.</translation>
+        <translation>Вы вошли в систему как root. Пожалуйста, выйдите и войдите как обычный пользователь для использования этой программы.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="101"/>

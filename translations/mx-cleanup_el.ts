@@ -290,65 +290,65 @@
         <location filename="../mainwindow.cpp" line="939"/>
         <location filename="../mainwindow.cpp" line="961"/>
         <source>Cache cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Εκκαθάριση προσωρινής μνήμης</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="991"/>
         <location filename="../mainwindow.cpp" line="995"/>
         <source>Thumbnail cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Εκκαθάριση μικρογραφιών</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1016"/>
         <location filename="../mainwindow.cpp" line="1034"/>
         <source>Flatpak cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Εκκαθάριση flatpack</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1070"/>
         <source>Package cache cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Εκκαθάριση προσωρινής μνήμης πακέτων</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1095"/>
         <source>Package purge</source>
-        <translation type="unfinished"/>
+        <translation>Ολοκληρωτική εκκαθάριση πακέτων</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1119"/>
         <source>Log cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Εκκαθάριση αρχείου καταγραφής</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1153"/>
         <location filename="../mainwindow.cpp" line="1157"/>
         <source>Trash cleanup</source>
-        <translation type="unfinished"/>
+        <translation>Εκκαθάριση απορριμάτων</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1214"/>
         <source>Save cleanup schedule</source>
-        <translation type="unfinished"/>
+        <translation>Αποθήκευση προγράμματος καθαρισμού</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1217"/>
         <source>Remove previous cleanup schedule</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση προηγούμενων προγραμμάτων καθαρισμού</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1221"/>
         <source>Save settings</source>
-        <translation type="unfinished"/>
+        <translation>Αποθήκευση ρυθμίσεων</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1237"/>
         <source>Some cleanup steps failed</source>
-        <translation type="unfinished"/>
+        <translation>Απέτυχαν κάποια βήματα εκκαθάρισης</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1238"/>
         <source>%1 MiB were freed, but the following steps failed:</source>
-        <translation type="unfinished"/>
+        <translation>Απελευθερώθηκαν %1 MiB, αλλά τα ακόλουθα βήματα απέτυχαν:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1241"/>
@@ -404,17 +404,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="1378"/>
         <source>No privilege elevation tool is available</source>
-        <translation type="unfinished"/>
+        <translation>Δεν υπάρχει διαθέσιμο εργαλείο εκχώρησης δικαιωμάτων</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1391"/>
         <source>Failed to start the helper process</source>
-        <translation type="unfinished"/>
+        <translation>Απέτυχε η εκκίνηση της βοηθητικής διεργασίας</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1414"/>
         <source>Operation timed out</source>
-        <translation type="unfinished"/>
+        <translation>Τερματίστηκε η λειτουργία λόγω χρονικού ορίου</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1509"/>
@@ -455,7 +455,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="1578"/>
         <source>No valid packages found to remove.</source>
-        <translation type="unfinished"/>
+        <translation>Δεν εντοπίστηκαν πακέτα για αφαίρεση.</translation>
     </message>
 </context>
 <context>
