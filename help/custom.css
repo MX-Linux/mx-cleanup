@@ -1,0 +1,44 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.5;
+    margin: 2rem auto;
+    padding: 0 1.25rem 2rem;
+    color: #202124;
+    }
+
+h1,
+h2{
+    color: #103c6b;
+}
+
+a {
+    color: #005f99;
+}
+
+code {
+    background: #f1f3f4;
+    border-radius: 3px;
+    padding: 0.1rem 0.3rem;
+}
+
+img {
+    display: block;
+    margin: auto;
+	padding: 15px 0; /* Adds space between each */
+}
+
+p {
+	margin: .2em;
+}
+
+. center {
+			text-align:center;
+}
+
+.footer {
+    border-top: 1px solid #d0d7de;
+    color: #5f6368;
+    font-size: 0.95rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+}

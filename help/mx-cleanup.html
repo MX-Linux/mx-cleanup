@@ -1,41 +1,131 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>HELP: MX Cleanup</title>
+    <link href="custom.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-<h1>HELP: MX Cleanup</h1>
-<p>This application offers several easy actions to check and increase hard drive space.</p>
+<body lang="en-US">
+	
+<h1 style="text-align:center;">HELP: MX Cleanup</h1>
 
-	<ul>
-		<li>Folders</li>
-		<li> Apt (Installation)
-			<ul>
-				<li> Old files are ones that can no longer be downloaded</li>
-			</ul>
-		</li>
-		<li> Logs
-			<ul>
-				<li> Old logs end in .gz, .old, and .1</li>
-			</ul>
-		</li>
-		<li> Trash</li>
-	</ul>
+<p style="text-align:center;">This application offers several easy cleaning actions to help increase/maintain free disk space.</p>
+
+<p><br></p>
+
+<img src="main-tab.png" width="514" height="488" alt="main tab">
 
 
-<p>Baobab (Disk Usage Analyzer) gives a very nice graphical display of your used space.</p>
+<h2 class="western">Main tab</h2>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-	<tr>
-		<td align="left">
-			<img src="baob.png" alt="Baobab Disk Usage Analyzer" width="900" height="615" />
-		</td>
-	</tr>
-</table>
+<p>Here you will find specific cleaning tools that all are run on a scheduled time.</p>
 
-<p>Note that there are other cleanup applications available in the repos such as Bleachbit, but these have a significant potential to destroy an OS and should only be used by advanced users.</p>
+
+
+<ul>
+<li><b>Free disk space for user</b> - select the user that Cleanup is working on with the Select user:<span style="font-family: OpenSymbol;">↕</span> control.</li>
+
+<li><b>Clean Folders</b> – cleans Cache and Thumbnails by accessed time or all (potentially dangerous).</li>
+
+<li><b>Delete Logs</b> – delete only old logs or Logs older than: <span style="font-family: OpenSymbol;">↕</span> via chooser.</li>
+
+<li><b>Clear APT Cache</b> - delete only Old files or All files.</li>
+
+<li><b>Clean Flatpak</b> – Remove unused runtimes. Files that were left behind by removed Flatpaks.</li>
+
+<li><b>Empty Trash</b> – Operate on selected user or all users. Setting for Trash older than: <span style="font-family: OpenSymbol;">↕</span></li>
+</ul>
+
+
+<h4>Schedule</h4>
+
+<p>The default schedule is No automatic clean. Other choices are: At reboot, Daily, Weekly and Monthly.</p>
+
+<p></p>
+
+<p>Click Apply and then x Close.</p>
+
+<br>
+
+
+<hr>
+
+<h2>Tools tab</h2>
+
+
+<p>Here you will find specialized cleaning tools that are one time actions.</p>
+
+
+<h3>Removal Tools</h3>
+
+<img src="Tools.png" width="581" height="300" alt="Tools">
+
+<br style="clear:left;"/>
+
+<p><b>Remove unused WiFi drivers</b> – Linux kernel 6.14 and later has many RealTek drivers in kernel. This removes the DKM type WiFi drivers that were used by older kernels. This prevents them from being rebuilt needlessly each time a Linux kernel update is applied.</p>
+
+<p><br></p>
+
+<p><b>List and select kernels to remove</b>. If you have you kernels auto updating the space consumed then increases over time. This is especially true if kernels are in /boot when root encryption configured.</p>
+
+<p><br></p>
+
+<img src="remove-kernels.png" width="345" height="215" alt="">
+
+<p><br></p>
+
+<p  style="text-align:left;">The <strong>Kernel currently in use:</strong> kernel can NOT be removed. It is considered a good practice to keep at least 1 kernel beyond the one in use.</p>
+
+<p><br></p>
+
+<p><b>Remove MX manuals for languages other than the system default</b>. This frees up disk space taken by manuals and FAQ files (PDF) that are not needed.</p>
+
+<p><br></p>
+
+
+<hr>
+
+<h3>Graphical Tool for Analyzing Disk Usage</h3>
+
+<p>Clicking <b>Run </b><b>Disk Usage Analyzer</b> starts an applet that gives a graphical disk usage map display of your used. When first opened it asks you to define a starting point.</p>
+
+<p><br></p>
+
+<img src="Devices-and-Locations.png" width="962" height="394" alt="">
+
+<br style="clear:left;"/>
+
+<p>Then it shows a Folder list (left). The listing is sorted by the Size of disk space used. Space use is shown as a percentage in the Folder listing and is highlighted as red in the Rings Chart (right).</p>
+
+<p><br></p>
+
+<img src="baob.png" width="962" height="602" class="center" alt="">
+
+<p><br></p>
+
+<p>This allows for a selection of a specific part of the file system to be scanned. A single folder or the entire file system. Clicking a folder updates the display and refreshes the listing of internal details.</p>
+
+<p><br></p>
+
+<img src="baob-02.png" width="951" height="599" alt="">
+
+<p><br></p>
+
+<p>Mousing over a given item in the chart (above) shows folder (Host) in light red and component file of it (Windows11_Client_…) in a darker red.</p>
+
+<p><br></p>
+
+<p>Each directory can be operated on by right clicking and choosing either ‘Open Externally’ (File Manager) or ‘Move to Trash’ options.</p>
+
+
+<br><hr>
+
+<h3>Closing caution</h3>
+
+<p>Note that there are other cleanup applications available in the repos such as Bleachbit, but these have a significant potential to destroy a Linux OS and should only be used by advanced users.</p>
+
+<p><br></p>
 
 </body>
 </html>
