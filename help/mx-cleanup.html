@@ -1,41 +1,78 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>HELP: MX Cleanup</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HELP: MX Cleanup</title>
+    <link href="custom.css" rel="stylesheet">
 </head>
 <body>
+
 <h1>HELP: MX Cleanup</h1>
-<p>This application offers several easy actions to check and increase hard drive space.</p>
 
-	<ul>
-		<li>Folders</li>
-		<li> Apt (Installation)
-			<ul>
-				<li> Old files are ones that can no longer be downloaded</li>
-			</ul>
-		</li>
-		<li> Logs
-			<ul>
-				<li> Old logs end in .gz, .old, and .1</li>
-			</ul>
-		</li>
-		<li> Trash</li>
-	</ul>
+<p class="intro">This application offers several easy cleaning actions to help increase and maintain free disk space.</p>
 
+<h2>Main tab</h2>
 
-<p>Baobab (Disk Usage Analyzer) gives a very nice graphical display of your used space.</p>
+<img src="main-tab.png" width="514" height="488" alt="MX Cleanup Main tab">
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-	<tr>
-		<td align="left">
-			<img src="baob.png" alt="Baobab Disk Usage Analyzer" width="900" height="615" />
-		</td>
-	</tr>
-</table>
+<p>Select the cleaning actions you want, then click <b>Apply</b>. The selected actions run right away, and if a schedule is chosen they are also repeated automatically.</p>
 
-<p>Note that there are other cleanup applications available in the repos such as Bleachbit, but these have a significant potential to destroy an OS and should only be used by advanced users.</p>
+<ul>
+<li><b>Free Disk Space for User</b> – choose the user whose files are cleaned with <b>Select user</b>.</li>
+<li><b>Clean Folders</b> – cleans the user's Cache and Thumbnails folders, either files not accessed for a chosen time or all of them (potentially dangerous).</li>
+<li><b>Delete Logs</b> – deletes old (rotated) logs, which end in .gz, .old or a number such as .1, or all logs. <b>Logs older than</b> limits this to logs older than the chosen age.</li>
+<li><b>Clear APT Cache</b> – deletes old package files, which are ones that can no longer be downloaded from the repositories, or all cached package files.</li>
+<li><b>Clean Flatpak</b> – removes Flatpak runtimes that are no longer used by any installed application.</li>
+<li><b>Empty Trash</b> – empties the trash of the selected user or of all users. <b>Trash older than</b> limits this to items older than the chosen age.</li>
+<li><b>Purge residual configurations from removed packages</b> – deletes configuration files left behind by packages that were removed but not purged.</li>
+</ul>
+
+<h3>Schedule</h3>
+
+<p>The default is <b>No automatic clean</b>. The other choices are <b>At reboot</b>, <b>Daily</b>, <b>Weekly</b> and <b>Monthly</b>. The schedule is saved when you click <b>Apply</b>.</p>
+
+<hr>
+
+<h2>Tools tab</h2>
+
+<p>Here you will find specialized tools that run once, when you click them.</p>
+
+<img src="Tools.png" width="581" height="300" alt="MX Cleanup Tools tab">
+
+<h3>Removal Tools</h3>
+
+<p><b>Remove unused WiFi drivers</b> – removes out-of-tree (DKMS) WiFi driver packages that are installed but not in use, so they are no longer rebuilt every time a new kernel is installed. It covers the Realtek rtl8812au, rtl8814au, rtl8821au, rtl8821cu and rtl8821ce drivers and the Broadcom wl driver (broadcom-sta-dkms).</p>
+
+<p><b>List and select kernels to remove</b> – every kernel update leaves the previous kernel installed, so the space they use grows over time. This matters most when /boot is a small separate partition, as it is with root encryption.</p>
+
+<img src="remove-kernels.png" width="345" height="215" alt="Kernel removal dialog">
+
+<p>The <b>Kernel currently in use</b> cannot be removed. It is good practice to keep at least one other kernel as a fallback.</p>
+
+<p><b>Remove MX manuals for languages other than system default</b> – frees the space used by MX manuals and FAQ files (PDF) in languages you do not need.</p>
+
+<h3>Graphical Tool for Analyzing Disk Usage</h3>
+
+<p>Clicking <b>Run Disk Usage Analyzer</b> starts Baobab, which shows a graphical map of the disk space in use. When it opens it asks you to choose a starting point: a single folder or a whole device.</p>
+
+<img src="Devices-and-Locations.png" width="962" height="394" alt="Disk Usage Analyzer start page">
+
+<p>It then shows a folder list on the left, sorted by the space each folder uses, and a rings chart on the right. The share of space used is shown as a percentage in the list.</p>
+
+<img src="baob.png" width="962" height="602" alt="Disk Usage Analyzer folder list and rings chart">
+
+<p>Clicking a folder moves into it and refreshes the list and the chart. Hovering over a segment of the chart shows the folder or file it stands for and its size.</p>
+
+<img src="baob-02.png" width="951" height="599" alt="Disk Usage Analyzer showing folder details">
+
+<p>Right-click a folder to <b>Open Externally</b> (in the file manager) or <b>Move to Trash</b>.</p>
+
+<hr>
+
+<h3>A word of caution</h3>
+
+<p>There are other cleanup applications available in the repos, such as BleachBit, but these have a significant potential to damage a Linux system and should only be used by advanced users.</p>
 
 </body>
 </html>

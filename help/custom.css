@@ -1,0 +1,43 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.5;
+    max-width: 62rem;
+    margin: 2rem auto;
+    padding: 0 1.25rem 2rem;
+    color: #202124;
+}
+
+h1,
+h2 {
+    color: #103c6b;
+}
+
+h1,
+.intro {
+    text-align: center;
+}
+
+a {
+    color: #005f99;
+}
+
+code {
+    background: #f1f3f4;
+    border-radius: 3px;
+    padding: 0.1rem 0.3rem;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1rem auto;
+}
+
+li {
+    margin-bottom: 0.4rem;
+}
+
+hr {
+    margin: 2rem 0;
+}
