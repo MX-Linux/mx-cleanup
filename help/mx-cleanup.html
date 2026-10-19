@@ -1,131 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>HELP: MX Cleanup</title>
-    <link href="custom.css" rel="stylesheet" type="text/css">
+    <title>HELP: MX Cleanup</title>
+    <link href="custom.css" rel="stylesheet">
 </head>
-<body lang="en-US">
-	
-<h1 style="text-align:center;">HELP: MX Cleanup</h1>
+<body>
 
-<p style="text-align:center;">This application offers several easy cleaning actions to help increase/maintain free disk space.</p>
+<h1>HELP: MX Cleanup</h1>
 
-<p><br></p>
+<p class="intro">This application offers several easy cleaning actions to help increase and maintain free disk space.</p>
 
-<img src="main-tab.png" width="514" height="488" alt="main tab">
+<h2>Main tab</h2>
 
+<img src="main-tab.png" width="514" height="488" alt="MX Cleanup Main tab">
 
-<h2 class="western">Main tab</h2>
-
-<p>Here you will find specific cleaning tools that all are run on a scheduled time.</p>
-
-
+<p>Select the cleaning actions you want, then click <b>Apply</b>. The selected actions run right away, and if a schedule is chosen they are also repeated automatically.</p>
 
 <ul>
-<li><b>Free disk space for user</b> - select the user that Cleanup is working on with the Select user:<span style="font-family: OpenSymbol;">↕</span> control.</li>
-
-<li><b>Clean Folders</b> – cleans Cache and Thumbnails by accessed time or all (potentially dangerous).</li>
-
-<li><b>Delete Logs</b> – delete only old logs or Logs older than: <span style="font-family: OpenSymbol;">↕</span> via chooser.</li>
-
-<li><b>Clear APT Cache</b> - delete only Old files or All files.</li>
-
-<li><b>Clean Flatpak</b> – Remove unused runtimes. Files that were left behind by removed Flatpaks.</li>
-
-<li><b>Empty Trash</b> – Operate on selected user or all users. Setting for Trash older than: <span style="font-family: OpenSymbol;">↕</span></li>
+<li><b>Free Disk Space for User</b> – choose the user whose files are cleaned with <b>Select user</b>.</li>
+<li><b>Clean Folders</b> – cleans the user's Cache and Thumbnails folders, either files not accessed for a chosen time or all of them (potentially dangerous).</li>
+<li><b>Delete Logs</b> – deletes old (rotated) logs, which end in .gz, .old or a number such as .1, or all logs. <b>Logs older than</b> limits this to logs older than the chosen age.</li>
+<li><b>Clear APT Cache</b> – deletes old package files, which are ones that can no longer be downloaded from the repositories, or all cached package files.</li>
+<li><b>Clean Flatpak</b> – removes Flatpak runtimes that are no longer used by any installed application.</li>
+<li><b>Empty Trash</b> – empties the trash of the selected user or of all users. <b>Trash older than</b> limits this to items older than the chosen age.</li>
+<li><b>Purge residual configurations from removed packages</b> – deletes configuration files left behind by packages that were removed but not purged.</li>
 </ul>
 
+<h3>Schedule</h3>
 
-<h4>Schedule</h4>
-
-<p>The default schedule is No automatic clean. Other choices are: At reboot, Daily, Weekly and Monthly.</p>
-
-<p></p>
-
-<p>Click Apply and then x Close.</p>
-
-<br>
-
+<p>The default is <b>No automatic clean</b>. The other choices are <b>At reboot</b>, <b>Daily</b>, <b>Weekly</b> and <b>Monthly</b>. The schedule is saved when you click <b>Apply</b>.</p>
 
 <hr>
 
 <h2>Tools tab</h2>
 
+<p>Here you will find specialized tools that run once, when you click them.</p>
 
-<p>Here you will find specialized cleaning tools that are one time actions.</p>
-
+<img src="Tools.png" width="581" height="300" alt="MX Cleanup Tools tab">
 
 <h3>Removal Tools</h3>
 
-<img src="Tools.png" width="581" height="300" alt="Tools">
+<p><b>Remove unused WiFi drivers</b> – removes out-of-tree (DKMS) WiFi driver packages that are installed but not in use, so they are no longer rebuilt every time a new kernel is installed. It covers the Realtek rtl8812au, rtl8814au, rtl8821au, rtl8821cu and rtl8821ce drivers and the Broadcom wl driver (broadcom-sta-dkms).</p>
 
-<br style="clear:left;"/>
+<p><b>List and select kernels to remove</b> – every kernel update leaves the previous kernel installed, so the space they use grows over time. This matters most when /boot is a small separate partition, as it is with root encryption.</p>
 
-<p><b>Remove unused WiFi drivers</b> – Linux kernel 6.14 and later has many RealTek drivers in kernel. This removes the DKM type WiFi drivers that were used by older kernels. This prevents them from being rebuilt needlessly each time a Linux kernel update is applied.</p>
+<img src="remove-kernels.png" width="345" height="215" alt="Kernel removal dialog">
 
-<p><br></p>
+<p>The <b>Kernel currently in use</b> cannot be removed. It is good practice to keep at least one other kernel as a fallback.</p>
 
-<p><b>List and select kernels to remove</b>. If you have you kernels auto updating the space consumed then increases over time. This is especially true if kernels are in /boot when root encryption configured.</p>
-
-<p><br></p>
-
-<img src="remove-kernels.png" width="345" height="215" alt="">
-
-<p><br></p>
-
-<p  style="text-align:left;">The <strong>Kernel currently in use:</strong> kernel can NOT be removed. It is considered a good practice to keep at least 1 kernel beyond the one in use.</p>
-
-<p><br></p>
-
-<p><b>Remove MX manuals for languages other than the system default</b>. This frees up disk space taken by manuals and FAQ files (PDF) that are not needed.</p>
-
-<p><br></p>
-
-
-<hr>
+<p><b>Remove MX manuals for languages other than system default</b> – frees the space used by MX manuals and FAQ files (PDF) in languages you do not need.</p>
 
 <h3>Graphical Tool for Analyzing Disk Usage</h3>
 
-<p>Clicking <b>Run </b><b>Disk Usage Analyzer</b> starts an applet that gives a graphical disk usage map display of your used. When first opened it asks you to define a starting point.</p>
+<p>Clicking <b>Run Disk Usage Analyzer</b> starts Baobab, which shows a graphical map of the disk space in use. When it opens it asks you to choose a starting point: a single folder or a whole device.</p>
 
-<p><br></p>
+<img src="Devices-and-Locations.png" width="962" height="394" alt="Disk Usage Analyzer start page">
 
-<img src="Devices-and-Locations.png" width="962" height="394" alt="">
+<p>It then shows a folder list on the left, sorted by the space each folder uses, and a rings chart on the right. The share of space used is shown as a percentage in the list.</p>
 
-<br style="clear:left;"/>
+<img src="baob.png" width="962" height="602" alt="Disk Usage Analyzer folder list and rings chart">
 
-<p>Then it shows a Folder list (left). The listing is sorted by the Size of disk space used. Space use is shown as a percentage in the Folder listing and is highlighted as red in the Rings Chart (right).</p>
+<p>Clicking a folder moves into it and refreshes the list and the chart. Hovering over a segment of the chart shows the folder or file it stands for and its size.</p>
 
-<p><br></p>
+<img src="baob-02.png" width="951" height="599" alt="Disk Usage Analyzer showing folder details">
 
-<img src="baob.png" width="962" height="602" class="center" alt="">
+<p>Right-click a folder to <b>Open Externally</b> (in the file manager) or <b>Move to Trash</b>.</p>
 
-<p><br></p>
+<hr>
 
-<p>This allows for a selection of a specific part of the file system to be scanned. A single folder or the entire file system. Clicking a folder updates the display and refreshes the listing of internal details.</p>
+<h3>A word of caution</h3>
 
-<p><br></p>
-
-<img src="baob-02.png" width="951" height="599" alt="">
-
-<p><br></p>
-
-<p>Mousing over a given item in the chart (above) shows folder (Host) in light red and component file of it (Windows11_Client_…) in a darker red.</p>
-
-<p><br></p>
-
-<p>Each directory can be operated on by right clicking and choosing either ‘Open Externally’ (File Manager) or ‘Move to Trash’ options.</p>
-
-
-<br><hr>
-
-<h3>Closing caution</h3>
-
-<p>Note that there are other cleanup applications available in the repos such as Bleachbit, but these have a significant potential to destroy a Linux OS and should only be used by advanced users.</p>
-
-<p><br></p>
+<p>There are other cleanup applications available in the repos, such as BleachBit, but these have a significant potential to damage a Linux system and should only be used by advanced users.</p>
 
 </body>
 </html>

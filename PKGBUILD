@@ -51,6 +51,6 @@ package() {
 
     install -dm755 "${pkgdir}/usr/share/doc/mx-cleanup"
     if [ -d help ]; then
-        cp help/*.html help/*.png "${pkgdir}/usr/share/doc/mx-cleanup/" 2>/dev/null || true
+        cp help/*.html help/*.png help/*.css "${pkgdir}/usr/share/doc/mx-cleanup/" 2>/dev/null || true
     fi
 }

@@ -1,14 +1,20 @@
 body {
     font-family: sans-serif;
     line-height: 1.5;
+    max-width: 62rem;
     margin: 2rem auto;
     padding: 0 1.25rem 2rem;
     color: #202124;
-    }
+}
 
 h1,
-h2{
+h2 {
     color: #103c6b;
+}
+
+h1,
+.intro {
+    text-align: center;
 }
 
 a {
@@ -23,22 +29,15 @@ code {
 
 img {
     display: block;
-    margin: auto;
-	padding: 15px 0; /* Adds space between each */
+    max-width: 100%;
+    height: auto;
+    margin: 1rem auto;
 }
 
-p {
-	margin: .2em;
+li {
+    margin-bottom: 0.4rem;
 }
 
-. center {
-			text-align:center;
-}
-
-.footer {
-    border-top: 1px solid #d0d7de;
-    color: #5f6368;
-    font-size: 0.95rem;
-    margin-top: 2rem;
-    padding-top: 1rem;
+hr {
+    margin: 2rem 0;
 }
