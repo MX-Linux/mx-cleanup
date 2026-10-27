@@ -361,16 +361,17 @@ QString generateSystemScript(const ScheduleOptions &opts)
     } else if (opts.logsMode == "all") {
         parts << "find /var/log -type f" + scheduleAge(opts.logsDays) + " -exec truncate -s 0 {} + 2>/dev/null";
     }
+    const bool isArch = isArchLinuxHost();
     QString apt;
     if (!opts.aptMode.isEmpty()) {
-        if (isArchLinuxHost()) {
+        if (isArch) {
             apt = opts.aptMode == "auto" ? QStringLiteral("pacman -Sc --noconfirm")
-                                         : QStringLiteral("yes | pacman -Scc");
+                                         : QStringLiteral("yes | LC_ALL=C pacman -Scc");
         } else {
             apt = opts.aptMode == "auto" ? QStringLiteral("apt-get autoclean") : QStringLiteral("apt-get clean");
         }
     }
-    if (opts.purge) {
+    if (opts.purge && !isArch) {
         if (!apt.isEmpty()) {
             apt += '\n';
         }

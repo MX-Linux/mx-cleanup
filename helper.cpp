@@ -650,6 +650,8 @@ struct ProcessResult
         // -Scc's "remove ALL files from cache?" prompt defaults to No, so
         // --noconfirm would skip the cleanup; answer yes explicitly instead
         // (one prompt per cache dir plus one for unused sync databases).
+        // Force the C locale so pacman accepts "y" rather than e.g. German "j".
+        qputenv("LC_ALL", "C");
         return runRequiredBinary(pacmanBinary(), "pacman", {"-Scc"}, QByteArray("y\n").repeated(16));
     }
     return runRequiredBinary(aptGetBinary(), "apt-get", {mode == "auto" ? "autoclean" : "clean"});

@@ -220,6 +220,8 @@ void MainWindow::setup()
     if (isArchLinux) {
         ui->groupBoxKernel->hide();
         ui->groupBoxApt->setTitle(tr("Clean pacman cache"));
+        // pacman has no "removed, config files left" package state to purge
+        ui->checkPurge->hide();
     }
 
     suppressUserSwitch = true;
@@ -486,7 +488,7 @@ bool MainWindow::loadSystemScriptOptions(const QString &legacyFallbackContent)
     } else {
         ui->groupBoxApt->setChecked(false);
     }
-    ui->checkPurge->setChecked(content.contains("apt-get purge"));
+    ui->checkPurge->setChecked(!isArchLinux && content.contains("apt-get purge"));
 
     if (QRegularExpression(R"(\-exec truncate \-s 0)").match(content).hasMatch()) {
         ui->groupBoxLogs->setChecked(true);
@@ -1171,7 +1173,7 @@ void MainWindow::pushApply_clicked()
         }
     }
 
-    if (ui->checkPurge->isChecked()) {
+    if (!isArchLinux && ui->checkPurge->isChecked()) {
         quint64 before_size = helperDuSize("dpkg-info", {}, QuietMode::Yes);
         const QStringList residualPackages
             = cmdOut("dpkg-query -W -f='${db:Status-Abbrev}\t${Package}\n'", QuietMode::Yes)
