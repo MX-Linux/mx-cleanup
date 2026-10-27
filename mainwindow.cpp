@@ -480,7 +480,7 @@ bool MainWindow::loadSystemScriptOptions(const QString &legacyFallbackContent)
     if (content.contains("apt-get autoclean") || content.contains("pacman -Sc --noconfirm")) {
         ui->groupBoxApt->setChecked(true);
         ui->radioAutoClean->setChecked(true);
-    } else if (content.contains("apt-get clean") || content.contains("pacman -Scc --noconfirm")) {
+    } else if (content.contains("apt-get clean") || content.contains("pacman -Scc")) {
         ui->groupBoxApt->setChecked(true);
         ui->radioClean->setChecked(true);
     } else {

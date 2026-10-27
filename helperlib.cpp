@@ -365,7 +365,7 @@ QString generateSystemScript(const ScheduleOptions &opts)
     if (!opts.aptMode.isEmpty()) {
         if (isArchLinuxHost()) {
             apt = opts.aptMode == "auto" ? QStringLiteral("pacman -Sc --noconfirm")
-                                         : QStringLiteral("pacman -Scc --noconfirm");
+                                         : QStringLiteral("yes | pacman -Scc");
         } else {
             apt = opts.aptMode == "auto" ? QStringLiteral("apt-get autoclean") : QStringLiteral("apt-get clean");
         }
