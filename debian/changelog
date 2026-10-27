@@ -1,3 +1,16 @@
+mx-cleanup (26.10) mx; urgency=medium
+
+  * Expand the help page with screenshots and descriptions of more cleanup
+    options, and fix descriptions that no longer matched the program
+  * Show the help page with its intended layout and styling
+  * Update translations
+  * On Arch Linux, make the full pacman cache cleanup actually remove the
+    cached packages, including on systems not set to English
+  * On Arch Linux, hide the option to purge leftover settings of removed
+    packages, which only works on Debian-based systems
+
+ -- Adrian <adrian@mxlinux.org>  Mon, 26 Oct 2026 22:27:09 -0400
+
 mx-cleanup (26.09) mx; urgency=medium
 
   * Exit with a clear message instead of crashing when started without a
