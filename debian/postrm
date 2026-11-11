@@ -7,10 +7,10 @@ set -e
 # logs/caches/trash on schedule even after the package is removed.
 case "$1" in
 remove | purge)
-    rm -f /etc/cron.daily/mx-cleanup /etc/cron.daily/mx-cleanup.* \
-        /etc/cron.weekly/mx-cleanup /etc/cron.weekly/mx-cleanup.* \
-        /etc/cron.monthly/mx-cleanup /etc/cron.monthly/mx-cleanup.* \
-        /etc/cron.d/mx-cleanup /etc/cron.d/mx-cleanup.* \
+    rm -f /etc/cron.daily/mx-cleanup /etc/cron.daily/mx-cleanup.* /etc/cron.daily/mx-cleanup-* \
+        /etc/cron.weekly/mx-cleanup /etc/cron.weekly/mx-cleanup.* /etc/cron.weekly/mx-cleanup-* \
+        /etc/cron.monthly/mx-cleanup /etc/cron.monthly/mx-cleanup.* /etc/cron.monthly/mx-cleanup-* \
+        /etc/cron.d/mx-cleanup /etc/cron.d/mx-cleanup.* /etc/cron.d/mx-cleanup-* \
         /usr/bin/mx-cleanup-script /usr/bin/mx-cleanup-script.* \
         /usr/bin/mx-cleanup-system-script
     ;;

@@ -383,6 +383,9 @@ struct ProcessResult
     if (!lookupUser(user)) {
         return 1;
     }
+    if (kind == "cron" && !removeScheduleFileIfPresent(base + userCronSuffix(user))) {
+        return 1;
+    }
     return removeScheduleFileIfPresent(base + '.' + userScheduleFileId(user)) ? 0 : 1;
 }
 
@@ -430,7 +433,7 @@ struct ProcessResult
         return 1;
     }
     const QString suffix = fileId.isEmpty() ? QString() : '.' + fileId;
-    const QString cronTarget = cronEntryBase(period) + suffix;
+    const QString cronTarget = cronEntryBase(period) + userCronSuffix(opts.user);
 
     // Staged renames replace each target atomically. Removing targets
     // beforehand would only risk losing the previous schedule if a write
@@ -477,7 +480,11 @@ struct ProcessResult
         discardStagedFile(&systemScript);
         return 1;
     }
-    return commitStagedFile(&systemScript) ? 0 : 1;
+    if (!commitStagedFile(&systemScript)) {
+        return 1;
+    }
+    // Retire the ignored dotted entry only after all replacements are saved.
+    return opts.user.isEmpty() || removeScheduleFileIfPresent(cronEntryBase(period) + suffix) ? 0 : 1;
 }
 
 [[nodiscard]] bool parseSizeOrDelete(const QString &mode, bool *isDelete)

@@ -29,6 +29,7 @@
 #include <QFileInfo>
 #include <QObject>
 #include <QProcess>
+#include <QStandardPaths>
 #include <QString>
 #include <QTemporaryDir>
 #include <QTest>
@@ -71,6 +72,7 @@ private slots:
     void testValidUserNameSyntax_data();
     void testValidUserNameSyntax();
     void testUserScheduleFileId();
+    void testCronNamesRunParts();
 
     void testHomeDirForUser_Valid();
     void testHomeDirForUser_Unknown();
@@ -361,6 +363,45 @@ void TestUtils::testUserScheduleFileId()
     QCOMPARE(cyrillicId, userScheduleFileId(QStringLiteral("иван")));
     QVERIFY(QRegularExpression(QStringLiteral("^[A-Za-z0-9_-]+$")).match(cyrillicId).hasMatch());
     QVERIFY(userScheduleFileId(QString()).isEmpty());
+}
+
+void TestUtils::testCronNamesRunParts()
+{
+    QTemporaryDir dir;
+    QVERIFY(dir.isValid());
+    QCOMPARE(userCronSuffix(QString()), QString());
+    QCOMPARE(userCronSuffix("alice"), QStringLiteral("-alice"));
+    QCOMPARE(userCronSuffix("alice.smith"), QStringLiteral("-alice_2esmith"));
+    QCOMPARE(userCronSuffix("alice_2esmith"), QStringLiteral("-alice_5f2esmith"));
+    QStringList expected;
+    for (const QString &user : {QStringLiteral("alice"), QStringLiteral("alice.smith"),
+                                QStringLiteral("alice_2esmith"), QStringLiteral("иван")}) {
+        const QString path = dir.filePath("mx-cleanup" + userCronSuffix(user));
+        QFile file(path);
+        QVERIFY(file.open(QIODevice::WriteOnly));
+        file.write("#!/bin/sh\nexit 0\n");
+        file.close();
+        QVERIFY(file.setPermissions(QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner));
+        expected << path;
+    }
+    const QString runParts = QStandardPaths::findExecutable("run-parts");
+    if (runParts.isEmpty()) {
+        QSKIP("Debian run-parts is not installed");
+    }
+    QProcess proc;
+    proc.setProcessChannelMode(QProcess::MergedChannels);
+    proc.start(runParts, {"--version"});
+    QVERIFY(proc.waitForFinished());
+    if (proc.exitCode() != 0 || !proc.readAllStandardOutput().contains("Debian run-parts")) {
+        QSKIP("This test requires Debian run-parts");
+    }
+    proc.start(runParts, {"--test", dir.path()});
+    QVERIFY(proc.waitForFinished());
+    QCOMPARE(proc.exitCode(), 0);
+    auto actual = QString::fromLocal8Bit(proc.readAllStandardOutput()).split('\n', Qt::SkipEmptyParts);
+    actual.sort();
+    expected.sort();
+    QCOMPARE(actual, expected);
 }
 
 void TestUtils::testHomeDirForUser_Valid()

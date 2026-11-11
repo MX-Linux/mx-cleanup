@@ -310,4 +310,9 @@ if(BUILD_TESTS)
     )
 
     add_test(NAME test_utils COMMAND test_mx-cleanup)
+    find_package(Python3 QUIET COMPONENTS Interpreter)
+    if(Python3_Interpreter_FOUND)
+        add_test(NAME test_schedule_migration
+            COMMAND ${Python3_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/test_schedule_migration.py)
+    endif()
 endif()

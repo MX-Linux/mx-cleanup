@@ -390,7 +390,7 @@ QString MainWindow::cronEntryBase(const QString &period) const
 QString MainWindow::cronEntryPath(const QString &period, bool forWrite) const
 {
     const QString base = cronEntryBase(period);
-    const QString suffix = currentUserSuffix();
+    const QString suffix = userCronSuffix(ui->comboUserClean->currentText());
 
     if (suffix.isEmpty()) {
         return base;
@@ -403,6 +403,11 @@ QString MainWindow::cronEntryPath(const QString &period, bool forWrite) const
 
     if (QFile::exists(candidate)) {
         return candidate;
+    }
+
+    const QString legacy = base + currentUserSuffix();
+    if (QFile::exists(legacy)) {
+        return legacy;
     }
 
     const bool selectedIsCurrent = (ui->comboUserClean->currentText() == currentUser);
