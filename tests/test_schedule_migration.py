@@ -10,6 +10,9 @@ class ScheduleMigration(unittest.TestCase):
         repo = pathlib.Path(__file__).resolve().parents[1]
         for hook in ("arch/mx-cleanup.install", "mx-cleanup.install"):
             with self.subTest(hook=hook), tempfile.TemporaryDirectory() as root:
+                # Debian source archives may omit Arch packaging files.
+                if not (repo / hook).exists():
+                    self.skipTest(f"Arch packaging hook not included: {hook}")
                 root = pathlib.Path(root)
                 for period in ("daily", "weekly", "monthly", "d"):
                     directory = root / "etc" / f"cron.{period}"
