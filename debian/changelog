@@ -1,8 +1,12 @@
+mx-cleanup (26.11) mx; urgency=medium
+
+  * Fix scheduled cleanups that were saved but never ran on MX Linux and
+    Debian, so schedules set up earlier start running after this update
+
+ -- Adrian <adrian@mxlinux.org>  Tue, 10 Nov 2026 20:38:02 -0500
+
 mx-cleanup (26.10) mx; urgency=medium
 
-  * Fix scheduled cleanup filenames that cron ignored. On Debian upgrades,
-    migrate existing schedules so their configured cleanup begins running
-  * Remove the corrected schedules when uninstalling on Debian or Arch Linux
   * Expand the help page with screenshots and descriptions of more cleanup
     options, and fix descriptions that no longer matched the program
   * Show the help page with its intended layout and styling
