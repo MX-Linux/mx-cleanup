@@ -73,7 +73,7 @@ void printError(const QString &message);
 // another user's files. Each returns an open fd (caller must close it) or
 // -1 if a component is missing (when create is false) or is a symlink.
 [[nodiscard]] int openHomeDir(const QString &homeDir);
-[[nodiscard]] int openConfigDir(int homeFd, bool create);
+[[nodiscard]] int openConfigDir(int homeFd, bool create, uid_t uid, gid_t gid);
 [[nodiscard]] int openMxLinuxDir(int configFd, bool create, uid_t uid, gid_t gid);
 [[nodiscard]] int openSettingsDirFd(const QString &homeDir, bool create, uid_t uid, gid_t gid);
 

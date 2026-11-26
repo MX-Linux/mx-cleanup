@@ -101,12 +101,20 @@ int openHomeDir(const QString &homeDir)
     return ::open(QFile::encodeName(homeDir).constData(), O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
 }
 
-int openConfigDir(int homeFd, bool create)
+int openConfigDir(int homeFd, bool create, uid_t uid, gid_t gid)
 {
-    if (create && ::mkdirat(homeFd, ".config", 0755) < 0 && errno != EEXIST) {
+    const bool created = create && ::mkdirat(homeFd, ".config", 0755) == 0;
+    if (create && !created && errno != EEXIST) {
         return -1;
     }
-    return ::openat(homeFd, ".config", O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
+    const int fd = ::openat(homeFd, ".config", O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
+    if (fd >= 0 && created && ::fchown(fd, uid, gid) < 0) {
+        const int error = errno;
+        ::close(fd);
+        errno = error;
+        return -1;
+    }
+    return fd;
 }
 
 int openMxLinuxDir(int configFd, bool create, uid_t uid, gid_t gid)
@@ -130,7 +138,7 @@ int openSettingsDirFd(const QString &homeDir, bool create, uid_t uid, gid_t gid)
     if (homeFd < 0) {
         return -1;
     }
-    const int configFd = openConfigDir(homeFd, create);
+    const int configFd = openConfigDir(homeFd, create, uid, gid);
     ::close(homeFd);
     if (configFd < 0) {
         return -1;
