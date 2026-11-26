@@ -80,19 +80,33 @@ if [ "$DEBIAN_BUILD" = true ]; then
 
     echo "Creating debs directory and moving debian artifacts..."
     mkdir -p debs
-    mv ../*.deb debs/ 2>/dev/null || true
-    mv ../*.changes debs/ 2>/dev/null || true  
-    mv ../*.dsc debs/ 2>/dev/null || true
-    mv ../*.tar.* debs/ 2>/dev/null || true
-    mv ../*.buildinfo debs/ 2>/dev/null || true
-    mv ../*build* debs/ 2>/dev/null || true
+    source_package=$(dpkg-parsechangelog -S Source)
+    version=$(dpkg-parsechangelog -S Version)
+    architecture=$(dpkg-architecture -qDEB_HOST_ARCH)
+    output_base="../${source_package}_${version#*:}_${architecture}"
+    changes="$output_base.changes"
+    artifacts=("$changes")
+    while read -r name; do
+        if [[ -z "$name" || "$name" == */* || ! -f "../$name" ]]; then
+            echo "Invalid or missing artifact in $changes: $name" >&2
+            exit 1
+        fi
+        artifacts+=("../$name")
+    done < <(awk '/^Files:/ { files = 1; next } /^[^ ]/ { files = 0 } files { print $NF }' "$changes")
+    if (( ${#artifacts[@]} == 1 )); then
+        echo "No artifacts listed in $changes" >&2
+        exit 1
+    fi
+    if [[ -f "$output_base.build" ]]; then
+        artifacts+=("$output_base.build")
+    fi
+    mv -- "${artifacts[@]}" debs/
 
     echo "Cleaning build directory and debian artifacts..."
     rm -rf "$BUILD_DIR"
     rm -f debian/*.debhelper.log debian/*.substvars debian/files
     rm -rf debian/.debhelper/ debian/deb-installer/ obj-*/
     rm -f translations/*.qm version.h
-    rm -f ../*build* ../*.buildinfo 2>/dev/null || true
 
     echo "Debian package build completed!"
     echo "Debian artifacts moved to debs/ directory"
@@ -146,7 +160,6 @@ if [ "$CLEAN" = true ]; then
     rm -f debian/*.debhelper.log debian/*.substvars debian/files
     rm -rf debian/.debhelper/ debian/deb-installer/ obj-*/
     rm -f translations/*.qm version.h
-    rm -f ../*build* ../*.buildinfo 2>/dev/null || true
 fi
 
 # Create build directory
