@@ -46,6 +46,12 @@ for pkg in "$@"; do
     fi
 done
 
+apt-get purge -- "$@"
+purge_status=$?
+if [ "$purge_status" -ne 0 ]; then
+    finish "$purge_status"
+fi
+
 # Remove leftover .old-dkms initrd images for kernels being purged
 for pkg in "$@"; do
     if [[ "$pkg" == linux-image-* ]]; then
@@ -58,6 +64,5 @@ for pkg in "$@"; do
     fi
 done
 
-apt-get purge -- "$@"
 apt-get install -f
 finish $?
