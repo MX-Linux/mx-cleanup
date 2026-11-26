@@ -482,7 +482,7 @@ void TestUtils::testGenerateUserScript_Cache()
 
     const QString script = generateUserScript(opts);
     QVERIFY(script.startsWith("#!/bin/sh\n"));
-    QVERIFY(script.contains("find '/home/alice/.cache' -mindepth 1"));
+    QVERIFY(script.contains("runuser -u 'alice' -- find '/home/alice/.cache' -mindepth 1"));
     QVERIFY(script.contains("-atime +5 -mtime +5"));
     QVERIFY(script.contains("-delete"));
 }
@@ -494,7 +494,7 @@ void TestUtils::testGenerateUserScript_NoAgeFilter()
     opts.cacheDays = 0;
 
     const QString script = generateUserScript(opts);
-    QVERIFY(script.contains("find '/home/alice/.cache' -mindepth 1"));
+    QVERIFY(script.contains("runuser -u 'alice' -- find '/home/alice/.cache' -mindepth 1"));
     QVERIFY(!script.contains("-atime"));
 }
 

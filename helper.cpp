@@ -26,6 +26,7 @@
 // commands, so a cached polkit authorization (auth_admin_keep) cannot
 // be abused to run arbitrary code as root.
 
+#include <algorithm>
 #include <cerrno>
 #include <cstdio>
 
@@ -501,6 +502,10 @@ struct ProcessResult
     return false;
 }
 
+// Run the entire per-account operation, including path checks, with that
+// user's credentials. A direct unprivileged invocation can clean only itself.
+int dispatchUserCleanup(const QString &action, const QStringList &args);
+
 // clean-cache <size|delete> <user> <days>  (days 0 disables the age filter)
 [[nodiscard]] int cmdCleanCache(const QStringList &args)
 {
@@ -524,7 +529,23 @@ struct ProcessResult
     } else {
         findArgs << "-printf" << "%k\n";
     }
-    return runRequiredBinary(findBinary(), "find", findArgs);
+    const QString find = findBinary();
+    if (find.isEmpty()) {
+        printError(QStringLiteral("Command is not available: find"));
+        return 127;
+    }
+    auto result = runProcess(find, findArgs);
+    // Flatpak owns this private subtree on some desktops. Match the GUI's
+    // treatment of find errors there, while preserving all other failures.
+    if (result.started && result.exitStatus == QProcess::NormalExit && result.exitCode == 1) {
+        const QByteArray ignored = QFile::encodeName(cachePath + "/.flatpak-helper");
+        const auto errors = result.standardError.trimmed().split('\n');
+        if (std::all_of(errors.cbegin(), errors.cend(), [&](const auto &line) { return line.contains(ignored); })) {
+            result.exitCode = 0;
+            result.standardError.clear();
+        }
+    }
+    return relayResult(result);
 }
 
 // clean-thumbnails <size|delete> <user> <days>
@@ -600,7 +621,7 @@ struct ProcessResult
             if (name.isEmpty() || name == "root" || !validUserNameSyntax(name)) {
                 continue;
             }
-            if (cmdCleanTrash({args.first(), name, args.last()}) != 0) {
+            if (dispatchUserCleanup("clean-trash", {args.first(), name, args.last()}) != 0) {
                 status = 1;
             }
         }
@@ -623,6 +644,37 @@ struct ProcessResult
     }
     findArgs << (isDelete ? QStringList {"-delete"} : QStringList {"-printf", "%k\n"});
     return runRequiredBinary(findBinary(), "find", findArgs);
+}
+
+int dispatchUserCleanup(const QString &action, const QStringList &args)
+{
+    if (args.size() != 3) {
+        return 1;
+    }
+    const QString user = args.at(1);
+    if (action == "clean-trash" && user == "@all") {
+        return cmdCleanTrash(args);
+    }
+    UserInfo account;
+    if (!lookupUser(user, &account) || account.uid == 0) {
+        printError(QStringLiteral("A non-root cleanup account is required"));
+        return 1;
+    }
+    if (geteuid() == 0) {
+        return runRequiredBinary(runuserBinary(), "runuser",
+                                 QStringList {"-u", user, "--", QCoreApplication::applicationFilePath(), action} + args);
+    }
+    if (geteuid() != account.uid) {
+        printError(QStringLiteral("Cleanup must run as the selected user"));
+        return 1;
+    }
+    if (action == "clean-cache") {
+        return cmdCleanCache(args);
+    }
+    if (action == "clean-thumbnails") {
+        return cmdCleanThumbnails(args);
+    }
+    return cmdCleanTrash(args);
 }
 
 // dir-size <apt-cache|pacman-cache|dpkg-info|flatpak-system> | dir-size flatpak-user <user>
@@ -739,17 +791,11 @@ int main(int argc, char *argv[])
     if (action == "write-system-script") {
         return cmdWriteSystemScript(args);
     }
-    if (action == "clean-cache") {
-        return cmdCleanCache(args);
-    }
-    if (action == "clean-thumbnails") {
-        return cmdCleanThumbnails(args);
+    if (action == "clean-cache" || action == "clean-thumbnails" || action == "clean-trash") {
+        return dispatchUserCleanup(action, args);
     }
     if (action == "clean-logs") {
         return cmdCleanLogs(args);
-    }
-    if (action == "clean-trash") {
-        return cmdCleanTrash(args);
     }
     if (action == "dir-size") {
         return cmdDirSize(args);

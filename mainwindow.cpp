@@ -998,7 +998,7 @@ void MainWindow::pushApply_clicked()
     // trash-all) rather than tied to this user's own cron schedule, so it can
     // still be persisted via saveSystemScript() below when no schedule is set.
     QStringList systemScriptOpts;
-    const bool elevate = (selectedUser != currentUser);
+    const bool elevate = geteuid() == 0 || selectedUser != currentUser;
 
     auto addToTotal = [&](const QString &label, quint64 amount) {
         if (amount == 0) {
@@ -1244,7 +1244,7 @@ void MainWindow::pushApply_clicked()
                                 .arg(user, timeTrash);
 
         quint64 trashKiB {};
-        if (user != currentUser) {
+        if (allUsers || elevate) {
             trashKiB = sumKiB(
                 helperOut({"clean-trash", "size", trashUserArg, trashDaysArg}, QuietMode::Yes, kDiskScanTimeoutMs));
         } else if (QFileInfo::exists(trashPath)) {
@@ -1257,7 +1257,7 @@ void MainWindow::pushApply_clicked()
         }
         bool trashOk = true;
         if (!ui->radioReboot->isChecked()) {
-            if (user != currentUser) {
+            if (allUsers || elevate) {
                 trashOk = runOp(tr("Trash cleanup"), {"clean-trash", "delete", trashUserArg, trashDaysArg});
             } else if (QFileInfo::exists(trashPath)) {
                 cmdOut(findDeleteCmd, QuietMode::No, &trashOk, kDiskScanTimeoutMs);

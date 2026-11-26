@@ -320,20 +320,21 @@ QString generateUserScript(const ScheduleOptions &opts)
     };
 
     QStringList parts;
+    const QString asUser = QString("runuser -u %1 -- ").arg(shellQuote(opts.user));
     if (opts.cacheDays >= 0) {
         const QString cachePath = "/home/" + opts.user + "/.cache";
-        parts << QString("find %1 -mindepth 1 ! -path %2%3 -type f -delete 2>/dev/null")
+        parts << asUser + QString("find %1 -mindepth 1 ! -path %2%3 -type f -delete 2>/dev/null")
                      .arg(shellQuote(cachePath), shellQuote(cachePath + "/thumbnails*"),
                           cacheAge(opts.cacheDays));
     }
     if (opts.thumbsDays >= 0) {
         const QString thumbsPath = "/home/" + opts.user + "/.cache/thumbnails";
-        parts << QString("find %1 -type f%2 -delete 2>/dev/null")
+        parts << asUser + QString("find %1 -type f%2 -delete 2>/dev/null")
                      .arg(shellQuote(thumbsPath), cacheAge(opts.thumbsDays));
     }
     if (opts.trashMode == "user") {
         const QString trashPath = "/home/" + opts.user + "/.local/share/Trash";
-        parts << QString("find %1 -mindepth 1%2 -delete")
+        parts << asUser + QString("find %1 -mindepth 1%2 -delete")
                      .arg(shellQuote(trashPath), scheduleAge(opts.trashDays));
     }
     if (opts.flatpak) {
@@ -350,7 +351,7 @@ QString generateUserScript(const ScheduleOptions &opts)
     // duplicating apt/purge/logs/trash-all commands into every user's file.
     parts << QString("[ -x %1 ] && %1").arg(systemScriptPath());
 
-    return "#!/bin/sh\n#\n# This file was created by MX Cleanup\n#\n\n" + parts.join('\n');
+    return "#!/bin/sh\n#\n# This file was created by MX Cleanup\n#\n\nPATH=/usr/sbin:/usr/bin:/sbin:/bin\nexport PATH\n" + parts.join('\n');
 }
 
 QString generateSystemScript(const ScheduleOptions &opts)
