@@ -142,6 +142,7 @@ set(SOURCES
 )
 
 set(HELPER_SOURCES
+    helperdeadline.cpp
     helper.cpp
     helperlib.cpp
     trash.cpp
@@ -293,6 +294,7 @@ if(BUILD_TESTS)
 
     add_executable(test_mx-cleanup
         tests/test_utils.cpp
+        helperdeadline.cpp
         mainwindow.cpp
         about.cpp
         packagemanager.cpp

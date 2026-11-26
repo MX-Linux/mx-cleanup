@@ -27,6 +27,8 @@
 #include <QSettings>
 #include <memory>
 
+#include "helperdeadline.h"
+
 namespace Ui
 {
 class MainWindow;
@@ -37,15 +39,6 @@ enum class QuietMode
     No,
     Yes,
 };
-
-// Timeout tiers for helperProc()/cmdOut(): quick metadata/settings operations
-// keep a short timeout, disk-scanning cleanup operations get a generous one
-// (slow disks, huge caches), and package-manager mutations get none at all --
-// killing apt-get/pacman/flatpak mid-operation can corrupt their state, so
-// those must be allowed to run to completion.
-constexpr int kQuickTimeoutMs = 30000;
-constexpr int kDiskScanTimeoutMs = 600000;
-constexpr int kNoTimeoutMs = 0;
 
 class MainWindow : public QDialog
 {

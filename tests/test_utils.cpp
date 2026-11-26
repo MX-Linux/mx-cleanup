@@ -22,6 +22,8 @@
 
 #include <pwd.h>
 #include <unistd.h>
+#include <csignal>
+#include <sys/wait.h>
 
 #include <QCoreApplication>
 #include <QDir>
@@ -35,6 +37,7 @@
 #include <QTemporaryDir>
 #include <QTest>
 #include "../helperlib.h"
+#include "../helperdeadline.h"
 #include "../mainwindow.h"
 #include "../packagemanager.h"
 #include "../usernameutils.h"
@@ -114,6 +117,7 @@ private slots:
     void testWriteFileAsRoot_FailedWritePreservesExistingTarget();
     void testGenerateScripts_ScopeIsolation();
     void testHelperBinary_ReportsFailureExitCodes();
+    void testHelperDeadlineStopsDescendants();
 };
 
 void TestUtils::testSumKiB_data()
@@ -890,6 +894,43 @@ void TestUtils::testGenerateScripts_ScopeIsolation()
 
 // The UI treats a non-zero helper exit code as failure (item 3); verify the
 // helper binary actually reports its argument-validation failures that way.
+void TestUtils::testHelperDeadlineStopsDescendants()
+{
+    int ready[2];
+    QVERIFY(::pipe(ready) == 0);
+    const pid_t supervisor = ::fork();
+    QVERIFY(supervisor >= 0);
+    if (supervisor == 0) {
+        ::close(ready[0]);
+        ::_exit(runWithDeadline(QDeadlineTimer(500, Qt::PreciseTimer), [&]() -> int {
+            const pid_t child = ::fork();
+            if (child < 0) {
+                return 1;
+            }
+            if (child == 0) {
+                ::setsid();
+                const pid_t pid = ::getpid();
+                if (::write(ready[1], &pid, sizeof(pid)) != sizeof(pid)) {
+                    ::_exit(1);
+                }
+            }
+            for (;;) {
+                ::pause();
+            }
+        }));
+    }
+    ::close(ready[1]);
+    int status = 0;
+    QCOMPARE(::waitpid(supervisor, &status, 0), supervisor);
+    QVERIFY(WIFEXITED(status));
+    QCOMPARE(WEXITSTATUS(status), kTimeoutExit);
+    pid_t descendant = 0;
+    QCOMPARE(::read(ready[0], &descendant, sizeof(descendant)), ssize_t(sizeof(descendant)));
+    ::close(ready[0]);
+    QVERIFY(descendant > 0);
+    QVERIFY(::kill(descendant, 0) == -1 && errno == ESRCH);
+}
+
 void TestUtils::testHelperBinary_ReportsFailureExitCodes()
 {
     const QString helper = QCoreApplication::applicationDirPath() + "/helper";

@@ -41,6 +41,7 @@
 #include <QProcess>
 
 #include "helperlib.h"
+#include "helperdeadline.h"
 #include "packagemanager.h"
 #include "usernameutils.h"
 
@@ -767,7 +768,7 @@ int dispatchUserCleanup(const QString &action, const QStringList &args)
 }
 }
 
-int main(int argc, char *argv[])
+static int runHelper(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
     const QStringList arguments = app.arguments().mid(1);
@@ -825,4 +826,27 @@ int main(int argc, char *argv[])
 
     printError(QString("Unsupported helper action: %1").arg(action));
     return 1;
+}
+
+int main(int argc, char *argv[])
+{
+    const QByteArray action = argc > 1 ? argv[1] : "";
+    // Never interrupt a package-manager transaction.
+    if (action == "purge-packages" || action == "clean-package-cache" || action == "flatpak-cleanup-user") {
+        return runHelper(argc, argv);
+    }
+    const bool diskScan = action.startsWith("clean-") || action == "dir-size";
+    QDeadlineTimer deadline(diskScan ? kDiskScanTimeoutMs : kQuickTimeoutMs, Qt::PreciseTimer);
+    if (argc >= 4 && QByteArray(argv[argc - 2]) == "--deadline-ms") {
+        bool ok = false;
+        const qint64 requested = QByteArray(argv[argc - 1]).toLongLong(&ok);
+        if (!ok || requested < 0) {
+            printError(QStringLiteral("Invalid helper deadline"));
+            return 1;
+        }
+        deadline.setDeadline(qMin(deadline.deadline(), requested), Qt::PreciseTimer);
+        argc -= 2;
+        argv[argc] = nullptr;
+    }
+    return runWithDeadline(deadline, [&] { return runHelper(argc, argv); });
 }

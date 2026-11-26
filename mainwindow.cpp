@@ -1509,12 +1509,17 @@ bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QStr
         *timedOut = false;
     }
 
-    QProcess proc;
+    auto owner = std::make_unique<QProcess>();
+    QProcess &proc = *owner;
     makeNewProcessGroup(proc);
     proc.setProcessChannelMode(QProcess::SeparateChannels);
 
     const QString helper {QStringLiteral(HELPER_PATH)};
     QStringList programArgs = helperArgs;
+    const QDeadlineTimer deadline(timeoutMs, Qt::PreciseTimer);
+    if (timeoutMs > 0) {
+        programArgs << "--deadline-ms" << QString::number(deadline.deadline());
+    }
 
     if (getuid() == 0) {
         proc.start(helper, programArgs);
@@ -1556,17 +1561,23 @@ bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QStr
     QEventLoop loop;
     connect(&proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), &loop, &QEventLoop::quit);
     if (timeoutMs > 0) {
-        QTimer::singleShot(timeoutMs, &loop, &QEventLoop::quit);
+        QTimer::singleShot(deadline.remainingTime() + kStopGraceMs + 1000, &loop, &QEventLoop::quit);
     }
     loop.exec();
 
     if (proc.state() != QProcess::NotRunning) {
-        killProcessGroup(proc);
+        // The helper owns cancellation, including after a slow authentication.
+        // Keep observing it asynchronously if its final status is unavailable.
+        connect(&proc, &QProcess::finished, &proc, &QObject::deleteLater);
+        owner.release();
+        const auto message = tr("Operation timed out. Cleanup may still be running.");
         if (output) {
             *output = QString();
         }
         if (errorOutput) {
-            *errorOutput = tr("Operation timed out");
+            *errorOutput = message;
+        } else {
+            QMessageBox::warning(this, tr("Error"), message);
         }
         if (timedOut) {
             *timedOut = true;
@@ -1583,6 +1594,15 @@ bool MainWindow::helperProc(const QStringList &helperArgs, QuietMode quiet, QStr
         qWarning().noquote() << standardError;
     }
     const bool ok = proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0;
+    if (timeoutMs > 0 && proc.exitStatus() == QProcess::NormalExit
+        && (proc.exitCode() == kTimeoutExit || proc.exitCode() == kUnconfirmedExit)) {
+        if (timedOut) {
+            *timedOut = true;
+        }
+        if (proc.exitCode() == kUnconfirmedExit && !errorOutput) {
+            QMessageBox::warning(this, tr("Error"), tr("Operation timed out. Cleanup may still be running."));
+        }
+    }
     if (!ok && errorOutput) {
         *errorOutput = standardError;
     }
