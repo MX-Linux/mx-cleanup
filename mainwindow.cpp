@@ -159,10 +159,14 @@ void MainWindow::removeManuals()
     prog.show();
     QApplication::processEvents();
 
+    QStringList failures;
     for (int index = 0; index < packageList.size(); ++index) {
         prog.setLabelText(tr("Removing packages, please wait"));
-        helperProc({"purge-packages", packageList.at(index)}, QuietMode::Yes, nullptr, {}, nullptr, nullptr,
-                  kNoTimeoutMs);
+        const QString &package = packageList.at(index);
+        QString diagnostic;
+        if (!helperProc({"purge-packages", package}, QuietMode::Yes, nullptr, {}, &diagnostic, nullptr, kNoTimeoutMs)) {
+            failures << (diagnostic.isEmpty() ? package : package + ": " + diagnostic);
+        }
         prog.setValue(index + 1);
         QApplication::processEvents();
     }
@@ -170,6 +174,9 @@ void MainWindow::removeManuals()
     ui->tabWidget->setEnabled(true);
     ui->pushCancel->setEnabled(true);
     manualRemovalInProgress = false;
+    if (!failures.isEmpty()) {
+        QMessageBox::warning(this, tr("Some cleanup steps failed"), failures.join('\n'));
+    }
 }
 
 void MainWindow::addGroupCheckbox(QLayout *layout, const QStringList &packages, const QString &name, QStringList *list)
