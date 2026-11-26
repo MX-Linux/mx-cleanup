@@ -238,6 +238,18 @@ update_aur_package() {
         exit 1
     fi
 
+    # GitHub strips a numeric release tag's leading v in the archive root.
+    local archive_root="mx-cleanup-${version#v}"
+    if ! tar -tzf "/tmp/${version}.tar.gz" -- "$archive_root/CMakeLists.txt" >/dev/null; then
+        print_error "Release archive lacks $archive_root/CMakeLists.txt"
+        exit 1
+    fi
+    if ! rg -q '^_srcdir=' "$pkgbuild"; then
+        print_error "AUR recipe has no _srcdir setting"
+        exit 1
+    fi
+    sed -i 's|^_srcdir=.*|_srcdir="${pkgname}-${pkgver#v}"|' "$pkgbuild"
+
     # Update checksum in PKGBUILD
     sed -i "s/sha256sums=.*/sha256sums=('${checksum}')/" "$pkgbuild"
 
