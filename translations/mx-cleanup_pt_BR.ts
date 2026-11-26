@@ -515,6 +515,17 @@
         <translation>Ocorreu um erro ao iniciar o auxiliador do processo</translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp" line="394"/>
+        <source>Could not load preferences for %1. Select the account again to retry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1573"/>
+        <location filename="../mainwindow.cpp" line="1603"/>
+        <source>Operation timed out. Cleanup may still be running.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="1526"/>
         <source>Operation timed out</source>
         <translation>Operação encerrada pelo tempo limite</translation>
