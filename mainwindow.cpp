@@ -1060,14 +1060,14 @@ void MainWindow::pushApply_clicked()
         const QString cachePath = QString("/home/%1/.cache").arg(selectedUser);
         QString period = cacheDays > 0 ? QString(" -atime +%1 -mtime +%1").arg(cacheDays) : QString();
         QString findCmd = QString("find /home/%1/.cache -mindepth 1 ! -path '/home/%1/.cache/thumbnails*'%2 -type f "
-                                  "-exec du -c '{}' + | awk 'END{print $1}'")
+                                  "-printf '%k\\n'")
                               .arg(selectedUser, period);
         quint64 cacheKiB {};
         if (elevate) {
             cacheKiB = sumKiB(
                 helperOut({"clean-cache", "size", selectedUser, cacheDaysArg}, QuietMode::Yes, kDiskScanTimeoutMs));
         } else {
-            cacheKiB = cmdOut(findCmd, QuietMode::No, nullptr, kDiskScanTimeoutMs).toULongLong();
+            cacheKiB = sumKiB(cmdOut(findCmd, QuietMode::No, nullptr, kDiskScanTimeoutMs));
         }
 
         scheduleOpts << "--cache" << cacheDaysArg;
@@ -1110,7 +1110,7 @@ void MainWindow::pushApply_clicked()
         const QString thumbsDaysArg = QString::number(thumbsDays);
         const QString thumbsPath = QString("/home/%1/.cache/thumbnails").arg(selectedUser);
         QString period = thumbsDays > 0 ? QString(" -atime +%1 -mtime +%1").arg(thumbsDays) : QString();
-        QString findThumbsCmd = QString("find /home/%1/.cache/thumbnails -type f%2 -exec du -c '{}' + | awk '{field = $1} END {print field}'")
+        QString findThumbsCmd = QString("find /home/%1/.cache/thumbnails -type f%2 -printf '%k\\n'")
                                     .arg(selectedUser, period);
         QString thumbsDeleteCmd = QString("find /home/%1/.cache/thumbnails -type f%2 -delete 2>/dev/null")
                                       .arg(selectedUser, period);
@@ -1120,7 +1120,7 @@ void MainWindow::pushApply_clicked()
             thumbnailsKiB = sumKiB(helperOut({"clean-thumbnails", "size", selectedUser, thumbsDaysArg},
                                              QuietMode::Yes, kDiskScanTimeoutMs));
         } else if (QFileInfo::exists(thumbsPath)) {
-            thumbnailsKiB = cmdOut(findThumbsCmd, QuietMode::No, nullptr, kDiskScanTimeoutMs).toULongLong();
+            thumbnailsKiB = sumKiB(cmdOut(findThumbsCmd, QuietMode::No, nullptr, kDiskScanTimeoutMs));
         }
         scheduleOpts << "--thumbs" << thumbsDaysArg;
         bool thumbsOk = true;
