@@ -495,18 +495,19 @@ bool MainWindow::loadSystemScriptOptions(const QString &legacyFallbackContent)
     }
     ui->checkPurge->setChecked(!isArchLinux && content.contains("apt-get purge"));
 
-    if (QRegularExpression(R"(\-exec truncate \-s 0)").match(content).hasMatch()) {
+    static const QRegularExpression logCommand(R"(^find /var/log [^\n]*)", QRegularExpression::MultilineOption);
+    const QString logLine = logCommand.match(content).captured();
+    if (logLine.contains("-exec truncate -s 0") || logLine.contains("-exec sh -c \"echo >")) {
         ui->groupBoxLogs->setChecked(true);
         ui->radioAllLogs->setChecked(true);
-    } else if (QRegularExpression(R"(\-type f \-delete)").match(content).hasMatch()) {
+    } else if (logLine.contains("-type f -delete")) {
         ui->groupBoxLogs->setChecked(true);
         ui->radioOldLogs->setChecked(true);
     } else {
         ui->groupBoxLogs->setChecked(false);
     }
-    QRegularExpression logCtimeRe(R"(find /var/log.*-ctime \+([0-9]{1,3}))");
-    QRegularExpressionMatch logMatch = logCtimeRe.match(content);
-    ui->spinBoxLogs->setValue(logMatch.hasMatch() ? logMatch.captured(1).toInt() : 0);
+    static const QRegularExpression logAge(R"(-ctime \+(\d+))");
+    ui->spinBoxLogs->setValue(logAge.match(logLine).captured(1).toInt());
 
     const QRegularExpression helperTrash(R"( clean-trash delete @all (\d+)$)", QRegularExpression::MultilineOption);
     const auto helperMatch = helperTrash.match(content);
