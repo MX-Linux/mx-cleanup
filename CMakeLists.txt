@@ -144,6 +144,7 @@ set(SOURCES
 set(HELPER_SOURCES
     helper.cpp
     helperlib.cpp
+    trash.cpp
     packagemanager.cpp
 )
 
@@ -296,6 +297,7 @@ if(BUILD_TESTS)
         about.cpp
         packagemanager.cpp
         helperlib.cpp
+        trash.cpp
     )
 
     target_link_libraries(test_mx-cleanup

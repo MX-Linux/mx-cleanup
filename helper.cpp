@@ -634,16 +634,14 @@ int dispatchUserCleanup(const QString &action, const QStringList &args);
     if (home.isEmpty()) {
         return 1;
     }
-    const QString trashPath = home + "/.local/share/Trash";
-    if (!QFileInfo::exists(trashPath)) {
-        return 0;
+    quint64 sizeKiB = 0;
+    if (!cleanTrashItems(home + "/.local/share/Trash", isDelete, days, &sizeKiB)) {
+        return 1;
     }
-    QStringList findArgs {trashPath, "-mindepth", "1"};
-    if (days > 0) {
-        findArgs << "-ctime" << QString("+%1").arg(days) << "-atime" << QString("+%1").arg(days);
+    if (!isDelete) {
+        writeAndFlush(stdout, QByteArray::number(sizeKiB) + '\n');
     }
-    findArgs << (isDelete ? QStringList {"-delete"} : QStringList {"-printf", "%k\n"});
-    return runRequiredBinary(findBinary(), "find", findArgs);
+    return 0;
 }
 
 int dispatchUserCleanup(const QString &action, const QStringList &args)

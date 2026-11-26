@@ -333,9 +333,8 @@ QString generateUserScript(const ScheduleOptions &opts)
                      .arg(shellQuote(thumbsPath), cacheAge(opts.thumbsDays));
     }
     if (opts.trashMode == "user") {
-        const QString trashPath = "/home/" + opts.user + "/.local/share/Trash";
-        parts << asUser + QString("find %1 -mindepth 1%2 -delete")
-                     .arg(shellQuote(trashPath), scheduleAge(opts.trashDays));
+        parts << QString("%1 clean-trash delete %2 %3")
+                     .arg(shellQuote(QStringLiteral(HELPER_PATH)), shellQuote(opts.user), QString::number(opts.trashDays));
     }
     if (opts.flatpak) {
         const QString cleanupCmd

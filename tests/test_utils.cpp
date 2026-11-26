@@ -25,6 +25,7 @@
 
 #include <QCoreApplication>
 #include <QDir>
+#include <QDateTime>
 #include <QFile>
 #include <QFileInfo>
 #include <QObject>
@@ -94,6 +95,7 @@ private slots:
     void testGenerateSystemScript_AllLogsUsesTruncate();
     void testGenerateSystemScript_Purge();
     void testGenerateSystemScript_TrashAll();
+    void testTrashDeletionDate();
 
     void testOpenSettingsDirFd_NoSettingsYet();
     void testOpenSettingsDirFd_CreatesWithCorrectOwnership();
@@ -525,7 +527,7 @@ void TestUtils::testGenerateUserScript_UnicodeUser()
     const QString script = generateUserScript(opts);
     QVERIFY(script.contains(QStringLiteral("'/home/иван/.cache'")));
     QVERIFY(script.contains(QStringLiteral("'/home/иван/.cache/thumbnails'")));
-    QVERIFY(script.contains(QStringLiteral("'/home/иван/.local/share/Trash'")));
+    QVERIFY(script.contains(QStringLiteral("clean-trash delete 'иван' 3")));
     QVERIFY(script.contains(QStringLiteral("runuser -u 'иван'")));
 
     QProcess shell;
@@ -601,6 +603,42 @@ void TestUtils::testGenerateSystemScript_Purge()
 
     const QString script = generateSystemScript(opts);
     QVERIFY(script.contains("dpkg -l | awk '/^rc/ { print $2 }' | xargs -r apt-get purge -y"));
+}
+
+void TestUtils::testTrashDeletionDate()
+{
+    QTemporaryDir root;
+    QVERIFY(root.isValid());
+    const QDir dir(root.path());
+    QVERIFY(dir.mkpath("info"));
+    for (const QString &name : {QStringLiteral("old"), QStringLiteral("recent")}) {
+        QVERIFY(dir.mkpath("files/" + name));
+        QFile child(dir.filePath("files/" + name + "/child"));
+        QVERIFY(child.open(QIODevice::WriteOnly));
+        QVERIFY(child.write("data") == 4);
+        QFile info(dir.filePath("info/" + name + ".trashinfo"));
+        QVERIFY(info.open(QIODevice::WriteOnly));
+        const auto date = QDateTime::currentDateTime().addDays(name == "old" ? -40 : 0);
+        info.write("[Trash Info]\nPath=/original\nDeletionDate=" + date.toString("yyyy-MM-dd'T'HH:mm:ss").toLatin1() + '\n');
+    }
+    QVERIFY(dir.mkdir("files/orphan"));
+    QFile orphan(dir.filePath("info/orphan-meta.trashinfo"));
+    QVERIFY(orphan.open(QIODevice::WriteOnly));
+    orphan.close();
+    quint64 size = 0;
+    QVERIFY(cleanTrashItems(root.path(), false, 30, &size));
+    QVERIFY(size > 0);
+    QVERIFY(cleanTrashItems(root.path(), true, 30, &size));
+    QVERIFY(!dir.exists("files/old"));
+    QVERIFY(!dir.exists("info/old.trashinfo"));
+    QVERIFY(dir.exists("files/recent/child"));
+    QVERIFY(dir.exists("info/recent.trashinfo"));
+    QVERIFY(dir.exists("files/orphan"));
+    QVERIFY(dir.exists("info/orphan-meta.trashinfo"));
+    QVERIFY(cleanTrashItems(root.path(), true, 0, &size));
+    QVERIFY(!dir.exists("files/orphan"));
+    QVERIFY(!dir.exists("info/orphan-meta.trashinfo"));
+    QVERIFY(!dir.exists("files/recent"));
 }
 
 void TestUtils::testGenerateSystemScript_TrashAll()

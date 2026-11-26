@@ -690,6 +690,11 @@ int MainWindow::scriptCacheAgeDays(const QString &content)
 
 int MainWindow::scriptTrashAgeDays(const QString &content)
 {
+    static const QRegularExpression helperTrash(R"( clean-trash delete '[^']+' (\d+)$)", QRegularExpression::MultilineOption);
+    const auto helperMatch = helperTrash.match(content);
+    if (helperMatch.hasMatch()) {
+        return helperMatch.captured(1).toInt();
+    }
     static const QRegularExpression re(R"(find '?/home/.*-ctime \+([0-9]{1,3}))");
     const QRegularExpressionMatch match = re.match(content);
     return match.hasMatch() ? match.captured(1).toInt() : 0;
@@ -766,7 +771,7 @@ void MainWindow::loadOptions(bool settingsPreloaded)
     // "selected user" is read here only when the shared script isn't already
     // scheduling "all users".
     if (!trashAllActive) {
-        if (userContent.contains("/.local/share/Trash")) {
+        if (userContent.contains(" clean-trash delete ") || userContent.contains("/.local/share/Trash")) {
             ui->groupBoxTrash->setChecked(true);
             ui->radioSelectedUser->setChecked(true);
             ui->spinBoxTrash->setValue(scriptTrashAgeDays(userContent));
@@ -1231,25 +1236,10 @@ void MainWindow::pushApply_clicked()
 
     if (ui->groupBoxTrash->isChecked()) {
         const bool allUsers = ui->radioAllUsers->isChecked();
-        QString user = allUsers ? "*" : ui->comboUserClean->currentText();
-        const QString trashUserArg = allUsers ? QStringLiteral("@all") : user;
+        const QString trashUserArg = allUsers ? QStringLiteral("@all") : selectedUser;
         const QString trashDaysArg = QString::number(ui->spinBoxTrash->value());
-        const QString trashPath = QString("/home/%1/.local/share/Trash").arg(user);
-        QString timeTrash = ui->spinBoxTrash->value() > 0
-                                ? QString(" -ctime +%1 -atime +%1").arg(ui->spinBoxTrash->value())
-                                : QString();
-        QString findSizeCmd = QString("find /home/%1/.local/share/Trash -mindepth 1%2 -exec du -sc '{}' + | awk '{field = $1} END {print field}'")
-                                .arg(user, timeTrash);
-        QString findDeleteCmd = QString("find /home/%1/.local/share/Trash -mindepth 1%2 -delete")
-                                .arg(user, timeTrash);
-
-        quint64 trashKiB {};
-        if (allUsers || elevate) {
-            trashKiB = sumKiB(
-                helperOut({"clean-trash", "size", trashUserArg, trashDaysArg}, QuietMode::Yes, kDiskScanTimeoutMs));
-        } else if (QFileInfo::exists(trashPath)) {
-            trashKiB = cmdOut(findSizeCmd, QuietMode::No, nullptr, kDiskScanTimeoutMs).toULongLong();
-        }
+        const quint64 trashKiB = sumKiB(
+            helperOut({"clean-trash", "size", trashUserArg, trashDaysArg}, QuietMode::Yes, kDiskScanTimeoutMs));
 
         scheduleOpts << "--trash" << (allUsers ? "all" : "user") << trashDaysArg;
         if (allUsers) {
@@ -1257,14 +1247,7 @@ void MainWindow::pushApply_clicked()
         }
         bool trashOk = true;
         if (!ui->radioReboot->isChecked()) {
-            if (allUsers || elevate) {
-                trashOk = runOp(tr("Trash cleanup"), {"clean-trash", "delete", trashUserArg, trashDaysArg});
-            } else if (QFileInfo::exists(trashPath)) {
-                cmdOut(findDeleteCmd, QuietMode::No, &trashOk, kDiskScanTimeoutMs);
-                if (!trashOk) {
-                    failures << tr("Trash cleanup");
-                }
-            }
+            trashOk = runOp(tr("Trash cleanup"), {"clean-trash", "delete", trashUserArg, trashDaysArg});
         }
         if (trashOk) {
             addToTotal("trash", trashKiB);

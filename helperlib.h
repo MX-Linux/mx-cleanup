@@ -60,6 +60,7 @@ struct ScheduleOptions
 
 void writeAndFlush(FILE *stream, const QByteArray &data);
 void printError(const QString &message);
+[[nodiscard]] bool cleanTrashItems(const QString &trashDir, bool remove, int days, quint64 *sizeKiB);
 
 [[nodiscard]] bool lookupUser(const QString &user, UserInfo *info = nullptr);
 [[nodiscard]] bool parseDays(const QString &value, int *days);
