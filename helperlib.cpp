@@ -139,12 +139,18 @@ int openSettingsDirFd(const QString &homeDir, bool create, uid_t uid, gid_t gid)
         return -1;
     }
     const int configFd = openConfigDir(homeFd, create, uid, gid);
+    const int configError = errno;
     ::close(homeFd);
     if (configFd < 0) {
+        errno = configError;
         return -1;
     }
     const int mxFd = openMxLinuxDir(configFd, create, uid, gid);
+    const int mxError = errno;
     ::close(configFd);
+    if (mxFd < 0) {
+        errno = mxError;
+    }
     return mxFd;
 }
 

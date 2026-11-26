@@ -182,12 +182,27 @@ struct ProcessResult
     }
     const int dirFd = openSettingsDirFd(homeDir, false, info.uid, info.gid);
     if (dirFd < 0) {
-        return 0; // no settings yet
+        if (errno == ENOENT) {
+            return 0;
+        }
+        printError(QString("Failed to open settings directory for %1").arg(user));
+        return 1;
     }
-    const int fd = ::openat(dirFd, "mx-cleanup.conf", O_RDONLY | O_NOFOLLOW | O_NOCTTY);
+    const int fd = ::openat(dirFd, "mx-cleanup.conf", O_RDONLY | O_NOFOLLOW | O_NOCTTY | O_NONBLOCK);
+    const int openError = errno;
     ::close(dirFd);
     if (fd < 0) {
-        return 0; // no settings yet
+        if (openError == ENOENT) {
+            return 0;
+        }
+        printError(QString("Failed to open settings file for %1").arg(user));
+        return 1;
+    }
+    struct stat st {};
+    if (::fstat(fd, &st) < 0 || !S_ISREG(st.st_mode)) {
+        printError(QString("Invalid settings file for %1").arg(user));
+        ::close(fd);
+        return 1;
     }
 
     QByteArray content;

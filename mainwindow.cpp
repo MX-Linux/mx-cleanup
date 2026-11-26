@@ -285,7 +285,7 @@ void MainWindow::setup()
 
     initializeSettingsForUser(ui->comboUserClean->currentText());
     loadSettings();
-    ui->pushApply->setEnabled(!ui->comboUserClean->currentText().isEmpty());
+    ui->pushApply->setEnabled(settings && !ui->comboUserClean->currentText().isEmpty());
     loadSchedule(true);
 
     suppressUserSwitch = false;
@@ -362,23 +362,30 @@ void MainWindow::initializeSettingsForUser(const QString &user)
     const bool needsRoot = (getuid() != 0 && user != currentUser);
     if (needsRoot) {
         QTemporaryFile tempFile(QDir::tempPath() + "/mx-cleanup-shadowXXXXXX.conf");
-        tempFile.setAutoRemove(false);
+        QString diagnostic;
         if (tempFile.open()) {
-            shadowSettingsPath = tempFile.fileName();
             QString content;
-            helperProc({"read-settings", user}, QuietMode::Yes, &content);
-            if (!content.isEmpty()) {
-                tempFile.write(content.toUtf8() + '\n');
+            ui->comboUserClean->setEnabled(false);
+            const bool loaded = helperProc({"read-settings", user}, QuietMode::Yes, &content, {}, &diagnostic);
+            ui->comboUserClean->setEnabled(true);
+            const auto data = content.toUtf8();
+            if (loaded && tempFile.write(data) == data.size() && tempFile.flush()) {
+                tempFile.setAutoRemove(false);
+                shadowSettingsPath = tempFile.fileName();
+                tempFile.close();
+                settings = std::make_unique<QSettings>(shadowSettingsPath, QSettings::IniFormat);
+                settings->setFallbacksEnabled(false);
+                currentSettingsPath = filePath;
+                return;
             }
-            tempFile.close();
-            settings = std::make_unique<QSettings>(shadowSettingsPath, QSettings::IniFormat);
-            settings->setFallbacksEnabled(false);
-            currentSettingsPath = filePath;
-            return;
         }
-        qWarning().noquote() << "Failed to create temporary file for settings shadow";
-        settings = std::make_unique<QSettings>();
-        currentSettingsPath = filePath;
+        ui->pushApply->setEnabled(false);
+        {
+            const QSignalBlocker blocker(ui->comboUserClean);
+            ui->comboUserClean->setCurrentIndex(-1);
+        }
+        QMessageBox::warning(this, tr("Error"), tr("Could not load preferences for %1. Select the account again to retry.").arg(user)
+                                                  + (diagnostic.isEmpty() ? QString() : "\n" + diagnostic));
         return;
     }
 
@@ -819,7 +826,7 @@ bool MainWindow::saveSystemScript(const QStringList &systemScriptOpts)
 bool MainWindow::saveSettings()
 {
     if (!settings) {
-        return true;
+        return false;
     }
 
     const QString user = ui->comboUserClean->currentText();
@@ -974,14 +981,15 @@ void MainWindow::setConnections()
     connect(ui->pushRTLremove, &QPushButton::clicked, this, &MainWindow::pushRTLremove_clicked);
     connect(ui->pushUsageAnalyzer, &QPushButton::clicked, this, &MainWindow::pushUsageAnalyzer_clicked);
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, [this](int index) {
-        ui->pushApply->setEnabled(index != 1 && !ui->comboUserClean->currentText().isEmpty());
+        ui->pushApply->setEnabled(settings && index != 1 && !ui->comboUserClean->currentText().isEmpty());
     });
     connect(ui->comboUserClean, &QComboBox::currentTextChanged, this, [this](const QString &text) {
         if (suppressUserSwitch) {
             return;
         }
-        ui->pushApply->setEnabled(ui->tabWidget->currentIndex() != 1 && !text.isEmpty());
+        ui->pushApply->setEnabled(false);
         initializeSettingsForUser(text);
+        ui->pushApply->setEnabled(settings && ui->tabWidget->currentIndex() != 1 && !text.isEmpty());
         loadSettings();
         loadSchedule(true);
     });
@@ -995,7 +1003,7 @@ void MainWindow::setConnections()
 void MainWindow::pushApply_clicked()
 {
     const QString selectedUser = ui->comboUserClean->currentText();
-    if (selectedUser.isEmpty()) {
+    if (selectedUser.isEmpty() || !settings) {
         qWarning() << "Ignoring cleanup request without a selected user";
         return;
     }
