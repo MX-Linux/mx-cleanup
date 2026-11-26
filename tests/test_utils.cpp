@@ -231,6 +231,9 @@ void TestUtils::testValidPackageName_data()
     QTest::newRow("kernel image")    << QStringLiteral("linux-image-6.1.0-13-amd64") << true;
     QTest::newRow("digits+dots")     << QStringLiteral("lib32z1") << true;
     QTest::newRow("plus sign")       << QStringLiteral("g++-12") << true;
+    QTest::newRow("multiarch")       << QStringLiteral("libexample:i386") << true;
+    QTest::newRow("empty arch")      << QStringLiteral("libexample:") << false;
+    QTest::newRow("extra colon")     << QStringLiteral("libexample:i386:all") << false;
     QTest::newRow("empty")          << QString() << false;
     QTest::newRow("leading dash")    << QStringLiteral("-bash") << false;
     QTest::newRow("space")          << QStringLiteral("bash extra") << false;

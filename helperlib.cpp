@@ -82,7 +82,8 @@ bool parseDays(const QString &value, int *days)
 
 bool validPackageName(const QString &package)
 {
-    static const QRegularExpression packagePattern(QStringLiteral("^[a-zA-Z0-9][a-zA-Z0-9.+-]*$"));
+    static const QRegularExpression packagePattern(
+        QStringLiteral(R"(\A[a-zA-Z0-9][a-zA-Z0-9.+-]*(?::[a-z0-9][a-z0-9-]*)?\z)"));
     return packagePattern.match(package).hasMatch();
 }
 

@@ -1181,12 +1181,13 @@ void MainWindow::pushApply_clicked()
     if (!isArchLinux && ui->checkPurge->isChecked()) {
         quint64 before_size = helperDuSize("dpkg-info", {}, QuietMode::Yes);
         const QStringList residualPackages
-            = cmdOut("dpkg-query -W -f='${db:Status-Abbrev}\t${Package}\n'", QuietMode::Yes)
+            = cmdOut("dpkg-query -W -f='${db:Status-Abbrev}\t${binary:Package}\n'", QuietMode::Yes)
                                                  .split('\n', Qt::SkipEmptyParts);
         QStringList packagesToPurge;
         for (const QString &line : residualPackages) {
-            if (line.startsWith("rc\t")) {
-                packagesToPurge << line.section('\t', 1);
+            const auto fields = line.split('\t');
+            if (fields.size() == 2 && fields.first().trimmed() == "rc") {
+                packagesToPurge << fields.last();
             }
         }
 
