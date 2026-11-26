@@ -1261,6 +1261,17 @@ void MainWindow::pushApply_clicked()
     // so multiple users can each schedule their own cadence without
     // duplicating the apt/purge/logs/trash-all commands themselves.
     static const QStringList allPeriods {"daily", "weekly", "monthly", "@reboot"};
+    QStringList legacyPeriods;
+    bool legacyRebootScript = false;
+    if (selectedUser == currentUser) {
+        for (const QString &period : allPeriods) {
+            const QString base = cronEntryBase(period);
+            if (QFile::exists(base)) {
+                legacyPeriods << period;
+            }
+        }
+        legacyRebootScript = QFile::exists(scriptFileBase());
+    }
     bool scheduleCleanupFailed = false;
     auto clearCron = [&](const QString &period) {
         if (!helperProc({"remove-schedule", "cron", period, selectedUser}, QuietMode::Yes)) {
@@ -1284,6 +1295,7 @@ void MainWindow::pushApply_clicked()
         schedule = "@reboot";
     }
 
+    bool saved = false;
     if (schedule.isEmpty()) {
         // Scheduling disabled: drop this user's own schedule outright. The
         // shared system-wide script has no cron entry left to invoke it, but
@@ -1294,10 +1306,12 @@ void MainWindow::pushApply_clicked()
             clearCron(period);
         }
         clearScript();
-        if (!saveSystemScript(systemScriptOpts)) {
+        saved = saveSystemScript(systemScriptOpts);
+        if (!saved) {
             failures << tr("Save cleanup schedule");
         }
     } else if (saveSchedule(scheduleOpts, schedule)) {
+        saved = true;
         // Only drop schedules for the other periods once the new one is safely
         // written, so a failed write above leaves the prior schedule intact.
         for (const auto &period : allPeriods) {
@@ -1310,6 +1324,17 @@ void MainWindow::pushApply_clicked()
         }
     } else {
         failures << tr("Save cleanup schedule");
+    }
+    if (saved && !scheduleCleanupFailed) {
+        for (const auto &period : legacyPeriods) {
+            if (!helperProc({"remove-schedule", "cron", period}, QuietMode::Yes)) {
+                scheduleCleanupFailed = true;
+            }
+        }
+        if (!scheduleCleanupFailed && legacyRebootScript
+            && !helperProc({"remove-schedule", "script"}, QuietMode::Yes)) {
+            scheduleCleanupFailed = true;
+        }
     }
     if (scheduleCleanupFailed) {
         failures << tr("Remove previous cleanup schedule");
