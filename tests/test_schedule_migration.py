@@ -18,19 +18,20 @@ class ScheduleMigration(unittest.TestCase):
                     directory = root / "etc" / f"cron.{period}"
                     directory.mkdir(parents=True)
                     for name in ("mx-cleanup", "mx-cleanup.alice", "mx-cleanup-alice"):
-                        (directory / name).touch()
-                    (directory / "unrelated").touch()
+                        (directory / name).write_text("# This file was created by MX Cleanup\n")
+                    (directory / "mx-cleanup-report").write_text("#!/bin/sh\nexit 0\n")
                 scripts = root / "usr/bin"
                 scripts.mkdir(parents=True)
                 for name in ("mx-cleanup-script", "mx-cleanup-script.alice",
                              "mx-cleanup-system-script"):
-                    (scripts / name).touch()
+                    (scripts / name).write_text("# This file was created by MX Cleanup\n")
                 text = (repo / hook).read_text()
                 text = text.replace("/etc/cron.", f"{root}/etc/cron.")
                 text = text.replace("/usr/bin/", f"{root}/usr/bin/")
+                text = text.replace(f"^@reboot root {root}/usr/bin/", "^@reboot root /usr/bin/")
                 subprocess.run(["sh", "-c", text + "\npost_remove\n"], check=True)
-                self.assertFalse(list(root.glob("etc/cron.*/mx-cleanup*")))
-                self.assertEqual(len(list(root.glob("etc/cron.*/unrelated"))), 4)
+                remaining = sorted(p.name for p in root.glob("etc/cron.*/mx-cleanup*"))
+                self.assertEqual(remaining, ["mx-cleanup-report"] * 4)
                 self.assertFalse(list(scripts.iterdir()))
 
     def test_upgrade_and_removal(self):
@@ -40,7 +41,7 @@ class ScheduleMigration(unittest.TestCase):
             scripts = root / "usr/bin"
             scripts.mkdir(parents=True)
             reboot_script = scripts / "mx-cleanup-script.alice.smith"
-            reboot_script.write_text("#!/bin/sh\nexit 0\n")
+            reboot_script.write_text("#!/bin/sh\n# This file was created by MX Cleanup\nexit 0\n")
             for period in ("daily", "weekly", "monthly", "d"):
                 directory = root / "etc" / f"cron.{period}"
                 directory.mkdir(parents=True)
@@ -62,6 +63,7 @@ class ScheduleMigration(unittest.TestCase):
                 # Only postrm deletes scripts; postinst matches literal references.
                 if name == "postrm":
                     text = text.replace("/usr/bin/", f"{root}/usr/bin/")
+                    text = text.replace(f"^@reboot root {root}/usr/bin/", "^@reboot root /usr/bin/")
                 subprocess.run(["sh", "-c", text, name, argument], check=True)
 
             run_hook("postinst", "configure")
@@ -80,7 +82,8 @@ class ScheduleMigration(unittest.TestCase):
                           (root / "etc/cron.d/mx-cleanup-alice_2esmith").read_text())
             self.assertTrue(reboot_script.exists())
             run_hook("postrm", "remove")
-            self.assertFalse(list(root.glob("etc/cron.*/mx-cleanup*")))
+            remaining = sorted(p.name for p in root.glob("etc/cron.*/mx-cleanup*"))
+            self.assertEqual(remaining, sorted(["mx-cleanup-existing", "mx-cleanup.unrelated"] * 4))
             self.assertFalse(reboot_script.exists())
 
 

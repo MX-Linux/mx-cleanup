@@ -3,10 +3,15 @@
 # self-contained shell scripts, so without this they would keep deleting
 # logs/caches/trash on schedule even after the package is removed.
 post_remove() {
-    rm -f /etc/cron.daily/mx-cleanup /etc/cron.daily/mx-cleanup.* /etc/cron.daily/mx-cleanup-* \
+    for file in /etc/cron.daily/mx-cleanup /etc/cron.daily/mx-cleanup.* /etc/cron.daily/mx-cleanup-* \
         /etc/cron.weekly/mx-cleanup /etc/cron.weekly/mx-cleanup.* /etc/cron.weekly/mx-cleanup-* \
         /etc/cron.monthly/mx-cleanup /etc/cron.monthly/mx-cleanup.* /etc/cron.monthly/mx-cleanup-* \
         /etc/cron.d/mx-cleanup /etc/cron.d/mx-cleanup.* /etc/cron.d/mx-cleanup-* \
-        /usr/bin/mx-cleanup-script /usr/bin/mx-cleanup-script.* \
-        /usr/bin/mx-cleanup-system-script
+        /usr/bin/mx-cleanup-script /usr/bin/mx-cleanup-script.* /usr/bin/mx-cleanup-system-script; do
+        [ -f "$file" ] && [ ! -L "$file" ] || continue
+        if grep -Fxq '# This file was created by MX Cleanup' "$file" ||
+            grep -Eq '^@reboot root /usr/bin/mx-cleanup-script([.][A-Za-z0-9_.-]+)?$' "$file"; then
+            rm -f -- "$file"
+        fi
+    done
 }
