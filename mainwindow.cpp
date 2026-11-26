@@ -226,7 +226,30 @@ void MainWindow::setup()
 
     suppressUserSwitch = true;
 
-    currentUser = cmdOut("logname", QuietMode::Yes);
+    bool loginOk = false;
+    currentUser = cmdOut("logname", QuietMode::Yes, &loginOk);
+    const auto *login = loginOk && validUserNameSyntax(currentUser) ? passwdForUser(currentUser) : nullptr;
+    if (!login || login->pw_uid == 0 || (getuid() != 0 && login->pw_uid != getuid())) {
+        currentUser.clear();
+        auto userForUid = [](uid_t uid) -> QString {
+            const auto *account = uid == 0 ? nullptr : getpwuid(uid);
+            return account ? QString::fromLocal8Bit(account->pw_name) : QString();
+        };
+        if (getuid() != 0) {
+            currentUser = userForUid(getuid());
+        } else {
+            for (const char *key : {"PKEXEC_UID", "SUDO_UID"}) {
+                bool valid = false;
+                const uint uid = qEnvironmentVariable(key).toUInt(&valid);
+                if (valid) {
+                    currentUser = userForUid(uid);
+                    if (!currentUser.isEmpty()) {
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
     ui->pushApply->setDisabled(true);
     ui->checkCache->setChecked(true);
@@ -257,14 +280,7 @@ void MainWindow::setup()
         QSignalBlocker blocker(ui->comboUserClean);
         ui->comboUserClean->addItems(users);
 
-        int targetIndex = ui->comboUserClean->findText(currentUser);
-        if (targetIndex == -1 && ui->comboUserClean->count() > 0) {
-            targetIndex = 0;
-        }
-
-        if (targetIndex != -1) {
-            ui->comboUserClean->setCurrentIndex(targetIndex);
-        }
+        ui->comboUserClean->setCurrentIndex(ui->comboUserClean->findText(currentUser));
     }
 
     initializeSettingsForUser(ui->comboUserClean->currentText());
