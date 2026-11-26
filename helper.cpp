@@ -588,19 +588,36 @@ struct ProcessResult
     if (args.size() != 3 || !parseSizeOrDelete(args.at(0), &isDelete) || !parseDays(args.at(2), &days)) {
         return 1;
     }
-    QStringList findArgs;
-    if (args.at(1) == "@all") {
-        findArgs << "/home" << "-path" << "/home/*/.local/share/Trash/*";
-    } else {
-        if (!lookupUser(args.at(1))) {
-            return 1;
+    const QString user = args.at(1);
+    if (user == "@all") {
+        const auto users = runProcess("/usr/bin/lslogins", {"--noheadings", "--notruncate", "-u", "-o", "user"});
+        if (!users.started || users.exitStatus != QProcess::NormalExit || users.exitCode != 0) {
+            return relayResult(users);
         }
-        const QString trashPath = "/home/" + args.at(1) + "/.local/share/Trash";
-        if (!QFileInfo::exists(trashPath)) {
-            return 0;
+        int status = 0;
+        for (const auto &line : users.standardOutput.split('\n')) {
+            const QString name = QString::fromLocal8Bit(line.trimmed());
+            if (name.isEmpty() || name == "root" || !validUserNameSyntax(name)) {
+                continue;
+            }
+            if (cmdCleanTrash({args.first(), name, args.last()}) != 0) {
+                status = 1;
+            }
         }
-        findArgs << trashPath << "-mindepth" << "1";
+        return status;
     }
+    if (!lookupUser(user)) {
+        return 1;
+    }
+    const QString home = homeDirForUser(user);
+    if (home.isEmpty()) {
+        return 1;
+    }
+    const QString trashPath = home + "/.local/share/Trash";
+    if (!QFileInfo::exists(trashPath)) {
+        return 0;
+    }
+    QStringList findArgs {trashPath, "-mindepth", "1"};
     if (days > 0) {
         findArgs << "-ctime" << QString("+%1").arg(days) << "-atime" << QString("+%1").arg(days);
     }

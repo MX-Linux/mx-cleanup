@@ -231,6 +231,7 @@ target_compile_definitions(mx-cleanup PRIVATE
 )
 
 target_compile_definitions(helper PRIVATE
+    HELPER_PATH="${HELPER_PATH}"
     QT_DEPRECATED_WARNINGS
     QT_DISABLE_DEPRECATED_BEFORE=0x060000
     VERSION="${PROJECT_VERSION}"

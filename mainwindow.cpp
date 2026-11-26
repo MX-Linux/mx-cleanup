@@ -508,13 +508,15 @@ bool MainWindow::loadSystemScriptOptions(const QString &legacyFallbackContent)
     QRegularExpressionMatch logMatch = logCtimeRe.match(content);
     ui->spinBoxLogs->setValue(logMatch.hasMatch() ? logMatch.captured(1).toInt() : 0);
 
-    const bool trashAllActive = content.contains("/home/*/.local/share/Trash");
+    const QRegularExpression helperTrash(R"( clean-trash delete @all (\d+)$)", QRegularExpression::MultilineOption);
+    const auto helperMatch = helperTrash.match(content);
+    const bool trashAllActive = helperMatch.hasMatch() || content.contains("/home/*/.local/share/Trash");
     if (trashAllActive) {
         ui->groupBoxTrash->setChecked(true);
         ui->radioAllUsers->setChecked(true);
         QRegularExpression trashCtimeRe(R"(find /home/.*-ctime \+([0-9]{1,3}))");
         QRegularExpressionMatch trashMatch = trashCtimeRe.match(content);
-        ui->spinBoxTrash->setValue(trashMatch.hasMatch() ? trashMatch.captured(1).toInt() : 0);
+        ui->spinBoxTrash->setValue(helperMatch.hasMatch() ? helperMatch.captured(1).toInt() : trashMatch.captured(1).toInt());
     }
     return trashAllActive;
 }

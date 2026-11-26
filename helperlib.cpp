@@ -382,7 +382,7 @@ QString generateSystemScript(const ScheduleOptions &opts)
         parts << apt;
     }
     if (opts.trashMode == "all") {
-        parts << QString("find /home/*/.local/share/Trash -mindepth 1%1 -delete").arg(scheduleAge(opts.trashDays));
+        parts << QString("%1 clean-trash delete @all %2").arg(shellQuote(QStringLiteral(HELPER_PATH))).arg(opts.trashDays);
     }
 
     return "#!/bin/sh\n#\n# This file was created by MX Cleanup\n#\n\n" + parts.join('\n');

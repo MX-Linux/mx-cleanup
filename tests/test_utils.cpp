@@ -610,8 +610,8 @@ void TestUtils::testGenerateSystemScript_TrashAll()
     opts.trashDays = 30;
 
     const QString script = generateSystemScript(opts);
-    QVERIFY(script.contains("find /home/*/.local/share/Trash -mindepth 1"));
-    QVERIFY(script.contains("-ctime +30 -atime +30"));
+    QVERIFY(script.contains(" clean-trash delete @all 30"));
+    QVERIFY(!script.contains("/home/*"));
 }
 
 namespace {
